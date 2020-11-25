@@ -14,9 +14,12 @@
 		8551E0B7256E38E6008C64FA /* myVday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0B5256E38E6008C64FA /* myVday.xcdatamodeld */; };
 		8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0B8256E38EC008C64FA /* Assets.xcassets */; };
 		8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */; };
+		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.release.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.release.xcconfig"; sourceTree = "<group>"; };
+		5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
 		8551E0A9256E38E6008C64FA /* myVday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8551E0AC256E38E6008C64FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8551E0AE256E38E6008C64FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		8551E0B8256E38EC008C64FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8551E0BB256E38EC008C64FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8551E0BD256E38EC008C64FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B017E6F9F85BE8873B45F69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3EE73E5D90B7F104212E488E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */,
+				45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8551E0A0256E38E6008C64FA = {
 			isa = PBXGroup;
 			children = (
 				8551E0AB256E38E6008C64FA /* myVday */,
 				8551E0AA256E38E6008C64FA /* Products */,
+				3EE73E5D90B7F104212E488E /* Pods */,
+				3B017E6F9F85BE8873B45F69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +102,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8551E0C0256E38EC008C64FA /* Build configuration list for PBXNativeTarget "myVday" */;
 			buildPhases = (
+				90981EFF020F249F31BEB6B7 /* [CP] Check Pods Manifest.lock */,
 				8551E0A5256E38E6008C64FA /* Sources */,
 				8551E0A6256E38E6008C64FA /* Frameworks */,
 				8551E0A7256E38E6008C64FA /* Resources */,
@@ -135,6 +161,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		90981EFF020F249F31BEB6B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myVday-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8551E0A5256E38E6008C64FA /* Sources */ = {
@@ -286,6 +337,7 @@
 		};
 		8551E0C1256E38EC008C64FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -303,6 +355,7 @@
 		};
 		8551E0C2256E38EC008C64FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
