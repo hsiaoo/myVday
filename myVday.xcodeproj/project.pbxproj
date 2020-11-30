@@ -3,32 +3,56 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */; };
+		8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */; };
+		852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */; };
+		852D98F02570D445004F86B1 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98EF2570D445004F86B1 /* CheckBox.swift */; };
+		852D98F22570E02F004F86B1 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* MyTextField.swift */; };
+		853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6C425737CBE007BA763 /* PlaceMarker.swift */; };
+		853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6CC2573D41B007BA763 /* FirebaseManager.swift */; };
 		8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AC256E38E6008C64FA /* AppDelegate.swift */; };
 		8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AE256E38E6008C64FA /* SceneDelegate.swift */; };
-		8551E0B1256E38E6008C64FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0B0256E38E6008C64FA /* ViewController.swift */; };
 		8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0B2256E38E6008C64FA /* Main.storyboard */; };
 		8551E0B7256E38E6008C64FA /* myVday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0B5256E38E6008C64FA /* myVday.xcdatamodeld */; };
 		8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0B8256E38EC008C64FA /* Assets.xcassets */; };
 		8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */; };
+		85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */; };
+		85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85750BE125726C4200B7786F /* GoogleService-Info.plist */; };
+		85750BE425733DDC00B7786F /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85750BE325733DDC00B7786F /* MapVC.swift */; };
+		85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85750BE5257349AB00B7786F /* MapKit.framework */; };
+		8585B10C256FF37100FB5EFC /* MapResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10B256FF37100FB5EFC /* MapResultsVC.swift */; };
+		8585B10F256FF3F300FB5EFC /* MapResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10E256FF3F300FB5EFC /* MapResultsTableViewCell.swift */; };
 		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.release.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.release.xcconfig"; sourceTree = "<group>"; };
 		5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
+		8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantVC.swift; sourceTree = "<group>"; };
+		8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestaurantVC.swift; sourceTree = "<group>"; };
+		852D98EF2570D445004F86B1 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		852D98F12570E02F004F86B1 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
+		853DE6C425737CBE007BA763 /* PlaceMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
+		853DE6CC2573D41B007BA763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8551E0A9256E38E6008C64FA /* myVday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8551E0AC256E38E6008C64FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8551E0AE256E38E6008C64FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8551E0B0256E38E6008C64FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8551E0B3256E38E6008C64FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8551E0B6256E38E6008C64FA /* myVday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myVday.xcdatamodel; sourceTree = "<group>"; };
 		8551E0B8256E38EC008C64FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8551E0BB256E38EC008C64FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8551E0BD256E38EC008C64FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
+		85750BE125726C4200B7786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		85750BE325733DDC00B7786F /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		85750BE5257349AB00B7786F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8585B10B256FF37100FB5EFC /* MapResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultsVC.swift; sourceTree = "<group>"; };
+		8585B10E256FF3F300FB5EFC /* MapResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultsTableViewCell.swift; sourceTree = "<group>"; };
 		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */,
 				AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +72,7 @@
 		3B017E6F9F85BE8873B45F69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85750BE5257349AB00B7786F /* MapKit.framework */,
 				8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */,
 			);
 			name = Frameworks;
@@ -58,8 +84,16 @@
 				5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */,
 				45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		852AF05D2571F50000CAD9C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				853DE6CC2573D41B007BA763 /* FirebaseManager.swift */,
+				853DE6C425737CBE007BA763 /* PlaceMarker.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8551E0A0256E38E6008C64FA = {
@@ -83,16 +117,42 @@
 		8551E0AB256E38E6008C64FA /* myVday */ = {
 			isa = PBXGroup;
 			children = (
+				852AF05D2571F50000CAD9C0 /* Model */,
+				8585B10D256FF3BD00FB5EFC /* View */,
+				8585B10A256FF33900FB5EFC /* Controller */,
 				8551E0AC256E38E6008C64FA /* AppDelegate.swift */,
 				8551E0AE256E38E6008C64FA /* SceneDelegate.swift */,
-				8551E0B0256E38E6008C64FA /* ViewController.swift */,
 				8551E0B2256E38E6008C64FA /* Main.storyboard */,
-				8551E0B8256E38EC008C64FA /* Assets.xcassets */,
 				8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */,
+				8551E0B8256E38EC008C64FA /* Assets.xcassets */,
 				8551E0BD256E38EC008C64FA /* Info.plist */,
 				8551E0B5256E38E6008C64FA /* myVday.xcdatamodeld */,
+				85750BE125726C4200B7786F /* GoogleService-Info.plist */,
 			);
 			path = myVday;
+			sourceTree = "<group>";
+		};
+		8585B10A256FF33900FB5EFC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
+				85750BE325733DDC00B7786F /* MapVC.swift */,
+				8585B10B256FF37100FB5EFC /* MapResultsVC.swift */,
+				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8585B10D256FF3BD00FB5EFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8585B10E256FF3F300FB5EFC /* MapResultsTableViewCell.swift */,
+				8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */,
+				85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */,
+				852D98EF2570D445004F86B1 /* CheckBox.swift */,
+				852D98F12570E02F004F86B1 /* MyTextField.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,6 +166,9 @@
 				8551E0A5256E38E6008C64FA /* Sources */,
 				8551E0A6256E38E6008C64FA /* Frameworks */,
 				8551E0A7256E38E6008C64FA /* Resources */,
+				859971EC2570A27000113B54 /* SwiftLint */,
+				EF3BDE2E5268B0AE04A5AEF6 /* [CP] Embed Pods Frameworks */,
+				D6B78C0132D830A4EEA777F9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */,
+				85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */,
 				8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */,
 				8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */,
 			);
@@ -163,6 +227,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		859971EC2570A27000113B54 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
+		};
 		90981EFF020F249F31BEB6B7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,6 +267,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D6B78C0132D830A4EEA777F9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF3BDE2E5268B0AE04A5AEF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -192,9 +308,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8551E0B1256E38E6008C64FA /* ViewController.swift in Sources */,
 				8551E0B7256E38E6008C64FA /* myVday.xcdatamodeld in Sources */,
+				853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */,
+				8585B10F256FF3F300FB5EFC /* MapResultsTableViewCell.swift in Sources */,
+				8585B10C256FF37100FB5EFC /* MapResultsVC.swift in Sources */,
+				852D98F02570D445004F86B1 /* CheckBox.swift in Sources */,
+				852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */,
+				852D98F22570E02F004F86B1 /* MyTextField.swift in Sources */,
+				85750BE425733DDC00B7786F /* MapVC.swift in Sources */,
+				8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */,
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
+				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
+				8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */,
+				85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */,
 				8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DMX5AMKF7C;
 				INFOPLIST_FILE = myVday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -359,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DMX5AMKF7C;
 				INFOPLIST_FILE = myVday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
