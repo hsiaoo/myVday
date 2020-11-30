@@ -10,7 +10,6 @@ import UIKit
 
 class MapTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var hot1Label: UILabel!
