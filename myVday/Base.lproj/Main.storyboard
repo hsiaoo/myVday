@@ -107,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="1958" y="1152"/>
         </scene>
-        <!--MapVC-->
+        <!--Test MapVC-->
         <scene sceneID="a4b-zQ-zrv">
             <objects>
-                <viewController id="QTe-zc-FUe" customClass="MapVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QTe-zc-FUe" customClass="TestMapVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f0V-sG-Qbt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -403,10 +403,10 @@
             </objects>
             <point key="canvasLocation" x="2935" y="-985"/>
         </scene>
-        <!--Map ResultsVC-->
+        <!--MapVC-->
         <scene sceneID="a1N-K3-gLa">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="GYU-0L-Wyz" customClass="MapResultsVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="GYU-0L-Wyz" customClass="MapVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hwc-h3-iau">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -440,7 +440,7 @@
                                 <rect key="frame" x="0.0" y="536" width="414" height="326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="resultsCell" id="0bD-nk-TD5" customClass="MapResultsTableViewCell" customModule="myVday" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="resultsCell" id="0bD-nk-TD5" customClass="MapTableViewCell" customModule="myVday" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="156.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0bD-nk-TD5" id="XvQ-dh-2Vd">
@@ -607,6 +607,7 @@
                     <connections>
                         <outlet property="filterView" destination="97y-bT-uaJ" id="YOw-Sl-0OU"/>
                         <outlet property="mapView" destination="2fd-up-eac" id="2cB-W9-SgJ"/>
+                        <outlet property="restaurantTableView" destination="SiW-vl-R34" id="zdA-TQ-8CA"/>
                         <segue destination="VOZ-lq-Qvh" kind="show" identifier="toDetailSegue" id="jkm-hJ-AVT"/>
                     </connections>
                 </viewController>
