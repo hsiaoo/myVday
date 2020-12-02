@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 import CoreLocation
 import GooglePlaces
 import GoogleMaps
@@ -30,6 +31,29 @@ class TestMapVC: UIViewController {
         }
 
         locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction func testOrder(_ sender: Any) {
+        let firedb = Firestore.firestore()
+//        var newHots = [String]()
+        firedb.collection("Restaurant").document("CAO-SHU-YAN").collection("menu").order(by: "vote", descending: true).limit(to: 2).getDocuments { (snapshot, error) in
+            if let err = error {
+                print("Error calling order: \(err)")
+            } else {
+                if let docArray = snapshot?.documents {
+                    firedb.collection("Restaurant").document("CAO-SHU-YAN").updateData([
+                        "hots" : FieldValue.delete()
+                    ])
+                    for document in docArray {
+                        firedb.collection("Restaurant").document("CAO-SHU-YAN").updateData([
+                            "hots" : FieldValue.arrayUnion(["\(document.documentID)"])
+                            ])
+//                        newHots.append(document.documentID)
+//                     print("\(document.documentID) => \(document.data())")
+                    }
+                }
+            }
+        }
     }
     
 }
