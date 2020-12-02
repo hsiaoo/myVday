@@ -159,19 +159,19 @@ extension MapVC: FirebaseManagerDelegate {
         restaurantTableView.reloadData()
     }
     
-    func fireManager(_ manager: FirebaseManager, didDownload detailData: [QueryDocumentSnapshot], type: DataType) {
-        switch type {
-        case .comments:
-            for document in detailData {
-                let newComment = Comments(
-                    userId: document["userId"] as? String ?? "no user id",
-                    describe: document["describe"] as? String ?? "no describe",
-                    date: document["date"] as? String ?? "no date")
-                comments.append(newComment)
-            }
-        case .menu:
-            print("==========menuuuuu===========")
-        }
-    }
+//    func fireManager(_ manager: FirebaseManager, didDownload detailData: [QueryDocumentSnapshot], type: DataType) {
+//        switch type {
+//        case .comments:
+//            for document in detailData {
+//                let newComment = Comments(
+//                    userId: document["userId"] as? String ?? "no user id",
+//                    describe: document["describe"] as? String ?? "no describe",
+//                    date: document["date"] as? String ?? "no date")
+//                comments.append(newComment)
+//            }
+//        case .menu:
+//            print("==========menuuuuu===========")
+//        }
+//    }
     
 }

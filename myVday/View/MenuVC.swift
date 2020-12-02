@@ -19,8 +19,8 @@ class MenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
-        if let id = restId {
-            fireManager.fetchSubCollections(docId: id, type: .menu)
+        if let restId = restId {
+            fireManager.fetchSubCollections(docId: restId, type: .menu)
         }
     }
 
@@ -37,6 +37,19 @@ extension MenuVC: UICollectionViewDelegate, UICollectionViewDataSource {
             for: indexPath
             ) as? MenuCollectionViewCell {
             menuCell.cuisineName.text = restMenu[indexPath.row].cuisineName
+            
+            if let imageUrl = URL(string: "\(restMenu[indexPath.row].image)") {
+                URLSession.shared.dataTask(with: imageUrl) { data, _, error in
+                    if let err = error {
+                        print("Error getting image:\(err)")
+                    }
+                    if let okData = data {
+                        DispatchQueue.main.async {
+                            menuCell.imageView.image = UIImage(data: okData)
+                        }
+                    }
+                }.resume()
+            }
             return menuCell
         } else {
             return UICollectionViewCell()
@@ -57,7 +70,8 @@ extension MenuVC: FirebaseManagerDelegate {
         for menu in detailData {
             let newCuisine = Menu(
                 cuisineName: menu["cuisineName"] as? String ?? "no cuisine name",
-                describe: menu["describe"] as? String ?? "no describe")
+                describe: menu["describe"] as? String ?? "no describe",
+                image: menu["image"] as? String ?? "no image")
             restMenu.append(newCuisine)
         }
         menuCollectionView.reloadData()
