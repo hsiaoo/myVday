@@ -7,6 +7,8 @@
 //
 
 import UIKit
+//import Firebase
+import FirebaseFirestore
 
 class DetailRestaurantVC: UIViewController {
     
@@ -23,14 +25,20 @@ class DetailRestaurantVC: UIViewController {
     @IBOutlet weak var thursdayLabel: UILabel!
     @IBOutlet weak var fridayLabel: UILabel!
     @IBOutlet weak var saturdayLabel: UILabel!
-//    let tagColor: [UIColor] = [.blue, .brown, .cyan, .green, .orange]
+    @IBOutlet weak var commentTableView: UITableView!
+    
+    let firebaseManager = FirebaseManager()
     let tagColor: [UIColor] = [#colorLiteral(red: 0.5244301558, green: 0.7633284926, blue: 1, alpha: 1), #colorLiteral(red: 0.5922563672, green: 1, blue: 0.5390954018, alpha: 1), #colorLiteral(red: 1, green: 0.6866127253, blue: 0.4180601537, alpha: 1), #colorLiteral(red: 1, green: 0.6486006975, blue: 0.792445004, alpha: 1), #colorLiteral(red: 1, green: 0.956641376, blue: 0.5953657031, alpha: 1)]
     var basicInfo: BasicInfo? = nil
+    var comments = [Comments]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let basicInfo = basicInfo {
             settingInfo(basicInfo: basicInfo)
+            firebaseManager.delegate = self
+            firebaseManager.fetchSubCollections(docId: basicInfo.basicId, type: .comments)
+            
         }
     }
     
@@ -77,7 +85,7 @@ class DetailRestaurantVC: UIViewController {
 
 extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,6 +93,10 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: DetailRestaurantTableViewCell.identifier,
             for: indexPath
             ) as? DetailRestaurantTableViewCell {
+            
+            detailCell.userIdLabel.text = comments[indexPath.row].userId
+            detailCell.dateLabel.text = comments[indexPath.row].date
+            detailCell.describeLabel.text = comments[indexPath.row].describe
             
             return detailCell
         } else {
@@ -114,12 +126,40 @@ extension DetailRestaurantVC: UICollectionViewDelegate, UICollectionViewDataSour
             ) as? DetailRestaurantCollectionViewCell {
             hashtagCell.layer.cornerRadius = 5
             hashtagCell.clipsToBounds = true
-            hashtagCell.backgroundColor = tagColor[indexPath.row]
+            
+            //若標籤數量大於背景顏色數量(5)，要重複使用背景顏色
+            if indexPath.row > 4 {
+                let index = indexPath.row % 5
+                hashtagCell.backgroundColor = tagColor[index]
+            } else {
+                hashtagCell.backgroundColor = tagColor[indexPath.row]
+            }
+            
             hashtagCell.tagLabel.text = basicInfo?.hashtags[indexPath.row]
             return hashtagCell
         } else {
             return UICollectionViewCell()
         }
     }
-    
+}
+
+extension DetailRestaurantVC: FirebaseManagerDelegate {
+    func fireManager(_ manager: FirebaseManager, didDownload detailData: [QueryDocumentSnapshot], type: DataType) {
+        for comment in detailData {
+            //轉換日期與時間
+            guard let dateStamp = comment["date"] as? Timestamp  else { return }
+            let dateData = dateStamp.dateValue()
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = NSTimeZone.local
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let okDate = dateFormatter.string(from: dateData)
+            
+            let newComment = Comments(
+                userId: comment["userId"] as? String ?? "no user id",
+                describe: comment["describe"] as? String ?? "no describe",
+                date: okDate)
+            comments.append(newComment)
+        }
+        commentTableView.reloadData()
+    }
 }
