@@ -19,8 +19,6 @@ struct BasicInfo {
     let longitude: Double
     let name: String
     let phone: String
-//    let comments: [Comments]?
-//    let menu: [Menu]?
 }
 
 struct Comments {
@@ -32,5 +30,6 @@ struct Comments {
 struct Menu {
     let cuisineName: String
     let describe: String
+    let image: String
 //    let vote: Int
 }
