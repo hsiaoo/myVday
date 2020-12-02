@@ -10,4 +10,5 @@ import UIKit
 
 class DetailRestaurantCollectionViewCell: UICollectionViewCell {
     static let identifier = "hashtagCell"
+    @IBOutlet weak var tagLabel: UILabel!
 }

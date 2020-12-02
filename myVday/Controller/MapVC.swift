@@ -21,8 +21,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     var isFilter = false
     var basicInfos = [BasicInfo]()
     var comments = [Comments]()
-    var hashtags = [Hashtags]()
-    var hours = [Hours]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +66,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailSegue" {
-            _ = segue.destination as? DetailRestaurantVC
+            let detailVC = segue.destination as? DetailRestaurantVC
+            detailVC?.basicInfo = sender as? BasicInfo
+//            if let okInfo = sender as? BasicInfo {
+//                detailVC?.settingInfo(basicInfo: okInfo)
+//            }
         }
     }
     
@@ -120,10 +122,10 @@ extension MapVC: UITableViewDelegate, UITableViewDataSource {
         if let resultsCell = tableView.dequeueReusableCell(withIdentifier: "resultsCell", for: indexPath) as? MapTableViewCell {
             resultsCell.titleLabel.text = basicInfos[indexPath.row].name
             resultsCell.addressLabel.text = basicInfos[indexPath.row].address
-            resultsCell.hot1Label.text = "m ENERGY BOWLS"
-            resultsCell.hot2Label.text = "m SATISFACTION"
-            resultsCell.tag1Label.text = "m 全素"
-            resultsCell.tag2Label.text = "m 無麩質"
+            resultsCell.hot1Label.text = basicInfos[indexPath.row].hots[0]
+            resultsCell.hot2Label.text = basicInfos[indexPath.row].hots[1]
+            resultsCell.tag1Label.text = basicInfos[indexPath.row].hashtags[0]
+            resultsCell.tag2Label.text = basicInfos[indexPath.row].hashtags[1]
             return resultsCell
         } else {
             return UITableViewCell()
@@ -131,7 +133,8 @@ extension MapVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetailSegue", sender: nil)
+        let dataToDetail = basicInfos[indexPath.row]
+        performSegue(withIdentifier: "toDetailSegue", sender: dataToDetail)
     }
 }
 
@@ -142,6 +145,9 @@ extension MapVC: FirebaseManagerDelegate {
             let newInfo = BasicInfo(
                 address: document["address"] as? String ?? "no address",
                 describe: document["describe"] as? String ?? "no describe",
+                hashtags: document["hashtags"] as? [String] ?? [""],
+                hots: document["hots"] as? [String] ?? [""],
+                hours: document["hours"] as? [String: String] ?? ["": ""],
                 basicId: document["id"] as? String ?? "no id",
                 latitude: document["latitude"] as? Double ?? 0.0,
                 longitude: document["longitude"] as? Double ?? 0.0,
@@ -149,8 +155,6 @@ extension MapVC: FirebaseManagerDelegate {
                 phone: document["phone"] as? String ?? "no phone number")
             self.placeMarker(position: CLLocationCoordinate2D(latitude: newInfo.latitude, longitude: newInfo.longitude), title: newInfo.name)
             basicInfos.append(newInfo)
-//            print("=====firebase data: \(document.data())=====")
-//            print("=====basic infos \(basicInfos)=====")
         }
         restaurantTableView.reloadData()
     }
@@ -165,20 +169,9 @@ extension MapVC: FirebaseManagerDelegate {
                     date: document["date"] as? String ?? "no date")
                 comments.append(newComment)
             }
-        case .hashtags:
-            for document in detailData {
-                let newHashtag = Hashtags(title: document["title"] as? String ?? "no tag title")
-                hashtags.append(newHashtag)
-            }
-        case .hours:
-            for document in detailData {
-                let newHour = Hours(time: document["time"] as? String ?? "no time")
-                hours.append(newHour)
-            }
+        case .menu:
+            print("==========menuuuuu===========")
         }
-        print("======comments: \(comments)======")
-        print("======hashtags: \(hashtags)======")
-        print("======hours: \(hours)======")
     }
     
 }
