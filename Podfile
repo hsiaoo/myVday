@@ -11,4 +11,5 @@ target 'myVday' do
   source 'https://github.com/CocoaPods/Specs.git'
   pod 'GooglePlaces', '4.0.0'
   pod 'GoogleMaps', '4.0.0'
+  pod 'Firebase/Storage'
 end

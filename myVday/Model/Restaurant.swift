@@ -11,11 +11,16 @@ import Foundation
 struct BasicInfo {
     let address: String
     let describe: String
+    let hashtags: [String]
+    let hots: [String]
+    let hours: [String: String]
     let basicId: String
     let latitude: Double
     let longitude: Double
     let name: String
     let phone: String
+//    let comments: [Comments]?
+//    let menu: [Menu]?
 }
 
 struct Comments {
@@ -24,10 +29,8 @@ struct Comments {
     let date: String
 }
 
-struct Hashtags {
-    let title: String
-}
-
-struct Hours {
-    let time: String
+struct Menu {
+    let cuisineName: String
+    let describe: String
+//    let vote: Int
 }
