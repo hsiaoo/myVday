@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseFirestore
+import CoreLocation
 
 @objc protocol FirebaseManagerDelegate: AnyObject {
     @objc optional func fireManager(_ manager: FirebaseManager, didDownload basicData: [QueryDocumentSnapshot])
@@ -26,37 +27,39 @@ import FirebaseFirestore
     }
 }
 
-//enum DataType: NSString, CaseIterable {
-//    case comments = "comments"
-//    case menu = "menu"
-//}
-
 class FirebaseManager: NSObject {
     let fireDB = Firestore.firestore()
-//    let dataType = DataType.allCases
-    var restaurantId = [String]()
     weak var delegate: FirebaseManagerDelegate?
     
-    //fetch basic data of restaurant from firebase
-    func fetchData() {
-        fireDB.collection("Restaurant").getDocuments { (snapshot, error) in
-            if let err = error {
-                print("Error getting docs: \(err)")
-            } else {
-                if let docArray = snapshot?.documents {
-//                    for document in docArray {
-//                        let id = document.documentID
-//                        self.restaurantId.append(id)
-//                    }
-//                    for type in self.dataType {
-//                        self.fetchSubCollections(type: type)
-//                    }
-                    self.delegate?.fireManager!(self, didDownload: docArray)
+    //fetch basic information of restaurant from firebase
+    func fetchData(current location: CLLocation) {
+        var filteredArray = [QueryDocumentSnapshot]()
+        let leftLat = location.coordinate.latitude - 0.001
+        let rightLat = location.coordinate.latitude + 0.001
+        let topLng = location.coordinate.longitude - 0.003
+        let downLng = location.coordinate.longitude + 0.003
+        
+        fireDB.collection("Restaurant")
+            .whereField("latitude", isLessThanOrEqualTo: rightLat)
+            .whereField("latitude", isGreaterThanOrEqualTo: leftLat)
+            .getDocuments { (snapshot, error) in
+                if let err = error {
+                    print("Error getting docs: \(err)")
+                } else {
+                    if let docArray = snapshot?.documents {
+                        for doc in docArray {
+                            let docData = doc.data()
+                            let longitude = docData["longitude"] as? Double ?? 0
+                            if longitude >= topLng && longitude <= downLng {
+                                filteredArray.append(doc)
+                            }
+                        }
+                        self.delegate?.fireManager?(self, didDownload: filteredArray)
+                    }
                 }
-            }
         }
     }
-   
+    
     func fetchSubCollections(docId: String, type: DataType) {
         fireDB.collection("Restaurant").document(docId).collection(type.name()).getDocuments { (snapshot, error) in
             if let err = error {
@@ -68,18 +71,5 @@ class FirebaseManager: NSObject {
             }
         }
     }
-    
-//    func fetchSubCollections(type: DataType) {
-//        for rstId in restaurantId {
-//            fireDB.collection("Restaurant").document(rstId).collection(type.rawValue).getDocuments { (snapshot, error) in
-//                if let err = error {
-//                    print("Error getting docs: \(err)")
-//                } else {
-//                    if let docArray = snapshot?.documents {
-//                        self.delegate?.fireManager(self, didDownload: docArray, type: type)
-//                    }
-//                }
-//            }
-//        }
-//    }
+
 }
