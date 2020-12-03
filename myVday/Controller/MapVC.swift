@@ -11,34 +11,36 @@ import FirebaseFirestore
 import CoreLocation
 import GoogleMaps
 
-class MapVC: UIViewController, CLLocationManagerDelegate {
+class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var restaurantTableView: UITableView!
-    let locationManager = CLLocationManager()
+    
     let fireManager = FirebaseManager()
+    var locationManager = CLLocationManager()
     var isFilter = false
     var basicInfos = [BasicInfo]()
-    var comments = [Comments]()
+    
+    private var infoWindow = MapInfoWindow()
+    fileprivate var locationMarker: GMSMarker? = GMSMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
         fireManager.delegate = self
         locationManager.delegate = self
-        
-        fireManager.fetchData()
+        //        fireManager.fetchData()
+        self.infoWindow = loadNib()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestLocation()
             mapView.isMyLocationEnabled = true
             mapView.settings.myLocationButton = true
+            locationManager.startUpdatingLocation()
         } else {
             locationManager.requestWhenInUseAuthorization()
         }
-        
-        locationManager.startUpdatingLocation()
     }
     
     @IBAction func filterBtnClicked(_ sender: UIBarButtonItem) {
@@ -68,9 +70,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         if segue.identifier == "toDetailSegue" {
             let detailVC = segue.destination as? DetailRestaurantVC
             detailVC?.basicInfo = sender as? BasicInfo
-//            if let okInfo = sender as? BasicInfo {
-//                detailVC?.settingInfo(basicInfo: okInfo)
-//            }
         }
     }
     
@@ -83,28 +82,97 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //使用者實際目前所在位置
         guard let location = locations.first else { return }
+        fireManager.fetchData(current: location)
         
-        //測試用的座標，忠孝敦化站
-//        let lat = 25.041457
-//        let lng = 121.550687
-//        let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        //        mapView.camera = GMSCameraPosition(
+        //            //使用者目前位置的座標
+        //            target: location.coordinate,
+        //            zoom: 15,
+        //            bearing: 20,
+        //            viewingAngle: 45)
+        mapView.animate(toLocation: location.coordinate)
+        mapView.animate(toZoom: 15)
+        mapView.animate(toBearing: 20)
+        mapView.animate(toViewingAngle: 45)
         
-        mapView.camera = GMSCameraPosition(
-            //使用者目前位置的座標
-            target: location.coordinate,
-            
-            //測試用的座標
-            //target: coordinates,
-            zoom: 15,
-            bearing: 0,
-            viewingAngle: 0)
+        locationManager.stopUpdatingLocation()
     }
     
-    func placeMarker(position: CLLocationCoordinate2D, title: String) {
+    @IBAction func changeSearchRange() {
+//        let point = mapView.center
+//        let coordinate = mapView.convert(point, to: mapView)
+        let coordinate = mapView.projection.coordinate(for: mapView.center)
+        print("map view center coordinate: \(coordinate)")
+    }
+    
+    func loadNib() -> MapInfoWindow {
+        if let infoWindow = MapInfoWindow.instanceFromNib() as? MapInfoWindow {
+            return infoWindow
+        } else {
+            return MapInfoWindow()
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        var markerData: BasicInfo?
+        if let data = marker.userData as? BasicInfo {
+            markerData = data
+        }
+        locationMarker = marker
+        infoWindow.removeFromSuperview()
+        infoWindow = loadNib()
+        guard let location = locationMarker?.position else {
+            print("location not found")
+            return false
+        }
+        
+        infoWindow.spotData = markerData
+        infoWindow.delegate = self
+        
+        //TODO: - configure ui properties of info window..
+        
+        infoWindow.restaurantName.text = markerData?.name
+        infoWindow.address.text = markerData?.address
+        infoWindow.hotCuisineFirst.text = markerData?.hots[0]
+        infoWindow.hotCuisineSecond.text = markerData?.hots[1]
+        infoWindow.tagFirst.text = markerData?.hashtags[0]
+        infoWindow.tagSecond.text = markerData?.hashtags[1]
+        
+        //offset the info window
+        infoWindow.center = mapView.projection.point(for: location)
+        infoWindow.center.y -= 20
+        self.view.addSubview(infoWindow)
+        return false
+    }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        //reposition infoWindow to stay on top of the marker
+        if locationMarker != nil {
+            guard let location = locationMarker?.position else {
+                print("location not found.")
+                return
+            }
+            infoWindow.center = mapView.projection.point(for: location)
+            infoWindow.center.y -= 20
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        //dismiss the infoWindow when user tapped somewhere else
+        infoWindow.removeFromSuperview()
+    }
+    
+    func placeMarker(position: CLLocationCoordinate2D, title: String, data: BasicInfo) {
         let marker = GMSMarker()
+        
+        //TODO: customize marker
+        //let markerImage =
+        //let markerView =
+        //marker.iconView =
+        
         marker.position = position
-        marker.title = title
         marker.map = mapView
+        marker.userData = data
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -113,33 +181,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
 }//end of class MapResultesVC
 
-extension MapVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        basicInfos.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let resultsCell = tableView.dequeueReusableCell(withIdentifier: "resultsCell", for: indexPath) as? MapTableViewCell {
-            resultsCell.titleLabel.text = basicInfos[indexPath.row].name
-            resultsCell.addressLabel.text = basicInfos[indexPath.row].address
-            resultsCell.hot1Label.text = basicInfos[indexPath.row].hots[0]
-            resultsCell.hot2Label.text = basicInfos[indexPath.row].hots[1]
-            resultsCell.tag1Label.text = basicInfos[indexPath.row].hashtags[0]
-            resultsCell.tag2Label.text = basicInfos[indexPath.row].hashtags[1]
-            return resultsCell
-        } else {
-            return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dataToDetail = basicInfos[indexPath.row]
-        performSegue(withIdentifier: "toDetailSegue", sender: dataToDetail)
+extension MapVC: MapInfoWindowDelegate {
+    func didTapInfoButton(data: BasicInfo) {
+        performSegue(withIdentifier: "toDetailSegue", sender: data)
     }
 }
 
 extension MapVC: FirebaseManagerDelegate {
-    
     func fireManager(_ manager: FirebaseManager, didDownload basicData: [QueryDocumentSnapshot]) {
         for document in basicData {
             let newInfo = BasicInfo(
@@ -153,25 +201,11 @@ extension MapVC: FirebaseManagerDelegate {
                 longitude: document["longitude"] as? Double ?? 0.0,
                 name: document["name"] as? String ?? "no name",
                 phone: document["phone"] as? String ?? "no phone number")
-            self.placeMarker(position: CLLocationCoordinate2D(latitude: newInfo.latitude, longitude: newInfo.longitude), title: newInfo.name)
+            self.placeMarker(
+                position: CLLocationCoordinate2D(latitude: newInfo.latitude, longitude: newInfo.longitude),
+                title: newInfo.name,
+                data: newInfo)
             basicInfos.append(newInfo)
         }
-        restaurantTableView.reloadData()
     }
-    
-//    func fireManager(_ manager: FirebaseManager, didDownload detailData: [QueryDocumentSnapshot], type: DataType) {
-//        switch type {
-//        case .comments:
-//            for document in detailData {
-//                let newComment = Comments(
-//                    userId: document["userId"] as? String ?? "no user id",
-//                    describe: document["describe"] as? String ?? "no describe",
-//                    date: document["date"] as? String ?? "no date")
-//                comments.append(newComment)
-//            }
-//        case .menu:
-//            print("==========menuuuuu===========")
-//        }
-//    }
-    
 }
