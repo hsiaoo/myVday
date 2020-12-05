@@ -13,6 +13,7 @@
 		852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */; };
 		852D98F02570D445004F86B1 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98EF2570D445004F86B1 /* CheckBox.swift */; };
 		852D98F22570E02F004F86B1 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* MyTextField.swift */; };
+		8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */; };
 		853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6C425737CBE007BA763 /* PlaceMarker.swift */; };
 		853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6CC2573D41B007BA763 /* FirebaseManager.swift */; };
 		8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AC256E38E6008C64FA /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 		852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestaurantVC.swift; sourceTree = "<group>"; };
 		852D98EF2570D445004F86B1 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		852D98F12570E02F004F86B1 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
+		8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCuisineVC.swift; sourceTree = "<group>"; };
 		853DE6C425737CBE007BA763 /* PlaceMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		853DE6CC2573D41B007BA763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8551E0A9256E38E6008C64FA /* myVday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVday.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +171,7 @@
 				8585B10B256FF37100FB5EFC /* MapVC.swift */,
 				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
 				8585A2F8257644F300182AC3 /* MenuVC.swift */,
+				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			files = (
 				8551E0B7256E38E6008C64FA /* myVday.xcdatamodeld in Sources */,
 				853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */,
+				8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */,
 				8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */,
 				851C05272574D072002B893F /* Restaurant.swift in Sources */,
 				8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */,
