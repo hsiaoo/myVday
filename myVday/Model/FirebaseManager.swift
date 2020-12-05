@@ -9,10 +9,12 @@
 import Foundation
 import FirebaseFirestore
 import CoreLocation
+import FirebaseStorage
 
 @objc protocol FirebaseManagerDelegate: AnyObject {
     @objc optional func fireManager(_ manager: FirebaseManager, didDownload basicData: [QueryDocumentSnapshot])
     @objc optional func fireManager(_ manager: FirebaseManager, didDownload detailData: [QueryDocumentSnapshot], type: DataType)
+    @objc optional func fireManager(didFinishUpdateMenu: FirebaseManager)
 }
 
 @objc enum DataType: Int {
@@ -34,8 +36,8 @@ class FirebaseManager: NSObject {
     //fetch basic information of restaurant from firebase
     func fetchData(current location: CLLocation) {
         var filteredArray = [QueryDocumentSnapshot]()
-        let leftLat = location.coordinate.latitude - 0.001
-        let rightLat = location.coordinate.latitude + 0.001
+        let leftLat = location.coordinate.latitude - 0.003
+        let rightLat = location.coordinate.latitude + 0.003
         let topLng = location.coordinate.longitude - 0.003
         let downLng = location.coordinate.longitude + 0.003
         
@@ -68,6 +70,47 @@ class FirebaseManager: NSObject {
                 if let docArray = snapshot?.documents {
                     self.delegate?.fireManager!(self, didDownload: docArray, type: type)
                 }
+            }
+        }
+    }
+    
+    func uploadCuisineImage(
+        toStorageWith id: String,
+        uniqueString: String,
+        selectedImage: UIImage,
+        cuisineName: String){
+        let storageRef = Storage.storage().reference().child(id).child("\(uniqueString).png")
+        let comprssedImage = selectedImage.jpegData(compressionQuality: 0.8)
+        if let uploadData = comprssedImage {
+            storageRef.putData(uploadData, metadata: nil) { _, error in
+                if let err = error {
+                    print("Error upload data: \(err)")
+                }
+                storageRef.downloadURL { (url, error) in
+                    if let err = error {
+                        print("Error getting image url: \(err)")
+                    }
+                    
+                    if let uploadImageUrl = url?.absoluteString {
+                        self.updateMenu(toFirestoreWith: uploadImageUrl, restaurantId: id, cuisineName: cuisineName)
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateMenu(toFirestoreWith urlString: String, restaurantId: String, cuisineName: String) {
+        fireDB.collection("Restaurant").document(restaurantId).collection("menu").document(cuisineName).setData([
+            "cuisineName": cuisineName,
+            "describe": "",
+            "image": urlString,
+            "vote": "0"
+        ]) { (error) in
+            if let err = error {
+                print("Error update menu: \(err)")
+            } else {
+                print("successfully update menu")
+                self.delegate?.fireManager?(didFinishUpdateMenu: self)
             }
         }
     }

@@ -30,7 +30,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         mapView.delegate = self
         fireManager.delegate = self
         locationManager.delegate = self
-        //        fireManager.fetchData()
         self.infoWindow = loadNib()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -41,6 +40,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         } else {
             locationManager.requestWhenInUseAuthorization()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
     @IBAction func filterBtnClicked(_ sender: UIBarButtonItem) {
@@ -82,7 +86,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //使用者實際目前所在位置
         guard let location = locations.first else { return }
+        print("current location: \(location)")
         fireManager.fetchData(current: location)
+//        fireManager.fetchData(current: CLLocation(latitude: 25.041707116387286, longitude: 121.5638902853278))
         
         //        mapView.camera = GMSCameraPosition(
         //            //使用者目前位置的座標
@@ -98,11 +104,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    @IBAction func changeSearchRange() {
-//        let point = mapView.center
-//        let coordinate = mapView.convert(point, to: mapView)
-        let coordinate = mapView.projection.coordinate(for: mapView.center)
-        print("map view center coordinate: \(coordinate)")
+    @IBAction func changeSearchingRange() {
+        let newCoordinate = mapView.projection.coordinate(for: mapView.center)
+        print("map view center coordinate: \(newCoordinate)")
+        fireManager.fetchData(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
     }
     
     func loadNib() -> MapInfoWindow {
@@ -140,7 +145,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         
         //offset the info window
         infoWindow.center = mapView.projection.point(for: location)
-        infoWindow.center.y -= 20
+        infoWindow.center.y -= 80
         self.view.addSubview(infoWindow)
         return false
     }
@@ -153,7 +158,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
                 return
             }
             infoWindow.center = mapView.projection.point(for: location)
-            infoWindow.center.y -= 20
+            infoWindow.center.y -= 80
         }
     }
     
@@ -163,6 +168,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     func placeMarker(position: CLLocationCoordinate2D, title: String, data: BasicInfo) {
+        mapView.clear()
         let marker = GMSMarker()
         
         //TODO: customize marker
@@ -188,8 +194,8 @@ extension MapVC: MapInfoWindowDelegate {
 }
 
 extension MapVC: FirebaseManagerDelegate {
-    func fireManager(_ manager: FirebaseManager, didDownload basicData: [QueryDocumentSnapshot]) {
-        for document in basicData {
+    func fireManager(_ manager: FirebaseManager, didDownload filteredArray: [QueryDocumentSnapshot]) {
+        for document in filteredArray {
             let newInfo = BasicInfo(
                 address: document["address"] as? String ?? "no address",
                 describe: document["describe"] as? String ?? "no describe",

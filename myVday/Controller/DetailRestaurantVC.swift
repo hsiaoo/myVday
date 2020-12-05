@@ -38,7 +38,7 @@ class DetailRestaurantVC: UIViewController {
             settingInfo(basicInfo: basicInfo)
             firebaseManager.delegate = self
             firebaseManager.fetchSubCollections(docId: basicInfo.basicId, type: .comments)
-            
+            navigationController?.navigationBar.isHidden = false
         }
     }
     
@@ -78,7 +78,7 @@ class DetailRestaurantVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMenuSegue" {
             let menuVC = segue.destination as? MenuVC
-            menuVC?.restId = sender as? String
+            menuVC?.restaurantId = sender as? String
         }
     }
 }
