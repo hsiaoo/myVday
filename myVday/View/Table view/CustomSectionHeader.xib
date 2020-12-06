@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomSectionHeader" customModule="myVday" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他人覺得.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPN-7u-Zuq">
+                    <rect key="frame" x="20" y="14.5" width="83" height="21"/>
+                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1c-nL-syY">
+                    <rect key="frame" x="319" y="8.5" width="75" height="33"/>
+                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
+                    <state key="normal" title="我也要評論">
+                        <color key="titleColor" red="1" green="0.45102240678062389" blue="0.21679748277272892" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="FPN-7u-Zuq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="UwN-KA-DZo"/>
+                <constraint firstItem="FPN-7u-Zuq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cEj-aq-O9h"/>
+                <constraint firstItem="G1c-nL-syY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="fNc-MT-pJ3"/>
+                <constraint firstAttribute="trailing" secondItem="G1c-nL-syY" secondAttribute="trailing" constant="20" id="fUz-1z-UOT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="commentBtn" destination="G1c-nL-syY" id="Gbf-5x-cLE"/>
+                <outlet property="sectionTitleLabel" destination="FPN-7u-Zuq" id="8V6-K2-HcJ"/>
+            </connections>
+            <point key="canvasLocation" x="-291" y="62"/>
+        </view>
+    </objects>
+</document>

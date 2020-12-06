@@ -58,11 +58,7 @@ class AddCuisineVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         } else {
             let uniqueString = NSUUID().uuidString
             if let restId = restId {
-                fireManager.uploadCuisineImage(
-                    toStorageWith: restId,
-                    uniqueString: uniqueString,
-                    selectedImage: selectedImage,
-                    cuisineName: cuisineName)
+                fireManager.uploadImage(toStorageWith: restId, uniqueString: uniqueString, selectedImage: selectedImage, nameOrDescribe: cuisineName, dataType: .menu)
             }
         }
         dismiss(animated: true, completion: nil)
