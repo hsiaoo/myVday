@@ -28,7 +28,7 @@ class MenuVC: UIViewController {
         super.viewDidLoad()
         fireManager.delegate = self
         if let restId = restaurantId {
-            fireManager.fetchSubCollections(docId: restId, type: .menu)
+            fireManager.fetchSubCollections(restaurantId: restId, type: .menu)
         }
     }
     
@@ -112,11 +112,12 @@ class MenuVC: UIViewController {
         } else {
             let uniqueString = NSUUID().uuidString
             if let restId = restaurantId {
-                fireManager.uploadCuisineImage(
+                fireManager.uploadImage(
                     toStorageWith: restId,
                     uniqueString: uniqueString,
                     selectedImage: selectedImage,
-                    cuisineName: cuisineName)
+                    nameOrDescribe: cuisineName,
+                    dataType: .menu)
             }
         }
         newCuisineImage.image = nil
@@ -190,8 +191,8 @@ extension MenuVC: UITextFieldDelegate {
 }
 
 extension MenuVC: FirebaseManagerDelegate {
-    func fireManager(_ manager: FirebaseManager, didDownload detailData: [QueryDocumentSnapshot], type: DataType) {
-        for menu in detailData {
+    func fireManager(_ manager: FirebaseManager, didDownloadDetail data: [QueryDocumentSnapshot], type: DataType) {
+        for menu in data {
             let newCuisine = Menu(
                 cuisineName: menu["cuisineName"] as? String ?? "no cuisine name",
                 describe: menu["describe"] as? String ?? "no describe",
@@ -201,11 +202,18 @@ extension MenuVC: FirebaseManagerDelegate {
         menuCollectionView.reloadData()
     }
     
-    func fireManager(didFinishUpdateMenu: FirebaseManager) {
+    func fireManager(_ manager: FirebaseManager, didFinishUpdate menuOrComment: DataType) {
         restaurantMenu.removeAll()
         if let restId = restaurantId {
-            fireManager.fetchSubCollections(docId: restId, type: .menu)
+            fireManager.fetchSubCollections(restaurantId: restId, type: menuOrComment)
         }
         menuCollectionView.reloadData()
     }
+//    func fireManager(didFinishUpdate: FirebaseManager) {
+//        restaurantMenu.removeAll()
+//        if let restId = restaurantId {
+//            fireManager.fetchSubCollections(restaurantId: restId, type: .menu)
+//        }
+//        menuCollectionView.reloadData()
+//    }
 }
