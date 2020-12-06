@@ -15,6 +15,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var newRestBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var newRestName: UITextField!
+    @IBOutlet weak var newRestAddress: UITextField!
+    
     
     let fireManager = FirebaseManager()
     var locationManager = CLLocationManager()
@@ -47,6 +51,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         navigationController?.navigationBar.isHidden = true
     }
     
+    @IBAction func swipeViewUp(_ sender: UISwipeGestureRecognizer) {
+        newRestBottomConstraint.constant = 0
+    }
+    
+    @IBAction func swipeViewDown(_ sender: UISwipeGestureRecognizer) {
+        newRestBottomConstraint.constant = -280
+    }
+    
     @IBAction func filterBtnClicked(_ sender: UIBarButtonItem) {
         isFilter = !isFilter
         if isFilter == true {
@@ -70,6 +82,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         }
     }
     
+    @IBAction func addNewRestBtn(_ sender: Any) {
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailSegue" {
             let detailVC = segue.destination as? DetailRestaurantVC
@@ -86,7 +101,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //使用者實際目前所在位置
         guard let location = locations.first else { return }
-        print("current location: \(location)")
+//        print("current location: \(location)")
         fireManager.fetchData(current: location)
 //        fireManager.fetchData(current: CLLocation(latitude: 25.041707116387286, longitude: 121.5638902853278))
         
@@ -194,7 +209,7 @@ extension MapVC: MapInfoWindowDelegate {
 }
 
 extension MapVC: FirebaseManagerDelegate {
-    func fireManager(_ manager: FirebaseManager, didDownload filteredArray: [QueryDocumentSnapshot]) {
+    func fireManager(_ manager: FirebaseManager, didDownloadBasic filteredArray: [QueryDocumentSnapshot]) {
         for document in filteredArray {
             let newInfo = BasicInfo(
                 address: document["address"] as? String ?? "no address",

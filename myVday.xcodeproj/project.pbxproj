@@ -24,7 +24,6 @@
 		8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */; };
 		85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */; };
 		85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85750BE125726C4200B7786F /* GoogleService-Info.plist */; };
-		85750BE425733DDC00B7786F /* TestMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85750BE325733DDC00B7786F /* TestMapVC.swift */; };
 		85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85750BE5257349AB00B7786F /* MapKit.framework */; };
 		8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2F8257644F300182AC3 /* MenuVC.swift */; };
 		8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */; };
@@ -32,6 +31,8 @@
 		8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */; };
 		8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */; };
 		8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */; };
+		85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */; };
+		85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */; };
 		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +58,6 @@
 		8551E0BD256E38EC008C64FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		85750BE125726C4200B7786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		85750BE325733DDC00B7786F /* TestMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMapVC.swift; sourceTree = "<group>"; };
 		85750BE5257349AB00B7786F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8585A2F8257644F300182AC3 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = myVday/View/MenuVC.swift; sourceTree = SOURCE_ROOT; };
 		8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +65,8 @@
 		8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapInfoWindowView.xib; sourceTree = "<group>"; };
 		8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
+		85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSectionHeader.xib; sourceTree = "<group>"; };
+		85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSectionHeader.swift; sourceTree = "<group>"; };
 		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,8 @@
 			children = (
 				8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */,
 				8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */,
+				85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */,
+				85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */,
 			);
 			path = "Table view";
 			sourceTree = "<group>";
@@ -167,11 +171,10 @@
 			isa = PBXGroup;
 			children = (
 				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
-				85750BE325733DDC00B7786F /* TestMapVC.swift */,
+				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
 				8585B10B256FF37100FB5EFC /* MapVC.swift */,
 				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
 				8585A2F8257644F300182AC3 /* MenuVC.swift */,
-				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */,
+				85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */,
 				85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */,
 				8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */,
 				8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */,
@@ -355,11 +359,11 @@
 				852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */,
 				852D98F22570E02F004F86B1 /* MyTextField.swift in Sources */,
 				8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */,
-				85750BE425733DDC00B7786F /* TestMapVC.swift in Sources */,
 				8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */,
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
 				8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */,
+				85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */,
 				85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */,
 				8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */,
 			);

@@ -22,8 +22,10 @@ struct BasicInfo {
 }
 
 struct Comments {
+    let commentId: String
     let userId: String
     let describe: String
+    let image: String
     let date: String
 }
 

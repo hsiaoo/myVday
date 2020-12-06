@@ -117,7 +117,7 @@
                 <outlet property="tagSecond" destination="OPJ-33-7xr" id="pF0-pg-xQf"/>
                 <outletCollection property="gestureRecognizers" destination="qv2-2h-9oJ" appends="YES" id="hBj-En-pec"/>
             </connections>
-            <point key="canvasLocation" x="873.60000000000002" y="220.3898050974513"/>
+            <point key="canvasLocation" x="779" y="145"/>
         </view>
         <tapGestureRecognizer id="qv2-2h-9oJ">
             <connections>
