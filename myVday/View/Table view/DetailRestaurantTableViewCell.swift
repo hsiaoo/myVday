@@ -11,6 +11,14 @@ import UIKit
 class DetailRestaurantTableViewCell: UITableViewCell {
     
     static let identifier = "commentCell"
+<<<<<<< HEAD
+=======
+    
+    @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var describeLabel: UILabel!
+    @IBOutlet weak var imageViewForComment: UIImageView!
+>>>>>>> sprint_2
 
     override func awakeFromNib() {
         super.awakeFromNib()

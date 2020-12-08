@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BasicInfo {
+struct BasicInfo: Codable {
     let address: String
     let describe: String
     let hashtags: [String]
@@ -19,18 +19,23 @@ struct BasicInfo {
     let longitude: Double
     let name: String
     let phone: String
-//    let comments: [Comments]?
-//    let menu: [Menu]?
 }
 
 struct Comments {
+    let commentId: String
     let userId: String
     let describe: String
+    let image: String
     let date: String
 }
 
 struct Menu {
     let cuisineName: String
     let describe: String
+    let image: String
 //    let vote: Int
+}
+
+struct NewRestaurant {
+    let basicInfo: BasicInfo
 }
