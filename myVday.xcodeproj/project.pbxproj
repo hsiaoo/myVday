@@ -33,6 +33,7 @@
 		8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */; };
 		85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */; };
 		85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */; };
+		85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE1E257E1F21002A78F4 /* MapManager.swift */; };
 		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
 		85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSectionHeader.xib; sourceTree = "<group>"; };
 		85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSectionHeader.swift; sourceTree = "<group>"; };
+		85DCBE1E257E1F21002A78F4 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				853DE6CC2573D41B007BA763 /* FirebaseManager.swift */,
+				85DCBE1E257E1F21002A78F4 /* MapManager.swift */,
 				853DE6C425737CBE007BA763 /* PlaceMarker.swift */,
 				851C05262574D072002B893F /* Restaurant.swift */,
 			);
@@ -363,6 +366,7 @@
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
 				8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */,
+				85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */,
 				85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */,
 				85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */,
 				8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */,

@@ -10,17 +10,18 @@ import UIKit
 import FirebaseFirestore
 import CoreLocation
 import GoogleMaps
+import MapKit
 
 class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var newRestBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var newRestName: UITextField!
-    @IBOutlet weak var newRestAddress: UITextField!
-    
+    @IBOutlet weak var newRestNameTF: UITextField!
+    @IBOutlet weak var newRestAddressTF: UITextField!
     
     let fireManager = FirebaseManager()
+    let mapManager = MapManager()
     var locationManager = CLLocationManager()
     var isFilter = false
     var basicInfos = [BasicInfo]()
@@ -31,9 +32,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         mapView.delegate = self
         fireManager.delegate = self
         locationManager.delegate = self
+        mapManager.delegate = self
         self.infoWindow = loadNib()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -83,6 +88,15 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     @IBAction func addNewRestBtn(_ sender: Any) {
+        guard let newRestAddress = newRestAddressTF.text, let newRestName = newRestNameTF.text else { return }
+        if newRestName.isEmpty || newRestAddress.isEmpty {
+            print("請填入新餐廳的名稱及地址")
+        } else {
+            mapManager.addressToCoordinate(newRestName: newRestName, newRestAddress: newRestAddress)
+            newRestNameTF.resignFirstResponder()
+            newRestAddressTF.resignFirstResponder()
+            newRestBottomConstraint.constant = -280
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,6 +104,17 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
             let detailVC = segue.destination as? DetailRestaurantVC
             detailVC?.basicInfo = sender as? BasicInfo
         }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        self.view.frame.origin.y = 0 - keyboardSize.height
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -101,9 +126,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //使用者實際目前所在位置
         guard let location = locations.first else { return }
-//        print("current location: \(location)")
+        print("current location: \(location)")
         fireManager.fetchData(current: location)
-//        fireManager.fetchData(current: CLLocation(latitude: 25.041707116387286, longitude: 121.5638902853278))
         
         //        mapView.camera = GMSCameraPosition(
         //            //使用者目前位置的座標
@@ -149,7 +173,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         infoWindow.spotData = markerData
         infoWindow.delegate = self
         
-        //TODO: - configure ui properties of info window..
+        infoWindow.layer.cornerRadius = 10
+        infoWindow.layer.masksToBounds = true
+        infoWindow.layer.borderWidth = 1.5
+        infoWindow.layer.borderColor = UIColor.black.cgColor
         
         infoWindow.restaurantName.text = markerData?.name
         infoWindow.address.text = markerData?.address
@@ -160,7 +187,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         
         //offset the info window
         infoWindow.center = mapView.projection.point(for: location)
-        infoWindow.center.y -= 80
+        infoWindow.center.y -= 110
         self.view.addSubview(infoWindow)
         return false
     }
@@ -173,7 +200,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
                 return
             }
             infoWindow.center = mapView.projection.point(for: location)
-            infoWindow.center.y -= 80
+            infoWindow.center.y -= 110
         }
     }
     
@@ -183,15 +210,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     func placeMarker(position: CLLocationCoordinate2D, title: String, data: BasicInfo) {
-        mapView.clear()
+//        mapView.clear()
         let marker = GMSMarker()
         
-        //TODO: customize marker
-        //let markerImage =
-        //let markerView =
-        //marker.iconView =
-        
         marker.position = position
+        marker.icon = UIImage(named: "redmarker64.png")
         marker.map = mapView
         marker.userData = data
     }
@@ -208,6 +231,41 @@ extension MapVC: MapInfoWindowDelegate {
     }
 }
 
+extension MapVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        newRestNameTF.resignFirstResponder()
+        newRestAddressTF.resignFirstResponder()
+        return false
+    }
+}
+
+extension MapVC: MapManagerDelegate {
+    func mapManager(_ manager: MapManager, didGetCoordinate: CLPlacemark, name: String, address: String) {
+        if let coordinate = didGetCoordinate.location?.coordinate {
+            let newRestaurant = BasicInfo(
+                address: address,
+                describe: "",
+                hashtags: ["", ""],
+                hots: ["", ""],
+                hours: [
+                    "sunday": "",
+                    "monday": "",
+                    "tuesday": "",
+                    "wednesday": "",
+                    "thursday": "",
+                    "friday": "",
+                    "saturday": ""
+                ],
+                basicId: name,
+                latitude: coordinate.latitude,
+                longitude: coordinate.longitude,
+                name: name,
+                phone: "")
+            fireManager.addNewRestaurant(newRestData: newRestaurant)
+        }
+    }
+}
+
 extension MapVC: FirebaseManagerDelegate {
     func fireManager(_ manager: FirebaseManager, didDownloadBasic filteredArray: [QueryDocumentSnapshot]) {
         for document in filteredArray {
@@ -217,7 +275,7 @@ extension MapVC: FirebaseManagerDelegate {
                 hashtags: document["hashtags"] as? [String] ?? [""],
                 hots: document["hots"] as? [String] ?? [""],
                 hours: document["hours"] as? [String: String] ?? ["": ""],
-                basicId: document["id"] as? String ?? "no id",
+                basicId: document["basicId"] as? String ?? "no id",
                 latitude: document["latitude"] as? Double ?? 0.0,
                 longitude: document["longitude"] as? Double ?? 0.0,
                 name: document["name"] as? String ?? "no name",
