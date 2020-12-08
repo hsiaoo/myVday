@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BasicInfo {
+struct BasicInfo: Codable {
     let address: String
     let describe: String
     let hashtags: [String]
@@ -34,4 +34,8 @@ struct Menu {
     let describe: String
     let image: String
 //    let vote: Int
+}
+
+struct NewRestaurant {
+    let basicInfo: BasicInfo
 }

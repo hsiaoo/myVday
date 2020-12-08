@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseFirestoreSwift
 
 @objc protocol FirebaseManagerDelegate: AnyObject {
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadBasic data: [QueryDocumentSnapshot])
@@ -84,6 +85,15 @@ class FirebaseManager: NSObject {
                     self.delegate?.fireManager?(self, didDownloadCuisine: document)
                 }
             }
+        }
+    }
+    
+    func addNewRestaurant(newRestData: BasicInfo) {
+        do {
+            try fireDB.collection("Restaurant").document(newRestData.basicId).setData(from: newRestData)
+            print("successfully added a new restaurant to firebase")
+        } catch let err {
+            print("Error writing restaurant to Firestore: \(err)")
         }
     }
     

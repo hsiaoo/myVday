@@ -86,9 +86,10 @@ class MenuVC: UIViewController {
             options: .allowAnimatedContent,
             animations: {
                 self.newCuisineView.frame = CGRect(x: 0, y: -415, width: UIScreen.main.bounds.width, height: 415)
-                self.grayMaskView.isHidden = true
         },
             completion: nil)
+        grayMaskView.isHidden = true
+        newCuisineNameTF.resignFirstResponder()
 //        newCuisineViewTopConstraint.constant = -415
     }
     
