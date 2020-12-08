@@ -11,6 +11,11 @@ import UIKit
 class MenuCollectionViewCell: UICollectionViewCell {
     static let identifier = "menuCell"
     
+<<<<<<< HEAD
     @IBOutlet weak var image: UIImageView!
+=======
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var imageView: UIImageView!
+>>>>>>> sprint_2
     @IBOutlet weak var cuisineName: UILabel!
 }
