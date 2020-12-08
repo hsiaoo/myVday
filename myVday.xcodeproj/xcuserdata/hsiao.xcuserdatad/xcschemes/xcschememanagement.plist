@@ -7,7 +7,16 @@
 		<key>myVday.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>18</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>8551E0A8256E38E6008C64FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+1d6d4e7752dc767d1f89baa0c1c37b2df07424ce
 		</dict>
 	</dict>
 </dict>
