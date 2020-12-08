@@ -92,12 +92,6 @@ class DetailRestaurantVC: UIViewController {
         }
     }
     
-    @IBAction func showInfoBtn(_ sender: Any) {
-//        moreInfoView.isHidden = false
-//        let height = moreInfoView.frame.height
-//        moreInfoConstraint.constant = height
-    }
-    
     // MARK: Actions in Comment&Vote View
     @IBAction func addPhotoBtn(_ sender: Any) {
         
@@ -105,6 +99,7 @@ class DetailRestaurantVC: UIViewController {
     
     @IBAction func cancelBtn(_ sender: Any) {
         commentTextView.resignFirstResponder()
+        voteTF.resignFirstResponder()
         isWritingComment = false
     }
     
@@ -162,7 +157,7 @@ class DetailRestaurantVC: UIViewController {
         saturdayLabel.text = basicInfo.hours["saturday"]
         if basicInfo.describe.isEmpty && basicInfo.hours.isEmpty {
             moreInfoView.isHidden = true
-            moreInfoConstraint.constant = 10
+            moreInfoConstraint.constant = 20
         } else {
             moreInfoView.isHidden = false
             let height = moreInfoView.frame.height
@@ -193,7 +188,6 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
         if let headerView = Bundle.main.loadNibNamed("CustomSectionHeader", owner: self, options: nil)?.first as? CustomSectionHeader {
             headerView.sectionTitleLabel.text = "其他人覺得.."
             headerView.commentBtn.addTarget(self, action: #selector(writeComment), for: .touchUpInside)
-            headerView.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.8959274905, blue: 0.7611490614, alpha: 1)
             return headerView
         } else {
             return UIView()
@@ -201,7 +195,7 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 46
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -217,16 +211,21 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
             detailCell.dateLabel.text = self.comments[indexPath.row].date
             detailCell.describeLabel.text = self.comments[indexPath.row].describe
             
-            if let imageUrl = URL(string: comments[indexPath.row].image) {
-                URLSession.shared.dataTask(with: imageUrl) { (data, _, error) in
-                    if let err = error {
-                        print("Error downloaded image: \(err)")
-                    } else {
-                        if let imageData = data {
-                            detailCell.imageViewForComment.image = UIImage(data: imageData)
+            let imageString = comments[indexPath.row].image
+            if imageString.isEmpty {
+                print("no image")
+            } else {
+                if let imageUrl = URL(string: imageString) {
+                    URLSession.shared.dataTask(with: imageUrl) { (data, _, error) in
+                        if let err = error {
+                            print("Error downloaded image: \(err)")
+                        } else {
+                            if let imageData = data {
+                                detailCell.imageViewForComment.image = UIImage(data: imageData)
+                            }
                         }
-                    }
-                }.resume()
+                    }.resume()
+                }
             }
             return detailCell
         } else {
@@ -257,12 +256,19 @@ extension DetailRestaurantVC: UICollectionViewDelegate, UICollectionViewDataSour
             hashtagCell.layer.cornerRadius = 5
             hashtagCell.clipsToBounds = true
             
-            //若標籤數量大於背景顏色數量(5)，要重複使用背景顏色
-            if indexPath.row > 4 {
-                let index = indexPath.row % 5
-                hashtagCell.backgroundColor = tagColor[index]
-            } else {
-                hashtagCell.backgroundColor = tagColor[indexPath.row]
+            if let hashtagArray = basicInfo?.hashtags {
+                if hashtagArray[indexPath.row].isEmpty {
+                    //若無任何標籤，底色變為透明
+                    hashtagCell.backgroundColor = .clear
+                } else {
+                    //若標籤數量大於背景顏色數量(5)，要重複使用背景顏色
+                    if indexPath.row > 4 {
+                        let index = indexPath.row % 5
+                        hashtagCell.backgroundColor = tagColor[index]
+                    } else {
+                        hashtagCell.backgroundColor = tagColor[indexPath.row]
+                    }
+                }
             }
             
             hashtagCell.tagLabel.text = basicInfo?.hashtags[indexPath.row]
@@ -300,7 +306,7 @@ extension DetailRestaurantVC: UIPickerViewDelegate, UIPickerViewDataSource {
 //            doneBtnOulet.isEnabled = true
 //        }
 //        print("did end editing")
-//        
+//
 //    }
 //}
 

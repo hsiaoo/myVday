@@ -16,84 +16,84 @@
                     <rect key="frame" x="0.0" y="0.0" width="240" height="100"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dah-Sp-r2l">
-                            <rect key="frame" x="8" y="8" width="19" height="84"/>
+                            <rect key="frame" x="8" y="8" width="24" height="84"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uZ2-Es-9Yf">
-                                    <rect key="frame" x="0.0" y="1.5" width="19" height="11"/>
+                                    <rect key="frame" x="0.0" y="-0.5" width="24" height="14.5"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4Qr-LL-yZn">
-                                    <rect key="frame" x="0.0" y="25.5" width="19" height="10.5"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address24" translatesAutoresizingMaskIntoConstraints="NO" id="4Qr-LL-yZn">
+                                    <rect key="frame" x="0.0" y="23" width="24" height="15"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6du-hN-T2D">
-                                    <rect key="frame" x="0.0" y="47" width="19" height="11.5"/>
+                                    <rect key="frame" x="0.0" y="45" width="24" height="15.5"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7lt-0G-who">
-                                    <rect key="frame" x="0.0" y="71" width="19" height="12"/>
+                                    <rect key="frame" x="0.0" y="69" width="24" height="16"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                 </imageView>
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="restaurant name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="5um-Yc-rbX">
-                            <rect key="frame" x="33" y="5.5" width="199" height="18.5"/>
+                            <rect key="frame" x="38" y="6.5" width="194" height="18.5"/>
                             <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="13"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="aBv-S9-C01">
-                            <rect key="frame" x="33" y="30" width="199" height="17"/>
+                            <rect key="frame" x="38" y="30" width="194" height="17"/>
                             <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="12"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hot cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="eoO-GE-r4H">
-                            <rect key="frame" x="33" y="53" width="61" height="17"/>
+                            <rect key="frame" x="38" y="53" width="61" height="17"/>
                             <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="12"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hot cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="08U-b4-PjK">
-                            <rect key="frame" x="134" y="53" width="61" height="17"/>
+                            <rect key="frame" x="139" y="53" width="61" height="17"/>
                             <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="12"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hashtag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="QNM-Vi-rIk">
-                            <rect key="frame" x="33" y="76.5" width="44.5" height="17"/>
+                            <rect key="frame" x="38" y="76" width="44.5" height="17"/>
                             <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="12"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hashtag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="OPJ-33-7xr">
-                            <rect key="frame" x="134" y="76.5" width="44.5" height="17"/>
+                            <rect key="frame" x="139" y="76" width="44.5" height="17"/>
                             <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="12"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.99116939306259155" green="0.89261728525161743" blue="0.74351662397384644" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="aBv-S9-C01" firstAttribute="firstBaseline" secondItem="4Qr-LL-yZn" secondAttribute="firstBaseline" id="0GB-Kw-Z3I"/>
                         <constraint firstItem="aBv-S9-C01" firstAttribute="leading" secondItem="5um-Yc-rbX" secondAttribute="leading" id="1Sk-20-Ksw"/>
                         <constraint firstItem="eoO-GE-r4H" firstAttribute="leading" secondItem="5um-Yc-rbX" secondAttribute="leading" id="6wp-lO-YrS"/>
-                        <constraint firstItem="eoO-GE-r4H" firstAttribute="firstBaseline" secondItem="6du-hN-T2D" secondAttribute="firstBaseline" id="72Y-4T-mNc"/>
+                        <constraint firstItem="eoO-GE-r4H" firstAttribute="centerY" secondItem="6du-hN-T2D" secondAttribute="centerY" id="72Y-4T-mNc"/>
                         <constraint firstItem="dah-Sp-r2l" firstAttribute="leading" secondItem="mVX-r9-eUa" secondAttribute="leading" constant="8" id="AOM-Ig-A4n"/>
                         <constraint firstItem="5um-Yc-rbX" firstAttribute="leading" secondItem="uZ2-Es-9Yf" secondAttribute="trailing" constant="6" id="DY2-AD-XSr"/>
                         <constraint firstItem="08U-b4-PjK" firstAttribute="leading" secondItem="eoO-GE-r4H" secondAttribute="trailing" constant="40" id="Dh5-Gc-QA0"/>
                         <constraint firstItem="QNM-Vi-rIk" firstAttribute="leading" secondItem="5um-Yc-rbX" secondAttribute="leading" id="J3g-4y-vVb"/>
                         <constraint firstAttribute="bottom" secondItem="dah-Sp-r2l" secondAttribute="bottom" constant="8" id="JjS-rc-JKK"/>
                         <constraint firstAttribute="trailing" secondItem="5um-Yc-rbX" secondAttribute="trailing" constant="8" id="Ksa-10-sdw"/>
-                        <constraint firstItem="QNM-Vi-rIk" firstAttribute="firstBaseline" secondItem="7lt-0G-who" secondAttribute="firstBaseline" id="NHe-eD-aro"/>
+                        <constraint firstItem="QNM-Vi-rIk" firstAttribute="centerY" secondItem="7lt-0G-who" secondAttribute="centerY" id="NHe-eD-aro"/>
                         <constraint firstAttribute="trailing" secondItem="aBv-S9-C01" secondAttribute="trailing" constant="8" id="PKh-Xd-ZFc"/>
+                        <constraint firstItem="aBv-S9-C01" firstAttribute="centerY" secondItem="4Qr-LL-yZn" secondAttribute="centerY" id="ThB-kn-08r"/>
                         <constraint firstItem="08U-b4-PjK" firstAttribute="firstBaseline" secondItem="eoO-GE-r4H" secondAttribute="firstBaseline" id="UTR-0r-mjg"/>
                         <constraint firstItem="dah-Sp-r2l" firstAttribute="top" secondItem="mVX-r9-eUa" secondAttribute="top" constant="8" id="Uiq-Qi-JsZ"/>
-                        <constraint firstItem="5um-Yc-rbX" firstAttribute="firstBaseline" secondItem="uZ2-Es-9Yf" secondAttribute="firstBaseline" id="WQ1-h4-WhU"/>
+                        <constraint firstItem="5um-Yc-rbX" firstAttribute="centerY" secondItem="uZ2-Es-9Yf" secondAttribute="centerY" id="WgA-kg-53e"/>
                         <constraint firstItem="OPJ-33-7xr" firstAttribute="firstBaseline" secondItem="QNM-Vi-rIk" secondAttribute="firstBaseline" id="aCp-eB-rSm"/>
                         <constraint firstItem="OPJ-33-7xr" firstAttribute="leading" secondItem="08U-b4-PjK" secondAttribute="leading" id="bL0-2e-NpF"/>
                     </constraints>
@@ -117,7 +117,7 @@
                 <outlet property="tagSecond" destination="OPJ-33-7xr" id="pF0-pg-xQf"/>
                 <outletCollection property="gestureRecognizers" destination="qv2-2h-9oJ" appends="YES" id="hBj-En-pec"/>
             </connections>
-            <point key="canvasLocation" x="779" y="145"/>
+            <point key="canvasLocation" x="613" y="120"/>
         </view>
         <tapGestureRecognizer id="qv2-2h-9oJ">
             <connections>
@@ -126,9 +126,9 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="address24" width="24" height="24"/>
         <image name="flame" catalog="system" width="109" height="128"/>
         <image name="house" catalog="system" width="128" height="110"/>
-        <image name="location" catalog="system" width="128" height="115"/>
         <image name="tag" catalog="system" width="128" height="116"/>
     </resources>
 </document>
