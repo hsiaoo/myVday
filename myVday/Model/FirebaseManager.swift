@@ -17,6 +17,7 @@ import FirebaseFirestoreSwift
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadDetail data: [QueryDocumentSnapshot], type: DataType)
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadCuisine: [String: Any])
     @objc optional func fireManager(_ manager: FirebaseManager, didFinishUpdate menuOrComment: DataType)
+    @objc optional func fireManager(_ manager: FirebaseManager, didDownloadProfile data: [String: Any])
 }
 
 @objc enum DataType: Int {
@@ -83,6 +84,18 @@ class FirebaseManager: NSObject {
             } else {
                 if let document = snapshot?.data() {
                     self.delegate?.fireManager?(self, didDownloadCuisine: document)
+                }
+            }
+        }
+    }
+    
+    func fetchProfileData(userId: String) {
+        fireDB.collection("User").document(userId).getDocument { (snapshot, error) in
+            if let err = error {
+                print("Error getting profile data: \(err)")
+            } else {
+                if let document = snapshot?.data() {
+                    self.delegate?.fireManager?(self, didDownloadProfile: document)
                 }
             }
         }
