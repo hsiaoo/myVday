@@ -18,16 +18,24 @@ import FirebaseFirestoreSwift
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadCuisine: [String: Any])
     @objc optional func fireManager(_ manager: FirebaseManager, didFinishUpdate menuOrComment: DataType)
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadProfile data: [String: Any])
+    @objc optional func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType)
+    @objc optional func fireManager(_ manager: FirebaseManager, didDownloadChallenge data: [QueryDocumentSnapshot])
 }
 
 @objc enum DataType: Int {
     case comments
     case menu
+    case friends
+    case friendRequests
+    case challengeRequests
     
     func name() -> String {
         switch self {
         case .comments: return "comments"
         case .menu: return "menu"
+        case .friends: return "friends"
+        case .friendRequests: return "friendRequests"
+        case .challengeRequests: return "challengeRequests"
         }
     }
 }
@@ -101,6 +109,30 @@ class FirebaseManager: NSObject {
         }
     }
     
+    func fetchProfileSubCollection(userId: String, dataType: DataType) {
+        fireDB.collection("User").document(userId).collection(dataType.name()).getDocuments { (snapeshot, error) in
+            if let err = error {
+                print("Error getting sub collection data: \(err)")
+            } else {
+                if let docArray = snapeshot?.documents {
+                    self.delegate?.fireManager?(self, didDownloadProfileDetail: docArray, type: dataType)
+                }
+            }
+        }
+    }
+    
+    func fetchMyChallenge(ower: String) {
+        fireDB.collection("Challenge").whereField("owner", isEqualTo: ower).getDocuments { (snapshot, error) in
+            if let err = error {
+                print("Error getting challenge documents: \(err)")
+            } else {
+                if let docArray = snapshot?.documents {
+                    self.delegate?.fireManager?(self, didDownloadChallenge: docArray)
+                }
+            }
+        }
+    }
+    
     func addNewRestaurant(newRestData: BasicInfo) {
         do {
             try fireDB.collection("Restaurant").document(newRestData.basicId).setData(from: newRestData)
@@ -134,6 +166,7 @@ class FirebaseManager: NSObject {
                             self.addComment(toFirestoreWith: restId, userId: "Austin", describe: nameOrDescribe, image: uploadImageUrl)
                         case .menu:
                             self.addCuisine(toFirestoreWith: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
+                        case .friends, .friendRequests, .challengeRequests: break
                         }
                     }
                 }
@@ -153,6 +186,19 @@ class FirebaseManager: NSObject {
             } else {
                 print("successfully updated menu")
                 self.delegate?.fireManager?(self, didFinishUpdate: .menu)
+            }
+        }
+    }
+    
+    func updateProfile(userId: String, newProfileData: User) {
+        fireDB.collection("User").document(userId).updateData([
+            "nickname": newProfileData.nickname,
+            "describe": newProfileData.describe,
+            "emoji": newProfileData.emoji,
+            "image": newProfileData.image
+        ]) { (error) in
+            if let err = error {
+                print("Error updating profile: \(err)")
             }
         }
     }
