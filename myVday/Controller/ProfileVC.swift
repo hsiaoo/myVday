@@ -18,6 +18,13 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var profileDescribeLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileEmojiLabel: UILabel!
+    @IBOutlet weak var friendBtn: UIButton!
+    @IBOutlet weak var challengeBtn: UIButton!
+    
+    @IBOutlet weak var editingImageView: UIButton!
+    @IBOutlet weak var editingNameTF: UITextField!
+    @IBOutlet weak var editingDescribeTF: UITextField!
+    @IBOutlet weak var editingEmojiTF: UITextField!
     
     let fireManager = FirebaseManager()
     var userData: User?
@@ -28,12 +35,16 @@ class ProfileVC: UIViewController {
                 profleEditingView.isHidden = false
                 profileNormalView.isHidden = true
                 editSaveBarBtn.image = UIImage(systemName: "checkmark")
-                cancelBarBtn.image = UIImage(systemName: "clear")
+                cancelBarBtn.image = UIImage(systemName: "arrowshape.turn.up.left")
+                friendBtn.isEnabled = false
+                challengeBtn.isEnabled = false
             } else {
                 profleEditingView.isHidden = true
                 profileNormalView.isHidden = false
                 editSaveBarBtn.image = UIImage(systemName: "pencil")
                 cancelBarBtn.image = nil
+                friendBtn.isEnabled = true
+                challengeBtn.isEnabled = true
             }
         }
     }
@@ -46,6 +57,30 @@ class ProfileVC: UIViewController {
     
     @IBAction func editProfileBtn(_ sender: Any) {
         isEditingProfile = !isEditingProfile
+        if isEditingProfile == true {
+            editingNameTF.placeholder = userData?.nickname
+            editingDescribeTF.placeholder = userData?.describe
+            if let userData = userData, let emoji =  emojiDecode(emojiString: userData.emoji) {
+                editingEmojiTF.placeholder = emoji
+            }
+        } else {
+            var newProfileData: User?
+            guard let nickname = editingNameTF.text, let describe = editingDescribeTF.text, let emoji = editingEmojiTF.text else { return }
+            let emojiString = emojiEncode(emoji: emoji)
+            if nickname.isEmpty {
+                
+            }
+        }
+    }
+    
+    @IBAction func cancelEditProfileBtn(_ sender: Any) {
+        isEditingProfile = !isEditingProfile
+        editingNameTF.text = ""
+        editingDescribeTF.text = ""
+        editingEmojiTF.text = ""
+        editingNameTF.resignFirstResponder()
+        editingDescribeTF.resignFirstResponder()
+        editingEmojiTF.resignFirstResponder()
     }
     
     @IBAction func friendBtnTapped(_ sender: Any) {
@@ -80,6 +115,13 @@ class ProfileVC: UIViewController {
             return emoji
         }
         return "can not decode the emoji"
+    }
+    
+    func emojiEncode(emoji: String) -> String {
+        if  let data = emoji.data(using: .nonLossyASCII, allowLossyConversion: true), let emojiString = String(data: data, encoding: .utf8) {
+            return emojiString
+        }
+        return "can not encode the emoji"
     }
 }
 
