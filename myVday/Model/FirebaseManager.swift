@@ -190,12 +190,11 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func updateProfile(userId: String, newProfileData: User) {
+    func updateProfile(userId: String, newNickname: String, newDescribe: String, newEmoji: String) {
         fireDB.collection("User").document(userId).updateData([
-            "nickname": newProfileData.nickname,
-            "describe": newProfileData.describe,
-            "emoji": newProfileData.emoji,
-            "image": newProfileData.image
+            "nickname": newNickname,
+            "describe": newDescribe,
+            "emoji": newEmoji
         ]) { (error) in
             if let err = error {
                 print("Error updating profile: \(err)")

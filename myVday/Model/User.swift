@@ -10,8 +10,8 @@ import Foundation
 
 struct User {
     let userId: String
-    let nickname: String
-    let describe: String
-    let emoji: String
-    let image: String
+    var nickname: String
+    var describe: String
+    var emoji: String
+    var image: String
 }

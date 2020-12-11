@@ -64,12 +64,44 @@ class ProfileVC: UIViewController {
                 editingEmojiTF.placeholder = emoji
             }
         } else {
-            var newProfileData: User?
-            guard let nickname = editingNameTF.text, let describe = editingDescribeTF.text, let emoji = editingEmojiTF.text else { return }
+            var newNickname: String?
+            var newDescribe: String?
+            var newEmoji: String?
+            
+            guard let nickname = editingNameTF.text,
+                let describe = editingDescribeTF.text,
+                let emoji = editingEmojiTF.text else { return }
+            
             let emojiString = emojiEncode(emoji: emoji)
+            
             if nickname.isEmpty {
-                
+                newNickname = userData?.nickname ?? ""
+            } else {
+                newNickname = nickname
             }
+            
+            if describe.isEmpty {
+                newDescribe = userData?.describe ?? ""
+            } else {
+                newDescribe = describe
+            }
+            
+            if emojiString.isEmpty {
+                newEmoji = userData?.emoji ?? ""
+            } else {
+                newEmoji = emojiString
+            }
+            
+            if let okNickname = newNickname, let okDescribe = newDescribe, let okEmoji = newEmoji {
+                fireManager.updateProfile(userId: "Austin", newNickname: okNickname, newDescribe: okDescribe, newEmoji: okEmoji)
+            }
+            fireManager.fetchProfileData(userId: "Austin")
+            editingNameTF.text = ""
+            editingDescribeTF.text = ""
+            editingEmojiTF.text = ""
+            editingNameTF.resignFirstResponder()
+            editingDescribeTF.resignFirstResponder()
+            editingEmojiTF.resignFirstResponder()
         }
     }
     
