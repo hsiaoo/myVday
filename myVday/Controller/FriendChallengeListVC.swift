@@ -29,6 +29,18 @@ class FriendChallengeListVC: UIViewController {
     @IBAction func tappedNotiBtn(_ sender: Any) {
     }
     
+    @IBAction func addFriendOrChallengeBtn(_ sender: Any) {
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "singleChallengeSegue" {
+            if let controller = segue.destination as? SingleChallengeVC {
+                controller.singleChallengeFromList = sender as? Challenge
+            }
+        }
+    }
+    
     func listSetting() {
         if isFriendList == true {
             listNameLabel.text = "朋友們"
@@ -74,6 +86,23 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+//    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFriendList == true {
+            return
+        } else {
+            let singleChallenge = myChallenge[indexPath.row]
+            performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
+        }
+    }
+    
 }
 
 extension FriendChallengeListVC: FirebaseManagerDelegate {
@@ -97,7 +126,7 @@ extension FriendChallengeListVC: FirebaseManagerDelegate {
             print("friend requests")
         case .challengeRequests:
             print("challengeRequests")
-        case .comments, .menu: break
+        case .comments, .menu, .owner, .challenger: break
         }
     }
     
