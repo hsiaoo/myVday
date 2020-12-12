@@ -20,6 +20,7 @@ import FirebaseFirestoreSwift
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadProfile data: [String: Any])
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType)
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadChallenge data: [QueryDocumentSnapshot])
+    @objc optional func fireManager(_ manager: FirebaseManager, didDownloadDays data: [QueryDocumentSnapshot], type: DataType)
 }
 
 @objc enum DataType: Int {
@@ -28,6 +29,8 @@ import FirebaseFirestoreSwift
     case friends
     case friendRequests
     case challengeRequests
+    case owner
+    case challenger
     
     func name() -> String {
         switch self {
@@ -36,6 +39,8 @@ import FirebaseFirestoreSwift
         case .friends: return "friends"
         case .friendRequests: return "friendRequests"
         case .challengeRequests: return "challengeRequests"
+        case .owner: return "owner"
+        case .challenger: return "challenger"
         }
     }
 }
@@ -133,6 +138,18 @@ class FirebaseManager: NSObject {
         }
     }
     
+    func fetchChallengeDetail(challengeId: String, dataType: DataType) {
+        fireDB.collection("Challenge").document(challengeId).collection("Days").getDocuments { (snapshot, error) in
+            if let err = error {
+                print("Error fetching challenge detail: \(err)")
+            } else {
+                if let docArray = snapshot?.documents {
+                    self.delegate?.fireManager?(self, didDownloadDays: docArray, type: dataType)
+                }
+            }
+        }
+    }
+    
     func addNewRestaurant(newRestData: BasicInfo) {
         do {
             try fireDB.collection("Restaurant").document(newRestData.basicId).setData(from: newRestData)
@@ -166,7 +183,7 @@ class FirebaseManager: NSObject {
                             self.addComment(toFirestoreWith: restId, userId: "Austin", describe: nameOrDescribe, image: uploadImageUrl)
                         case .menu:
                             self.addCuisine(toFirestoreWith: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
-                        case .friends, .friendRequests, .challengeRequests: break
+                        case .friends, .friendRequests, .challengeRequests, .owner, .challenger: break
                         }
                     }
                 }

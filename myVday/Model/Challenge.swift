@@ -17,3 +17,11 @@ struct Challenge {
     let vsChallengeId: String
     let updatedTime: String
 }
+
+struct DaysChallenge {
+    let index: Int
+    let title: String
+    let describe: String
+    let image: String
+    let createdTime: String
+}
