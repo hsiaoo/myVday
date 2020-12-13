@@ -47,6 +47,7 @@ import FirebaseFirestoreSwift
 
 class FirebaseManager: NSObject {
     let fireDB = Firestore.firestore()
+    var ref: DocumentReference?
     weak var delegate: FirebaseManagerDelegate?
     
     //fetch basic information of restaurant from firebase
@@ -252,8 +253,45 @@ class FirebaseManager: NSObject {
         }
     }
     
+    func addChallenge(owner: String, title: String, describe: String, days: Int) {
+        ref = fireDB.collection("Challenge").addDocument(data: [
+            "challengeId": "",
+            "days": days,
+            "describe": describe,
+            "owner": owner,
+            "title": title,
+            "updatedTime": FieldValue.serverTimestamp(),
+            "vsChallengeId": ""
+            ], completion: { (error) in
+                if let err = error {
+                    print("Error adding new challenge: \(err)")
+                } else {
+                    if let challengeId = self.ref?.documentID {
+                        self.updateChallengeId(challengeId: challengeId, days: days)
+                    }
+                }
+        })
+    }
+    
+    func addDaysChallenge(days: Int, challengeId: String) {
+        for index in 0 ..< days {
+            fireDB.collection("Challenge").document(challengeId).collection("Days").document("\(index+1)").setData([
+                "createdTime": FieldValue.serverTimestamp(),
+                "describe": "",
+                "image": "",
+                "index": "\(index+1)",
+                "title": "挑戰第\(index+1)天"
+            ]) { (error) in
+                if let err = error {
+                    print("Error added every day challenge doc: \(err)")
+                }
+            }
+        }
+        print("========成功新增每日挑戰========")
+    }
+    
     func addComment(toFirestoreWith restaurantId: String, userId: String, describe: String, image: String) {
-        var ref: DocumentReference?
+//        var ref: DocumentReference?
         ref = fireDB.collection("Restaurant").document(restaurantId).collection("comments").addDocument(data: [
             "userId": userId,
             "describe": describe,
@@ -263,10 +301,22 @@ class FirebaseManager: NSObject {
             if let err = error {
                 print("Error adding a new comment: \(err)")
             } else {
-                if let commentId = ref?.documentID {
+                if let commentId = self.ref?.documentID {
                     self.updateCommentId(restaurantId: restaurantId, commentId: commentId)
                     print("successfully added a new comment with ID: \(commentId)")
                 }
+            }
+        }
+    }
+    
+    func updateChallengeId(challengeId: String, days: Int) {
+        fireDB.collection("Challenge").document(challengeId).updateData([
+            "challengeId": challengeId
+        ]) { (error) in
+            if let err = error {
+                print("Error updated challenge id: \(err)")
+            } else {
+                self.addDaysChallenge(days: days, challengeId: challengeId)
             }
         }
     }
