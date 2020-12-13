@@ -9,45 +9,87 @@
 import UIKit
 import FirebaseFirestore
 
+enum LayoutType {
+    case friendList, challengeList, addNewFriend, addNewChallenge
+}
+
 class FriendChallengeListVC: UIViewController {
     
     @IBOutlet weak var listNameLabel: UILabel!
     @IBOutlet weak var notificationBtn: UIButton!
-    
+    @IBOutlet weak var newFriendSearchBar: UISearchBar!
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var friendChallengeTableView: UITableView!
+    
     let fireManager = FirebaseManager()
-    var isFriendList = false
+//    var isFriendList = false
+    var currentLayoutType: LayoutType = .challengeList
     var friends = [User]()
     var myChallenge = [Challenge]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        listSetting()
         fireManager.delegate = self
+        listSetting()
     }
     
     @IBAction func tappedNotiBtn(_ sender: Any) {
     }
     
     @IBAction func addFriendOrChallengeBtn(_ sender: Any) {
+        if currentLayoutType == .friendList {
+            tableViewTopConstraint.constant = 86
+            UIViewPropertyAnimator.runningPropertyAnimator(
+                withDuration: 0.5,
+                delay: 0,
+                options: .allowAnimatedContent,
+                animations: {
+                    self.friendChallengeTableView.frame = CGRect(x: 0, y: 167, width: UIScreen.main.bounds.width, height: 675)
+            },
+                completion: nil)
+            newFriendSearchBar.isHidden = false
+        } else if currentLayoutType == .challengeList {
+            performSegue(withIdentifier: "newChallengeSegue", sender: nil)
+        }
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "singleChallengeSegue" {
             if let controller = segue.destination as? SingleChallengeVC {
                 controller.singleChallengeFromList = sender as? Challenge
             }
+        } else {
+            if segue.identifier == "newChallengeSegue" {
+                if let controller = segue.destination as? AddNewChallengeVC {
+                    controller.didAddedChallenge = {
+                        self.listSetting()
+                    }
+                }
+            }
         }
     }
     
+//    func listSetting() {
+//        if isFriendList == true {
+//            listNameLabel.text = "朋友們"
+//            fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .friends)
+//        } else {
+//            listNameLabel.text = "挑戰們"
+//            fireManager.fetchMyChallenge(ower: "Austin")
+//        }
+//    }
+    
     func listSetting() {
-        if isFriendList == true {
-            listNameLabel.text = "朋友們"
+        myChallenge.removeAll()
+        switch currentLayoutType {
+        case .friendList:
+            listNameLabel.text = "好友"
             fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .friends)
-        } else {
-            listNameLabel.text = "挑戰們"
+        case .challengeList:
+            listNameLabel.text = "挑戰"
             fireManager.fetchMyChallenge(ower: "Austin")
+        case .addNewFriend: break
+        case .addNewChallenge: break
         }
     }
     
@@ -55,10 +97,15 @@ class FriendChallengeListVC: UIViewController {
 
 extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFriendList == true {
-            return friends.count
-        } else {
-            return myChallenge.count
+//        if isFriendList == true {
+//            return friends.count
+//        } else {
+//            return myChallenge.count
+//        }
+        switch currentLayoutType {
+        case .friendList: return friends.count
+        case .challengeList: return myChallenge.count
+        case .addNewChallenge, .addNewFriend: return 1
         }
     }
     
@@ -66,10 +113,13 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
         if let friendChallengeCell = tableView.dequeueReusableCell(
             withIdentifier: FriendChallengeListTableViewCell.identifier,
             for: indexPath) as? FriendChallengeListTableViewCell {
-            if isFriendList == true {
+            
+            switch currentLayoutType {
+            case .friendList:
                 friendChallengeCell.listTitleLabel.text = "\(friends[indexPath.row].nickname)" + " " + "\(friends[indexPath.row].emoji)"
                 friendChallengeCell.listDescribeLabel.text = friends[indexPath.row].describe
-            } else {
+                return friendChallengeCell
+            case .challengeList:
                 friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
                 friendChallengeCell.listDescribeLabel.text = myChallenge[indexPath.row].describe
                 
@@ -79,13 +129,31 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 } else {
                     friendChallengeCell.backgroundColor = UIColor(named: "mypink")
                 }
+                return friendChallengeCell
+            case .addNewChallenge, .addNewFriend: break
             }
-            return friendChallengeCell
-        } else {
-            return UITableViewCell()            
+            //            if isFriendList == true {
+            //                friendChallengeCell.listTitleLabel.text = "\(friends[indexPath.row].nickname)" + " " + "\(friends[indexPath.row].emoji)"
+            //                friendChallengeCell.listDescribeLabel.text = friends[indexPath.row].describe
+            //            } else {
+            //                friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
+            //                friendChallengeCell.listDescribeLabel.text = myChallenge[indexPath.row].describe
+            //
+            //                let vsId = myChallenge[indexPath.row].vsChallengeId
+            //                if vsId.isEmpty {
+            //                    friendChallengeCell.backgroundColor = UIColor(named: "myyellow")
+            //                } else {
+            //                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
+            //                }
+            //            }
+            //            return friendChallengeCell
+            //        } else {
+            //            return UITableViewCell()
+            //        }
         }
+        return UITableViewCell()
     }
-    
+        
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return UITableView.automaticDimension
 //    }
@@ -95,12 +163,19 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isFriendList == true {
-            return
-        } else {
+        switch currentLayoutType {
+        case .friendList: return
+        case .challengeList:
             let singleChallenge = myChallenge[indexPath.row]
             performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
+        case .addNewChallenge, .addNewFriend: break
         }
+//        if isFriendList == true {
+//            return
+//        } else {
+//            let singleChallenge = myChallenge[indexPath.row]
+//            performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
+//        }
     }
     
 }

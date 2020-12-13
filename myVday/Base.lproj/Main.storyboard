@@ -14,7 +14,7 @@
             <objects>
                 <viewController id="4WY-cq-Drc" customClass="SingleChallengeVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NYN-mq-l7X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xEp-CT-1Hy">
@@ -121,7 +121,7 @@
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vfb-yR-HOl">
                                         <rect key="frame" x="353" y="662" width="35" height="34"/>
-                                        <state key="normal" image="xmark.circle.fill" catalog="system">
+                                        <state key="normal" image="xmark.circle" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                                         </state>
                                         <connections>
@@ -130,7 +130,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCO-y5-okv">
                                         <rect key="frame" x="293" y="662" width="35" height="34"/>
-                                        <state key="normal" image="pencil.circle.fill" catalog="system">
+                                        <state key="normal" image="pencil.circle" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                                         </state>
                                         <connections>
@@ -374,11 +374,12 @@
             <objects>
                 <viewController id="efK-Eg-9RW" customClass="FriendChallengeListVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dVw-5z-Og1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="09S-Uz-2Zg">
-                                <rect key="frame" x="0.0" y="109" width="414" height="733"/>
+                                <rect key="frame" x="0.0" y="111" width="414" height="731"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendChallengeCell" id="40c-QQ-yVC" customClass="FriendChallengeListTableViewCell" customModule="myVday" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="121"/>
@@ -433,7 +434,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kP-GR-lYb">
-                                <rect key="frame" x="357.5" y="41.5" width="26.5" height="26.5"/>
+                                <rect key="frame" x="357.5" y="42.5" width="26.5" height="26.5"/>
                                 <state key="normal" image="bell" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23"/>
                                 </state>
@@ -442,13 +443,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYz-BA-Jy9">
-                                <rect key="frame" x="32" y="30" width="169.5" height="49"/>
+                                <rect key="frame" x="32" y="30" width="169.5" height="51"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pch-ia-2Gn">
-                                <rect key="frame" x="313.5" y="41.5" width="27" height="26"/>
+                                <rect key="frame" x="313.5" y="42.5" width="27" height="26"/>
                                 <state key="normal" image="plus.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23"/>
                                 </state>
@@ -456,6 +457,15 @@
                                     <action selector="addFriendOrChallengeBtn:" destination="efK-Eg-9RW" eventType="touchUpInside" id="plT-rN-S5G"/>
                                 </connections>
                             </button>
+                            <searchBar hidden="YES" contentMode="redraw" id="IzJ-EL-Qu6">
+                                <rect key="frame" x="0.0" y="101" width="413.5" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -468,6 +478,7 @@
                             <constraint firstItem="8lT-MT-iHf" firstAttribute="trailing" secondItem="5kP-GR-lYb" secondAttribute="trailing" constant="30" id="WSf-Xb-sLV"/>
                             <constraint firstItem="09S-Uz-2Zg" firstAttribute="leading" secondItem="8lT-MT-iHf" secondAttribute="leading" id="cIz-sN-swp"/>
                             <constraint firstItem="09S-Uz-2Zg" firstAttribute="trailing" secondItem="8lT-MT-iHf" secondAttribute="trailing" id="d4B-RL-nIB"/>
+                            <constraint firstItem="IzJ-EL-Qu6" firstAttribute="top" secondItem="CYz-BA-Jy9" secondAttribute="bottom" constant="20" id="xGG-EH-5eI"/>
                             <constraint firstItem="09S-Uz-2Zg" firstAttribute="top" secondItem="CYz-BA-Jy9" secondAttribute="bottom" constant="30" id="zpQ-3c-Xe7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8lT-MT-iHf"/>
@@ -475,30 +486,147 @@
                     <connections>
                         <outlet property="friendChallengeTableView" destination="09S-Uz-2Zg" id="xdG-08-9ie"/>
                         <outlet property="listNameLabel" destination="CYz-BA-Jy9" id="sfN-Ci-Yn8"/>
+                        <outlet property="newFriendSearchBar" destination="IzJ-EL-Qu6" id="Ia2-wY-1aO"/>
                         <outlet property="notificationBtn" destination="5kP-GR-lYb" id="rYM-v5-YWd"/>
+                        <outlet property="tableViewTopConstraint" destination="zpQ-3c-Xe7" id="IiG-eb-FoT"/>
                         <segue destination="4WY-cq-Drc" kind="show" identifier="singleChallengeSegue" id="n1H-f0-Lnb"/>
                         <segue destination="LnR-a1-6Qf" kind="show" identifier="newChallengeSegue" id="UJh-n6-6H7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaF-33-39o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4886" y="-330"/>
+            <point key="canvasLocation" x="4885.507246376812" y="-330.13392857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Add New ChallengeVC-->
         <scene sceneID="GyS-wo-IRW">
             <objects>
-                <viewController id="LnR-a1-6Qf" sceneMemberID="viewController">
+                <viewController id="LnR-a1-6Qf" customClass="AddNewChallengeVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CoQ-E3-0Eg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰主題" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-Yl-L8p">
+                                <rect key="frame" x="83" y="111.5" width="305" height="29.5"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰簡介" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egX-Sz-EfC">
+                                <rect key="frame" x="83" y="171.5" width="305" height="29.5"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="86A-9Z-t1D">
+                                <rect key="frame" x="26" y="108" width="37" height="34.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="NUl-at-N4K"/>
+                                    <constraint firstAttribute="width" constant="37" id="msw-YT-tlN"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipses.bubble.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uxW-SZ-YYm">
+                                <rect key="frame" x="26" y="169.5" width="37" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="Qco-G0-omg"/>
+                                    <constraint firstAttribute="height" constant="34" id="eCs-1C-QO0"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9BH-Y6-Suy">
+                                <rect key="frame" x="26" y="230" width="37" height="31.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="gaV-iV-xLz"/>
+                                    <constraint firstAttribute="width" constant="37" id="vr0-vp-g1S"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1ex-Gj-n5T">
+                                <rect key="frame" x="26" y="290.5" width="37" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="16g-7b-6a2"/>
+                                    <constraint firstAttribute="height" constant="34" id="7R1-WK-kpc"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰天數" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q8Q-Yd-5Jt">
+                                <rect key="frame" x="83" y="231.5" width="305" height="29.5"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰朋友" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yRr-gQ-3eu">
+                                <rect key="frame" x="83" y="291.5" width="305" height="29.5"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="發起挑戰！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFK-Hg-YED">
+                                <rect key="frame" x="26" y="30" width="175" height="49"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gYL-Ap-VeH">
+                                <rect key="frame" x="319" y="41.5" width="69" height="26"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vs-8d-Kcp">
+                                        <rect key="frame" x="0.0" y="0.0" width="27" height="26"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedDoneBtn:" destination="LnR-a1-6Qf" eventType="touchUpInside" id="IqA-Kp-Fq8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijt-XR-1Db">
+                                        <rect key="frame" x="42" y="0.0" width="27" height="26"/>
+                                        <state key="normal" image="xmark.circle" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedCloseViewBtn:" destination="LnR-a1-6Qf" eventType="touchUpInside" id="exk-zG-czY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="86A-9Z-t1D" firstAttribute="top" secondItem="NFK-Hg-YED" secondAttribute="bottom" constant="30" id="3EK-0B-nt8"/>
+                            <constraint firstItem="yRr-gQ-3eu" firstAttribute="leading" secondItem="1ex-Gj-n5T" secondAttribute="trailing" constant="20" id="4nL-7f-Vi4"/>
+                            <constraint firstItem="q8Q-Yd-5Jt" firstAttribute="centerY" secondItem="9BH-Y6-Suy" secondAttribute="centerY" id="AgB-Pr-HEa"/>
+                            <constraint firstItem="9BH-Y6-Suy" firstAttribute="centerX" secondItem="86A-9Z-t1D" secondAttribute="centerX" id="Esg-DZ-CsM"/>
+                            <constraint firstItem="egX-Sz-EfC" firstAttribute="leading" secondItem="uxW-SZ-YYm" secondAttribute="trailing" constant="20" id="HC5-GY-z13"/>
+                            <constraint firstItem="9BH-Y6-Suy" firstAttribute="top" secondItem="uxW-SZ-YYm" secondAttribute="bottom" constant="26" id="Mna-jG-kUM"/>
+                            <constraint firstItem="1ex-Gj-n5T" firstAttribute="top" secondItem="9BH-Y6-Suy" secondAttribute="bottom" constant="26" id="OA1-i2-dr9"/>
+                            <constraint firstItem="egX-Sz-EfC" firstAttribute="centerY" secondItem="uxW-SZ-YYm" secondAttribute="centerY" id="OzB-Uh-8Si"/>
+                            <constraint firstItem="86A-9Z-t1D" firstAttribute="leading" secondItem="zuF-Dz-zst" secondAttribute="leading" constant="26" id="PNw-1l-EiH"/>
+                            <constraint firstItem="NFK-Hg-YED" firstAttribute="top" secondItem="zuF-Dz-zst" secondAttribute="top" constant="30" id="Q40-rm-eli"/>
+                            <constraint firstItem="zuF-Dz-zst" firstAttribute="trailing" secondItem="q8Q-Yd-5Jt" secondAttribute="trailing" constant="26" id="Rxx-eU-eck"/>
+                            <constraint firstItem="q8Q-Yd-5Jt" firstAttribute="leading" secondItem="9BH-Y6-Suy" secondAttribute="trailing" constant="20" id="Y3H-Lb-57Q"/>
+                            <constraint firstItem="sdM-Yl-L8p" firstAttribute="centerY" secondItem="86A-9Z-t1D" secondAttribute="centerY" id="YNW-sC-xN4"/>
+                            <constraint firstItem="zuF-Dz-zst" firstAttribute="trailing" secondItem="egX-Sz-EfC" secondAttribute="trailing" constant="26" id="fjc-co-KQJ"/>
+                            <constraint firstItem="1ex-Gj-n5T" firstAttribute="centerX" secondItem="9BH-Y6-Suy" secondAttribute="centerX" id="kV3-Be-H5c"/>
+                            <constraint firstItem="uxW-SZ-YYm" firstAttribute="top" secondItem="86A-9Z-t1D" secondAttribute="bottom" constant="26" id="l0i-6F-SPI"/>
+                            <constraint firstItem="gYL-Ap-VeH" firstAttribute="centerY" secondItem="NFK-Hg-YED" secondAttribute="centerY" id="ncm-cJ-sWz"/>
+                            <constraint firstItem="zuF-Dz-zst" firstAttribute="trailing" secondItem="gYL-Ap-VeH" secondAttribute="trailing" constant="26" id="pjS-OV-O9t"/>
+                            <constraint firstItem="yRr-gQ-3eu" firstAttribute="centerY" secondItem="1ex-Gj-n5T" secondAttribute="centerY" id="pq0-rS-LR2"/>
+                            <constraint firstItem="NFK-Hg-YED" firstAttribute="leading" secondItem="zuF-Dz-zst" secondAttribute="leading" constant="26" id="qfO-N2-PYG"/>
+                            <constraint firstItem="zuF-Dz-zst" firstAttribute="trailing" secondItem="yRr-gQ-3eu" secondAttribute="trailing" constant="26" id="qp0-g2-upI"/>
+                            <constraint firstItem="uxW-SZ-YYm" firstAttribute="centerX" secondItem="86A-9Z-t1D" secondAttribute="centerX" id="ujD-wx-XsO"/>
+                            <constraint firstItem="sdM-Yl-L8p" firstAttribute="leading" secondItem="86A-9Z-t1D" secondAttribute="trailing" constant="20" id="vfK-Uw-nqP"/>
+                            <constraint firstItem="zuF-Dz-zst" firstAttribute="trailing" secondItem="sdM-Yl-L8p" secondAttribute="trailing" constant="26" id="vtz-Ln-PbQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zuF-Dz-zst"/>
                     </view>
                     <navigationItem key="navigationItem" id="LCs-OM-vf4"/>
+                    <connections>
+                        <outlet property="challengeDaysTF" destination="q8Q-Yd-5Jt" id="Ngy-5N-yxS"/>
+                        <outlet property="challengeDescribeTF" destination="egX-Sz-EfC" id="qFL-xZ-SCP"/>
+                        <outlet property="challengeFriendTF" destination="yRr-gQ-3eu" id="KDx-xV-BdV"/>
+                        <outlet property="challengeTitleTF" destination="sdM-Yl-L8p" id="ysJ-c5-4Db"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyt-mQ-nRC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5793" y="-712"/>
+            <point key="canvasLocation" x="5792.753623188406" y="-712.5"/>
         </scene>
         <!--地圖-->
         <scene sceneID="jDT-eQ-vMU">
@@ -1787,17 +1915,22 @@
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="blankTask" width="64" height="64"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="camera.fill" catalog="system" width="128" height="96"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="ellipses.bubble.fill" catalog="system" width="128" height="110"/>
+        <image name="flame.fill" catalog="system" width="109" height="128"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="124"/>
         <image name="j" width="292" height="792"/>
         <image name="map" catalog="system" width="128" height="113"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
-        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundOrange">
             <color red="0.97600001096725464" green="0.89399999380111694" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

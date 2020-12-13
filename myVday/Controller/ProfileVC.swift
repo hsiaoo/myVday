@@ -126,11 +126,13 @@ class ProfileVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "friendSegue" {
             if let controller = segue.destination as? FriendChallengeListVC {
-                controller.isFriendList = true
+//                controller.isFriendList = true
+                controller.currentLayoutType = .friendList
             }
         } else {
             if let controller = segue.destination as? FriendChallengeListVC {
-                controller.isFriendList = false
+//                controller.isFriendList = false
+                controller.currentLayoutType = .challengeList
             }
         }
     }

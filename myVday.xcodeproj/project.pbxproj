@@ -26,6 +26,8 @@
 		85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85750BE125726C4200B7786F /* GoogleService-Info.plist */; };
 		85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85750BE5257349AB00B7786F /* MapKit.framework */; };
 		8576990F2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */; };
+		857699112585EEB500D5B895 /* AddNewChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857699102585EEB500D5B895 /* AddNewChallengeVC.swift */; };
+		857699132585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */; };
 		8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2F8257644F300182AC3 /* MenuVC.swift */; };
 		8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */; };
 		8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10B256FF37100FB5EFC /* MapVC.swift */; };
@@ -69,6 +71,8 @@
 		85750BE125726C4200B7786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85750BE5257349AB00B7786F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionReusableView.swift; sourceTree = "<group>"; };
+		857699102585EEB500D5B895 /* AddNewChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewChallengeVC.swift; sourceTree = "<group>"; };
+		857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeWithFriendTableViewCell.swift; sourceTree = "<group>"; };
 		8585A2F8257644F300182AC3 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = myVday/View/MenuVC.swift; sourceTree = SOURCE_ROOT; };
 		8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		8585B10B256FF37100FB5EFC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */,
 				85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */,
 				85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */,
+				857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */,
 				85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */,
 			);
 			path = "Table view";
@@ -197,6 +202,7 @@
 				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
 				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
 				85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */,
+				857699102585EEB500D5B895 /* AddNewChallengeVC.swift */,
 				85D21B5F2580C8E80039A30B /* FriendChallengeListVC.swift */,
 				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
 				8585B10B256FF37100FB5EFC /* MapVC.swift */,
@@ -389,11 +395,13 @@
 				85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */,
 				85D21B5E2580B2FE0039A30B /* User.swift in Sources */,
 				85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */,
+				857699132585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift in Sources */,
 				852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */,
 				85D21B6625833BF00039A30B /* SingleChallengeVC.swift in Sources */,
 				852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */,
 				8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */,
 				8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */,
+				857699112585EEB500D5B895 /* AddNewChallengeVC.swift in Sources */,
 				85D21B602580C8E80039A30B /* FriendChallengeListVC.swift in Sources */,
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
