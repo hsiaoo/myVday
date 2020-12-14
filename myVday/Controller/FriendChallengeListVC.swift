@@ -62,13 +62,13 @@ class FriendChallengeListVC: UIViewController {
     
     @IBAction func addFriendOrChallengeBtn(_ sender: Any) {
         if currentLayoutType == .friendList {
-            tableViewTopConstraint.constant = 86
+            tableViewTopConstraint.constant = 56
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: 0.5,
                 delay: 0,
                 options: .allowAnimatedContent,
                 animations: {
-                    self.friendChallengeTableView.frame = CGRect(x: 0, y: 167, width: UIScreen.main.bounds.width, height: 675)
+                    self.friendChallengeTableView.frame = CGRect(x: 0, y: 115, width: UIScreen.main.bounds.width, height: 0)
             },
                 completion: nil)
             newFriendSearchBar.isHidden = false
@@ -123,11 +123,6 @@ class FriendChallengeListVC: UIViewController {
 
 extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if isFriendList == true {
-//            return friends.count
-//        } else {
-//            return myChallenge.count
-//        }
         switch currentLayoutType {
         case .friendList: return myFriends.count
         case .challengeList: return myChallenge.count
@@ -147,51 +142,39 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 friendChallengeCell.confirmBtn.isHidden = true
                 return friendChallengeCell
             case .challengeList:
+                if myChallenge[indexPath.row].isCompleted == false {
+                    friendChallengeCell.friendChallengeImageView.image = UIImage(systemName: "flame.fill")
+                } else {
+                    friendChallengeCell.friendChallengeImageView.image = UIImage(named: "success")
+                }
+                
                 friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
                 friendChallengeCell.listDescribeLabel.text = myChallenge[indexPath.row].describe
                 friendChallengeCell.confirmBtn.isHidden = true
                 
-                let vsId = myChallenge[indexPath.row].vsChallengeId
-                if vsId.isEmpty {
-                    friendChallengeCell.backgroundColor = UIColor(named: "myyellow")
-                } else {
-                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
-                }
+//                let vsId = myChallenge[indexPath.row].vsChallengeId
+//                if vsId.isEmpty {
+//                    friendChallengeCell.backgroundColor = UIColor(named: "myyellow")
+//                } else {
+//                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
+//                }
                 return friendChallengeCell
             case .addNewChallenge:
                 friendChallengeCell.confirmBtn.isHidden = false
             case .addNewFriend:
                 friendChallengeCell.confirmBtn.isHidden = false
             }
-            //            if isFriendList == true {
-            //                friendChallengeCell.listTitleLabel.text = "\(friends[indexPath.row].nickname)" + " " + "\(friends[indexPath.row].emoji)"
-            //                friendChallengeCell.listDescribeLabel.text = friends[indexPath.row].describe
-            //            } else {
-            //                friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
-            //                friendChallengeCell.listDescribeLabel.text = myChallenge[indexPath.row].describe
-            //
-            //                let vsId = myChallenge[indexPath.row].vsChallengeId
-            //                if vsId.isEmpty {
-            //                    friendChallengeCell.backgroundColor = UIColor(named: "myyellow")
-            //                } else {
-            //                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
-            //                }
-            //            }
-            //            return friendChallengeCell
-            //        } else {
-            //            return UITableViewCell()
-            //        }
         }
         return UITableViewCell()
     }
         
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
-//    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch currentLayoutType {
@@ -201,12 +184,6 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
             performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
         case .addNewChallenge, .addNewFriend: break
         }
-//        if isFriendList == true {
-//            return
-//        } else {
-//            let singleChallenge = myChallenge[indexPath.row]
-//            performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
-//        }
     }
     
 }
@@ -245,7 +222,8 @@ extension FriendChallengeListVC: FirebaseManagerDelegate {
                 describe: document["describe"] as? String ?? "no describe",
                 days: document["days"] as? Int ?? 0,
                 vsChallengeId: document["vsChallengeId"] as? String ?? "no vsChallengeId",
-                updatedTime: document["updatedTime"] as? String ?? "no updatedTime")
+                updatedTime: document["updatedTime"] as? String ?? "no updatedTime",
+                isCompleted: document["isCompleted"] as? Bool ?? false)
             myChallenge.append(aChallenge)
         }
         friendChallengeTableView.reloadData()
