@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xEp-CT-1Hy">
-                                <rect key="frame" x="0.0" y="127" width="414" height="715"/>
+                                <rect key="frame" x="0.0" y="129" width="414" height="713"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LnF-KJ-N17">
                                     <size key="itemSize" width="128" height="128"/>
@@ -85,13 +85,13 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenge name" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJT-tE-U9F">
-                                <rect key="frame" x="20" y="25" width="374" height="56"/>
+                                <rect key="frame" x="30" y="25" width="354" height="56"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="40"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="challenge describe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnO-JQ-A3f">
-                                <rect key="frame" x="20" y="93" width="374" height="24"/>
+                                <rect key="frame" x="30" y="93" width="354" height="24"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -158,7 +158,8 @@
                         </subviews>
                         <color key="backgroundColor" name="backgroundOrange"/>
                         <constraints>
-                            <constraint firstItem="xEp-CT-1Hy" firstAttribute="top" secondItem="FnO-JQ-A3f" secondAttribute="bottom" constant="10" id="IeG-fA-dIF"/>
+                            <constraint firstItem="FnO-JQ-A3f" firstAttribute="trailing" secondItem="XJT-tE-U9F" secondAttribute="trailing" id="1lG-Fd-wnG"/>
+                            <constraint firstItem="xEp-CT-1Hy" firstAttribute="top" secondItem="FnO-JQ-A3f" secondAttribute="bottom" constant="12" id="IeG-fA-dIF"/>
                             <constraint firstItem="MAd-9f-YyV" firstAttribute="leading" secondItem="NYN-mq-l7X" secondAttribute="leading" id="KrN-6T-r19"/>
                             <constraint firstItem="MAd-9f-YyV" firstAttribute="trailing" secondItem="Fm4-7E-b25" secondAttribute="trailing" id="N46-WZ-amN"/>
                             <constraint firstItem="MAd-9f-YyV" firstAttribute="height" secondItem="NYN-mq-l7X" secondAttribute="height" multiplier="0.885986" id="OQR-KY-uSc"/>
@@ -169,9 +170,8 @@
                             <constraint firstItem="FnO-JQ-A3f" firstAttribute="leading" secondItem="XJT-tE-U9F" secondAttribute="leading" id="ojr-7A-8Dt"/>
                             <constraint firstItem="xEp-CT-1Hy" firstAttribute="leading" secondItem="Fm4-7E-b25" secondAttribute="leading" id="pEF-fe-zI3"/>
                             <constraint firstItem="FnO-JQ-A3f" firstAttribute="top" secondItem="XJT-tE-U9F" secondAttribute="bottom" constant="12" id="qYy-vB-D9q"/>
-                            <constraint firstItem="Fm4-7E-b25" firstAttribute="trailing" secondItem="FnO-JQ-A3f" secondAttribute="trailing" constant="20" id="rhv-nV-uDA"/>
-                            <constraint firstItem="XJT-tE-U9F" firstAttribute="leading" secondItem="Fm4-7E-b25" secondAttribute="leading" constant="20" id="sJK-OR-m3e"/>
-                            <constraint firstItem="Fm4-7E-b25" firstAttribute="trailing" secondItem="XJT-tE-U9F" secondAttribute="trailing" constant="20" id="vU6-bo-ayA"/>
+                            <constraint firstItem="XJT-tE-U9F" firstAttribute="leading" secondItem="Fm4-7E-b25" secondAttribute="leading" constant="30" id="sJK-OR-m3e"/>
+                            <constraint firstItem="Fm4-7E-b25" firstAttribute="trailing" secondItem="XJT-tE-U9F" secondAttribute="trailing" constant="30" id="vU6-bo-ayA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fm4-7E-b25"/>
                     </view>
