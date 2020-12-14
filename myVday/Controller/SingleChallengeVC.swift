@@ -111,13 +111,13 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
             for: indexPath) as? ChallengeCollectionViewCell {
             if indexPath.section == 0 {
                 if myDaysChallenge[indexPath.row].describe.isEmpty {
-                    challengeCell.challengeImageView.image = UIImage(named: "blankTask")
+                    challengeCell.challengeImageView.image = UIImage(named: "blankTasks")
                 } else {
                     challengeCell.challengeImageView.image = UIImage(named: "completedTasks")
                 }
             } else {
                 if challengerDaysChallenge[indexPath.row].describe.isEmpty {
-                    challengeCell.challengeImageView.image = UIImage(named: "blankTask")
+                    challengeCell.challengeImageView.image = UIImage(named: "blankTasks")
                 } else {
                     challengeCell.challengeImageView.image = UIImage(named: "completedTasks")
                 }
