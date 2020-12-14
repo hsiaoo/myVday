@@ -15,17 +15,27 @@ enum LayoutType {
 
 class FriendChallengeListVC: UIViewController {
     
+    @IBOutlet weak var listIconImageView: UIImageView!
     @IBOutlet weak var listNameLabel: UILabel!
+    @IBOutlet weak var newFriendChallengeBtn: UIButton!
     @IBOutlet weak var notificationBtn: UIButton!
     @IBOutlet weak var newFriendSearchBar: UISearchBar!
     @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var friendChallengeTableView: UITableView!
     
     let fireManager = FirebaseManager()
-//    var isFriendList = false
-    var currentLayoutType: LayoutType = .challengeList
-    var friends = [User]()
+    var myFriends = [User]()
     var myChallenge = [Challenge]()
+    var isViewDidLoad = false
+    var currentLayoutType: LayoutType = .challengeList {
+        didSet {
+            if isViewDidLoad == false {
+                return
+            } else {
+                listSetting()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +44,20 @@ class FriendChallengeListVC: UIViewController {
     }
     
     @IBAction func tappedNotiBtn(_ sender: Any) {
+        switch currentLayoutType {
+        case .friendList:
+            currentLayoutType = .addNewFriend
+            notificationBtn.setImage(UIImage(systemName: "person.2.fill"), for: .normal)
+        case .challengeList:
+            currentLayoutType = .addNewChallenge
+            notificationBtn.setImage(UIImage(systemName: "flame.fill"), for: .normal)
+        case .addNewFriend:
+            currentLayoutType = .friendList
+            notificationBtn.setImage(UIImage(systemName: "bell"), for: .normal)
+        case .addNewChallenge:
+            currentLayoutType = .challengeList
+            notificationBtn.setImage(UIImage(systemName: "bell"), for: .normal)
+        }
     }
     
     @IBAction func addFriendOrChallengeBtn(_ sender: Any) {
@@ -69,27 +93,29 @@ class FriendChallengeListVC: UIViewController {
         }
     }
     
-//    func listSetting() {
-//        if isFriendList == true {
-//            listNameLabel.text = "朋友們"
-//            fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .friends)
-//        } else {
-//            listNameLabel.text = "挑戰們"
-//            fireManager.fetchMyChallenge(ower: "Austin")
-//        }
-//    }
-    
     func listSetting() {
+        isViewDidLoad = true
+        myFriends.removeAll()
         myChallenge.removeAll()
         switch currentLayoutType {
         case .friendList:
+            listIconImageView.image = UIImage(systemName: "person.2.fill")
             listNameLabel.text = "好友"
+            newFriendChallengeBtn.isHidden = false
             fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .friends)
         case .challengeList:
+            listIconImageView.image = UIImage(systemName: "flame.fill")
             listNameLabel.text = "挑戰"
+            newFriendChallengeBtn.isHidden = false
             fireManager.fetchMyChallenge(ower: "Austin")
-        case .addNewFriend: break
-        case .addNewChallenge: break
+        case .addNewFriend:
+            listIconImageView.image = UIImage(systemName: "person.2.fill")
+            listNameLabel.text = "好友邀請"
+            newFriendChallengeBtn.isHidden = true
+        case .addNewChallenge:
+            listIconImageView.image = UIImage(systemName: "flame.fill")
+            listNameLabel.text = "挑戰邀請"
+            newFriendChallengeBtn.isHidden = true
         }
     }
     
@@ -103,7 +129,7 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
 //            return myChallenge.count
 //        }
         switch currentLayoutType {
-        case .friendList: return friends.count
+        case .friendList: return myFriends.count
         case .challengeList: return myChallenge.count
         case .addNewChallenge, .addNewFriend: return 1
         }
@@ -116,12 +142,14 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
             
             switch currentLayoutType {
             case .friendList:
-                friendChallengeCell.listTitleLabel.text = "\(friends[indexPath.row].nickname)" + " " + "\(friends[indexPath.row].emoji)"
-                friendChallengeCell.listDescribeLabel.text = friends[indexPath.row].describe
+                friendChallengeCell.listTitleLabel.text = "\(myFriends[indexPath.row].nickname)" + " " + "\(myFriends[indexPath.row].emoji)"
+                friendChallengeCell.listDescribeLabel.text = myFriends[indexPath.row].describe
+                friendChallengeCell.confirmBtn.isHidden = true
                 return friendChallengeCell
             case .challengeList:
                 friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
                 friendChallengeCell.listDescribeLabel.text = myChallenge[indexPath.row].describe
+                friendChallengeCell.confirmBtn.isHidden = true
                 
                 let vsId = myChallenge[indexPath.row].vsChallengeId
                 if vsId.isEmpty {
@@ -130,7 +158,10 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                     friendChallengeCell.backgroundColor = UIColor(named: "mypink")
                 }
                 return friendChallengeCell
-            case .addNewChallenge, .addNewFriend: break
+            case .addNewChallenge:
+                friendChallengeCell.confirmBtn.isHidden = false
+            case .addNewFriend:
+                friendChallengeCell.confirmBtn.isHidden = false
             }
             //            if isFriendList == true {
             //                friendChallengeCell.listTitleLabel.text = "\(friends[indexPath.row].nickname)" + " " + "\(friends[indexPath.row].emoji)"
@@ -193,7 +224,7 @@ extension FriendChallengeListVC: FirebaseManagerDelegate {
                         describe: document["describe"] as? String ?? "no describe",
                         emoji: emoji,
                         image: document["image"] as? String ?? "no image")
-                    friends.append(aUser)
+                    myFriends.append(aUser)
                 }
                 friendChallengeTableView.reloadData()
             }

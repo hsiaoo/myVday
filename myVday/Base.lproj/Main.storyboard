@@ -14,7 +14,7 @@
             <objects>
                 <viewController id="4WY-cq-Drc" customClass="SingleChallengeVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NYN-mq-l7X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xEp-CT-1Hy">
@@ -114,7 +114,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4J3-bQ-YHG">
                                         <rect key="frame" x="26" y="308" width="362" height="346"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -374,7 +374,7 @@
             <objects>
                 <viewController id="efK-Eg-9RW" customClass="FriendChallengeListVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dVw-5z-Og1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="09S-Uz-2Zg">
@@ -382,46 +382,54 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendChallengeCell" id="40c-QQ-yVC" customClass="FriendChallengeListTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="121"/>
+                                        <rect key="frame" x="20" y="55.5" width="374" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="40c-QQ-yVC" id="hPS-30-6od">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="121"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EI9-Fp-8dH">
-                                                    <rect key="frame" x="40" y="31" width="58.5" height="59"/>
+                                                    <rect key="frame" x="20" y="20" width="58.5" height="59"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="EI9-Fp-8dH" secondAttribute="height" multiplier="1:1" id="S75-U2-IyT"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIm-v3-Czf">
-                                                    <rect key="frame" x="123.5" y="33.5" width="222.5" height="31"/>
+                                                    <rect key="frame" x="94.5" y="20" width="46" height="31"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="22"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="describe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1U-Ih-nqj">
-                                                    <rect key="frame" x="123.5" y="66.5" width="222.5" height="21"/>
+                                                    <rect key="frame" x="94.5" y="53" width="59.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykk-PE-3mb">
+                                                    <rect key="frame" x="319" y="32.5" width="35" height="34"/>
+                                                    <state key="normal" image="checkmark.circle" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="EI9-Fp-8dH" secondAttribute="bottom" constant="20" id="32G-db-kDW"/>
+                                                <constraint firstAttribute="bottom" secondItem="EI9-Fp-8dH" secondAttribute="bottom" constant="20" id="32G-db-kDW"/>
+                                                <constraint firstItem="bIm-v3-Czf" firstAttribute="top" secondItem="hPS-30-6od" secondAttribute="top" constant="20" id="4cV-0x-QwN"/>
+                                                <constraint firstItem="ykk-PE-3mb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bIm-v3-Czf" secondAttribute="trailing" constant="10" id="667-Wj-glP"/>
                                                 <constraint firstItem="EI9-Fp-8dH" firstAttribute="width" secondItem="hPS-30-6od" secondAttribute="width" multiplier="0.157005" id="6yh-Hg-wXh"/>
                                                 <constraint firstItem="a1U-Ih-nqj" firstAttribute="leading" secondItem="bIm-v3-Czf" secondAttribute="leading" id="7i0-Ry-82S"/>
-                                                <constraint firstItem="EI9-Fp-8dH" firstAttribute="leading" secondItem="hPS-30-6od" secondAttribute="leadingMargin" constant="20" id="BWW-OU-cYg"/>
-                                                <constraint firstItem="EI9-Fp-8dH" firstAttribute="top" secondItem="hPS-30-6od" secondAttribute="topMargin" constant="20" id="I9H-bk-DB3"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bIm-v3-Czf" secondAttribute="trailing" constant="8" id="JOz-Bl-pfK"/>
-                                                <constraint firstItem="bIm-v3-Czf" firstAttribute="leading" secondItem="EI9-Fp-8dH" secondAttribute="trailing" constant="25" id="Ucx-EA-ayi"/>
-                                                <constraint firstItem="bIm-v3-Czf" firstAttribute="top" secondItem="hPS-30-6od" secondAttribute="topMargin" constant="22.5" id="c6h-mA-BPA"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="a1U-Ih-nqj" secondAttribute="trailing" constant="8" id="cRS-Hf-UzR"/>
+                                                <constraint firstItem="EI9-Fp-8dH" firstAttribute="leading" secondItem="hPS-30-6od" secondAttribute="leading" constant="20" id="BWW-OU-cYg"/>
+                                                <constraint firstItem="ykk-PE-3mb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="a1U-Ih-nqj" secondAttribute="trailing" constant="10" id="Cjn-BO-P12"/>
+                                                <constraint firstItem="ykk-PE-3mb" firstAttribute="centerY" secondItem="hPS-30-6od" secondAttribute="centerY" id="Fen-gx-gud"/>
+                                                <constraint firstItem="EI9-Fp-8dH" firstAttribute="top" secondItem="hPS-30-6od" secondAttribute="top" constant="20" id="I9H-bk-DB3"/>
+                                                <constraint firstAttribute="trailing" secondItem="ykk-PE-3mb" secondAttribute="trailing" constant="20" id="UPq-07-Av3"/>
+                                                <constraint firstItem="bIm-v3-Czf" firstAttribute="leading" secondItem="EI9-Fp-8dH" secondAttribute="trailing" constant="16" id="Ucx-EA-ayi"/>
                                                 <constraint firstItem="a1U-Ih-nqj" firstAttribute="top" secondItem="bIm-v3-Czf" secondAttribute="bottom" constant="2" id="fcc-v7-f5P"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="a1U-Ih-nqj" secondAttribute="bottom" constant="22.5" id="ldh-ad-WEc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="confirmBtn" destination="ykk-PE-3mb" id="c0B-6z-A4V"/>
                                             <outlet property="friendChallengeImageView" destination="EI9-Fp-8dH" id="QWv-zg-kMK"/>
                                             <outlet property="listDescribeLabel" destination="a1U-Ih-nqj" id="pCw-8v-GWv"/>
                                             <outlet property="listTitleLabel" destination="bIm-v3-Czf" id="wZA-p7-1DQ"/>
@@ -443,7 +451,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYz-BA-Jy9">
-                                <rect key="frame" x="32" y="30" width="169.5" height="51"/>
+                                <rect key="frame" x="82" y="30" width="169.5" height="51"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -458,7 +466,7 @@
                                 </connections>
                             </button>
                             <searchBar hidden="YES" contentMode="redraw" id="IzJ-EL-Qu6">
-                                <rect key="frame" x="0.0" y="101" width="413.5" height="56"/>
+                                <rect key="frame" x="0.0" y="101" width="414" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -466,6 +474,12 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XLv-dO-7dT">
+                                <rect key="frame" x="25" y="29" width="45" height="45.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XLv-dO-7dT" secondAttribute="height" id="JrS-BI-aiU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -473,11 +487,14 @@
                             <constraint firstItem="5kP-GR-lYb" firstAttribute="leading" secondItem="pch-ia-2Gn" secondAttribute="trailing" constant="17" id="9lU-ze-OzN"/>
                             <constraint firstItem="pch-ia-2Gn" firstAttribute="centerY" secondItem="CYz-BA-Jy9" secondAttribute="centerY" id="AWB-NJ-9zm"/>
                             <constraint firstAttribute="bottom" secondItem="09S-Uz-2Zg" secondAttribute="bottom" id="DHL-1t-jTP"/>
+                            <constraint firstItem="XLv-dO-7dT" firstAttribute="leading" secondItem="8lT-MT-iHf" secondAttribute="leading" constant="25" id="F5d-0N-04O"/>
                             <constraint firstItem="5kP-GR-lYb" firstAttribute="centerY" secondItem="CYz-BA-Jy9" secondAttribute="centerY" id="Mvo-hX-suI"/>
-                            <constraint firstItem="CYz-BA-Jy9" firstAttribute="leading" secondItem="8lT-MT-iHf" secondAttribute="leading" constant="32" id="PlC-qs-Kf1"/>
+                            <constraint firstItem="CYz-BA-Jy9" firstAttribute="leading" secondItem="XLv-dO-7dT" secondAttribute="trailing" constant="12" id="PlC-qs-Kf1"/>
                             <constraint firstItem="8lT-MT-iHf" firstAttribute="trailing" secondItem="5kP-GR-lYb" secondAttribute="trailing" constant="30" id="WSf-Xb-sLV"/>
                             <constraint firstItem="09S-Uz-2Zg" firstAttribute="leading" secondItem="8lT-MT-iHf" secondAttribute="leading" id="cIz-sN-swp"/>
                             <constraint firstItem="09S-Uz-2Zg" firstAttribute="trailing" secondItem="8lT-MT-iHf" secondAttribute="trailing" id="d4B-RL-nIB"/>
+                            <constraint firstItem="XLv-dO-7dT" firstAttribute="top" secondItem="8lT-MT-iHf" secondAttribute="top" constant="30" id="dvX-Bc-6sV"/>
+                            <constraint firstItem="XLv-dO-7dT" firstAttribute="width" secondItem="dVw-5z-Og1" secondAttribute="width" multiplier="0.108696" id="vJ6-zg-HX8"/>
                             <constraint firstItem="IzJ-EL-Qu6" firstAttribute="top" secondItem="CYz-BA-Jy9" secondAttribute="bottom" constant="20" id="xGG-EH-5eI"/>
                             <constraint firstItem="09S-Uz-2Zg" firstAttribute="top" secondItem="CYz-BA-Jy9" secondAttribute="bottom" constant="30" id="zpQ-3c-Xe7"/>
                         </constraints>
@@ -485,7 +502,9 @@
                     </view>
                     <connections>
                         <outlet property="friendChallengeTableView" destination="09S-Uz-2Zg" id="xdG-08-9ie"/>
+                        <outlet property="listIconImageView" destination="XLv-dO-7dT" id="cWQ-NO-c6v"/>
                         <outlet property="listNameLabel" destination="CYz-BA-Jy9" id="sfN-Ci-Yn8"/>
+                        <outlet property="newFriendChallengeBtn" destination="pch-ia-2Gn" id="4p8-jU-trb"/>
                         <outlet property="newFriendSearchBar" destination="IzJ-EL-Qu6" id="Ia2-wY-1aO"/>
                         <outlet property="notificationBtn" destination="5kP-GR-lYb" id="rYM-v5-YWd"/>
                         <outlet property="tableViewTopConstraint" destination="zpQ-3c-Xe7" id="IiG-eb-FoT"/>
@@ -502,7 +521,7 @@
             <objects>
                 <viewController id="LnR-a1-6Qf" customClass="AddNewChallengeVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CoQ-E3-0Eg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰主題" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-Yl-L8p">
