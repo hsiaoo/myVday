@@ -178,7 +178,7 @@ extension SingleChallengeVC: FirebaseManagerDelegate {
                 challengerDaysChallenge.append(aDayChallenge)
             }
             challengeCollectionView.reloadData()
-        case .challengeRequests, .comments, .friendRequests, .friends, .menu: break
+        case .challengeRequest, .comments, .friendRequest, .friends, .menu: break
         }
     }
 }

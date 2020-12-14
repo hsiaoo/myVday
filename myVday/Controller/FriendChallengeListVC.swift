@@ -10,7 +10,7 @@ import UIKit
 import FirebaseFirestore
 
 enum LayoutType {
-    case friendList, challengeList, addNewFriend, addNewChallenge
+    case friendList, challengeList, newFriendRequest, newChallengeRequest
 }
 
 class FriendChallengeListVC: UIViewController {
@@ -46,15 +46,15 @@ class FriendChallengeListVC: UIViewController {
     @IBAction func tappedNotiBtn(_ sender: Any) {
         switch currentLayoutType {
         case .friendList:
-            currentLayoutType = .addNewFriend
+            currentLayoutType = .newFriendRequest
             notificationBtn.setImage(UIImage(systemName: "person.2.fill"), for: .normal)
         case .challengeList:
-            currentLayoutType = .addNewChallenge
+            currentLayoutType = .newChallengeRequest
             notificationBtn.setImage(UIImage(systemName: "flame.fill"), for: .normal)
-        case .addNewFriend:
+        case .newFriendRequest:
             currentLayoutType = .friendList
             notificationBtn.setImage(UIImage(systemName: "bell"), for: .normal)
-        case .addNewChallenge:
+        case .newChallengeRequest:
             currentLayoutType = .challengeList
             notificationBtn.setImage(UIImage(systemName: "bell"), for: .normal)
         }
@@ -108,14 +108,16 @@ class FriendChallengeListVC: UIViewController {
             listNameLabel.text = "挑戰"
             newFriendChallengeBtn.isHidden = false
             fireManager.fetchMyChallenge(ower: "Austin")
-        case .addNewFriend:
+        case .newFriendRequest:
             listIconImageView.image = UIImage(systemName: "person.2.fill")
             listNameLabel.text = "好友邀請"
             newFriendChallengeBtn.isHidden = true
-        case .addNewChallenge:
+            fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .friendRequest)
+        case .newChallengeRequest:
             listIconImageView.image = UIImage(systemName: "flame.fill")
             listNameLabel.text = "挑戰邀請"
             newFriendChallengeBtn.isHidden = true
+            fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .challengeRequest)
         }
     }
     
@@ -126,7 +128,7 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
         switch currentLayoutType {
         case .friendList: return myFriends.count
         case .challengeList: return myChallenge.count
-        case .addNewChallenge, .addNewFriend: return 1
+        case .newChallengeRequest, .newFriendRequest: return 1
         }
     }
     
@@ -142,10 +144,10 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 friendChallengeCell.confirmBtn.isHidden = true
                 return friendChallengeCell
             case .challengeList:
-                if myChallenge[indexPath.row].isCompleted == false {
-                    friendChallengeCell.friendChallengeImageView.image = UIImage(systemName: "flame.fill")
-                } else {
+                if myChallenge[indexPath.row].daysCompleted == myChallenge[indexPath.row].days {
                     friendChallengeCell.friendChallengeImageView.image = UIImage(named: "success")
+                } else {
+                    friendChallengeCell.friendChallengeImageView.image = UIImage(systemName: "flame.fill")
                 }
                 
                 friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
@@ -159,10 +161,22 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
 //                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
 //                }
                 return friendChallengeCell
-            case .addNewChallenge:
+            case .newChallengeRequest:
+                friendChallengeCell.friendChallengeImageView.image = UIImage(systemName: "flame.fill")
+                friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
+                friendChallengeCell.listDescribeLabel.text =
+                    "\(myChallenge[indexPath.row].owner)" +
+                    "向你發出\(myChallenge[indexPath.row].days)天挑戰：\n" +
+                "\(myChallenge[indexPath.row].describe)"
                 friendChallengeCell.confirmBtn.isHidden = false
-            case .addNewFriend:
+                return friendChallengeCell
+            case .newFriendRequest:
+                friendChallengeCell.listTitleLabel.text = "\(myFriends[indexPath.row].nickname)" + " " + "\(myFriends[indexPath.row].emoji)"
+                friendChallengeCell.listDescribeLabel.text =
+                    "\(myFriends[indexPath.row].nickname)向你發出好友邀請\n" +
+                "\(myFriends[indexPath.row].describe)"
                 friendChallengeCell.confirmBtn.isHidden = false
+                return friendChallengeCell
             }
         }
         return UITableViewCell()
@@ -182,7 +196,7 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
         case .challengeList:
             let singleChallenge = myChallenge[indexPath.row]
             performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
-        case .addNewChallenge, .addNewFriend: break
+        case .newChallengeRequest, .newFriendRequest: break
         }
     }
     
@@ -205,10 +219,37 @@ extension FriendChallengeListVC: FirebaseManagerDelegate {
                 }
                 friendChallengeTableView.reloadData()
             }
-        case .friendRequests:
-            print("friend requests")
-        case .challengeRequests:
-            print("challengeRequests")
+            
+        case .friendRequest:
+            for document in data {
+                if let emojiString = document["emoji"] as? String,
+                    let emoji = ProfileVC().emojiDecode(emojiString: emojiString) {
+                    let aUser = User(
+                        userId: document["userId"] as? String ?? "no user id",
+                        nickname: document["nickname"] as? String ?? "no nickname",
+                        describe: document["describe"] as? String ?? "no describe",
+                        emoji: emoji,
+                        image: document["image"] as? String ?? "no image")
+                    myFriends.append(aUser)
+                }
+                friendChallengeTableView.reloadData()
+            }
+            
+        case .challengeRequest:
+            for document in data {
+                let aChallenge = Challenge(
+                    challengeId: document["challengeId"] as? String ?? "no challenge id",
+                    owner: document["owner"] as? String ?? "no owner",
+                    title: document["title"] as? String ?? "no title",
+                    describe: document["describe"] as? String ?? "no describe",
+                    days: document["days"] as? Int ?? 0,
+                    vsChallengeId: document["vsChallengeId"] as? String ?? "no vsChallengeId",
+                    updatedTime: document["updatedTime"] as? String ?? "no updatedTime",
+                    daysCompleted: document["daysCompleted"] as? Int ?? 0)
+                myChallenge.append(aChallenge)
+            }
+            friendChallengeTableView.reloadData()
+            
         case .comments, .menu, .owner, .challenger: break
         }
     }
@@ -223,7 +264,7 @@ extension FriendChallengeListVC: FirebaseManagerDelegate {
                 days: document["days"] as? Int ?? 0,
                 vsChallengeId: document["vsChallengeId"] as? String ?? "no vsChallengeId",
                 updatedTime: document["updatedTime"] as? String ?? "no updatedTime",
-                isCompleted: document["isCompleted"] as? Bool ?? false)
+                daysCompleted: document["daysCompleted"] as? Int ?? 0)
             myChallenge.append(aChallenge)
         }
         friendChallengeTableView.reloadData()

@@ -27,8 +27,8 @@ import FirebaseFirestoreSwift
     case comments
     case menu
     case friends
-    case friendRequests
-    case challengeRequests
+    case friendRequest
+    case challengeRequest
     case owner
     case challenger
     
@@ -37,8 +37,8 @@ import FirebaseFirestoreSwift
         case .comments: return "comments"
         case .menu: return "menu"
         case .friends: return "friends"
-        case .friendRequests: return "friendRequests"
-        case .challengeRequests: return "challengeRequests"
+        case .friendRequest: return "friendRequest"
+        case .challengeRequest: return "challengeRequest"
         case .owner: return "owner"
         case .challenger: return "challenger"
         }
@@ -184,7 +184,7 @@ class FirebaseManager: NSObject {
                             self.addComment(toFirestoreWith: restId, userId: "Austin", describe: nameOrDescribe, image: uploadImageUrl)
                         case .menu:
                             self.addCuisine(toFirestoreWith: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
-                        case .friends, .friendRequests, .challengeRequests, .owner, .challenger: break
+                        case .friends, .friendRequest, .challengeRequest, .owner, .challenger: break
                         }
                     }
                 }
