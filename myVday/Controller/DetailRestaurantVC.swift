@@ -337,7 +337,7 @@ extension DetailRestaurantVC: FirebaseManagerDelegate {
                 let cuisineName = menu["cuisineName"] as? String ?? ""
                 allCuisineName.append(cuisineName)
             }
-        case .friends, .friendRequests, .challengeRequests, .challenger, .owner: break
+        case .friends, .friendRequest, .challengeRequest, .challenger, .owner: break
         }
     }
     

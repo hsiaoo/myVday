@@ -16,7 +16,7 @@ struct Challenge {
     let days: Int
     let vsChallengeId: String
     let updatedTime: String
-    let isCompleted: Bool
+    let daysCompleted: Int
 }
 
 struct DaysChallenge {
