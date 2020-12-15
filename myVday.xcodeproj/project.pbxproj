@@ -12,7 +12,7 @@
 		8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */; };
 		852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */; };
 		852D98F02570D445004F86B1 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98EF2570D445004F86B1 /* CheckBox.swift */; };
-		852D98F22570E02F004F86B1 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* MyTextField.swift */; };
+		852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* EmojiTextField.swift */; };
 		8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */; };
 		853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6C425737CBE007BA763 /* PlaceMarker.swift */; };
 		853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6CC2573D41B007BA763 /* FirebaseManager.swift */; };
@@ -25,15 +25,25 @@
 		85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */; };
 		85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85750BE125726C4200B7786F /* GoogleService-Info.plist */; };
 		85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85750BE5257349AB00B7786F /* MapKit.framework */; };
+		8576990F2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */; };
+		857699112585EEB500D5B895 /* AddNewChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857699102585EEB500D5B895 /* AddNewChallengeVC.swift */; };
+		857699132585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */; };
 		8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2F8257644F300182AC3 /* MenuVC.swift */; };
 		8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */; };
 		8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10B256FF37100FB5EFC /* MapVC.swift */; };
 		8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */; };
 		8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */; };
 		8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */; };
+		85D21B5E2580B2FE0039A30B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B5D2580B2FE0039A30B /* User.swift */; };
+		85D21B602580C8E80039A30B /* FriendChallengeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B5F2580C8E80039A30B /* FriendChallengeListVC.swift */; };
+		85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */; };
+		85D21B642581E8F10039A30B /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B632581E8F10039A30B /* Challenge.swift */; };
+		85D21B6625833BF00039A30B /* SingleChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */; };
+		85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B67258343810039A30B /* ChallengeCollectionViewCell.swift */; };
 		85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */; };
 		85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */; };
 		85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE1E257E1F21002A78F4 /* MapManager.swift */; };
+		85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE202580953E002A78F4 /* ProfileVC.swift */; };
 		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +55,7 @@
 		8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestaurantVC.swift; sourceTree = "<group>"; };
 		852D98EF2570D445004F86B1 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
-		852D98F12570E02F004F86B1 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
+		852D98F12570E02F004F86B1 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCuisineVC.swift; sourceTree = "<group>"; };
 		853DE6C425737CBE007BA763 /* PlaceMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		853DE6CC2573D41B007BA763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -60,15 +70,25 @@
 		85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		85750BE125726C4200B7786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85750BE5257349AB00B7786F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionReusableView.swift; sourceTree = "<group>"; };
+		857699102585EEB500D5B895 /* AddNewChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewChallengeVC.swift; sourceTree = "<group>"; };
+		857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeWithFriendTableViewCell.swift; sourceTree = "<group>"; };
 		8585A2F8257644F300182AC3 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = myVday/View/MenuVC.swift; sourceTree = SOURCE_ROOT; };
 		8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		8585B10B256FF37100FB5EFC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapInfoWindowView.xib; sourceTree = "<group>"; };
 		8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
+		85D21B5D2580B2FE0039A30B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		85D21B5F2580C8E80039A30B /* FriendChallengeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendChallengeListVC.swift; sourceTree = "<group>"; };
+		85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendChallengeListTableViewCell.swift; sourceTree = "<group>"; };
+		85D21B632581E8F10039A30B /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleChallengeVC.swift; sourceTree = "<group>"; };
+		85D21B67258343810039A30B /* ChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
 		85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSectionHeader.xib; sourceTree = "<group>"; };
 		85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSectionHeader.swift; sourceTree = "<group>"; };
 		85DCBE1E257E1F21002A78F4 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		85DCBE202580953E002A78F4 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,6 +129,8 @@
 				8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */,
 				8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */,
 				85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */,
+				85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */,
+				857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */,
 				85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */,
 			);
 			path = "Table view";
@@ -119,6 +141,8 @@
 			children = (
 				85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */,
 				8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */,
+				8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */,
+				85D21B67258343810039A30B /* ChallengeCollectionViewCell.swift */,
 			);
 			path = "Collection view";
 			sourceTree = "<group>";
@@ -129,7 +153,9 @@
 				853DE6CC2573D41B007BA763 /* FirebaseManager.swift */,
 				85DCBE1E257E1F21002A78F4 /* MapManager.swift */,
 				853DE6C425737CBE007BA763 /* PlaceMarker.swift */,
+				85D21B632581E8F10039A30B /* Challenge.swift */,
 				851C05262574D072002B893F /* Restaurant.swift */,
+				85D21B5D2580B2FE0039A30B /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,6 +201,10 @@
 			children = (
 				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
 				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
+				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
+				85D21B5F2580C8E80039A30B /* FriendChallengeListVC.swift */,
+				85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */,
+				857699102585EEB500D5B895 /* AddNewChallengeVC.swift */,
 				8585B10B256FF37100FB5EFC /* MapVC.swift */,
 				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
 				8585A2F8257644F300182AC3 /* MenuVC.swift */,
@@ -190,7 +220,7 @@
 				8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */,
 				8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */,
 				852D98EF2570D445004F86B1 /* CheckBox.swift */,
-				852D98F12570E02F004F86B1 /* MyTextField.swift */,
+				852D98F12570E02F004F86B1 /* EmojiTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -350,19 +380,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8576990F2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift in Sources */,
 				8551E0B7256E38E6008C64FA /* myVday.xcdatamodeld in Sources */,
 				853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */,
 				8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */,
+				85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */,
 				8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */,
 				851C05272574D072002B893F /* Restaurant.swift in Sources */,
 				8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */,
 				8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */,
 				8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */,
 				852D98F02570D445004F86B1 /* CheckBox.swift in Sources */,
+				85D21B642581E8F10039A30B /* Challenge.swift in Sources */,
+				85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */,
+				85D21B5E2580B2FE0039A30B /* User.swift in Sources */,
+				85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */,
+				857699132585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift in Sources */,
 				852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */,
-				852D98F22570E02F004F86B1 /* MyTextField.swift in Sources */,
+				85D21B6625833BF00039A30B /* SingleChallengeVC.swift in Sources */,
+				852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */,
 				8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */,
 				8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */,
+				857699112585EEB500D5B895 /* AddNewChallengeVC.swift in Sources */,
+				85D21B602580C8E80039A30B /* FriendChallengeListVC.swift in Sources */,
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
 				8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */,
