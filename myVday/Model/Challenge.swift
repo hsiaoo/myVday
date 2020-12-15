@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Challenge {
+struct Challenge: Codable {
     let challengeId: String
     let owner: String
     let title: String
