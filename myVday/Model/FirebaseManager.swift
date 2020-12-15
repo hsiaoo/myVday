@@ -254,18 +254,45 @@ class FirebaseManager: NSObject {
     }
     
     func addChallenge(newChallenge: Challenge, friend: String) {
-        do {
-            ref = try fireDB.collection("Challenge").addDocument(from: newChallenge, encoder: Firestore.Encoder(), completion: { (error) in
-                if let err = error {
-                    print("Error added challenge: \(err)")
-                } else {
-                    if let challengeId = self.ref?.documentID {
-                        self.updateChallengeId(challengeId: challengeId, friend: friend, newChallenge: newChallenge)
+        if newChallenge.challengeId.isEmpty {
+            do {
+                ref = try fireDB.collection("Challenge").addDocument(from: newChallenge, encoder: Firestore.Encoder(), completion: { (error) in
+                    if let err = error {
+                        print("Error added challenge: \(err)")
+                    } else {
+                        //產生挑戰ID流水編號，並回頭更新自己的挑戰challengeId
+                        if let challengeId = self.ref?.documentID {
+                            self.updateChallengeId(challengeId: challengeId, friend: friend, newChallenge: newChallenge)
+                        }
                     }
+                })
+            } catch let err {
+                print("Error added challenge to Firestore: \(err)")
+            }
+        } else {
+            //accepted challenge，自己的挑戰已有challengeId。要拿自己的challengeId更新對方的vsChallengeId
+            fireDB.collection("Challenge").document(newChallenge.challengeId).setData([
+                "challengeId": newChallenge.challengeId,
+                "owner": "Austin",
+                "title": newChallenge.title,
+                "describe": newChallenge.describe,
+                "days": newChallenge.days,
+                "vsChallengeId": newChallenge.vsChallengeId,
+                "updatedTime": FieldValue.serverTimestamp(),
+                "daysCompleted": newChallenge.daysCompleted
+            ]) { (error) in
+                if let err = error {
+                    print("Error added challenge to Firestore: \(err)")
+                } else {
+                    self.updateChallengeId(challengeId: newChallenge.vsChallengeId, friend: "", newChallenge: newChallenge)
                 }
-            })
-        } catch let err {
-            print("Error writing restaurant to Firestore: \(err)")
+            }
+            //            do {
+//                try fireDB.collection("Challenge").document(newChallenge.challengeId).setData(from: newChallenge)
+//                self.updateChallengeId(challengeId: newChallenge.vsChallengeId, friend: "", newChallenge: newChallenge)
+//            } catch let err {
+//                print("Error added challenge to Firestore: \(err)")
+//            }
         }
     }
     
@@ -330,25 +357,59 @@ class FirebaseManager: NSObject {
             }
         }
     }
-   
+
     func updateChallengeId(challengeId: String, friend: String, newChallenge: Challenge) {
-        fireDB.collection("Challenge").document(challengeId).updateData([
-            "challengeId": challengeId,
-            "updatedTime": FieldValue.serverTimestamp()
-        ]) { (error) in
-            if let err = error {
-                print("Error updated challenge id: \(err)")
-            } else {
-                self.addDaysChallenge(days: newChallenge.days, challengeId: challengeId)
-                if friend.isEmpty {
-                    return
+        if newChallenge.challengeId.isEmpty {
+            //更新自己的挑戰ID
+            fireDB.collection("Challenge").document(challengeId).updateData([
+                "challengeId": challengeId,
+                "updatedTime": FieldValue.serverTimestamp()
+            ]) { (error) in
+                if let err = error {
+                    print("Error updated challenge id: \(err)")
                 } else {
-                    //發出challenge request
-                    self.addChallengeRequest(newChallenge: newChallenge, friend: friend, vsChallengeId: challengeId, dataType: .challengeRequest)
+                    self.addDaysChallenge(days: newChallenge.days, challengeId: challengeId)
+                    if friend.isEmpty {
+                        return
+                    } else {
+                        //發出challenge request
+                        self.addChallengeRequest(newChallenge: newChallenge, friend: friend, vsChallengeId: challengeId, dataType: .challengeRequest)
+                    }
+                }
+            }
+        } else {
+            //更新挑戰發起者的vsChallengeId
+            fireDB.collection("Challenge").document(challengeId).updateData([
+                "vsChallengeId": newChallenge.challengeId
+            ]) { (error) in
+                if let err = error {
+                    print("Error updated vsChallenged: \(err)")
+                } else {
+                    //替自己預先新增每日挑戰
+                    self.addDaysChallenge(days: newChallenge.days, challengeId: newChallenge.challengeId)
                 }
             }
         }
     }
+    
+//    func updateChallengeId(challengeId: String, friend: String, newChallenge: Challenge) {
+//        fireDB.collection("Challenge").document(challengeId).updateData([
+//            "challengeId": challengeId,
+//            "updatedTime": FieldValue.serverTimestamp()
+//        ]) { (error) in
+//            if let err = error {
+//                print("Error updated challenge id: \(err)")
+//            } else {
+//                self.addDaysChallenge(days: newChallenge.days, challengeId: challengeId)
+//                if friend.isEmpty {
+//                    return
+//                } else {
+//                    //發出challenge request
+//                    self.addChallengeRequest(newChallenge: newChallenge, friend: friend, vsChallengeId: challengeId, dataType: .challengeRequest)
+//                }
+//            }
+//        }
+//    }
     
     func updateCommentId(restaurantId: String, commentId: String) {
         fireDB.collection("Restaurant").document(restaurantId).collection("comments").document(commentId).updateData([
@@ -358,6 +419,14 @@ class FirebaseManager: NSObject {
                 print("Error updated comment ID: \(err).")
             } else {
                 self.delegate?.fireManager?(self, didFinishUpdate: .comments)
+            }
+        }
+    }
+    
+    func deleteRequest(user: String, dataType: DataType, requestId: String) {
+        fireDB.collection("User").document(user).collection(dataType.name()).document(requestId).delete { (error) in
+            if let err = error {
+                print("Error deleted document in request collection: \(err)")
             }
         }
     }
