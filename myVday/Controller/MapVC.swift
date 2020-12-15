@@ -57,11 +57,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     @IBAction func swipeViewUp(_ sender: UISwipeGestureRecognizer) {
-        newRestBottomConstraint.constant = 0
+        newRestBottomConstraint.constant = -10
     }
     
     @IBAction func swipeViewDown(_ sender: UISwipeGestureRecognizer) {
-        newRestBottomConstraint.constant = -280
+        newRestBottomConstraint.constant = -320
     }
     
     @IBAction func filterBtnClicked(_ sender: UIBarButtonItem) {
