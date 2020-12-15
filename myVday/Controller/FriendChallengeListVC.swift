@@ -127,8 +127,8 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch currentLayoutType {
         case .friendList: return myFriends.count
-        case .challengeList: return myChallenge.count
-        case .newChallengeRequest, .newFriendRequest: return 1
+        case .challengeList, .newChallengeRequest: return myChallenge.count
+        case .newFriendRequest: return 1
         }
     }
     
@@ -162,14 +162,22 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
 //                }
                 return friendChallengeCell
             case .newChallengeRequest:
-                friendChallengeCell.friendChallengeImageView.image = UIImage(systemName: "flame.fill")
-                friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
-                friendChallengeCell.listDescribeLabel.text =
-                    "\(myChallenge[indexPath.row].owner)" +
-                    "向你發出\(myChallenge[indexPath.row].days)天挑戰：\n" +
-                "\(myChallenge[indexPath.row].describe)"
-                friendChallengeCell.confirmBtn.isHidden = false
-                return friendChallengeCell
+                if myChallenge.isEmpty {
+                    friendChallengeCell.friendChallengeImageView.image = nil
+                    friendChallengeCell.listTitleLabel.text = "目前沒有挑戰邀請哦"
+                    friendChallengeCell.listDescribeLabel.text = ""
+                    return friendChallengeCell
+                } else {
+                    friendChallengeCell.friendChallengeImageView.image = UIImage(systemName: "flame.fill")
+                    friendChallengeCell.listTitleLabel.text = myChallenge[indexPath.row].title
+                    friendChallengeCell.listDescribeLabel.text =
+                        "\(myChallenge[indexPath.row].owner)" +
+                        "向你發出\(myChallenge[indexPath.row].days)天挑戰：\n" +
+                    "\(myChallenge[indexPath.row].describe)"
+                    friendChallengeCell.confirmBtn.isHidden = false
+                    friendChallengeCell.confirmBtn.addTarget(self, action: #selector(acceptRequest(_:)), for: .touchUpInside)
+                    return friendChallengeCell
+                }
             case .newFriendRequest:
                 friendChallengeCell.listTitleLabel.text = "\(myFriends[indexPath.row].nickname)" + " " + "\(myFriends[indexPath.row].emoji)"
                 friendChallengeCell.listDescribeLabel.text =
@@ -197,6 +205,45 @@ extension FriendChallengeListVC: UITableViewDelegate, UITableViewDataSource {
             let singleChallenge = myChallenge[indexPath.row]
             performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
         case .newChallengeRequest, .newFriendRequest: break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch currentLayoutType {
+        case .newChallengeRequest:
+            let targetChallenge = myChallenge[indexPath.row]
+            if editingStyle == .delete {
+                myChallenge.remove(at: indexPath.row)
+                friendChallengeTableView.beginUpdates()
+                friendChallengeTableView.deleteRows(at: [indexPath], with: .automatic)
+                friendChallengeTableView.endUpdates()
+                fireManager.deleteRequest(user: "Austin", dataType: .challengeRequest, requestId: targetChallenge.challengeId)
+            }
+        case .friendList, .challengeList, .newFriendRequest: break
+        }
+    }
+    
+    @objc func acceptRequest(_ sender: UIButton) {
+        let tappedPoint = sender.convert(CGPoint.zero, to: friendChallengeTableView)
+        if let indexPath = friendChallengeTableView.indexPathForRow(at: tappedPoint) {
+            let targetChallenge = myChallenge[indexPath.row]
+            let acceptedChallenge = Challenge(
+                challengeId: targetChallenge.challengeId,
+                owner: "Austin",
+                title: targetChallenge.title,
+                describe: targetChallenge.describe,
+                days: targetChallenge.days,
+                vsChallengeId: targetChallenge.vsChallengeId,
+                updatedTime: targetChallenge.updatedTime,
+                daysCompleted: targetChallenge.daysCompleted)
+            fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "")
+            fireManager.deleteRequest(user: "Austin", dataType: .challengeRequest, requestId: targetChallenge.challengeId)
+            
+            //移除畫面上已被被接受挑戰的那一列
+            myChallenge.remove(at: indexPath.row)
+            friendChallengeTableView.beginUpdates()
+            friendChallengeTableView.deleteRows(at: [indexPath], with: .automatic)
+            friendChallengeTableView.endUpdates()
         }
     }
     

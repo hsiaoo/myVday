@@ -10,12 +10,10 @@ import UIKit
 
 class FriendChallengeListTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var friendChallengeImageView: UIImageView!
     @IBOutlet weak var listTitleLabel: UILabel!
     @IBOutlet weak var listDescribeLabel: UILabel!
     @IBOutlet weak var confirmBtn: UIButton!
-    
     
     static let identifier = "friendChallengeCell"
     
