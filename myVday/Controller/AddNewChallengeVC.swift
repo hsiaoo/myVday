@@ -17,6 +17,7 @@ class AddNewChallengeVC: UIViewController {
     @IBOutlet weak var challengeFriendTF: UITextField!
     
     let testName = ["Bella", "Nina", "Tina"]
+    var myFriends = [User]()
     let fireManager = FirebaseManager()
     var didAddedChallenge: (() -> Void)!
     var friendTableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 450), style: .plain)
@@ -24,10 +25,10 @@ class AddNewChallengeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
+        fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .friends)
         challengeTitleTF.becomeFirstResponder()
         challengeFriendTF.inputView = friendTableView
         tableViewSetting()
-        
     }
     
     @IBAction func tappedCloseViewBtn(_ sender: Any) {
@@ -41,21 +42,25 @@ class AddNewChallengeVC: UIViewController {
             let friendName = challengeFriendTF.text else { return }
         
         if title.isEmpty || describe.isEmpty || daysString.isEmpty {
-            print("要填完")
+            print("填好挑戰資料")
         } else {
-            if friendName.isEmpty {
-                //單人挑戰
-                let daysInt = Int(daysString) ?? 0
-                if daysInt == 0 {
-                    print("填好挑戰天數")
-                } else {
-                    fireManager.addChallenge(owner: "Austin", title: title, describe: describe, days: daysInt)
-                    dismiss(animated: true) {
-                        self.didAddedChallenge()
-                    }
-                }
+            let daysInt = Int(daysString) ?? 0
+            if daysInt == 0 {
+                print("填好挑戰天數")
             } else {
-                //雙人挑戰
+                let newChallenge = Challenge(
+                    challengeId: "",
+                    owner: "Austin",
+                    title: title,
+                    describe: describe,
+                    days: daysInt,
+                    vsChallengeId: "",
+                    updatedTime: "",
+                    daysCompleted: 0)
+                fireManager.addChallenge(newChallenge: newChallenge, friend: friendName)
+                dismiss(animated: true) {
+                    self.didAddedChallenge()
+                }
             }
         }
     }
@@ -70,30 +75,51 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        if myFriends.isEmpty {
+            return 1
+        } else {
+            return myFriends.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let friendCell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? ChallengeWithFriendTableViewCell {
-            friendCell.friendNameLabel.text = testName[indexPath.row]
-//            let friendNameLabel = UILabel(frame: CGRect(x: 25.0, y: 8.0, width: 100.0, height: 30.0))
-//            friendNameLabel.text = testName[indexPath.row]
-//            friendCell.contentView.addSubview(friendNameLabel)
-
             friendCell.selectionStyle = .none
-            return friendCell
+            if myFriends.isEmpty {
+                friendCell.friendNameLabel.text = "目前還沒有好友哦"
+                return friendCell
+            } else {
+//                friendCell.friendImageView.image = UIImage
+                friendCell.friendNameLabel.text = myFriends[indexPath.row].nickname
+                return friendCell
+            }
         } else {
             return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let friendName = testName[indexPath.row]
+        let friendName = myFriends[indexPath.row].nickname
         challengeFriendTF.text = friendName
     }
     
 }
 
 extension AddNewChallengeVC: FirebaseManagerDelegate {
-    
+    func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType) {
+        if type == .friends {
+            for document in data {
+                if let emojiString = document["emoji"] as? String,
+                    let emoji = ProfileVC().emojiDecode(emojiString: emojiString) {
+                    let aUser = User(
+                        userId: document["userId"] as? String ?? "no user id",
+                        nickname: document["nickname"] as? String ?? "no nickname",
+                        describe: document["describe"] as? String ?? "no describe",
+                        emoji: emoji,
+                        image: document["image"] as? String ?? "no image")
+                    myFriends.append(aUser)
+                }
+            }
+        }
+    }
 }

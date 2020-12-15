@@ -31,7 +31,7 @@ class ChallengeWithFriendTableViewCell: UITableViewCell {
             friendImageView.widthAnchor.constraint(equalToConstant: 40),
             friendImageView.heightAnchor.constraint(equalToConstant: 40),
             
-            friendNameLabel.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: 25),
+            friendNameLabel.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: 20),
             friendNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             friendNameLabel.heightAnchor.constraint(equalToConstant: 30)
         ])

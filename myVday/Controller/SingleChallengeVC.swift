@@ -40,6 +40,7 @@ class SingleChallengeVC: UIViewController {
     }
     
     @IBAction func closeDetailView(_ sender: Any) {
+        aDayImageView.image = nil
         aDayBottomConstraint.constant = -746
          UIViewPropertyAnimator.runningPropertyAnimator(
              withDuration: 0.5,
@@ -133,6 +134,20 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
             let myChallenge = myDaysChallenge[indexPath.row]
             aDayTitleTextField.text = myChallenge.title
             aDayDescribeTextView.text = myChallenge.describe
+            
+            if let imageUrl = URL(string: "\(myDaysChallenge[indexPath.row].image)") {
+                URLSession.shared.dataTask(with: imageUrl) { data, _, error in
+                    if let err = error {
+                        print("Error getting image:\(err)")
+                    }
+                    if let okData = data {
+                        DispatchQueue.main.async {
+                            self.aDayImageView.image = UIImage(data: okData)
+                        }
+                    }
+                }.resume()
+            }
+            
             editSaveBtn.isHidden = false
         } else {
             let challengersChallenge = challengerDaysChallenge[indexPath.row]

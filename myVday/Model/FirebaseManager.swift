@@ -253,21 +253,44 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addChallenge(owner: String, title: String, describe: String, days: Int) {
-        ref = fireDB.collection("Challenge").addDocument(data: [
-            "challengeId": "",
-            "days": days,
-            "describe": describe,
-            "owner": owner,
-            "title": title,
-            "updatedTime": FieldValue.serverTimestamp(),
-            "vsChallengeId": ""
-            ], completion: { (error) in
+    func addChallenge(newChallenge: Challenge, friend: String) {
+        do {
+            ref = try fireDB.collection("Challenge").addDocument(from: newChallenge, encoder: Firestore.Encoder(), completion: { (error) in
                 if let err = error {
-                    print("Error adding new challenge: \(err)")
+                    print("Error added challenge: \(err)")
                 } else {
                     if let challengeId = self.ref?.documentID {
-                        self.updateChallengeId(challengeId: challengeId, days: days)
+                        self.updateChallengeId(challengeId: challengeId, friend: friend, newChallenge: newChallenge)
+                    }
+                }
+            })
+        } catch let err {
+            print("Error writing restaurant to Firestore: \(err)")
+        }
+    }
+    
+    func addChallengeRequest(newChallenge: Challenge, friend: String, vsChallengeId: String, dataType: DataType) {
+        ref = fireDB.collection("User").document(friend).collection(dataType.name()).addDocument(data: [
+            "challengeId": "",
+            "days": newChallenge.days,
+            "daysCompleted": 0,
+            "describe": newChallenge.describe,
+            "owner": newChallenge.owner,
+            "title": newChallenge.title,
+            "updatedTime": FieldValue.serverTimestamp(),
+            "vsChallengeId": vsChallengeId
+            ], completion: { (error) in
+                if let err = error {
+                    print("Error added challenge request: \(err)")
+                } else {
+                    if let challengeId = self.ref?.documentID {
+                        self.fireDB.collection("User").document(friend).collection(dataType.name()).document(challengeId).updateData([
+                            "challengeId": challengeId
+                        ]) { (error) in
+                            if let err = error {
+                                print("Error updated challenge id: \(err)")
+                            }
+                        }
                     }
                 }
         })
@@ -291,7 +314,6 @@ class FirebaseManager: NSObject {
     }
     
     func addComment(toFirestoreWith restaurantId: String, userId: String, describe: String, image: String) {
-//        var ref: DocumentReference?
         ref = fireDB.collection("Restaurant").document(restaurantId).collection("comments").addDocument(data: [
             "userId": userId,
             "describe": describe,
@@ -308,15 +330,22 @@ class FirebaseManager: NSObject {
             }
         }
     }
-    
-    func updateChallengeId(challengeId: String, days: Int) {
+   
+    func updateChallengeId(challengeId: String, friend: String, newChallenge: Challenge) {
         fireDB.collection("Challenge").document(challengeId).updateData([
-            "challengeId": challengeId
+            "challengeId": challengeId,
+            "updatedTime": FieldValue.serverTimestamp()
         ]) { (error) in
             if let err = error {
                 print("Error updated challenge id: \(err)")
             } else {
-                self.addDaysChallenge(days: days, challengeId: challengeId)
+                self.addDaysChallenge(days: newChallenge.days, challengeId: challengeId)
+                if friend.isEmpty {
+                    return
+                } else {
+                    //發出challenge request
+                    self.addChallengeRequest(newChallenge: newChallenge, friend: friend, vsChallengeId: challengeId, dataType: .challengeRequest)
+                }
             }
         }
     }
