@@ -21,8 +21,8 @@ struct Challenge: Codable {
 
 struct DaysChallenge {
     let index: Int
-    let title: String
-    let describe: String
+    var title: String
+    var describe: String
     let image: String
     let createdTime: String
 }

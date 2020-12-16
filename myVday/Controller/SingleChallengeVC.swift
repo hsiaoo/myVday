@@ -15,6 +15,8 @@ class SingleChallengeVC: UIViewController {
     @IBOutlet weak var challengeTitleLabel: UILabel!
     @IBOutlet weak var challengeDescribeLabel: UILabel!
     
+    
+    @IBOutlet weak var aDayPhotoBtn: UIButton!
     @IBOutlet weak var aDayImageView: UIImageView!
     @IBOutlet weak var aDayTitleTextField: UITextField!
     @IBOutlet weak var aDayDescribeTextView: UITextView!
@@ -25,18 +27,59 @@ class SingleChallengeVC: UIViewController {
     var singleChallengeFromList: Challenge?
     var myDaysChallenge = [DaysChallenge]()
     var challengerDaysChallenge = [DaysChallenge]()
+    var currentIndex: IndexPath?
     let fireManager = FirebaseManager()
+    var isEditingDailyChallenge = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
         detailSetting()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
     }
     
     @IBAction func tappedEditSaveBtn(_ sender: Any) {
-        aDayTitleTextField.isEnabled = true
-        aDayDescribeTextView.isEditable = true
-        editSaveBtn.imageView?.image = UIImage(systemName: "checkmark.circle")
+        isEditingDailyChallenge = !isEditingDailyChallenge
+        if isEditingDailyChallenge == false {
+            print("儲存")
+            aDayPhotoBtn.isHidden = true
+            aDayTitleTextField.isEnabled = false
+            aDayDescribeTextView.isEditable = false
+            editSaveBtn.setImage(UIImage(systemName: "pencil.circle"), for: .normal)
+            guard let title = aDayTitleTextField.text, let describe = aDayDescribeTextView.text else { return }
+            
+            if let singleChalenge = singleChallengeFromList, let index = currentIndex {
+                let oldDescribe = myDaysChallenge[index.row].describe
+                //更新本地陣列內的單日挑戰內容
+                myDaysChallenge[index.row].title = title
+                myDaysChallenge[index.row].describe = describe
+                //更新firestore內的單日挑戰內容
+                fireManager.updateDailyChallenge(
+                    challengeId: singleChalenge.challengeId,
+                    index: index.row + 1,
+                    title: title,
+                    describe: describe,
+                    oldDescribe: oldDescribe,
+                    okDays: singleChalenge.daysCompleted)
+            }
+        } else {
+            print("編輯")
+//            aDayPhotoBtn.isEnabled = true
+            aDayPhotoBtn.isHidden = false
+            aDayTitleTextField.isEnabled = true
+            aDayDescribeTextView.isEditable = true
+            editSaveBtn.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        }
     }
     
     @IBAction func closeDetailView(_ sender: Any) {
@@ -53,7 +96,7 @@ class SingleChallengeVC: UIViewController {
         
         aDayTitleTextField.isEnabled = false
         aDayDescribeTextView.isEditable = false
-        editSaveBtn.imageView?.image = UIImage(systemName: "pencil.circle.fill")
+        editSaveBtn.imageView?.image = UIImage(systemName: "pencil.circle")
     }
 
     func detailSetting() {
@@ -70,6 +113,17 @@ class SingleChallengeVC: UIViewController {
                 fireManager.fetchChallengeDetail(challengeId: vsId, dataType: .challenger)
             }
         }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        self.view.frame.origin.y = 0 - keyboardSize.height
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
 }
@@ -132,6 +186,8 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let myChallenge = myDaysChallenge[indexPath.row]
+            currentIndex = indexPath
+                //myDaysChallenge[indexPath.row].index
             aDayTitleTextField.text = myChallenge.title
             aDayDescribeTextView.text = myChallenge.describe
             
@@ -142,6 +198,7 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
                     }
                     if let okData = data {
                         DispatchQueue.main.async {
+                            self.aDayPhotoBtn.isHidden = true
                             self.aDayImageView.image = UIImage(data: okData)
                         }
                     }

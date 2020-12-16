@@ -329,7 +329,7 @@ class FirebaseManager: NSObject {
                 "createdTime": FieldValue.serverTimestamp(),
                 "describe": "",
                 "image": "",
-                "index": "\(index+1)",
+                "index": index + 1,
                 "title": "挑戰第\(index+1)天"
             ]) { (error) in
                 if let err = error {
@@ -410,6 +410,38 @@ class FirebaseManager: NSObject {
 //            }
 //        }
 //    }
+    
+    func updateDailyChallenge(challengeId: String, index: Int, title: String, describe: String, oldDescribe: String, okDays: Int) {
+        fireDB.collection("Challenge").document(challengeId).collection("Days").document("\(index)").updateData([
+            "title": title,
+            "describe": describe
+        ]) { (error) in
+            if let err = error {
+                print("Error updated daily challenge: \(err)")
+            } else {
+                print("====成功更新每日挑戰====")
+                //若describe有值，表示完成今日挑戰，要更新daysCompleted
+                if describe.isEmpty {
+                    //如果此次修改後的describe為空，則不算完成挑戰
+                    return
+                } else {
+                    //修改後的describe有值，而且先前的describe為空，代表完成今日挑戰
+                    if oldDescribe.isEmpty {
+                        self.fireDB.collection("Challenge").document(challengeId).updateData([
+                            "daysCompleted": okDays + 1
+                        ]) { (error) in
+                            if let err = error {
+                                print("Error updated daysCompleted: \(err)")
+                            }
+                        }
+                    } else {
+                        //修改後的describe有值，但是先前的describe本來就有值，也不算挑戰成功
+                        return
+                    }
+                }
+            }
+        }
+    }
     
     func updateCommentId(restaurantId: String, commentId: String) {
         fireDB.collection("Restaurant").document(restaurantId).collection("comments").document(commentId).updateData([
