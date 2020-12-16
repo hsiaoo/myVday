@@ -19,8 +19,6 @@ class FriendChallengeListVC: UIViewController {
     @IBOutlet weak var listNameLabel: UILabel!
     @IBOutlet weak var newFriendChallengeBtn: UIButton!
     @IBOutlet weak var notificationBtn: UIButton!
-    @IBOutlet weak var newFriendSearchBar: UISearchBar!
-    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var friendChallengeTableView: UITableView!
     
     let fireManager = FirebaseManager()
@@ -62,16 +60,7 @@ class FriendChallengeListVC: UIViewController {
     
     @IBAction func addFriendOrChallengeBtn(_ sender: Any) {
         if currentLayoutType == .friendList {
-            tableViewTopConstraint.constant = 56
-            UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: 0.5,
-                delay: 0,
-                options: .allowAnimatedContent,
-                animations: {
-                    self.friendChallengeTableView.frame = CGRect(x: 0, y: 115, width: UIScreen.main.bounds.width, height: 0)
-            },
-                completion: nil)
-            newFriendSearchBar.isHidden = false
+            performSegue(withIdentifier: "newFriendSegue", sender: nil)
         } else if currentLayoutType == .challengeList {
             performSegue(withIdentifier: "newChallengeSegue", sender: nil)
         }
@@ -82,14 +71,14 @@ class FriendChallengeListVC: UIViewController {
             if let controller = segue.destination as? SingleChallengeVC {
                 controller.singleChallengeFromList = sender as? Challenge
             }
-        } else {
-            if segue.identifier == "newChallengeSegue" {
-                if let controller = segue.destination as? AddNewChallengeVC {
-                    controller.didAddedChallenge = {
-                        self.listSetting()
-                    }
+        } else if segue.identifier == "newChallengeSegue" {
+            if let controller = segue.destination as? AddNewChallengeVC {
+                controller.didAddedChallenge = {
+                    self.listSetting()
                 }
             }
+        } else if segue.identifier == "newFriendSegue" {
+            _ = segue.destination as? AddNewFriendVC
         }
     }
     

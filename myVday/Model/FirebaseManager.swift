@@ -463,6 +463,18 @@ class FirebaseManager: NSObject {
         }
     }
     
+    func searchForNewFriend(name: String) {
+        fireDB.collection("User").whereField("nickname", isEqualTo: name).getDocuments { (snapshot, error) in
+            if let err = error {
+                print("Error searched new friend: \(err)")
+            } else {
+                if let docArray = snapshot?.documents {
+                    self.delegate?.fireManager?(self, didDownloadProfileDetail: docArray, type: .friends)
+                }
+            }
+        }
+    }
+    
     func listener(dataType: DataType) {
         fireDB.collection("Restaurant").document().collection(dataType.name()).addSnapshotListener { (snapshot, error) in
             if let err = error {
