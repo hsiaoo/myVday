@@ -287,12 +287,23 @@ class FirebaseManager: NSObject {
                     self.updateChallengeId(challengeId: newChallenge.vsChallengeId, friend: "", newChallenge: newChallenge)
                 }
             }
-            //            do {
-//                try fireDB.collection("Challenge").document(newChallenge.challengeId).setData(from: newChallenge)
-//                self.updateChallengeId(challengeId: newChallenge.vsChallengeId, friend: "", newChallenge: newChallenge)
-//            } catch let err {
-//                print("Error added challenge to Firestore: \(err)")
-//            }
+        }
+    }
+    
+    func addNewFriend(friendsOfUserId: String, newFriend: User) {
+        do {
+            try fireDB.collection("User").document(friendsOfUserId).collection("friends").document(newFriend.userId).setData(from: newFriend)
+            print("======\(friendsOfUserId)成功新增朋友\(newFriend.userId)======")
+        } catch let err {
+            print("Error added challenge to Firestore: \(err)")
+        }
+    }
+    
+    func addFriendRequest(newFriendId: String, personalData: User) {
+        do {
+            try fireDB.collection("User").document(newFriendId).collection("friendRequest").document(personalData.userId).setData(from: personalData)
+        } catch let error {
+            print("Error sent friend request: \(error)")
         }
     }
     
@@ -337,7 +348,6 @@ class FirebaseManager: NSObject {
                 }
             }
         }
-        print("========成功新增每日挑戰========")
     }
     
     func addComment(toFirestoreWith restaurantId: String, userId: String, describe: String, image: String) {
@@ -419,7 +429,6 @@ class FirebaseManager: NSObject {
             if let err = error {
                 print("Error updated daily challenge: \(err)")
             } else {
-                print("====成功更新每日挑戰====")
                 //若describe有值，表示完成今日挑戰，要更新daysCompleted
                 if describe.isEmpty {
                     //如果此次修改後的describe為空，則不算完成挑戰
@@ -464,7 +473,7 @@ class FirebaseManager: NSObject {
     }
     
     func searchForNewFriend(name: String) {
-        fireDB.collection("User").whereField("nickname", isEqualTo: name).getDocuments { (snapshot, error) in
+        fireDB.collection("User").whereField("userId", isEqualTo: name).getDocuments { (snapshot, error) in
             if let err = error {
                 print("Error searched new friend: \(err)")
             } else {
