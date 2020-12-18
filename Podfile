@@ -13,4 +13,5 @@ target 'myVday' do
   pod 'GoogleMaps', '4.0.0'
   pod 'Firebase/Storage'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Auth'
 end
