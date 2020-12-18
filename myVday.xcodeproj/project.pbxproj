@@ -16,6 +16,8 @@
 		8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */; };
 		85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853539FF2589E80C00652B8D /* AddNewFriendVC.swift */; };
 		85353A022589EB0600652B8D /* SearchForNewFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */; };
+		85353A05258B3F6200652B8D /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A04258B3F6200652B8D /* SignInVC.swift */; };
+		85353A07258BC47400652B8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85353A06258BC47300652B8D /* GoogleService-Info.plist */; };
 		853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6C425737CBE007BA763 /* PlaceMarker.swift */; };
 		853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6CC2573D41B007BA763 /* FirebaseManager.swift */; };
 		8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AC256E38E6008C64FA /* AppDelegate.swift */; };
@@ -25,7 +27,6 @@
 		8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0B8256E38EC008C64FA /* Assets.xcassets */; };
 		8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */; };
 		85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */; };
-		85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85750BE125726C4200B7786F /* GoogleService-Info.plist */; };
 		85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85750BE5257349AB00B7786F /* MapKit.framework */; };
 		8576990F2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */; };
 		857699112585EEB500D5B895 /* AddNewChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857699102585EEB500D5B895 /* AddNewChallengeVC.swift */; };
@@ -61,6 +62,9 @@
 		8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCuisineVC.swift; sourceTree = "<group>"; };
 		853539FF2589E80C00652B8D /* AddNewFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendVC.swift; sourceTree = "<group>"; };
 		85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForNewFriendTableViewCell.swift; sourceTree = "<group>"; };
+		85353A03258B3E7400652B8D /* myVday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVday.entitlements; sourceTree = "<group>"; };
+		85353A04258B3F6200652B8D /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		85353A06258BC47300652B8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		853DE6C425737CBE007BA763 /* PlaceMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		853DE6CC2573D41B007BA763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8551E0A9256E38E6008C64FA /* myVday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVday.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,7 +76,6 @@
 		8551E0BB256E38EC008C64FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8551E0BD256E38EC008C64FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
-		85750BE125726C4200B7786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85750BE5257349AB00B7786F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionReusableView.swift; sourceTree = "<group>"; };
 		857699102585EEB500D5B895 /* AddNewChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewChallengeVC.swift; sourceTree = "<group>"; };
@@ -186,6 +189,7 @@
 		8551E0AB256E38E6008C64FA /* myVday */ = {
 			isa = PBXGroup;
 			children = (
+				85353A03258B3E7400652B8D /* myVday.entitlements */,
 				852AF05D2571F50000CAD9C0 /* Model */,
 				8585B10D256FF3BD00FB5EFC /* View */,
 				8585B10A256FF33900FB5EFC /* Controller */,
@@ -194,9 +198,9 @@
 				8551E0B2256E38E6008C64FA /* Main.storyboard */,
 				8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */,
 				8551E0B8256E38EC008C64FA /* Assets.xcassets */,
+				85353A06258BC47300652B8D /* GoogleService-Info.plist */,
 				8551E0BD256E38EC008C64FA /* Info.plist */,
 				8551E0B5256E38E6008C64FA /* myVday.xcdatamodeld */,
-				85750BE125726C4200B7786F /* GoogleService-Info.plist */,
 			);
 			path = myVday;
 			sourceTree = "<group>";
@@ -206,6 +210,7 @@
 			children = (
 				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
 				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
+				85353A04258B3F6200652B8D /* SignInVC.swift */,
 				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
 				85D21B5F2580C8E80039A30B /* FriendChallengeListVC.swift */,
 				85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */,
@@ -295,10 +300,10 @@
 			files = (
 				8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */,
 				85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */,
-				85750BE225726C4200B7786F /* GoogleService-Info.plist in Resources */,
 				8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */,
 				8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */,
 				8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */,
+				85353A07258BC47400652B8D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +417,7 @@
 				85D21B602580C8E80039A30B /* FriendChallengeListVC.swift in Sources */,
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
+				85353A05258B3F6200652B8D /* SignInVC.swift in Sources */,
 				8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */,
 				85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */,
 				85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */,
@@ -562,14 +568,15 @@
 			baseConfigurationReference = 5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DMX5AMKF7C;
+				DEVELOPMENT_TEAM = XQUK5U76MX;
 				INFOPLIST_FILE = myVday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.HW.Hsiao.myVday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.hsiao.myVday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -581,14 +588,15 @@
 			baseConfigurationReference = 45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DMX5AMKF7C;
+				DEVELOPMENT_TEAM = XQUK5U76MX;
 				INFOPLIST_FILE = myVday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.HW.Hsiao.myVday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.hsiao.myVday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

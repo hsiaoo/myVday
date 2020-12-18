@@ -253,6 +253,15 @@ class FirebaseManager: NSObject {
         }
     }
     
+    func addUser(loginUser: User) {
+        do {
+            try fireDB.collection("User").document(loginUser.userId).setData(from: loginUser)
+            print("=======成功新增使用者=======")
+        } catch let err {
+            print("Error added user to Firestore: \(err)")
+        }
+    }
+    
     func addChallenge(newChallenge: Challenge, friend: String) {
         if newChallenge.challengeId.isEmpty {
             do {

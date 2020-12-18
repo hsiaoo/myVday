@@ -9,7 +9,17 @@
 import UIKit
 
 class ProfileVC: UIViewController {
+    
+    
+    @IBAction func tempSignOutBtn(_ sender: UIBarButtonItem) {
+        UserDefaults.standard.set(nil, forKey: "appleUserIDCredential")
+//        UserDefaults.standard.set(nil, forKey: "userAuthorizationCode")
 
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+    }
+    
     @IBOutlet weak var profileNormalView: UIView!
     @IBOutlet weak var profleEditingView: UIView!
     @IBOutlet weak var editSaveBarBtn: UIBarButtonItem!

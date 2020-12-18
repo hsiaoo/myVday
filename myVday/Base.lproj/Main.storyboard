@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cH9-J1-Neq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z7f-p5-wmP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PAP-Bz-JSS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7910" y="-331"/>
+            <point key="canvasLocation" x="7284" y="-331"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="uoW-bz-bZT">
@@ -351,6 +351,11 @@
                         <viewLayoutGuide key="safeArea" id="2Ls-HU-sY5"/>
                     </view>
                     <navigationItem key="navigationItem" id="2an-sH-CQz">
+                        <barButtonItem key="leftBarButtonItem" title="登出" id="otl-wI-qYQ">
+                            <connections>
+                                <action selector="tempSignOutBtn:" destination="ccB-hS-tas" id="g87-8P-Ols"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="pencil" catalog="system" id="Wj6-cU-jZD">
                                 <connections>
@@ -385,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mK2-GN-8HY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3850.7246376811595" y="-331.47321428571428"/>
+            <point key="canvasLocation" x="3226" y="-331"/>
         </scene>
         <!--Friend Challenge ListVC-->
         <scene sceneID="LW4-hZ-UiE">
@@ -536,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaF-33-39o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4885.507246376812" y="-330.13392857142856"/>
+            <point key="canvasLocation" x="4261" y="-330"/>
         </scene>
         <!--Add New ChallengeVC-->
         <scene sceneID="GyS-wo-IRW">
@@ -667,7 +672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyt-mQ-nRC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5792.753623188406" y="-712.5"/>
+            <point key="canvasLocation" x="5168" y="-713"/>
         </scene>
         <!--地圖-->
         <scene sceneID="jDT-eQ-vMU">
@@ -692,7 +697,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="bIz-LM-cHo">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cH9-J1-Neq" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="cH9-J1-Neq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gCn-6B-hbD">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1864,6 +1869,21 @@
             </objects>
             <point key="canvasLocation" x="2251" y="2103"/>
         </scene>
+        <!--Sign InVC-->
+        <scene sceneID="LLQ-fC-43T">
+            <objects>
+                <viewController storyboardIdentifier="SignInViewController" id="z7f-p5-wmP" customClass="SignInVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="egC-fq-Lfu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="7fd-dN-PpT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uNV-37-fpm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="66"/>
+        </scene>
         <!--個人-->
         <scene sceneID="BTP-n4-aiE">
             <objects>
@@ -1882,7 +1902,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qha-xv-CR7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2774" y="-330"/>
+            <point key="canvasLocation" x="2110" y="-330"/>
         </scene>
         <!--Add CuisineVC-->
         <scene sceneID="qpf-43-2Vi">
@@ -2053,11 +2073,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pan-rO-SCW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6711.594202898551" y="-713.16964285714278"/>
+            <point key="canvasLocation" x="6087" y="-713"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ArC-rD-asL"/>
+        <segue reference="rwq-sw-5BP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
