@@ -208,14 +208,18 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func updateProfile(userId: String, newNickname: String, newDescribe: String, newEmoji: String) {
-        fireDB.collection("User").document(userId).updateData([
-            "nickname": newNickname,
-            "describe": newDescribe,
-            "emoji": newEmoji
+    //userId: String, newNickname: String, newDescribe: String, newEmoji: String
+    //, fetchProfile: (String) -> Void
+    func updateProfile(profileData: User) {
+        fireDB.collection("User").document(profileData.userId).updateData([
+            "nickname": profileData.nickname,
+            "describe": profileData.describe,
+            "emoji": profileData.emoji
         ]) { (error) in
             if let err = error {
                 print("Error updating profile: \(err)")
+            } else {
+                print("======成功更新使用者資料======")
             }
         }
     }

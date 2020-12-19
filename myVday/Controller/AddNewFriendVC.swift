@@ -26,10 +26,6 @@ class AddNewFriendVC: UIViewController {
         fireManager.fetchProfileData(userId: "Austin")
     }
     
-    @IBAction func tappedCloseNewFriendBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {

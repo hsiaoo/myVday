@@ -15,7 +15,6 @@ class SingleChallengeVC: UIViewController {
     @IBOutlet weak var challengeTitleLabel: UILabel!
     @IBOutlet weak var challengeDescribeLabel: UILabel!
     
-    
     @IBOutlet weak var aDayPhotoBtn: UIButton!
     @IBOutlet weak var aDayImageView: UIImageView!
     @IBOutlet weak var aDayTitleTextField: UITextField!
@@ -24,11 +23,11 @@ class SingleChallengeVC: UIViewController {
     @IBOutlet weak var aDayBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var aDayChallengDetailView: UIView!
     
+    let fireManager = FirebaseManager()
     var singleChallengeFromList: Challenge?
     var myDaysChallenge = [DaysChallenge]()
     var challengerDaysChallenge = [DaysChallenge]()
     var currentIndex: IndexPath?
-    let fireManager = FirebaseManager()
     var isEditingDailyChallenge = false
 
     override func viewDidLoad() {
