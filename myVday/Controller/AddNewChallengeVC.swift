@@ -25,21 +25,20 @@ class AddNewChallengeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
-        fireManager.fetchProfileSubCollection(userId: "Austin", dataType: .friends)
+        if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+            fireManager.fetchProfileSubCollection(userId: userId, dataType: .friends)
+        }
         challengeTitleTF.becomeFirstResponder()
         challengeFriendTF.inputView = friendTableView
         tableViewSetting()
     }
     
-    @IBAction func tappedCloseViewBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func tappedDoneBtn(_ sender: Any) {
+    @IBAction func tappedDoneBtn(_ sender: UIBarButtonItem) {
         guard let title = challengeTitleTF.text,
             let describe = challengeDescribeTF.text,
             let daysString = challengeDaysTF.text,
-            let friendName = challengeFriendTF.text else { return }
+            let friendName = challengeFriendTF.text,
+            let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
         
         if title.isEmpty || describe.isEmpty || daysString.isEmpty {
             print("填好挑戰資料")
@@ -50,7 +49,7 @@ class AddNewChallengeVC: UIViewController {
             } else {
                 let newChallenge = Challenge(
                     challengeId: "",
-                    owner: "Austin",
+                    owner: userId,
                     title: title,
                     describe: describe,
                     days: daysInt,
