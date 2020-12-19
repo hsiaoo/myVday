@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		851C05272574D072002B893F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C05262574D072002B893F /* Restaurant.swift */; };
 		8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */; };
-		8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */; };
+		8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */; };
 		852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */; };
 		852D98F02570D445004F86B1 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98EF2570D445004F86B1 /* CheckBox.swift */; };
 		852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* EmojiTextField.swift */; };
@@ -49,6 +49,9 @@
 		85E50565258DBF31007A94EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85E50564258DBF30007A94EE /* GoogleService-Info.plist */; };
 		85E50567258DDDEE007A94EE /* ChallengeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50566258DDDEE007A94EE /* ChallengeListVC.swift */; };
 		85E50569258DDEE9007A94EE /* ChallengeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50568258DDEE9007A94EE /* ChallengeListTableViewCell.swift */; };
+		85E5056B258E0CC8007A94EE /* DescribeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5056A258E0CC8007A94EE /* DescribeTableViewCell.swift */; };
+		85E5056D258E0CF6007A94EE /* HoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5056C258E0CF6007A94EE /* HoursTableViewCell.swift */; };
+		85E5056F258E3AC7007A94EE /* WriteCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */; };
 		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +60,7 @@
 		5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
 		851C05262574D072002B893F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantVC.swift; sourceTree = "<group>"; };
-		8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestaurantVC.swift; sourceTree = "<group>"; };
 		852D98EF2570D445004F86B1 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		852D98F12570E02F004F86B1 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
@@ -100,6 +103,9 @@
 		85E50564258DBF30007A94EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85E50566258DDDEE007A94EE /* ChallengeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListVC.swift; sourceTree = "<group>"; };
 		85E50568258DDEE9007A94EE /* ChallengeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListTableViewCell.swift; sourceTree = "<group>"; };
+		85E5056A258E0CC8007A94EE /* DescribeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescribeTableViewCell.swift; sourceTree = "<group>"; };
+		85E5056C258E0CF6007A94EE /* HoursTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursTableViewCell.swift; sourceTree = "<group>"; };
+		85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentVC.swift; sourceTree = "<group>"; };
 		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -138,10 +144,12 @@
 			isa = PBXGroup;
 			children = (
 				8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */,
-				8527C4E525713E8F004EB422 /* DetailRestaurantTableViewCell.swift */,
+				8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */,
 				85E50568258DDEE9007A94EE /* ChallengeListTableViewCell.swift */,
 				85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */,
 				85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */,
+				85E5056C258E0CF6007A94EE /* HoursTableViewCell.swift */,
+				85E5056A258E0CC8007A94EE /* DescribeTableViewCell.swift */,
 				85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */,
 				857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */,
 				85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */,
@@ -216,6 +224,7 @@
 				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
 				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
 				85353A04258B3F6200652B8D /* SignInVC.swift */,
+				85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */,
 				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
 				85D21B5F2580C8E80039A30B /* FriendListVC.swift */,
 				85E50566258DDDEE007A94EE /* ChallengeListVC.swift */,
@@ -399,14 +408,17 @@
 			files = (
 				8576990F2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift in Sources */,
 				8551E0B7256E38E6008C64FA /* myVday.xcdatamodeld in Sources */,
+				85E5056F258E3AC7007A94EE /* WriteCommentVC.swift in Sources */,
 				85353A022589EB0600652B8D /* SearchForNewFriendTableViewCell.swift in Sources */,
 				853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */,
 				8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */,
 				85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */,
+				85E5056B258E0CC8007A94EE /* DescribeTableViewCell.swift in Sources */,
 				8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */,
 				851C05272574D072002B893F /* Restaurant.swift in Sources */,
 				8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */,
 				8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */,
+				85E5056D258E0CF6007A94EE /* HoursTableViewCell.swift in Sources */,
 				85E50567258DDDEE007A94EE /* ChallengeListVC.swift in Sources */,
 				8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */,
 				852D98F02570D445004F86B1 /* CheckBox.swift in Sources */,
@@ -426,7 +438,7 @@
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
 				85353A05258B3F6200652B8D /* SignInVC.swift in Sources */,
-				8527C4E625713E8F004EB422 /* DetailRestaurantTableViewCell.swift in Sources */,
+				8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */,
 				85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */,
 				85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */,
 				85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */,

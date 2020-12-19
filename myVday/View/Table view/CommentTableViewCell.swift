@@ -11,12 +11,10 @@ import UIKit
 class CommentTableViewCell: UITableViewCell {
     
     static let identifier = "commentCell"
+    @IBOutlet weak var commentNameLabel: UILabel!
+    @IBOutlet weak var commentDateLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var describeLabel: UILabel!
-    @IBOutlet weak var imageViewForComment: UIImageView!
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
