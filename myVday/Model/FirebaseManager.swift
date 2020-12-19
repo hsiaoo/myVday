@@ -180,11 +180,9 @@ class FirebaseManager: NSObject {
                     
                     if let uploadImageUrl = url?.absoluteString {
                         switch dataType {
-                        case .comments:
-                            self.addComment(toFirestoreWith: restId, userId: "Austin", describe: nameOrDescribe, image: uploadImageUrl)
                         case .menu:
                             self.addCuisine(toFirestoreWith: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
-                        case .friends, .friendRequest, .challengeRequest, .owner, .challenger: break
+                        case .friends, .friendRequest, .challengeRequest, .owner, .challenger, .comments: break
                         }
                     }
                 }
@@ -197,13 +195,13 @@ class FirebaseManager: NSObject {
             "cuisineName": cuisineName,
             "describe": "",
             "image": urlString,
-            "vote": "0"
+            "vote": 0
         ]) { (error) in
             if let err = error {
                 print("Error update menu: \(err)")
             } else {
-                print("successfully updated menu")
-                self.delegate?.fireManager?(self, didFinishUpdate: .menu)
+                print("======successfully updated menu======")
+//                self.delegate?.fireManager?(self, didFinishUpdate: .menu)
             }
         }
     }
@@ -363,12 +361,11 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addComment(toFirestoreWith restaurantId: String, userId: String, describe: String, image: String) {
+    func addComment(toFirestoreWith restaurantId: String, nickname: String, comment: String) {
         ref = fireDB.collection("Restaurant").document(restaurantId).collection("comments").addDocument(data: [
-            "userId": userId,
-            "describe": describe,
-            "date": FieldValue.serverTimestamp(),
-            "image": image
+            "name": nickname,
+            "comment": comment,
+            "date": FieldValue.serverTimestamp()
         ]) { (error) in
             if let err = error {
                 print("Error adding a new comment: \(err)")
@@ -472,7 +469,8 @@ class FirebaseManager: NSObject {
             if let err = error {
                 print("Error updated comment ID: \(err).")
             } else {
-                self.delegate?.fireManager?(self, didFinishUpdate: .comments)
+//                self.delegate?.fireManager?(self, didFinishUpdate: .comments)
+                print("======成功新增評論、更新評論ID======")
             }
         }
     }
@@ -498,14 +496,13 @@ class FirebaseManager: NSObject {
     }
     
     func listener(dataType: DataType) {
-        fireDB.collection("Restaurant").document().collection(dataType.name()).addSnapshotListener { (snapshot, error) in
-            if let err = error {
-                print("Error fetching document: \(err)")
-            } else {
-                if let data = snapshot {
-                    print("listener fetched: \(data)")
+        fireDB.collection("Restaurant").document().collection(dataType.name()).addSnapshotListener { snapshot, error in
+                guard let document = snapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
                 }
-            }
+                let newnew = document.documentChanges.map {$0.document.data()}
+                print("======something new: \(newnew)======")
         }
     }
 

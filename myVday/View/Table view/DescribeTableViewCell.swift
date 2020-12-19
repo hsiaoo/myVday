@@ -1,22 +1,18 @@
 //
-//  CommentTableViewCell.swift
+//  DescribeTableViewCell.swift
 //  myVday
 //
-//  Created by H.W. Hsiao on 2020/11/27.
+//  Created by H.W. Hsiao on 2020/12/19.
 //  Copyright © 2020 H.W. Hsiao. All rights reserved.
 //
 
 import UIKit
 
-class CommentTableViewCell: UITableViewCell {
-    
-    static let identifier = "commentCell"
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var describeLabel: UILabel!
-    @IBOutlet weak var imageViewForComment: UIImageView!
+class DescribeTableViewCell: UITableViewCell {
 
+    static let identifier = "describeCell"
+    @IBOutlet weak var restDescribeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

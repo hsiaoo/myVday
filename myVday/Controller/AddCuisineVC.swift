@@ -8,22 +8,22 @@
 
 import UIKit
 import FirebaseStorage
+//import FirebaseFirestore
 
-class AddCuisineVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class AddCuisineVC: UIViewController {
 
-    @IBOutlet weak var photoBtn: UIButton!
-    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var cuisineNameTF: UITextField!
+    @IBOutlet weak var photoImageView: UIImageView!
+    
     let fireManager = FirebaseManager()
-    var restId: String? = nil
+    var restId: String?
     var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
-    @IBAction func addPhotoBtn(_ sender: UIButton) {
+    @IBAction func addPhotoBtn(_ sender: UIBarButtonItem) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
@@ -49,35 +49,23 @@ class AddCuisineVC: UIViewController, UIImagePickerControllerDelegate & UINaviga
         present(imagePickerAlertController, animated: true, completion: nil)
     }
     
-    @IBAction func uploadBtn(_ sender: Any) {
-        guard let cuisineName = cuisineNameTF.text,
-            let selectedImage = selectedImage
-            else { return }
-        if cuisineName.isEmpty {
-            return
-        } else {
-            let uniqueString = NSUUID().uuidString
-            if let restId = restId {
-                fireManager.uploadImage(toStorageWith: restId, uniqueString: uniqueString, selectedImage: selectedImage, nameOrDescribe: cuisineName, dataType: .menu)
+    @IBAction func uploadNewCuisineBtn(_ sender: UIBarButtonItem) {
+        if let cuisineName = cuisineNameTF.text {
+            if cuisineName.isEmpty || selectedImage == nil {
+                print("======缺少餐點名稱或餐點照片======")
+            } else {
+                let uniqueString = NSUUID().uuidString
+                if let restId = restId, let cuisineImage = selectedImage {
+                    fireManager.uploadImage(
+                        toStorageWith: restId,
+                        uniqueString: uniqueString,
+                        selectedImage: cuisineImage,
+                        nameOrDescribe: cuisineName,
+                        dataType: .menu)
+                }
             }
         }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func cancelBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            selectedImage = pickedImage
-            photoImageView.image = selectedImage
-            photoBtn.isEnabled = false
-            photoBtn.isHidden = true
-        }
-        dismiss(animated: true, completion: nil)
+//        navigationController?.popViewController(animated: true)
     }
     
 }
@@ -86,5 +74,17 @@ extension AddCuisineVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cuisineNameTF.resignFirstResponder()
         return false
+    }
+}
+
+extension AddCuisineVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedImage = pickedImage
+            photoImageView.image = selectedImage
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -26,7 +26,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var profileEmojiTF: UITextField!
 
     @IBOutlet weak var editSaveBarBtn: UIBarButtonItem!
-    @IBOutlet weak var cancelBarBtn: UIBarButtonItem!
+    @IBOutlet weak var profileCameraBtn: UIBarButtonItem!
     @IBOutlet weak var friendBtn: UIButton!
     @IBOutlet weak var challengeBtn: UIButton!
     
@@ -47,20 +47,22 @@ class ProfileVC: UIViewController {
         isEditingProfile = !isEditingProfile
         
         if isEditingProfile == true {
-            
-            editSaveBarBtn.image = UIImage(systemName: "checkmark")
-//            cancelBarBtn.image = UIImage(systemName: "arrowshape.turn.up.left")
+            editSaveBarBtn.image = UIImage(systemName: "checkmark.circle")
+            profileCameraBtn.image = UIImage(systemName: "camera")
             profileNickNameTF.isEnabled = true
             profileDescribeTF.isEnabled = true
             profileEmojiTF.isEnabled = true
-            
+            friendBtn.isEnabled = false
+            challengeBtn.isEnabled = false
         } else {
-            
             editSaveBarBtn.image = UIImage(systemName: "pencil")
-            cancelBarBtn.image = nil
+            profileCameraBtn.image = nil
+            profileCameraBtn.image = nil
             profileNickNameTF.isEnabled = false
             profileDescribeTF.isEnabled = false
             profileEmojiTF.isEnabled = false
+            friendBtn.isEnabled = true
+            challengeBtn.isEnabled = true
             
             profileNickNameTF.resignFirstResponder()
             profileDescribeTF.resignFirstResponder()
@@ -76,11 +78,7 @@ class ProfileVC: UIViewController {
         }
     }
     
-    @IBAction func cancelEditProfileBtn(_ sender: Any) {
-        isEditingProfile = !isEditingProfile
-        profileNickNameTF.resignFirstResponder()
-        profileDescribeTF.resignFirstResponder()
-        profileEmojiTF.resignFirstResponder()
+    @IBAction func addProfilePicBtn(_ sender: Any) {
     }
     
     @IBAction func friendBtnTapped(_ sender: Any) {
@@ -157,6 +155,7 @@ extension ProfileVC: FirebaseManagerDelegate {
         )
         if let okUserData = profileData {
             self.profileSetting(userData: okUserData)
+            UserDefaults.standard.set(okUserData.nickname, forKey: "userNickname")
         }
     }
     
