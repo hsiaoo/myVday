@@ -53,6 +53,7 @@
 		85E5056D258E0CF6007A94EE /* HoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5056C258E0CF6007A94EE /* HoursTableViewCell.swift */; };
 		85E5056F258E3AC7007A94EE /* WriteCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */; };
 		85E50571258EF52F007A94EE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50570258EF52F007A94EE /* CustomTabBarController.swift */; };
+		85E50573258F5E6B007A94EE /* DayChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50572258F5E6A007A94EE /* DayChallengeVC.swift */; };
 		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		85E5056C258E0CF6007A94EE /* HoursTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursTableViewCell.swift; sourceTree = "<group>"; };
 		85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentVC.swift; sourceTree = "<group>"; };
 		85E50570258EF52F007A94EE /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		85E50572258F5E6A007A94EE /* DayChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChallengeVC.swift; sourceTree = "<group>"; };
 		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -231,6 +233,7 @@
 				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
 				85D21B5F2580C8E80039A30B /* FriendListVC.swift */,
 				85E50566258DDDEE007A94EE /* ChallengeListVC.swift */,
+				85E50572258F5E6A007A94EE /* DayChallengeVC.swift */,
 				85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */,
 				857699102585EEB500D5B895 /* AddNewChallengeVC.swift */,
 				853539FF2589E80C00652B8D /* AddNewFriendVC.swift */,
@@ -418,6 +421,7 @@
 				85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */,
 				85E5056B258E0CC8007A94EE /* DescribeTableViewCell.swift in Sources */,
 				8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */,
+				85E50573258F5E6B007A94EE /* DayChallengeVC.swift in Sources */,
 				851C05272574D072002B893F /* Restaurant.swift in Sources */,
 				8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */,
 				8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */,

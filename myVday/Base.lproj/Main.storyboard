@@ -96,94 +96,11 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAd-9f-YyV">
-                                <rect key="frame" x="0.0" y="848" width="414" height="794"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sZg-EE-Lsn">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="309"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </imageView>
-                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-fU-FnT">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="309"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYm-el-rfg">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="309"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="photo.on.rectangle" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
-                                        </state>
-                                    </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="標題" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AD7-Jy-9da">
-                                        <rect key="frame" x="26" y="243.5" width="362" height="50.5"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="35"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4J3-bQ-YHG">
-                                        <rect key="frame" x="26" y="327" width="362" height="326"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vfb-yR-HOl">
-                                        <rect key="frame" x="353" y="661" width="35" height="34"/>
-                                        <state key="normal" image="xmark.circle" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closeDetailView:" destination="4WY-cq-Drc" eventType="touchUpInside" id="1Zq-Ue-YUt"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCO-y5-okv">
-                                        <rect key="frame" x="293" y="661" width="35" height="34"/>
-                                        <state key="normal" image="pencil.circle" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedEditSaveBtn:" destination="4WY-cq-Drc" eventType="touchUpInside" id="1wv-vh-NRD"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="Vfb-yR-HOl" firstAttribute="leading" secondItem="fCO-y5-okv" secondAttribute="trailing" constant="25" id="0gS-VM-GjY"/>
-                                    <constraint firstItem="ZtV-fU-FnT" firstAttribute="bottom" secondItem="sZg-EE-Lsn" secondAttribute="bottom" id="1I5-y5-7NK"/>
-                                    <constraint firstItem="dYm-el-rfg" firstAttribute="leading" secondItem="sZg-EE-Lsn" secondAttribute="leading" id="58g-So-wSW"/>
-                                    <constraint firstItem="4J3-bQ-YHG" firstAttribute="leading" secondItem="MAd-9f-YyV" secondAttribute="leading" constant="26" id="6Xl-q2-cbx"/>
-                                    <constraint firstAttribute="trailing" secondItem="AD7-Jy-9da" secondAttribute="trailing" constant="26" id="6vA-lH-tSl"/>
-                                    <constraint firstAttribute="trailing" secondItem="sZg-EE-Lsn" secondAttribute="trailing" id="82F-nt-cTB"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZtV-fU-FnT" secondAttribute="trailing" id="8K7-62-C1Q"/>
-                                    <constraint firstItem="Vfb-yR-HOl" firstAttribute="top" secondItem="4J3-bQ-YHG" secondAttribute="bottom" constant="8" id="AJC-t9-g8b"/>
-                                    <constraint firstItem="ZtV-fU-FnT" firstAttribute="height" secondItem="sZg-EE-Lsn" secondAttribute="height" id="AVl-sH-DZR"/>
-                                    <constraint firstItem="4J3-bQ-YHG" firstAttribute="top" secondItem="sZg-EE-Lsn" secondAttribute="bottom" constant="18" id="AwB-Ux-TDJ"/>
-                                    <constraint firstItem="sZg-EE-Lsn" firstAttribute="leading" secondItem="MAd-9f-YyV" secondAttribute="leading" id="Leg-yp-SKj"/>
-                                    <constraint firstItem="sZg-EE-Lsn" firstAttribute="top" secondItem="MAd-9f-YyV" secondAttribute="top" id="SSx-SS-WWV"/>
-                                    <constraint firstItem="Vfb-yR-HOl" firstAttribute="trailing" secondItem="4J3-bQ-YHG" secondAttribute="trailing" id="ZTZ-Dj-R9c"/>
-                                    <constraint firstItem="sZg-EE-Lsn" firstAttribute="height" secondItem="MAd-9f-YyV" secondAttribute="height" multiplier="0.38874" id="dbr-s1-Z7h"/>
-                                    <constraint firstItem="dYm-el-rfg" firstAttribute="top" secondItem="sZg-EE-Lsn" secondAttribute="top" id="huP-aW-xas"/>
-                                    <constraint firstItem="dYm-el-rfg" firstAttribute="trailing" secondItem="sZg-EE-Lsn" secondAttribute="trailing" id="kHw-0g-hZ5"/>
-                                    <constraint firstItem="ZtV-fU-FnT" firstAttribute="leading" secondItem="MAd-9f-YyV" secondAttribute="leading" id="o8G-Nz-UjY"/>
-                                    <constraint firstAttribute="trailing" secondItem="4J3-bQ-YHG" secondAttribute="trailing" constant="26" id="tHE-Sd-I2K"/>
-                                    <constraint firstItem="dYm-el-rfg" firstAttribute="bottom" secondItem="sZg-EE-Lsn" secondAttribute="bottom" id="tTT-WU-h1a"/>
-                                    <constraint firstItem="AD7-Jy-9da" firstAttribute="leading" secondItem="MAd-9f-YyV" secondAttribute="leading" constant="26" id="u7j-vx-dtM"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Vfb-yR-HOl" secondAttribute="bottom" constant="8" id="vbo-sE-i28"/>
-                                    <constraint firstItem="fCO-y5-okv" firstAttribute="top" secondItem="Vfb-yR-HOl" secondAttribute="top" id="xPk-SV-Dwq"/>
-                                    <constraint firstItem="AD7-Jy-9da" firstAttribute="bottom" secondItem="sZg-EE-Lsn" secondAttribute="bottom" constant="-15" id="xje-KQ-TWP"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" name="backgroundOrange"/>
                         <constraints>
                             <constraint firstItem="FnO-JQ-A3f" firstAttribute="trailing" secondItem="XJT-tE-U9F" secondAttribute="trailing" id="1lG-Fd-wnG"/>
                             <constraint firstItem="xEp-CT-1Hy" firstAttribute="top" secondItem="FnO-JQ-A3f" secondAttribute="bottom" constant="12" id="IeG-fA-dIF"/>
-                            <constraint firstItem="MAd-9f-YyV" firstAttribute="leading" secondItem="NYN-mq-l7X" secondAttribute="leading" id="KrN-6T-r19"/>
-                            <constraint firstItem="MAd-9f-YyV" firstAttribute="trailing" secondItem="Fm4-7E-b25" secondAttribute="trailing" id="N46-WZ-amN"/>
-                            <constraint firstItem="MAd-9f-YyV" firstAttribute="height" secondItem="NYN-mq-l7X" secondAttribute="height" multiplier="0.885986" id="OQR-KY-uSc"/>
-                            <constraint firstAttribute="bottom" secondItem="MAd-9f-YyV" secondAttribute="bottom" constant="-746" id="VND-8O-4b8"/>
                             <constraint firstAttribute="bottom" secondItem="xEp-CT-1Hy" secondAttribute="bottom" id="WKU-3R-TiD"/>
                             <constraint firstItem="xEp-CT-1Hy" firstAttribute="trailing" secondItem="Fm4-7E-b25" secondAttribute="trailing" id="XV7-Ap-2LO"/>
                             <constraint firstItem="XJT-tE-U9F" firstAttribute="top" secondItem="Fm4-7E-b25" secondAttribute="top" constant="25" id="oXN-Aw-MsB"/>
@@ -195,23 +112,89 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fm4-7E-b25"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9bB-RN-BNP"/>
+                    <navigationItem key="navigationItem" id="9bB-RN-BNP">
+                        <barButtonItem key="backBarButtonItem" title=" " id="6vR-eK-iEO"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="aDayBottomConstraint" destination="VND-8O-4b8" id="oi1-RF-YOr"/>
-                        <outlet property="aDayChallengDetailView" destination="MAd-9f-YyV" id="6xR-he-sz8"/>
-                        <outlet property="aDayDescribeTextView" destination="4J3-bQ-YHG" id="mks-0s-eqJ"/>
-                        <outlet property="aDayImageView" destination="sZg-EE-Lsn" id="ewa-kT-z2h"/>
-                        <outlet property="aDayPhotoBtn" destination="dYm-el-rfg" id="XMo-5g-GCb"/>
-                        <outlet property="aDayTitleTextField" destination="AD7-Jy-9da" id="aJL-ZI-m5A"/>
                         <outlet property="challengeCollectionView" destination="xEp-CT-1Hy" id="WjK-Ae-lHF"/>
                         <outlet property="challengeDescribeLabel" destination="FnO-JQ-A3f" id="VPq-p3-iS7"/>
                         <outlet property="challengeTitleLabel" destination="XJT-tE-U9F" id="uCV-cu-U2r"/>
-                        <outlet property="editSaveBtn" destination="fCO-y5-okv" id="xRk-Qu-WqS"/>
+                        <segue destination="mwi-HO-RD7" kind="show" identifier="todayChallengeSegue" id="Tlt-sw-TAL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PAP-Bz-JSS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6400" y="-1006"/>
+        </scene>
+        <!--Day ChallengeVC-->
+        <scene sceneID="hG3-nh-kid">
+            <objects>
+                <viewController id="mwi-HO-RD7" customClass="DayChallengeVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZW8-LI-m5f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6pI-Gn-sFF">
+                                <rect key="frame" x="0.0" y="88" width="414" height="320"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="3bY-2N-PKQ">
+                                <rect key="frame" x="23" y="492.5" width="365" height="300.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="標題" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0RF-JH-45Q">
+                                <rect key="frame" x="26" y="434" width="362" height="50.5"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="35"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0RF-JH-45Q" firstAttribute="height" secondItem="ZW8-LI-m5f" secondAttribute="height" multiplier="0.0563616" id="7T0-DC-VYK"/>
+                            <constraint firstItem="6pI-Gn-sFF" firstAttribute="top" secondItem="g1t-64-x6v" secondAttribute="top" id="7wr-VP-nCM"/>
+                            <constraint firstItem="3bY-2N-PKQ" firstAttribute="trailing" secondItem="0RF-JH-45Q" secondAttribute="trailing" id="FEz-nI-Z2R"/>
+                            <constraint firstItem="3bY-2N-PKQ" firstAttribute="leading" secondItem="0RF-JH-45Q" secondAttribute="leading" constant="-3" id="HgG-tl-aQk"/>
+                            <constraint firstItem="g1t-64-x6v" firstAttribute="trailing" secondItem="0RF-JH-45Q" secondAttribute="trailing" constant="26" id="WUY-d7-ajW"/>
+                            <constraint firstItem="0RF-JH-45Q" firstAttribute="top" secondItem="6pI-Gn-sFF" secondAttribute="bottom" constant="26" id="aUa-mM-lHJ"/>
+                            <constraint firstItem="6pI-Gn-sFF" firstAttribute="trailing" secondItem="g1t-64-x6v" secondAttribute="trailing" id="b1D-sH-C5H"/>
+                            <constraint firstItem="6pI-Gn-sFF" firstAttribute="height" secondItem="ZW8-LI-m5f" secondAttribute="height" multiplier="0.357143" id="dZG-mV-jpv"/>
+                            <constraint firstItem="6pI-Gn-sFF" firstAttribute="leading" secondItem="g1t-64-x6v" secondAttribute="leading" id="ePD-fz-cvh"/>
+                            <constraint firstItem="g1t-64-x6v" firstAttribute="bottom" secondItem="3bY-2N-PKQ" secondAttribute="bottom" constant="20" id="kRc-Zx-3vM"/>
+                            <constraint firstItem="3bY-2N-PKQ" firstAttribute="top" secondItem="0RF-JH-45Q" secondAttribute="bottom" constant="8" id="u0e-gr-Mbd"/>
+                            <constraint firstItem="0RF-JH-45Q" firstAttribute="leading" secondItem="g1t-64-x6v" secondAttribute="leading" constant="26" id="wuc-li-eRL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="g1t-64-x6v"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="amx-I8-RmJ">
+                        <rightBarButtonItems>
+                            <barButtonItem image="pencil.circle" catalog="system" id="lB4-Lu-2wq">
+                                <connections>
+                                    <action selector="tappedEditSaveBtn:" destination="mwi-HO-RD7" id="33N-SE-NyA"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title=" " id="bwR-sD-Ld5">
+                                <connections>
+                                    <action selector="tappedchaCameraBtn:" destination="mwi-HO-RD7" id="ySw-x6-IwY"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dayChaDescribeTextView" destination="3bY-2N-PKQ" id="BFF-TF-Ea4"/>
+                        <outlet property="dayChaTitleTF" destination="0RF-JH-45Q" id="jh9-U1-rcp"/>
+                        <outlet property="dayChallengeCameraBtn" destination="bwR-sD-Ld5" id="GFN-Me-eJO"/>
+                        <outlet property="dayChallengeImageView" destination="6pI-Gn-sFF" id="DAG-qm-9pO"/>
+                        <outlet property="editSaveBtn" destination="lB4-Lu-2wq" id="w4L-cc-v3f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xYD-vH-wjX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7194" y="-1006"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="uoW-bz-bZT">
@@ -685,7 +668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5p-O5-Ccl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5020" y="2040"/>
+            <point key="canvasLocation" x="4664" y="2317"/>
         </scene>
         <!--Write CommentVC-->
         <scene sceneID="JQB-dv-76m">
@@ -1279,7 +1262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CtK-71-CAM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4175" y="2040"/>
+            <point key="canvasLocation" x="5355" y="2317"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="LLQ-fC-43T">
@@ -1507,24 +1490,6 @@
             </objects>
             <point key="canvasLocation" x="5499" y="-330"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="w1o-8q-F63">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Lz-KT-pKC" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AWM-mW-Tee">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="N1C-V2-JNZ" kind="relationship" relationship="rootViewController" id="Aif-xZ-UeP"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7m7-dI-AEG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3262" y="2003"/>
-        </scene>
         <!--Challenge ListVC-->
         <scene sceneID="vOv-yO-RcN">
             <objects>
@@ -1680,7 +1645,6 @@
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="101"/>
         <image name="photo" catalog="system" width="128" height="93"/>
-        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundOrange">
