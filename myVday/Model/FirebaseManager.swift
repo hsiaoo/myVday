@@ -431,23 +431,23 @@ class FirebaseManager: NSObject {
 //        }
 //    }
     
-    func updateDailyChallenge(challengeId: String, index: Int, title: String, describe: String, oldDescribe: String, okDays: Int) {
-        fireDB.collection("Challenge").document(challengeId).collection("Days").document("\(index)").updateData([
+    func updateDailyChallenge(challengeId: String, dayIndex: Int, title: String, newDescribe: String, oldDescribe: String, completedDays: Int) {
+        fireDB.collection("Challenge").document(challengeId).collection("Days").document("\(dayIndex)").updateData([
             "title": title,
-            "describe": describe
+            "describe": newDescribe
         ]) { (error) in
             if let err = error {
                 print("Error updated daily challenge: \(err)")
             } else {
                 //若describe有值，表示完成今日挑戰，要更新daysCompleted
-                if describe.isEmpty {
+                if newDescribe.isEmpty {
                     //如果此次修改後的describe為空，則不算完成挑戰
                     return
                 } else {
                     //修改後的describe有值，而且先前的describe為空，代表完成今日挑戰
                     if oldDescribe.isEmpty {
                         self.fireDB.collection("Challenge").document(challengeId).updateData([
-                            "daysCompleted": okDays + 1
+                            "daysCompleted": completedDays + 1
                         ]) { (error) in
                             if let err = error {
                                 print("Error updated daysCompleted: \(err)")
