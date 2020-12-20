@@ -12,19 +12,25 @@ import CoreLocation
 import GoogleMaps
 import MapKit
 
-class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UITabBarControllerDelegate {
     
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var newRestBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var newRestView: UIView!
     @IBOutlet weak var newRestNameTF: UITextField!
     @IBOutlet weak var newRestAddressTF: UITextField!
+    @IBOutlet weak var newRestBottomConstraint: NSLayoutConstraint!
     
     let fireManager = FirebaseManager()
     let mapManager = MapManager()
     var locationManager = CLLocationManager()
     var isFilter = false
     var basicInfos = [BasicInfo]()
+    
+    let screenHeight = UIScreen.main.bounds.height
+    let screenWidth = UIScreen.main.bounds.width
+    let maxxX = UIScreen.main.bounds.maxX
+    let maxxY = UIScreen.main.bounds.maxY
     
     private var infoWindow = MapInfoWindow()
     fileprivate var locationMarker: GMSMarker? = GMSMarker()
@@ -43,10 +49,15 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
         
+//        if let tabbarcontroller = tabBarController {
+//            tabbarcontroller.delegate = self
+//        }
+
         mapView.delegate = self
         fireManager.delegate = self
         locationManager.delegate = self
         mapManager.delegate = self
+        newRestBottomConstraint.constant = screenHeight
         self.infoWindow = loadNib()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -63,13 +74,46 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
-    
-    @IBAction func swipeViewUp(_ sender: UISwipeGestureRecognizer) {
-        newRestBottomConstraint.constant = -10
+
+    @IBAction func closeNewRestView(_ sender: UIBarButtonItem) {
+        newRestBottomConstraint.constant = screenHeight
+        navigationController?.navigationBar.isHidden = true
+//        UIViewPropertyAnimator.runningPropertyAnimator(
+//            withDuration: 1,
+//            delay: 0,
+//            options: .autoreverse,
+//            animations: {
+//                self.newRestView.frame = CGRect(x: 0, y: self.maxxY, width: self.screenWidth, height: 0)
+//                self.navigationController?.navigationBar.frame = CGRect(x: 0, y: -100, width: 0, height: 0)
+//        },
+//            completion: nil)
     }
     
-    @IBAction func swipeViewDown(_ sender: UISwipeGestureRecognizer) {
-        newRestBottomConstraint.constant = -320
+    @IBAction func saveNewRestBtn(_ sender: UIBarButtonItem) {
+        guard let newRestAddress = newRestAddressTF.text, let newRestName = newRestNameTF.text else { return }
+        if newRestName.isEmpty || newRestAddress.isEmpty {
+            print("請填入新餐廳的名稱及地址")
+        } else {
+            mapManager.addressToCoordinate(newRestName: newRestName, newRestAddress: newRestAddress)
+            newRestNameTF.resignFirstResponder()
+            newRestAddressTF.resignFirstResponder()
+            newRestBottomConstraint.constant = screenHeight
+            navigationController?.navigationBar.isHidden = true
+        }
+    }
+    
+    func moveAddingRestViewUp() {
+        newRestBottomConstraint.constant = 0
+        navigationController?.navigationBar.isHidden = false
+//        UIViewPropertyAnimator.runningPropertyAnimator(
+//            withDuration: 1,
+//            delay: 0,
+//            options: .autoreverse,
+//            animations: {
+//                self.newRestView.frame = CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenHeight)
+//                self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 100, width: 100, height: 100)
+//        },
+//            completion: nil)
     }
     
     @IBAction func filterBtnClicked(_ sender: UIBarButtonItem) {
@@ -92,18 +136,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
                     self.filterView.frame = CGRect(x: 0, y: -93, width: UIScreen.main.bounds.width, height: 180)
             },
                 completion: nil)
-        }
-    }
-    
-    @IBAction func addNewRestBtn(_ sender: Any) {
-        guard let newRestAddress = newRestAddressTF.text, let newRestName = newRestNameTF.text else { return }
-        if newRestName.isEmpty || newRestAddress.isEmpty {
-            print("請填入新餐廳的名稱及地址")
-        } else {
-            mapManager.addressToCoordinate(newRestName: newRestName, newRestAddress: newRestAddress)
-            newRestNameTF.resignFirstResponder()
-            newRestAddressTF.resignFirstResponder()
-            newRestBottomConstraint.constant = -280
         }
     }
     
