@@ -14,16 +14,18 @@ class AddNewFriendVC: UIViewController {
     @IBOutlet weak var newFriendSearchBar: UISearchBar!
     @IBOutlet weak var newFriendTableView: UITableView!
     
+    let fireManager = FirebaseManager()
     var filterData = [User]()
     var alreadyFriend = [User]()
     var personalData: User?
-    let fireManager = FirebaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         fireManager.delegate = self
-        fireManager.fetchProfileData(userId: "Austin")
+        //fetch personal data
+        if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+            fireManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
+        }
     }
     
 }
@@ -40,7 +42,7 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
             if filterData.isEmpty {
                 return newFriendCell
             } else {
-                newFriendCell.newFriendNameLabel.text = filterData[indexPath.row].userId
+                newFriendCell.newFriendNameLabel.text = filterData[indexPath.row].nickname
                 newFriendCell.newFriendBtn.addTarget(self, action: #selector(sentFriendRequest(_:)), for: .touchUpInside)
                 return newFriendCell
             }
@@ -50,7 +52,7 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func sentFriendRequest(_ sender: UIButton) {
-        print("已送出好友邀請")//shout pop up a alert controller
+        //should pop up a alert controller
         guard let personalData = personalData else { return }
         let tappedPoint = sender.convert(CGPoint.zero, to: newFriendTableView)
         if let indexPath = newFriendTableView.indexPathForRow(at: tappedPoint) {
@@ -66,13 +68,14 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AddNewFriendVC: UISearchBarDelegate {
+    //start searching friend
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         filterData.removeAll()
-        guard let name = newFriendSearchBar.text else { return }
-        if name.isEmpty {
+        guard let nickname = newFriendSearchBar.text else { return }
+        if nickname.isEmpty {
             print("寫好搜尋條件")
         } else {
-            fireManager.searchForNewFriend(name: name)
+            fireManager.searchForNewFriend(nickname: nickname)
         }
     }
 }
@@ -90,7 +93,7 @@ extension AddNewFriendVC: FirebaseManagerDelegate {
                     image: document["image"] as? String ?? "no image")
                 //檢查此User是否已經是自己的朋友，如果不是，就加入filterData陣列內準備顯示在畫面上
                 let isFriend = alreadyFriend.contains { (user) -> Bool in
-                    user.userId == aUser.userId
+                    user.nickname == aUser.nickname
                 }
                 switch isFriend {
                 case true:
@@ -103,12 +106,12 @@ extension AddNewFriendVC: FirebaseManagerDelegate {
         }
     }
     
-    func fireManager(_ manager: FirebaseManager, didDownloadProfile data: [String: Any]) {
+    func fireManager(_ manager: FirebaseManager, fetchDoc: [String: Any]) {
         personalData = User(
-            userId: data["userId"] as? String ?? "no user id",
-            nickname: data["nickname"] as? String ?? "no nickname",
-            describe: data["describe"] as? String ?? "no describe",
-            emoji: data["emoji"] as? String ?? "no emoji",
-            image: data["image"] as? String ?? "no image")
+            userId: fetchDoc["userId"] as? String ?? "no user id",
+            nickname: fetchDoc["nickname"] as? String ?? "no nickname",
+            describe: fetchDoc["describe"] as? String ?? "no describe",
+            emoji: fetchDoc["emoji"] as? String ?? "no emoji",
+            image: fetchDoc["image"] as? String ?? "no image")
     }
 }
