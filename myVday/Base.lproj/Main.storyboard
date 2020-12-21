@@ -197,7 +197,7 @@
             </objects>
             <point key="canvasLocation" x="7194" y="-1006"/>
         </scene>
-        <!--ProfileVC-->
+        <!--myVday-->
         <scene sceneID="uoW-bz-bZT">
             <objects>
                 <viewController storyboardIdentifier="profileViewController" id="ccB-hS-tas" customClass="ProfileVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
@@ -206,16 +206,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9xB-7d-E4E" userLabel="edit view">
-                                <rect key="frame" x="0.0" y="88" width="414" height="412"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="403"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-5d-RqG">
-                                        <rect key="frame" x="50" y="95.5" width="119" height="118"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile128" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-5d-RqG">
+                                        <rect key="frame" x="45" y="95" width="119" height="119"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6ww-5d-RqG" secondAttribute="height" multiplier="1:1" id="YD6-bV-AJ3"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="60"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Edward" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEv-2S-hwd" userLabel="profileNickNameTF">
-                                        <rect key="frame" x="164" y="140" width="242" height="72.5"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEv-2S-hwd" userLabel="profileNickNameTF">
+                                        <rect key="frame" x="169" y="140" width="237" height="72.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="50"/>
@@ -224,8 +230,8 @@
                                             <outlet property="delegate" destination="ccB-hS-tas" id="I11-ew-xMy"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hihihi" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cH9-gp-ebO" userLabel="profileDescribeTF">
-                                        <rect key="frame" x="167" y="207.5" width="239" height="24.5"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cH9-gp-ebO" userLabel="profileDescribeTF">
+                                        <rect key="frame" x="172" y="207.5" width="234" height="24.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
@@ -234,8 +240,8 @@
                                             <outlet property="delegate" destination="ccB-hS-tas" id="Yxo-E1-XRo"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="🎶" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="axn-0N-uzX" userLabel="profileEmojiTF" customClass="EmojiTextField" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="139" y="70" width="50" height="56"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="axn-0N-uzX" userLabel="profileEmojiTF" customClass="EmojiTextField" customModule="myVday" customModuleProvider="target">
+                                        <rect key="frame" x="134" y="70" width="50" height="57.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="7DH-9g-4VV"/>
@@ -247,16 +253,16 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" name="backgroundOrange"/>
+                                <color key="backgroundColor" name="orange#fbd9bd"/>
                                 <constraints>
-                                    <constraint firstItem="cH9-gp-ebO" firstAttribute="leading" secondItem="6ww-5d-RqG" secondAttribute="trailing" constant="-2" id="0UR-mg-xk8"/>
                                     <constraint firstItem="axn-0N-uzX" firstAttribute="top" secondItem="9xB-7d-E4E" secondAttribute="top" constant="70" id="4pU-iF-524"/>
                                     <constraint firstItem="6ww-5d-RqG" firstAttribute="top" secondItem="9xB-7d-E4E" secondAttribute="top" constant="95" id="9wW-as-pZz"/>
                                     <constraint firstAttribute="trailing" secondItem="cH9-gp-ebO" secondAttribute="trailing" constant="8" id="NCb-Vb-bHc"/>
                                     <constraint firstItem="cH9-gp-ebO" firstAttribute="top" secondItem="GEv-2S-hwd" secondAttribute="bottom" constant="-5" id="Nvf-zq-yeZ"/>
-                                    <constraint firstItem="6ww-5d-RqG" firstAttribute="leading" secondItem="9xB-7d-E4E" secondAttribute="leading" constant="50" id="U2C-ij-U5V"/>
+                                    <constraint firstItem="6ww-5d-RqG" firstAttribute="leading" secondItem="9xB-7d-E4E" secondAttribute="leading" constant="45" id="U2C-ij-U5V"/>
                                     <constraint firstItem="6ww-5d-RqG" firstAttribute="width" secondItem="9xB-7d-E4E" secondAttribute="width" multiplier="0.28744" id="ed9-8F-nJL"/>
-                                    <constraint firstItem="GEv-2S-hwd" firstAttribute="leading" secondItem="6ww-5d-RqG" secondAttribute="trailing" constant="-5" id="h1l-xO-AOM"/>
+                                    <constraint firstItem="GEv-2S-hwd" firstAttribute="leading" secondItem="6ww-5d-RqG" secondAttribute="trailing" constant="5" id="h1l-xO-AOM"/>
+                                    <constraint firstItem="cH9-gp-ebO" firstAttribute="leading" secondItem="GEv-2S-hwd" secondAttribute="leading" constant="3" id="tlt-0R-Fby"/>
                                     <constraint firstItem="axn-0N-uzX" firstAttribute="leading" secondItem="6ww-5d-RqG" secondAttribute="trailing" constant="-30" id="x1J-Tk-Ncg"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -266,14 +272,14 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mif-NL-r0a">
-                                <rect key="frame" x="25" y="460" width="364" height="319"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="mmf-e3-AzB">
+                                <rect key="frame" x="19.5" y="462" width="375" height="327"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfq-s9-m3J">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="149.5"/>
-                                        <color key="backgroundColor" red="1" green="0.98431372549019602" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfq-s9-m3J">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                                        <color key="backgroundColor" red="1" green="0.78662205324494283" blue="0.62380717267507957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="30"/>
-                                        <state key="normal" title="好友" image="person.2.fill" catalog="system">
+                                        <state key="normal" title="好友">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
                                         </state>
@@ -281,11 +287,11 @@
                                             <action selector="friendBtnTapped:" destination="ccB-hS-tas" eventType="touchUpInside" id="a8m-Ba-mdi"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0V-O8-Ge9">
-                                        <rect key="frame" x="0.0" y="169.5" width="364" height="149.5"/>
-                                        <color key="backgroundColor" red="1" green="0.98597383260000004" blue="0.94328925289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0V-O8-Ge9">
+                                        <rect key="frame" x="0.0" y="178" width="375" height="149"/>
+                                        <color key="backgroundColor" red="0.99607843137254903" green="0.792156862745098" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="30"/>
-                                        <state key="normal" title="挑戰" image="flame.fill" catalog="system">
+                                        <state key="normal" title="挑戰">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
                                         </state>
@@ -295,23 +301,46 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="130" translatesAutoresizingMaskIntoConstraints="NO" id="SYH-Cj-LZJ">
+                                <rect key="frame" x="9" y="440.5" width="44.5" height="220.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uvX-L8-d1k">
+                                        <rect key="frame" x="0.0" y="1.5" width="44.5" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="uvX-L8-d1k" secondAttribute="height" multiplier="50:53" id="vZy-Dh-lnX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3Ol-BN-QDe">
+                                        <rect key="frame" x="0.0" y="176" width="44.5" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="3Ol-BN-QDe" secondAttribute="height" multiplier="50:49" id="7ar-Si-sfq"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3Ol-BN-QDe" firstAttribute="width" secondItem="SYH-Cj-LZJ" secondAttribute="width" multiplier="0.120773" constant="39.130434782608695" id="WA1-PA-bz1"/>
+                                    <constraint firstItem="uvX-L8-d1k" firstAttribute="width" secondItem="SYH-Cj-LZJ" secondAttribute="width" multiplier="0.120773" constant="39.130434782608695" id="nVA-ew-mOV"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.98234349489999995" green="0.85264593359999996" blue="0.74115628" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="mif-NL-r0a" firstAttribute="centerX" secondItem="z2l-gF-qke" secondAttribute="centerX" id="0sz-6c-hOu"/>
-                            <constraint firstItem="9xB-7d-E4E" firstAttribute="height" secondItem="z2l-gF-qke" secondAttribute="height" multiplier="0.46" id="4RO-Wk-2he"/>
+                            <constraint firstItem="mmf-e3-AzB" firstAttribute="height" secondItem="z2l-gF-qke" secondAttribute="height" multiplier="0.365" id="3Qn-tp-wkA"/>
+                            <constraint firstItem="mmf-e3-AzB" firstAttribute="centerX" secondItem="z2l-gF-qke" secondAttribute="centerX" id="4J7-RD-eNf"/>
+                            <constraint firstItem="9xB-7d-E4E" firstAttribute="height" secondItem="z2l-gF-qke" secondAttribute="height" multiplier="0.45" id="4RO-Wk-2he"/>
+                            <constraint firstItem="mmf-e3-AzB" firstAttribute="width" secondItem="z2l-gF-qke" secondAttribute="width" multiplier="0.905" id="EYP-LH-TcU"/>
+                            <constraint firstItem="mmf-e3-AzB" firstAttribute="top" secondItem="9xB-7d-E4E" secondAttribute="bottom" constant="-29" id="LYR-cb-ski"/>
+                            <constraint firstItem="mmf-e3-AzB" firstAttribute="top" secondItem="SYH-Cj-LZJ" secondAttribute="bottom" constant="-199" id="R1j-mZ-6uj"/>
                             <constraint firstItem="9xB-7d-E4E" firstAttribute="leading" secondItem="2Ls-HU-sY5" secondAttribute="leading" id="ZoI-7W-du6"/>
                             <constraint firstItem="9xB-7d-E4E" firstAttribute="top" secondItem="2Ls-HU-sY5" secondAttribute="top" id="eKB-Qp-X4C"/>
-                            <constraint firstItem="mif-NL-r0a" firstAttribute="height" secondItem="z2l-gF-qke" secondAttribute="height" multiplier="0.356" id="f97-U7-Mr2"/>
-                            <constraint firstItem="mif-NL-r0a" firstAttribute="width" secondItem="z2l-gF-qke" secondAttribute="width" multiplier="0.88" id="gM1-Oy-Yxm"/>
                             <constraint firstItem="2Ls-HU-sY5" firstAttribute="trailing" secondItem="GEv-2S-hwd" secondAttribute="trailing" constant="8" id="hvY-LY-OGi"/>
+                            <constraint firstItem="mmf-e3-AzB" firstAttribute="leading" secondItem="SYH-Cj-LZJ" secondAttribute="trailing" constant="-34" id="ii0-RQ-Xob"/>
                             <constraint firstItem="GEv-2S-hwd" firstAttribute="top" secondItem="2Ls-HU-sY5" secondAttribute="top" constant="140" id="iib-LK-rVM"/>
-                            <constraint firstItem="mif-NL-r0a" firstAttribute="top" secondItem="9xB-7d-E4E" secondAttribute="bottom" constant="-40" id="lXy-EQ-LGb"/>
                             <constraint firstItem="2Ls-HU-sY5" firstAttribute="trailing" secondItem="9xB-7d-E4E" secondAttribute="trailing" id="pMh-C8-aO6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Ls-HU-sY5"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2an-sH-CQz">
+                    <navigationItem key="navigationItem" title="myVday" id="2an-sH-CQz">
                         <barButtonItem key="backBarButtonItem" title=" " id="Cgr-Jd-HcP"/>
                         <barButtonItem key="leftBarButtonItem" image="escape" catalog="system" id="otl-wI-qYQ">
                             <connections>
@@ -438,7 +467,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="backgroundOrange"/>
+                        <color key="backgroundColor" name="orange#fbd9bd"/>
                         <constraints>
                             <constraint firstItem="XLv-dO-7dT" firstAttribute="top" secondItem="8lT-MT-iHf" secondAttribute="top" constant="25" id="DGr-Tz-9hj"/>
                             <constraint firstAttribute="bottom" secondItem="09S-Uz-2Zg" secondAttribute="bottom" id="DHL-1t-jTP"/>
@@ -598,12 +627,12 @@
         <scene sceneID="jDT-eQ-vMU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bFv-1b-A9v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="餐廳" image="house" catalog="system" id="cEY-nK-Zyd"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="餐廳" image="house" catalog="system" selectedImage="house.fill" id="cEY-nK-Zyd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IC3-d9-bYA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="backgroundOrange"/>
+                        <color key="barTintColor" name="orange#fbd9bd"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -954,7 +983,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#全素" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWm-M6-0l5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#全素" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="oWm-M6-0l5">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
                                                     <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1057,8 +1086,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date and time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evv-lz-NEu">
-                                                    <rect key="frame" x="76" y="11" width="107" height="24.5"/>
-                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                                    <rect key="frame" x="76" y="11" width="88" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1071,6 +1100,7 @@
                                                 <constraint firstItem="IQG-lb-B2e" firstAttribute="top" secondItem="EZP-zF-ODg" secondAttribute="topMargin" id="g05-0W-ewC"/>
                                                 <constraint firstItem="LmV-ua-7I4" firstAttribute="top" secondItem="IQG-lb-B2e" secondAttribute="bottom" constant="6" id="sU1-7A-Yhy"/>
                                                 <constraint firstItem="evv-lz-NEu" firstAttribute="top" secondItem="EZP-zF-ODg" secondAttribute="topMargin" id="sqN-Ng-9li"/>
+                                                <constraint firstItem="evv-lz-NEu" firstAttribute="bottom" secondItem="IQG-lb-B2e" secondAttribute="bottom" id="uBP-kY-Q8D"/>
                                                 <constraint firstItem="LmV-ua-7I4" firstAttribute="leading" secondItem="EZP-zF-ODg" secondAttribute="leadingMargin" id="xgN-zv-AgW"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1248,15 +1278,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t8v-5m-gi5">
-                                <rect key="frame" x="142" y="144" width="208" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUh-my-aGk">
+                                <rect key="frame" x="20" y="184" width="374" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.97647058819999999" green="0.94117647059999998" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="挑戰"/>
+                                <color key="backgroundColor" red="1" green="0.98431372549999996" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
+                                <state key="normal" title="好友">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                                </state>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9Ch-zV-Msy">
-                                <rect key="frame" x="124" y="132" width="76" height="91"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33f-cm-HdR">
+                                <rect key="frame" x="20" y="360" width="374" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.98597383260000004" blue="0.94328925289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
+                                <state key="normal" title="挑戰">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                                </state>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Obt-6T-9Pb">
+                                <rect key="frame" x="66" y="374" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OGW-3w-Jfg">
+                                <rect key="frame" x="89" y="228.5" width="65" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -1269,7 +1316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CtK-71-CAM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5353.6231884057979" y="2316.9642857142858"/>
+            <point key="canvasLocation" x="3734.7826086956525" y="2316.9642857142858"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="LLQ-fC-43T">
@@ -1290,12 +1337,15 @@
         <scene sceneID="BTP-n4-aiE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ccj-A9-R3J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="個人" image="person" catalog="system" id="uuT-Ks-i7F"/>
+                    <tabBarItem key="tabBarItem" title="個人" image="person" catalog="system" selectedImage="person.fill" id="uuT-Ks-i7F"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BGU-BQ-2Y3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="backgroundOrange"/>
+                        <color key="barTintColor" name="orange#fbd9bd"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="25"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1304,7 +1354,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qha-xv-CR7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2110" y="-330"/>
+            <point key="canvasLocation" x="1857" y="-331"/>
         </scene>
         <!--Add CuisineVC-->
         <scene sceneID="qpf-43-2Vi">
@@ -1588,7 +1638,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="backgroundOrange"/>
+                        <color key="backgroundColor" name="orange#fbd9bd"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="x6n-Ug-N1k" secondAttribute="bottom" id="12j-q7-iw8"/>
                             <constraint firstItem="x6n-Ug-N1k" firstAttribute="trailing" secondItem="OEQ-TO-ixk" secondAttribute="trailing" id="9le-E1-YaB"/>
@@ -1647,17 +1697,22 @@
         <image name="flame.fill" catalog="system" width="109" height="128"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="124"/>
         <image name="house" catalog="system" width="128" height="110"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
-        <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="101"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
+        <image name="profile128" width="128" height="128"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundOrange">
-            <color red="0.97600001096725464" green="0.89399999380111694" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.97647058823529409" green="0.89411764705882346" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="orange#fbd9bd">
+            <color red="0.98431372549019602" green="0.85098039215686272" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

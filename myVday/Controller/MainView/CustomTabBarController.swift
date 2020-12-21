@@ -8,13 +8,7 @@
 
 import UIKit
 
-//protocol CustomLongPressGestureDelegate: class {
-//    func longPressForAddNewRest(_ tabBarController: CustomTabBarController)
-//}
-
 class CustomTabBarController: UITabBarController {
-    
-//    weak var longPressDelegate: CustomLongPressGestureDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +16,9 @@ class CustomTabBarController: UITabBarController {
     
     @IBAction func longPressRecog(_ sender: UILongPressGestureRecognizer) {
         self.selectedIndex = 1
-        if let navicontrollers = self.viewControllers, let secondnc = navicontrollers[1] as? UINavigationController, let mapvc = secondnc.viewControllers.first as? MapVC {
+        if let navicontrollers = self.viewControllers,
+            let secondnc = navicontrollers[1] as? UINavigationController,
+            let mapvc = secondnc.viewControllers.first as? MapVC {
             mapvc.moveAddingRestViewUp()
         }
         print("======long press======")

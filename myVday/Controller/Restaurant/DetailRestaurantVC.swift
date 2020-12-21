@@ -29,7 +29,7 @@ class DetailRestaurantVC: UIViewController {
         navigationController?.navigationBar.isHidden = false
 //        if let basicInfo = basicInfo {
 //            settingInfo(basicInfo: basicInfo)
-//            firebaseManager.fetchSubCollections(restaurantId: basicInfo.basicId, type: .comments)
+//            firebaseManager.fetchSubCollections(restaurantId: basicInfo.restaurantId, type: .comments)
 //            firebaseManager.listener(dataType: .comments)
 //        }
     }
@@ -37,19 +37,19 @@ class DetailRestaurantVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let basicInfo = basicInfo {
             settingInfo(basicInfo: basicInfo)
-            firebaseManager.fetchSubCollections(restaurantId: basicInfo.basicId, type: .comments)
+            firebaseManager.fetchSubCollections(restaurantId: basicInfo.restaurantId, type: .comments)
         }
     }
     
     // MARK: Actions in Detail VC
     @IBAction func goToMenuBtn(_ sender: UIBarButtonItem) {
-        if let restId = basicInfo?.basicId {
+        if let restId = basicInfo?.restaurantId {
             performSegue(withIdentifier: "toMenuSegue", sender: restId)
         }
     }
     
     @IBAction func writeCommentBtn(_ sender: UIBarButtonItem) {
-        if let restId = basicInfo?.basicId {
+        if let restId = basicInfo?.restaurantId {
             performSegue(withIdentifier: "writeCommentSegue", sender: restId)
         }
     }
@@ -72,7 +72,7 @@ class DetailRestaurantVC: UIViewController {
     
     @objc func writeComment() {
 //        isWritingComment = true
-//        guard let restaurantId = basicInfo?.basicId else { return }
+//        guard let restaurantId = basicInfo?.restaurantId else { return }
 //        firebaseManager.fetchSubCollections(restaurantId: restaurantId, type: .menu)
 //        commentVoteView.layer.shadowColor = UIColor.yellow.cgColor
 //        commentVoteView.layer.shadowOffset = CGSize(width: 10, height: 20)
@@ -226,7 +226,7 @@ extension DetailRestaurantVC: FirebaseManagerDelegate {
     
 //    func fireManager(_ manager: FirebaseManager, didFinishUpdate menuOrComment: DataType) {
 //        comments = [Comments]()
-//        if let restaurantId = basicInfo?.basicId {
+//        if let restaurantId = basicInfo?.restaurantId {
 //            firebaseManager.fetchSubCollections(restaurantId: restaurantId, type: .comments)
 //        }
 //        commentTextView.resignFirstResponder()

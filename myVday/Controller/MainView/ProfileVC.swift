@@ -118,7 +118,27 @@ class ProfileVC: UIViewController {
             profileNickNameTF.text = userData.nickname
             profileDescribeTF.text = userData.describe
             profileEmojiTF.text = emojiDecode(emojiString: userData.emoji)
+            
+            //處理使用者的照片
+            if userData.image.isEmpty {
+                return
+            } else {
+                //display user photo
+                if let imageUrl = URL(string: userData.image) {
+                    URLSession.shared.dataTask(with: imageUrl) { data, _, error in
+                        if let err = error {
+                            print("Error download user photo: \(err)")
+                        }
+                        if let okData = data {
+                            DispatchQueue.main.async {
+                                self.profileImageView.image = UIImage(data: okData)
+                            }
+                        }
+                    }.resume()
+                }
+            }
         } else {
+            //使用者正在編輯資料，不須處理任何事
             return
         }
     }

@@ -207,7 +207,7 @@ class FirebaseManager: NSObject {
     
     func addNewRestaurant(newRestData: BasicInfo) {
         do {
-            try fireDB.collection("Restaurant").document(newRestData.basicId).setData(from: newRestData)
+            try fireDB.collection("Restaurant").document(newRestData.restaurantId).setData(from: newRestData)
             print("successfully added a new restaurant to firebase")
         } catch let err {
             print("Error writing restaurant to Firestore: \(err)")

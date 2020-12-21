@@ -14,7 +14,7 @@ struct BasicInfo: Codable {
     let hashtags: [String]
     let hots: [String]
     let hours: [String]
-    let basicId: String
+    let restaurantId: String
     let latitude: Double
     let longitude: Double
     let name: String
