@@ -17,8 +17,10 @@ class SingleChallengeVC: UIViewController {
     
     let fireManager = FirebaseManager()
     var singleChallengeFromList: Challenge?
+    var certainDayChallenge: DaysChallenge?
     var myDaysChallenge = [DaysChallenge]()
     var challengerDaysChallenge = [DaysChallenge]()
+    var challengerName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +40,9 @@ class SingleChallengeVC: UIViewController {
             if singleChallengeFromList.vsChallengeId.isEmpty {
                 return
             } else {
-                //抓取對方的Days紀錄
+                //抓取對方每日挑戰的紀錄
                 let vsId = singleChallengeFromList.vsChallengeId
+                fireManager.fetchMainCollectionDoc(mainCollection: .challenge, docId: vsId)
                 fireManager.fetchChallengeDetail(challengeId: vsId, dataType: .challenger)
             }
         }
@@ -48,9 +51,11 @@ class SingleChallengeVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "todayChallengeSegue" {
             if let controller = segue.destination as? DayChallengeVC,
-                let singleChalenge = singleChallengeFromList {
-                controller.theChallenge = singleChalenge
-                controller.todayChallenge = sender as? DaysChallenge
+                let singleChallenge = singleChallengeFromList,
+                let certainDayChallenge = certainDayChallenge {
+                controller.theChallenge = singleChallenge
+                controller.todayChallenge = certainDayChallenge
+                controller.isMyChallengeData = sender as? Bool
             }
         }
     }
@@ -74,13 +79,17 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
             ofKind: kind,
             withReuseIdentifier: ChallengeCollectionReusableView.identifier,
             for: indexPath) as? ChallengeCollectionReusableView {
+            
+            let userNickname = UserDefaults.standard.string(forKey: "userNickname") ?? ""
+            let challengerNickname = challengerName ?? "challenger"
+            
             if indexPath.section == 0 {
                 sectionHeader.leftTitleLabel.isHidden = false
-                sectionHeader.leftTitleLabel.text = "Austin"
+                sectionHeader.leftTitleLabel.text = userNickname
                 sectionHeader.rightTitleLabel.isHidden = true
             } else {
                 sectionHeader.rightTitleLabel.isHidden = false
-                sectionHeader.rightTitleLabel.text = "Bella"
+                sectionHeader.rightTitleLabel.text = challengerNickname
                 sectionHeader.leftTitleLabel.isHidden = true
             }
             return sectionHeader
@@ -114,11 +123,15 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let myChallenge = myDaysChallenge[indexPath.row]
-            performSegue(withIdentifier: "todayChallengeSegue", sender: myChallenge)
+//            let myChallenge = myDaysChallenge[indexPath.row]
+            let isMydata = true
+            certainDayChallenge = myDaysChallenge[indexPath.row]
+            performSegue(withIdentifier: "todayChallengeSegue", sender: isMydata)
         } else {
-            let challengerChallenge = challengerDaysChallenge[indexPath.row]
-            performSegue(withIdentifier: "todayChallengeSegue", sender: challengerChallenge)
+//            let challengerChallenge = challengerDaysChallenge[indexPath.row]
+            let isMydata = false
+            certainDayChallenge = myDaysChallenge[indexPath.row]
+            performSegue(withIdentifier: "todayChallengeSegue", sender: isMydata)
         }
     }
     
@@ -153,5 +166,10 @@ extension SingleChallengeVC: FirebaseManagerDelegate {
             challengeCollectionView.reloadData()
         case .challengeRequest, .comments, .friendRequest, .friends, .menu: break
         }
+    }
+    
+    func fireManager(_ manager: FirebaseManager, fetchDoc: [String: Any]) {
+        //in order to get the challenger's name
+        challengerName = fetchDoc["ownerName"] as? String
     }
 }

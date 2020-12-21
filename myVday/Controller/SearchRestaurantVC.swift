@@ -10,7 +10,6 @@ import UIKit
 
 class SearchRestaurantVC: UIViewController {
 
-    
     var isFilterBtnSelected = false {
         didSet {
             if isFilterBtnSelected == true {

@@ -38,6 +38,20 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         fireManager.delegate = self
         
+        friendBtn.layer.cornerRadius = 10.0
+        friendBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        friendBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
+        friendBtn.layer.shadowOpacity = 1.0
+        friendBtn.layer.shadowRadius = 10.0
+        friendBtn.layer.masksToBounds = false
+        
+        challengeBtn.layer.cornerRadius = 10.0
+        challengeBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        challengeBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
+        challengeBtn.layer.shadowOpacity = 1.0
+        challengeBtn.layer.shadowRadius = 10.0
+        challengeBtn.layer.masksToBounds = false
+        
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             fireManager.fetchProfileData(userId: userId)
         }
