@@ -31,7 +31,8 @@ class FriendListVC: UIViewController {
         
         fireManager.delegate = self
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            fireManager.fetchProfileSubCollection(userId: userId, dataType: .friends)
+            //fetch all my friends' data
+            fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
         }
     }
     
@@ -40,18 +41,22 @@ class FriendListVC: UIViewController {
         case .friendList:
             currentLayoutType = .newFriendRequest
             listNameLabel.text = "好友邀請"
+            newFriendBtn.isEnabled = false
             newFriendBtn.image = nil
             friendNotiBtn.image = UIImage(systemName: "person.2.fill")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-                fireManager.fetchProfileSubCollection(userId: userId, dataType: .friendRequest)
+                //抓取好友邀請清單
+                fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friendRequest)
             }
         case .newFriendRequest:
             currentLayoutType = .friendList
             listNameLabel.text = "好友"
+            newFriendBtn.isEnabled = true
             newFriendBtn.image = UIImage(systemName: "plus.circle")
             friendNotiBtn.image = UIImage(systemName: "bell")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-                fireManager.fetchProfileSubCollection(userId: userId, dataType: .friends)
+                //抓取好友清單
+                fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
             }
         }
     }
@@ -113,41 +118,55 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
         //拒絕好友邀請
         let targetUser = myFriends[indexPath.row]
         if editingStyle == .delete {
+            //將被拒絕的人從畫面上移除
             myFriends.remove(at: indexPath.row)
             friendListTableView.beginUpdates()
             friendListTableView.deleteRows(at: [indexPath], with: .automatic)
             friendListTableView.endUpdates()
-            fireManager.deleteRequest(user: userId, dataType: .friendRequest, requestId: targetUser.userId)
+            //將被拒絕的人從firestore好友邀請列表中移除
+            fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
         }
     }
     
+    //接受好友邀請
     @objc func acceptRequest(_ sender: UIButton) {
         guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
         let tappedPoint = sender.convert(CGPoint.zero, to: friendListTableView)
         if let indexPath = friendListTableView.indexPathForRow(at: tappedPoint) {
-             //接受好友邀請
-             let targetUser = myFriends[indexPath.row]
-             
-             fireManager.fetchProfileData(userId: userId)
-             guard let personalUserData = userData else { return }
-             fireManager.addNewFriend(friendsOfUserId: targetUser.userId, newFriend: personalUserData)
-             fireManager.addNewFriend(friendsOfUserId: userId, newFriend: targetUser)
-             fireManager.deleteRequest(user: userId, dataType: .friendRequest, requestId: targetUser.userId)
-            
-             myFriends.remove(at: indexPath.row)
-             friendListTableView.beginUpdates()
-             friendListTableView.deleteRows(at: [indexPath], with: .automatic)
-             friendListTableView.endUpdates()
+            let targetUser = myFriends[indexPath.row]
+            fireManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
+            guard let personalUserData = userData else { return }
+            //將自己加進別人的朋友列表
+            fireManager.addNewFriend(friendsOfUserId: targetUser.userId, newFriend: personalUserData)
+            //將別人加進自己的朋友列表
+            fireManager.addNewFriend(friendsOfUserId: userId, newFriend: targetUser)
+            //將已接受的好友從firestore邀請列表中移除
+            fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
+            //將已接受的好友從畫面中移除
+            myFriends.remove(at: indexPath.row)
+            friendListTableView.beginUpdates()
+            friendListTableView.deleteRows(at: [indexPath], with: .automatic)
+            friendListTableView.endUpdates()
         }
     }
     
 }
 
 extension FriendListVC: FirebaseManagerDelegate {
-    func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType) {
-        switch type {
-        case .friends:
-            for document in data {
+    func fireManager(_ manager: FirebaseManager, fetchDoc: [String: Any]) {
+        //fetch personal data
+        userData = User(
+            userId: fetchDoc["userId"] as? String ?? "no user id",
+            nickname: fetchDoc["nickname"] as? String ?? "no nickname",
+            describe: fetchDoc["describe"] as? String ?? "no describe",
+            emoji: fetchDoc["emoji"] as? String ?? "no emoji",
+            image: fetchDoc["image"] as? String ?? "no image")
+    }
+    
+    func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection) {
+        myFriends.removeAll()
+        if sub == .friends {
+            for document in docArray {
                 if let emojiString = document["emoji"] as? String,
                     let emoji = ProfileVC().emojiDecode(emojiString: emojiString) {
                     let aUser = User(
@@ -160,10 +179,8 @@ extension FriendListVC: FirebaseManagerDelegate {
                 }
                 friendListTableView.reloadData()
             }
-            
-        case .friendRequest:
-            myFriends.removeAll()
-            for document in data {
+        } else if sub == .friendRequest {
+            for document in docArray {
                 let aUser = User(
                     userId: document["userId"] as? String ?? "no user id",
                     nickname: document["nickname"] as? String ?? "no nickname",
@@ -173,16 +190,8 @@ extension FriendListVC: FirebaseManagerDelegate {
                 myFriends.append(aUser)
             }
             friendListTableView.reloadData()
-        case .comments, .menu, .challengeRequest, .owner, .challenger: break
+        } else {
+            return
         }
-    }
-    
-    func fireManager(_ manager: FirebaseManager, didDownloadProfile data: [String: Any]) {
-        userData = User(
-            userId: data["userId"] as? String ?? "no user id",
-            nickname: data["nickname"] as? String ?? "no nickname",
-            describe: data["describe"] as? String ?? "no describe",
-            emoji: data["emoji"] as? String ?? "no emoji",
-            image: data["image"] as? String ?? "no image")
     }
 }

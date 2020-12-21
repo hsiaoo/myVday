@@ -359,7 +359,7 @@ class FirebaseManager: NSObject {
     func addNewFriend(friendsOfUserId: String, newFriend: User) {
         do {
             try fireDB.collection("User").document(friendsOfUserId).collection("friends").document(newFriend.userId).setData(from: newFriend)
-            print("======\(friendsOfUserId)成功新增朋友\(newFriend.userId)======")
+            print("======\(friendsOfUserId)成功新增朋友\(newFriend.nickname)======")
         } catch let err {
             print("Error added friend to Firestore: \(err)")
         }
@@ -368,6 +368,7 @@ class FirebaseManager: NSObject {
     func addFriendRequest(newFriendId: String, personalData: User) {
         do {
             try fireDB.collection("User").document(newFriendId).collection("friendRequest").document(personalData.userId).setData(from: personalData)
+            print("======successfully sent a friend request to \(newFriendId)======")
         } catch let error {
             print("Error sent friend request: \(error)")
         }
@@ -521,8 +522,18 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func searchForNewFriend(name: String) {
-        fireDB.collection("User").whereField("userId", isEqualTo: name).getDocuments { (snapshot, error) in
+    func deleteSubCollectionDoc(mainCollection: MainCollection, mainDocId: String, sub: SubCollection, subDocId: String) {
+        fireDB.collection(mainCollection.name()).document(mainDocId).collection(sub.name()).document(subDocId).delete { (error) in
+            if let err = error {
+                print("Error deleted certain document in \(sub.name()) sub collection: \(err)")
+            } else {
+                print("======successfully deleted a document in \(sub.name()) sub collection: \(subDocId)======")
+            }
+        }
+    }
+    
+    func searchForNewFriend(nickname: String) {
+        fireDB.collection("User").whereField("nickname", isEqualTo: nickname).getDocuments { (snapshot, error) in
             if let err = error {
                 print("Error searched new friend: \(err)")
             } else {
