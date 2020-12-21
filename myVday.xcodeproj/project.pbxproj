@@ -86,7 +86,7 @@
 		8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionReusableView.swift; sourceTree = "<group>"; };
 		857699102585EEB500D5B895 /* AddNewChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewChallengeVC.swift; sourceTree = "<group>"; };
 		857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeWithFriendTableViewCell.swift; sourceTree = "<group>"; };
-		8585A2F8257644F300182AC3 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = myVday/View/MenuVC.swift; sourceTree = SOURCE_ROOT; };
+		8585A2F8257644F300182AC3 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = myVday/Controller/Restaurant/MenuVC.swift; sourceTree = SOURCE_ROOT; };
 		8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		8585B10B256FF37100FB5EFC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -225,21 +225,11 @@
 		8585B10A256FF33900FB5EFC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				85E50579259077F7007A94EE /* MainView */,
+				85E505782590779E007A94EE /* Restaurant */,
+				85E505772590766C007A94EE /* Friend */,
+				85E50576259075D8007A94EE /* Challenge */,
 				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
-				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
-				85353A04258B3F6200652B8D /* SignInVC.swift */,
-				85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */,
-				85E50570258EF52F007A94EE /* CustomTabBarController.swift */,
-				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
-				85D21B5F2580C8E80039A30B /* FriendListVC.swift */,
-				85E50566258DDDEE007A94EE /* ChallengeListVC.swift */,
-				85E50572258F5E6A007A94EE /* DayChallengeVC.swift */,
-				85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */,
-				857699102585EEB500D5B895 /* AddNewChallengeVC.swift */,
-				853539FF2589E80C00652B8D /* AddNewFriendVC.swift */,
-				8585B10B256FF37100FB5EFC /* MapVC.swift */,
-				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
-				8585A2F8257644F300182AC3 /* MenuVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -255,6 +245,48 @@
 				852D98F12570E02F004F86B1 /* EmojiTextField.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		85E50576259075D8007A94EE /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				85E50566258DDDEE007A94EE /* ChallengeListVC.swift */,
+				85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */,
+				85E50572258F5E6A007A94EE /* DayChallengeVC.swift */,
+				857699102585EEB500D5B895 /* AddNewChallengeVC.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
+		85E505772590766C007A94EE /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				85D21B5F2580C8E80039A30B /* FriendListVC.swift */,
+				853539FF2589E80C00652B8D /* AddNewFriendVC.swift */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		85E505782590779E007A94EE /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
+				85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */,
+				8585A2F8257644F300182AC3 /* MenuVC.swift */,
+				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		85E50579259077F7007A94EE /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				85353A04258B3F6200652B8D /* SignInVC.swift */,
+				85E50570258EF52F007A94EE /* CustomTabBarController.swift */,
+				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
+				8585B10B256FF37100FB5EFC /* MapVC.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -28,7 +28,13 @@ class ChallengeListVC: UIViewController {
         super.viewDidLoad()
         fireManager.delegate = self
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            fireManager.fetchMyChallenge(ower: userId)
+            fireManager.fetchMyChallenge(ownerId: userId)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+            fireManager.fetchMyChallenge(ownerId: userId)
         }
     }
     
@@ -37,6 +43,7 @@ class ChallengeListVC: UIViewController {
         case .challengeList:
             currentLayout = .newChallengeRequest
             listNameLabel.text = "挑戰邀請"
+            newChallengeBtn.isEnabled = false
             newChallengeBtn.image = nil
             challengeNotiBtn.image = UIImage(systemName: "flame.fill")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
@@ -45,10 +52,11 @@ class ChallengeListVC: UIViewController {
         case .newChallengeRequest:
             currentLayout = .challengeList
             listNameLabel.text = "挑戰"
+            newChallengeBtn.isEnabled = true
             newChallengeBtn.image = UIImage(systemName: "plus.circle")
             challengeNotiBtn.image = UIImage(systemName: "bell")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-                fireManager.fetchMyChallenge(ower: userId)
+                fireManager.fetchMyChallenge(ownerId: userId)
             }
         }
     }
@@ -59,12 +67,12 @@ class ChallengeListVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newChallengeSegue" {
-            if let controller = segue.destination as? AddNewChallengeVC {
-                controller.didAddedChallenge = {
-                    if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-                        self.fireManager.fetchMyChallenge(ower: userId)
-                    }
-                }
+            if segue.destination is AddNewChallengeVC {
+//                controller.didAddedChallenge = {
+//                    if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+//                        self.fireManager.fetchMyChallenge(ownerId: userId)
+//                    }
+//                }
             }
         } else {
             if segue.identifier == "singleChallengeSegue" {
@@ -115,7 +123,7 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                     challengeCell.challengeImageView.image = UIImage(systemName: "flame.fill")
                     challengeCell.challengeTitleLabel.text = myChallenge[indexPath.row].title
                     challengeCell.challengeDescribeLabel.text =
-                        "\(myChallenge[indexPath.row].owner)" +
+                        "\(myChallenge[indexPath.row].ownerName)" +
                         "向你發出\(myChallenge[indexPath.row].days)天挑戰：\n" +
                     "\(myChallenge[indexPath.row].describe)"
                     challengeCell.challengeCheckmarkBtn.isHidden = false
@@ -129,21 +137,23 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func acceptRequest(_ sender: UIButton) {
-        guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
+        guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential"),
+        let userNickname = UserDefaults.standard.string(forKey: "userNickname") else { return }
         let tappedPoint = sender.convert(CGPoint.zero, to: challengeListTableView)
         if let indexPath = challengeListTableView.indexPathForRow(at: tappedPoint) {
             //接受挑戰邀請
             let targetChallenge = myChallenge[indexPath.row]
             let acceptedChallenge = Challenge(
                 challengeId: targetChallenge.challengeId,
-                owner: userId,
+                ownerId: userId,
+                ownerName: userNickname,
                 title: targetChallenge.title,
                 describe: targetChallenge.describe,
                 days: targetChallenge.days,
                 vsChallengeId: targetChallenge.vsChallengeId,
                 updatedTime: targetChallenge.updatedTime,
                 daysCompleted: targetChallenge.daysCompleted)
-            fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "")
+            fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "", ownerId: acceptedChallenge.ownerId)
             fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
             
             //移除畫面上已被被接受挑戰的那一列
@@ -189,10 +199,12 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
 
 extension ChallengeListVC: FirebaseManagerDelegate {
     func fireManager(_ manager: FirebaseManager, didDownloadChallenge data: [QueryDocumentSnapshot]) {
+        myChallenge.removeAll()
          for document in data {
              let aChallenge = Challenge(
                  challengeId: document["challengeId"] as? String ?? "no challenge id",
-                 owner: document["owner"] as? String ?? "no owner",
+                 ownerId: document["ownerId"] as? String ?? "no owner id",
+                 ownerName: document["ownerName"] as? String ?? "no owner name",
                  title: document["title"] as? String ?? "no title",
                  describe: document["describe"] as? String ?? "no describe",
                  days: document["days"] as? Int ?? 0,
@@ -210,7 +222,8 @@ extension ChallengeListVC: FirebaseManagerDelegate {
             for document in data {
                 let aChallenge = Challenge(
                     challengeId: document["challengeId"] as? String ?? "no challenge id",
-                    owner: document["owner"] as? String ?? "no owner",
+                    ownerId: document["ownerId"] as? String ?? "no owner",
+                    ownerName: document["ownerName"] as? String ?? "no owner name",
                     title: document["title"] as? String ?? "no title",
                     describe: document["describe"] as? String ?? "no describe",
                     days: document["days"] as? Int ?? 0,

@@ -21,6 +21,35 @@ import FirebaseFirestoreSwift
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType)
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadChallenge data: [QueryDocumentSnapshot])
     @objc optional func fireManager(_ manager: FirebaseManager, didDownloadDays data: [QueryDocumentSnapshot], type: DataType)
+    @objc optional func fireManager(_ manager: FirebaseManager, fetchDoc: [String: Any])
+    @objc optional func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection)
+}
+
+@objc enum MainCollection: Int {
+    case challenge, restaurant, user
+    
+    func name() -> String {
+        switch self {
+        case .challenge: return "Challenge"
+        case .restaurant: return "Restaurant"
+        case .user: return "User"
+        }
+    }
+}
+
+@objc enum SubCollection: Int {
+    case days, comments, menu, friends, challengeRequest, friendRequest
+    
+    func name() -> String {
+        switch self {
+        case .days: return "Days"
+        case .comments: return "comments"
+        case .menu: return "menu"
+        case .friends: return "friends"
+        case .challengeRequest: return "challengeRequest"
+        case .friendRequest: return "friendRequest"
+        }
+    }
 }
 
 @objc enum DataType: Int {
@@ -49,6 +78,16 @@ class FirebaseManager: NSObject {
     let fireDB = Firestore.firestore()
     var ref: DocumentReference?
     weak var delegate: FirebaseManagerDelegate?
+    
+    func fetchMainCollectionDoc(mainCollection: MainCollection, docId: String) {
+        fireDB.collection(mainCollection.name()).document(docId).getDocument { (snapshot, _) in
+            if let document = snapshot, document.exists, let docData = document.data() {
+                self.delegate?.fireManager?(self, fetchDoc: docData)
+            } else {
+                print("======Document does not exist.======")
+            }
+        }
+    }
     
     //fetch basic information of restaurant from firebase
     func fetchData(current location: CLLocation) {
@@ -127,8 +166,23 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func fetchMyChallenge(ower: String) {
-        fireDB.collection("Challenge").whereField("owner", isEqualTo: ower).getDocuments { (snapshot, error) in
+    func fetchSubCollection(mainCollection: MainCollection, mainDocId: String, sub: SubCollection) {
+        fireDB.collection(mainCollection.name()).document(mainDocId).collection(sub.name()).getDocuments { (snapshot, error) in
+            if let err = error {
+                print("Error getting documents: \(err)")
+            } else {
+                if let docArray = snapshot?.documents {
+                    self.delegate?.fireManager?(self, fetchSubCollection: docArray, sub: sub)
+//                    for document in docArray {
+//                        print("\(document.documentID) => \(document.data())")
+//                    }
+                }
+            }
+        }
+    }
+    
+    func fetchMyChallenge(ownerId: String) {
+        fireDB.collection("Challenge").whereField("ownerId", isEqualTo: ownerId).getDocuments { (snapshot, error) in
             if let err = error {
                 print("Error getting challenge documents: \(err)")
             } else {
@@ -264,7 +318,7 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addChallenge(newChallenge: Challenge, friend: String) {
+    func addChallenge(newChallenge: Challenge, friend: String, ownerId: String) {
         if newChallenge.challengeId.isEmpty {
             do {
                 ref = try fireDB.collection("Challenge").addDocument(from: newChallenge, encoder: Firestore.Encoder(), completion: { (error) in
@@ -284,7 +338,8 @@ class FirebaseManager: NSObject {
             //accepted challenge，自己的挑戰已有challengeId。要拿自己的challengeId更新對方的vsChallengeId
             fireDB.collection("Challenge").document(newChallenge.challengeId).setData([
                 "challengeId": newChallenge.challengeId,
-                "owner": "Austin",
+                "ownerId": ownerId,
+                "ownerName": newChallenge.ownerName,
                 "title": newChallenge.title,
                 "describe": newChallenge.describe,
                 "days": newChallenge.days,
@@ -306,7 +361,7 @@ class FirebaseManager: NSObject {
             try fireDB.collection("User").document(friendsOfUserId).collection("friends").document(newFriend.userId).setData(from: newFriend)
             print("======\(friendsOfUserId)成功新增朋友\(newFriend.userId)======")
         } catch let err {
-            print("Error added challenge to Firestore: \(err)")
+            print("Error added friend to Firestore: \(err)")
         }
     }
     
@@ -324,7 +379,8 @@ class FirebaseManager: NSObject {
             "days": newChallenge.days,
             "daysCompleted": 0,
             "describe": newChallenge.describe,
-            "owner": newChallenge.owner,
+            "ownerId": newChallenge.ownerId,
+            "ownerName": newChallenge.ownerName,
             "title": newChallenge.title,
             "updatedTime": FieldValue.serverTimestamp(),
             "vsChallengeId": vsChallengeId
@@ -333,6 +389,7 @@ class FirebaseManager: NSObject {
                     print("Error added challenge request: \(err)")
                 } else {
                     if let challengeId = self.ref?.documentID {
+                        //更新challengeId
                         self.fireDB.collection("User").document(friend).collection(dataType.name()).document(challengeId).updateData([
                             "challengeId": challengeId
                         ]) { (error) in
@@ -411,25 +468,6 @@ class FirebaseManager: NSObject {
             }
         }
     }
-    
-//    func updateChallengeId(challengeId: String, friend: String, newChallenge: Challenge) {
-//        fireDB.collection("Challenge").document(challengeId).updateData([
-//            "challengeId": challengeId,
-//            "updatedTime": FieldValue.serverTimestamp()
-//        ]) { (error) in
-//            if let err = error {
-//                print("Error updated challenge id: \(err)")
-//            } else {
-//                self.addDaysChallenge(days: newChallenge.days, challengeId: challengeId)
-//                if friend.isEmpty {
-//                    return
-//                } else {
-//                    //發出challenge request
-//                    self.addChallengeRequest(newChallenge: newChallenge, friend: friend, vsChallengeId: challengeId, dataType: .challengeRequest)
-//                }
-//            }
-//        }
-//    }
     
     func updateDailyChallenge(challengeId: String, dayIndex: Int, title: String, newDescribe: String, oldDescribe: String, completedDays: Int) {
         fireDB.collection("Challenge").document(challengeId).collection("Days").document("\(dayIndex)").updateData([

@@ -21,13 +21,19 @@ class DayChallengeVC: UIViewController {
     var isEditingDayChallenge = false
     var theChallenge: Challenge?
     var todayChallenge: DaysChallenge?
+    var isMyChallengeData: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
         keyboardHandling()
-        if let okTodayChallenge = todayChallenge {
+        if let okTodayChallenge = todayChallenge, let isMyData = isMyChallengeData {
             todayChaSetting(todayChallenge: okTodayChallenge)
+            if isMyData == true {
+                return
+            } else {
+                editSaveBtn.isEnabled = false
+            }
         }
         
     }

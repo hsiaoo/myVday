@@ -10,7 +10,8 @@ import Foundation
 
 struct Challenge: Codable {
     let challengeId: String
-    let owner: String
+    let ownerId: String
+    let ownerName: String
     let title: String
     let describe: String
     let days: Int

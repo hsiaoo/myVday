@@ -16,21 +16,20 @@ class AddNewChallengeVC: UIViewController {
     @IBOutlet weak var challengeDaysTF: UITextField!
     @IBOutlet weak var challengeFriendTF: UITextField!
     
-    let testName = ["Bella", "Nina", "Tina"]
-    var myFriends = [User]()
     let fireManager = FirebaseManager()
-    var didAddedChallenge: (() -> Void)!
+    var myFriends = [User]()
+//    var didAddedChallenge: (() -> Void)!
     var friendTableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 450), style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
-        if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            fireManager.fetchProfileSubCollection(userId: userId, dataType: .friends)
-        }
-        challengeTitleTF.becomeFirstResponder()
+        friendTableViewSetting()
         challengeFriendTF.inputView = friendTableView
-        tableViewSetting()
+        if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+            //fetch user's friends for friendTableView
+            fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
+        }
     }
     
     @IBAction func tappedDoneBtn(_ sender: UIBarButtonItem) {
@@ -38,7 +37,8 @@ class AddNewChallengeVC: UIViewController {
             let describe = challengeDescribeTF.text,
             let daysString = challengeDaysTF.text,
             let friendName = challengeFriendTF.text,
-            let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
+            let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential"),
+            let userNickname = UserDefaults.standard.string(forKey: "userNickname") else { return }
         
         if title.isEmpty || describe.isEmpty || daysString.isEmpty {
             print("填好挑戰資料")
@@ -49,17 +49,19 @@ class AddNewChallengeVC: UIViewController {
             } else {
                 let newChallenge = Challenge(
                     challengeId: "",
-                    owner: userId,
+                    ownerId: userId,
+                    ownerName: userNickname,
                     title: title,
                     describe: describe,
                     days: daysInt,
                     vsChallengeId: "",
                     updatedTime: "",
                     daysCompleted: 0)
-                fireManager.addChallenge(newChallenge: newChallenge, friend: friendName)
-                dismiss(animated: true) {
-                    self.didAddedChallenge()
-                }
+                fireManager.addChallenge(newChallenge: newChallenge, friend: friendName, ownerId: userId)
+                dismiss(animated: true, completion: nil)
+//                dismiss(animated: true) {
+//                    self.didAddedChallenge()
+//                }
             }
         }
     }
@@ -67,9 +69,11 @@ class AddNewChallengeVC: UIViewController {
 }
 
 extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
-    func tableViewSetting() {
+    func friendTableViewSetting() {
+        //this is a tableView for input view of textField
         friendTableView.delegate = self
         friendTableView.dataSource = self
+        friendTableView.separatorStyle = .none
         friendTableView.register(ChallengeWithFriendTableViewCell.self, forCellReuseIdentifier: "friendCell")
     }
     
@@ -85,6 +89,7 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
         if let friendCell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? ChallengeWithFriendTableViewCell {
             friendCell.selectionStyle = .none
             if myFriends.isEmpty {
+                friendCell.friendImageView.layer.backgroundColor = UIColor.clear.cgColor
                 friendCell.friendNameLabel.text = "目前還沒有好友哦"
                 return friendCell
             } else {
@@ -105,10 +110,10 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AddNewChallengeVC: FirebaseManagerDelegate {
-    func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType) {
-        if type == .friends {
-            for document in data {
-                if let emojiString = document["emoji"] as? String,
+    func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection) {
+        if sub == .friends {
+            for document in docArray {
+               if  let emojiString = document["emoji"] as? String,
                     let emoji = ProfileVC().emojiDecode(emojiString: emojiString) {
                     let aUser = User(
                         userId: document["userId"] as? String ?? "no user id",
