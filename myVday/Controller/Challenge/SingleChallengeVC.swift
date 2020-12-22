@@ -130,7 +130,7 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
         } else {
 //            let challengerChallenge = challengerDaysChallenge[indexPath.row]
             let isMydata = false
-            certainDayChallenge = myDaysChallenge[indexPath.row]
+            certainDayChallenge = challengerDaysChallenge[indexPath.row]
             performSegue(withIdentifier: "todayChallengeSegue", sender: isMydata)
         }
     }

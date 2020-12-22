@@ -115,8 +115,18 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if let describeCell = tableView.dequeueReusableCell(withIdentifier: DescribeTableViewCell.identifier, for: indexPath) as? DescribeTableViewCell {
-                describeCell.restDescribeLabel.text = basicInfo?.describe
+            if let describeCell = tableView.dequeueReusableCell(
+                withIdentifier: DescribeTableViewCell.identifier,
+                for: indexPath) as? DescribeTableViewCell {
+                
+                if let restaurantInfo = basicInfo {
+                    //new line command(\n)
+                    let rawDescribe = restaurantInfo.describe
+                    describeCell.restDescribeLabel.text = rawDescribe.replacingOccurrences(of: "/n", with: "\n")
+                } else {
+                    print("======there is no basic information of the restaurant======")
+                }
+                
                 return describeCell
             }
         } else if indexPath.section == 1 {
