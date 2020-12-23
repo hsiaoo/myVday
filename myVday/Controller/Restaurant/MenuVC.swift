@@ -94,7 +94,8 @@ extension MenuVC: FirebaseManagerDelegate {
             let newCuisine = Menu(
                 cuisineName: menu["cuisineName"] as? String ?? "no cuisine name",
                 describe: menu["describe"] as? String ?? "no describe",
-                image: menu["image"] as? String ?? "no image")
+                image: menu["image"] as? String ?? "no image",
+                vote: menu["vote"] as? Int ?? 0)
             restaurantMenu.append(newCuisine)
         }
         menuCollectionView.reloadData()

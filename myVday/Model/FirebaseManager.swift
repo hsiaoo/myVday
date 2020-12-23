@@ -52,12 +52,11 @@ import FirebaseFirestoreSwift
     }
 }
 
-@objc enum ImageDataType: Int {
-    case user, menu, challenge
+@objc enum ImageType: Int {
+    case menu, challenge
     
     func name() -> String {
         switch self {
-        case .user: return "user"
         case .menu: return "menu"
         case .challenge: return "challenge"
         }
@@ -88,6 +87,7 @@ import FirebaseFirestoreSwift
 
 class FirebaseManager: NSObject {
     let fireDB = Firestore.firestore()
+    let storageDB =  Storage.storage()
     var ref: DocumentReference?
     weak var delegate: FirebaseManagerDelegate?
     
@@ -232,8 +232,8 @@ class FirebaseManager: NSObject {
         selectedImage: UIImage,
         nameOrDescribe: String,
         dataType: DataType) {
-        let storageRef = Storage.storage().reference().child(dataType.name()).child(restId).child("\(uniqueString).png")
-        let comprssedImage = selectedImage.jpegData(compressionQuality: 0.8)
+        let storageRef = storageDB.reference().child(dataType.name()).child(restId).child("\(uniqueString).png")
+        let comprssedImage = selectedImage.jpegData(compressionQuality: 0.1)
         if let uploadData = comprssedImage {
             storageRef.putData(uploadData, metadata: nil) { _, error in
                 if let err = error {
@@ -247,7 +247,7 @@ class FirebaseManager: NSObject {
                     if let uploadImageUrl = url?.absoluteString {
                         switch dataType {
                         case .menu:
-                            self.addCuisine(toFirestoreWith: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
+                            self.addCuisine(imageString: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
                         case .friends, .friendRequest, .challengeRequest, .owner, .challenger, .comments: break
                         }
                     }
@@ -256,9 +256,39 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func uploadProfileImage(userId: String, profileImage: UIImage, completion: @escaping (String) -> Void) {
+    func uploadMenuChallengeImage(
+        restaurantChallengeId: String,
+        imageNameString: String,
+        selectedImage: UIImage,
+        dataType: ImageType,
+        completion: @escaping (String) -> Void) {
+        let storageRef = storageDB.reference().child(dataType.name()).child(restaurantChallengeId).child("\(imageNameString).png")
+        let compressedImage = selectedImage.jpegData(compressionQuality: 0.1)
+        if let uploadData = compressedImage {
+            storageRef.putData(uploadData, metadata: nil) { (_, error) in
+                if let err = error {
+                    print("Error upload image: \(err)")
+                } else {
+                    storageRef.downloadURL { (imageUrl, error) in
+                        if let err = error {
+                            print("Error download image url: \(err)")
+                        } else {
+                            if let imageString = imageUrl?.absoluteString {
+                                completion(imageString)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func uploadProfileImage(
+        userId: String,
+        profileImage: UIImage,
+        completion: @escaping (String) -> Void) {
         let storageRef = Storage.storage().reference().child("user").child("\(userId).png")
-        let comprssedImage = profileImage.jpegData(compressionQuality: 0.8)
+        let comprssedImage = profileImage.jpegData(compressionQuality: 0.1)
         if let uploadData = comprssedImage {
             storageRef.putData(uploadData, metadata: nil) { _, error in
                 if let err = error {
@@ -268,8 +298,8 @@ class FirebaseManager: NSObject {
                         if let err = error {
                             print("Error getting image url: \(err)")
                         } else {
-                            if let uploadImageUrl = imageUrl?.absoluteString {
-                                completion(uploadImageUrl)
+                            if let imageString = imageUrl?.absoluteString {
+                                completion(imageString)
                             }
                         }
                     }
@@ -278,21 +308,21 @@ class FirebaseManager: NSObject {
         }
     }
     
-//    func uploadImageToStorage(imageId: String, uniqueString: String, selectedImage: UIImage, dataType: ImageDataType, completion: (String) -> Void) {
-//        let storageRef = Storage.storage().reference().child(dataType.name()).child(<#T##path: String##String#>)
+//    func addDocInSubCollection(mainCollection: MainCollection, mainDocId: String, subCollection: SubCollection, subDocId: String) {
+//        fireDB.collection(mainCollection.name()).document(mainDocId).collection(subCollection.name()).document(subDocId).setData(from: <#T##Encodable#>)
 //    }
-    
-    func addCuisine(toFirestoreWith urlString: String, restaurantId: String, cuisineName: String) {
+        
+    func addCuisine(imageString: String, restaurantId: String, cuisineName: String) {
         fireDB.collection("Restaurant").document(restaurantId).collection("menu").document(cuisineName).setData([
             "cuisineName": cuisineName,
             "describe": "",
-            "image": urlString,
+            "image": imageString,
             "vote": 0
         ]) { (error) in
             if let err = error {
                 print("Error update menu: \(err)")
             } else {
-                print("======successfully updated menu======")
+                print("======成功新增一道\(restaurantId)的餐點======")
 //                self.delegate?.fireManager?(self, didFinishUpdate: .menu)
             }
         }
@@ -509,10 +539,11 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func updateDailyChallenge(challengeId: String, dayIndex: Int, title: String, newDescribe: String, oldDescribe: String, completedDays: Int) {
+    func updateDailyChallenge(challengeId: String, dayIndex: Int, title: String, newDescribe: String, oldDescribe: String, imageString: String, completedDays: Int) {
         fireDB.collection("Challenge").document(challengeId).collection("Days").document("\(dayIndex)").updateData([
             "title": title,
-            "describe": newDescribe
+            "describe": newDescribe,
+            "image": imageString
         ]) { (error) in
             if let err = error {
                 print("Error updated daily challenge: \(err)")

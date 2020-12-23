@@ -19,16 +19,18 @@ class DayChallengeVC: UIViewController {
     
     let fireManager = FirebaseManager()
     var isEditingDayChallenge = false
+    var isMyChallengeData: Bool?
     var theChallenge: Challenge?
     var todayChallenge: DaysChallenge?
-    var isMyChallengeData: Bool?
+    var selectedImage: UIImage?
+    var downloadedImageString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
         keyboardHandling()
         if let okTodayChallenge = todayChallenge, let isMyData = isMyChallengeData {
-            todayChaSetting(todayChallenge: okTodayChallenge)
+            todayChallengeSetting(todayChallenge: okTodayChallenge)
             if isMyData == true {
                 return
             } else {
@@ -48,10 +50,36 @@ class DayChallengeVC: UIViewController {
     }
     
     @IBAction func tappedchaCameraBtn(_ sender: Any) {
-        //camera and photo library
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let imagePickerAlertController = UIAlertController(title: "上傳照片", message: "請選擇照片來源", preferredStyle: .actionSheet)
+        let imageFromLibraryAction = UIAlertAction(title: "照片圖庫", style: .default) { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        
+        let imageFromCameraAction = UIAlertAction(title: "相機", style: .default) { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+            imagePickerController.dismiss(animated: true, completion: nil)
+        }
+        
+        imagePickerAlertController.addAction(imageFromLibraryAction)
+        imagePickerAlertController.addAction(imageFromCameraAction)
+        imagePickerAlertController.addAction(cancelAction)
+        
+        present(imagePickerAlertController, animated: true, completion: nil)
     }
     
-    func todayChaSetting(todayChallenge: DaysChallenge) {
+    func todayChallengeSetting(todayChallenge: DaysChallenge) {
         dayChaTitleTF.text = todayChallenge.title
         dayChaDescribeTextView.text = todayChallenge.describe
         if todayChallenge.image.isEmpty {
@@ -92,7 +120,7 @@ class DayChallengeVC: UIViewController {
         guard let newTitle = dayChaTitleTF.text,
             let newDescribe = dayChaDescribeTextView.text else { return }
         
-        if let theCha = theChallenge, let todayCha = todayChallenge {
+        if let theCha = theChallenge, let todayCha = todayChallenge, let imageString = downloadedImageString {
             let challengeId = theCha.challengeId
             let completedDays = theCha.daysCompleted
             let oldDescribe = todayCha.describe
@@ -104,6 +132,7 @@ class DayChallengeVC: UIViewController {
                 title: newTitle,
                 newDescribe: newDescribe,
                 oldDescribe: oldDescribe,
+                imageString: imageString,
                 completedDays: completedDays)
         }
     }
@@ -132,6 +161,31 @@ class DayChallengeVC: UIViewController {
         self.view.frame.origin.y = 0
     }
     
+}
+
+extension DayChallengeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    //顯示圖片
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedImage = pickedImage
+            dayChallengeImageView.image = pickedImage
+        }
+        dismiss(animated: true) {
+            //將圖片上傳至storage
+            if let okChallenge = self.theChallenge,
+                let okTodayChallenge = self.todayChallenge,
+                let okImage = self.selectedImage {
+                self.fireManager.uploadMenuChallengeImage(
+                    restaurantChallengeId: okChallenge.challengeId,
+                    imageNameString: okTodayChallenge.index.description,
+                    selectedImage: okImage,
+                    dataType: .challenge) { imageString in
+                        self.downloadedImageString = imageString
+                        print("======成功上傳第\(okTodayChallenge.index)天的挑戰照片======")
+                }
+            }
+        }
+    }
 }
 
 extension DayChallengeVC: FirebaseManagerDelegate {

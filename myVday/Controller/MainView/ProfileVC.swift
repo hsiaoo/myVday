@@ -93,7 +93,7 @@ class ProfileVC: UIViewController {
                         newProfileData.image = ""
                         fireManager.updateProfile(profileData: newProfileData)
                     } else {
-                        //先上傳頭貼，在上傳完整個人資料
+                        //先上傳頭貼，再上傳完整的個人資料
                         if let newProfileImage = selectedImage, let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
                             fireManager.uploadProfileImage(userId: userId, profileImage: newProfileImage) { (imageString) in
                                 newProfileData.image = imageString

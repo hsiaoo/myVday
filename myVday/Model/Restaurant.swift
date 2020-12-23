@@ -28,11 +28,11 @@ struct Comments {
     let date: String
 }
 
-struct Menu {
-    let cuisineName: String
-    let describe: String
-    let image: String
-//    let vote: Int
+struct Menu: Codable {
+    var cuisineName: String
+    var describe: String
+    var image: String
+    var vote: Int
 }
 
 struct NewRestaurant {

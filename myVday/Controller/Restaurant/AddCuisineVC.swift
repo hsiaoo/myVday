@@ -18,6 +18,7 @@ class AddCuisineVC: UIViewController {
     let fireManager = FirebaseManager()
     var restId: String?
     var selectedImage: UIImage?
+    var imageString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,26 +52,29 @@ class AddCuisineVC: UIViewController {
     }
     
     @IBAction func uploadNewCuisineBtn(_ sender: UIBarButtonItem) {
-        if let cuisineName = cuisineNameTF.text {
-            if cuisineName.isEmpty || selectedImage == nil {
-                print("======缺少餐點名稱或餐點照片======")
-            } else {
-                let uniqueString = NSUUID().uuidString
-                if let restId = restId, let cuisineImage = selectedImage {
-                    fireManager.uploadImage(
-                        toStorageWith: restId,
-                        uniqueString: uniqueString,
-                        selectedImage: cuisineImage,
-                        nameOrDescribe: cuisineName,
-                        dataType: .menu)
-                }
-            }
+        
+//        if let cuisineName = cuisineNameTF.text, let okImageString = imageString, let okRestaurantId = restId {
+//            if cuisineName.isEmpty || selectedImage == nil {
+//                print("======缺少餐點名稱或餐點照片======")
+//            } else {
+//                let newCuisine = Menu(cuisineName: cuisineName, describe: "", image: okImageString, vote: 0)
+//                fireManager.addDocInSubCollection(mainCollection: .restaurant, mainDocId: okRestaurantId, subCollection: .menu, subDocId: newCuisine.cuisineName)
+//
+//            }
+                    if let okCuisineName = cuisineNameTF.text, let okImageString = imageString, let okRestaurantId = restId {
+                        if okCuisineName.isEmpty || selectedImage == nil {
+                            print("======缺少餐點名稱或餐點照片======")
+                        } else {
+                            fireManager.addCuisine(
+                                imageString: okImageString,
+                                restaurantId: okRestaurantId,
+                                cuisineName: okCuisineName)
+                        }
+                    }
+            //        navigationController?.popViewController(animated: true)
         }
-//        navigationController?.popViewController(animated: true)
     }
     
-}
-
 extension AddCuisineVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cuisineNameTF.resignFirstResponder()
@@ -86,6 +90,18 @@ extension AddCuisineVC: UIImagePickerControllerDelegate & UINavigationController
             selectedImage = pickedImage
             photoImageView.image = selectedImage
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            if let restaurantId = self.restId, let okImage = self.selectedImage {
+                let uniqueString = NSUUID().uuidString
+                self.fireManager.uploadMenuChallengeImage(
+                    restaurantChallengeId: restaurantId,
+                    imageNameString: uniqueString,
+                    selectedImage: okImage,
+                    dataType: .menu) { picImage in
+                        self.imageString = picImage
+                        print("======成功上傳餐點相片，image string: \(picImage)======")
+                }
+            }
+        }
     }
 }
