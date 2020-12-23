@@ -46,6 +46,7 @@ class AddCuisineVC: UIViewController {
         imagePickerAlertController.addAction(imageFromLibAction)
         imagePickerAlertController.addAction(imageFromCamaraAction)
         imagePickerAlertController.addAction(cancelAction)
+        
         present(imagePickerAlertController, animated: true, completion: nil)
     }
     

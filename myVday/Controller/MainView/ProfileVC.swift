@@ -33,9 +33,11 @@ class ProfileVC: UIViewController {
     let fireManager = FirebaseManager()
     var profileData: User?
     var isEditingProfile = false
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fireManager.delegate = self
         
         friendBtn.layer.cornerRadius = 10.0
@@ -82,17 +84,53 @@ class ProfileVC: UIViewController {
             profileDescribeTF.resignFirstResponder()
             profileEmojiTF.resignFirstResponder()
             
-            if let newProfileData = profileData {
+            if var newProfileData = profileData {
                 if newProfileData.nickname.isEmpty {
                     print("請輸入暱稱")
                 } else {
-                    fireManager.updateProfile(profileData: newProfileData)
+                    if selectedImage == nil {
+                        //使用者沒有選擇頭貼，直接上傳其他資料
+                        newProfileData.image = ""
+                        fireManager.updateProfile(profileData: newProfileData)
+                    } else {
+                        //先上傳頭貼，在上傳完整個人資料
+                        if let newProfileImage = selectedImage, let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+                            fireManager.uploadProfileImage(userId: userId, profileImage: newProfileImage) { (imageString) in
+                                newProfileData.image = imageString
+                                self.fireManager.updateProfile(profileData: newProfileData)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
     @IBAction func addProfilePicBtn(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let imagePickerAlertController = UIAlertController(title: "上傳照片", message: "請選擇照片來源", preferredStyle: .actionSheet)
+        let imageFromLibAction = UIAlertAction(title: "照片圖庫", style: .default) { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        let imageFromCamaraAction = UIAlertAction(title: "相機", style: .default) { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+            imagePickerController.dismiss(animated: true, completion: nil)
+        }
+        imagePickerAlertController.addAction(imageFromLibAction)
+        imagePickerAlertController.addAction(imageFromCamaraAction)
+        imagePickerAlertController.addAction(cancelAction)
+        
+        present(imagePickerAlertController, animated: true, completion: nil)
     }
     
     @IBAction func friendBtnTapped(_ sender: Any) {
@@ -119,7 +157,7 @@ class ProfileVC: UIViewController {
             profileDescribeTF.text = userData.describe
             profileEmojiTF.text = emojiDecode(emojiString: userData.emoji)
             
-            //處理使用者的照片
+            //下載並使用者的照片
             if userData.image.isEmpty {
                 return
             } else {
@@ -175,6 +213,19 @@ extension ProfileVC: UITextFieldDelegate {
         default:
             break
         }
+    }
+}
+
+extension ProfileVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    //顯示頭貼
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedImage = pickedImage
+            profileImageView.image = selectedImage
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
 

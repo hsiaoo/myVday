@@ -52,6 +52,18 @@ import FirebaseFirestoreSwift
     }
 }
 
+@objc enum ImageDataType: Int {
+    case user, menu, challenge
+    
+    func name() -> String {
+        switch self {
+        case .user: return "user"
+        case .menu: return "menu"
+        case .challenge: return "challenge"
+        }
+    }
+}
+
 @objc enum DataType: Int {
     case comments
     case menu
@@ -244,6 +256,32 @@ class FirebaseManager: NSObject {
         }
     }
     
+    func uploadProfileImage(userId: String, profileImage: UIImage, completion: @escaping (String) -> Void) {
+        let storageRef = Storage.storage().reference().child("user").child("\(userId).png")
+        let comprssedImage = profileImage.jpegData(compressionQuality: 0.8)
+        if let uploadData = comprssedImage {
+            storageRef.putData(uploadData, metadata: nil) { _, error in
+                if let err = error {
+                    print("Error upload image: \(err)")
+                } else {
+                    storageRef.downloadURL { (imageUrl, error) in
+                        if let err = error {
+                            print("Error getting image url: \(err)")
+                        } else {
+                            if let uploadImageUrl = imageUrl?.absoluteString {
+                                completion(uploadImageUrl)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+//    func uploadImageToStorage(imageId: String, uniqueString: String, selectedImage: UIImage, dataType: ImageDataType, completion: (String) -> Void) {
+//        let storageRef = Storage.storage().reference().child(dataType.name()).child(<#T##path: String##String#>)
+//    }
+    
     func addCuisine(toFirestoreWith urlString: String, restaurantId: String, cuisineName: String) {
         fireDB.collection("Restaurant").document(restaurantId).collection("menu").document(cuisineName).setData([
             "cuisineName": cuisineName,
@@ -266,7 +304,8 @@ class FirebaseManager: NSObject {
         fireDB.collection("User").document(profileData.userId).updateData([
             "nickname": profileData.nickname,
             "describe": profileData.describe,
-            "emoji": profileData.emoji
+            "emoji": profileData.emoji,
+            "image": profileData.image
         ]) { (error) in
             if let err = error {
                 print("Error updating profile: \(err)")
