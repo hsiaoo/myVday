@@ -174,16 +174,26 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
-        //拒絕挑戰邀請
-        let targetChallenge = myChallenge[indexPath.row]
-        if editingStyle == .delete {
-            myChallenge.remove(at: indexPath.row)
-            challengeListTableView.beginUpdates()
-            challengeListTableView.deleteRows(at: [indexPath], with: .automatic)
-            challengeListTableView.endUpdates()
-            fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if currentLayout == .challengeList {
+            //如果是在挑戰列表畫面，則不啟用左滑刪除功能
+            return nil
+        } else {
+            let deleteContextItem = UIContextualAction(style: .destructive, title: "") { (_, view, completion) in
+                guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
+                //拒絕挑戰邀請
+                let targetChallenge = self.myChallenge[indexPath.row]
+                self.myChallenge.remove(at: indexPath.row)
+                self.challengeListTableView.beginUpdates()
+                self.challengeListTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.challengeListTableView.endUpdates()
+                self.fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
+                
+                completion(true)
+            }
+            deleteContextItem.image = UIImage(systemName: "trash")
+            let swipeAction = UISwipeActionsConfiguration(actions: [deleteContextItem])
+            return swipeAction
         }
     }
     

@@ -104,28 +104,37 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
-        
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if currentLayoutType == .friendList {
+            //如果是在好友列表畫面，則不啟用左滑刪除功能
+            return nil
+        } else {
+            let deleteContextItem = UIContextualAction(style: .destructive, title: "") { (_, view, completion) in
+                guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
+                let targetUser = self.myFriends[indexPath.row]
+                //將被拒絕的人從畫面上移除
+                self.myFriends.remove(at: indexPath.row)
+                self.friendListTableView.beginUpdates()
+                self.friendListTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.friendListTableView.endUpdates()
+                //將被拒絕的人從firestore好友邀請列表中移除
+                self.fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
+                
+                completion(true)
+            }
+            deleteContextItem.image = UIImage(systemName: "trash")
+            let swipeAction = UISwipeActionsConfiguration(actions: [deleteContextItem])
+            return swipeAction
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
-        //拒絕好友邀請
-        let targetUser = myFriends[indexPath.row]
-        if editingStyle == .delete {
-            //將被拒絕的人從畫面上移除
-            myFriends.remove(at: indexPath.row)
-            friendListTableView.beginUpdates()
-            friendListTableView.deleteRows(at: [indexPath], with: .automatic)
-            friendListTableView.endUpdates()
-            //將被拒絕的人從firestore好友邀請列表中移除
-            fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
-        }
     }
     
     //接受好友邀請
