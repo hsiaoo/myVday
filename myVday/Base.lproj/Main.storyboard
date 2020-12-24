@@ -220,7 +220,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEv-2S-hwd" userLabel="profileNickNameTF">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEv-2S-hwd" userLabel="profileNickNameTF">
                                         <rect key="frame" x="169" y="140" width="237" height="72.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -230,7 +230,7 @@
                                             <outlet property="delegate" destination="ccB-hS-tas" id="I11-ew-xMy"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cH9-gp-ebO" userLabel="profileDescribeTF">
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cH9-gp-ebO" userLabel="profileDescribeTF">
                                         <rect key="frame" x="172" y="207.5" width="234" height="24.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -240,12 +240,9 @@
                                             <outlet property="delegate" destination="ccB-hS-tas" id="Yxo-E1-XRo"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="axn-0N-uzX" userLabel="profileEmojiTF" customClass="EmojiTextField" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="134" y="70" width="50" height="57.5"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="axn-0N-uzX" userLabel="profileEmojiTF" customClass="EmojiTextField" customModule="myVday" customModuleProvider="target">
+                                        <rect key="frame" x="134" y="70" width="272" height="57.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="7DH-9g-4VV"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="40"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -262,6 +259,7 @@
                                     <constraint firstItem="6ww-5d-RqG" firstAttribute="leading" secondItem="9xB-7d-E4E" secondAttribute="leading" constant="45" id="U2C-ij-U5V"/>
                                     <constraint firstItem="6ww-5d-RqG" firstAttribute="width" secondItem="9xB-7d-E4E" secondAttribute="width" multiplier="0.28744" id="ed9-8F-nJL"/>
                                     <constraint firstItem="GEv-2S-hwd" firstAttribute="leading" secondItem="6ww-5d-RqG" secondAttribute="trailing" constant="5" id="h1l-xO-AOM"/>
+                                    <constraint firstAttribute="trailing" secondItem="axn-0N-uzX" secondAttribute="trailing" constant="8" id="lS3-ea-d5k"/>
                                     <constraint firstItem="cH9-gp-ebO" firstAttribute="leading" secondItem="GEv-2S-hwd" secondAttribute="leading" constant="3" id="tlt-0R-Fby"/>
                                     <constraint firstItem="axn-0N-uzX" firstAttribute="leading" secondItem="6ww-5d-RqG" secondAttribute="trailing" constant="-30" id="x1J-Tk-Ncg"/>
                                 </constraints>
@@ -759,7 +757,7 @@
                                     <outlet property="delegate" destination="fId-nH-GuI" id="8Me-s9-ynM"/>
                                 </connections>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipses.bubble.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gn0-Ql-YRA">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="captions.bubble.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gn0-Ql-YRA">
                                 <rect key="frame" x="26" y="259" width="37" height="33.5"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1177,14 +1175,14 @@
                     <navigationItem key="navigationItem" title="餐廳資訊" id="lqA-ez-Mi8">
                         <barButtonItem key="backBarButtonItem" title=" " id="mvR-tv-280"/>
                         <rightBarButtonItems>
-                            <barButtonItem title="餐點" id="Xnf-ff-KsT">
+                            <barButtonItem title="Item" image="dish32" id="Xnf-ff-KsT">
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="goToMenuBtn:" destination="VOZ-lq-Qvh" id="c6D-mB-V2h"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="評論" id="HSw-6M-oJ8">
-                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <barButtonItem image="captions.bubble" catalog="system" id="HSw-6M-oJ8">
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="writeCommentBtn:" destination="VOZ-lq-Qvh" id="qIa-ux-SWh"/>
                                 </connections>
@@ -1684,7 +1682,10 @@
         <image name="blankTask" width="64" height="64"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="captions.bubble" catalog="system" width="128" height="110"/>
+        <image name="captions.bubble.fill" catalog="system" width="128" height="110"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="dish32" width="32" height="32"/>
         <image name="dish64" width="64" height="64"/>
         <image name="ellipses.bubble.fill" catalog="system" width="128" height="110"/>
         <image name="escape" catalog="system" width="128" height="121"/>

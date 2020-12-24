@@ -28,45 +28,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // if user is logged in before
-        if UserDefaults.standard.string(forKey: "appleUserIDCredential") != nil {
-            // instantiate the main tab bar controller and set it as root view controller
-            // using the storyboard identifier we set earlier
-            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-            window?.rootViewController = mainTabBarController
-        } else {
-            // if user isn't logged in
-            // instantiate the navigation controller and set it as root view controller
-            // using the storyboard identifier we set earlier
-            let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
-            window?.rootViewController = loginNavController
-        }
-   
-//        if let userID = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-//            // get the login status of Apple sign in for the app
-//            ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID, completion: { credentialState, _ in
-//                switch credentialState {
-//                case .authorized:
-//                    print("user remain logged in, proceed to another view")
-//                    DispatchQueue.main.async {
-//                        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-//                        self.window?.rootViewController = mainTabBarController
-//                    }
-//                case .revoked:
-//                    print("user logged in before but revoked")
-//                    DispatchQueue.main.async {
-//                        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
-//                        self.window?.rootViewController = loginNavController
-//                    }
-//                case .notFound:
-//                    DispatchQueue.main.async {
-//                        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
-//                        self.window?.rootViewController = loginNavController
-//                    }
-//                default:
-//                    print("unknown state")
-//                }
-//            })
+//        if UserDefaults.standard.string(forKey: "appleUserIDCredential") != nil {
+//            // instantiate the main tab bar controller and set it as root view controller
+//            // using the storyboard identifier we set earlier
+//            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+//            window?.rootViewController = mainTabBarController
+//        } else {
+//            // if user isn't logged in
+//            // instantiate the navigation controller and set it as root view controller
+//            // using the storyboard identifier we set earlier
+//            let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
+//            window?.rootViewController = loginNavController
 //        }
+   
+        if let userID = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+            // get the login status of Apple sign in for the app
+            ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID, completion: { credentialState, _ in
+                switch credentialState {
+                case .authorized:
+                    print("user remain logged in, proceed to another view")
+                    DispatchQueue.main.async {
+                        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                        self.window?.rootViewController = mainTabBarController
+                    }
+                case .revoked:
+                    print("user logged in before but revoked")
+                    DispatchQueue.main.async {
+                        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
+                        self.window?.rootViewController = loginNavController
+                    }
+                case .notFound:
+                    DispatchQueue.main.async {
+                        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
+                        self.window?.rootViewController = loginNavController
+                    }
+                default:
+                    print("unknown state")
+                }
+            })
+        }
         
     }
     
