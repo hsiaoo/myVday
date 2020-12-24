@@ -38,7 +38,7 @@ import FirebaseFirestoreSwift
 }
 
 @objc enum SubCollection: Int {
-    case days, comments, menu, friends, challengeRequest, friendRequest
+    case days, comments, menu, friends, challengeRequest, friendRequest, flagComment, flagUser
     
     func name() -> String {
         switch self {
@@ -48,6 +48,8 @@ import FirebaseFirestoreSwift
         case .friends: return "friends"
         case .challengeRequest: return "challengeRequest"
         case .friendRequest: return "friendRequest"
+        case .flagComment: return " flagComment"
+        case .flagUser: return "flagUser"
         }
     }
 }
@@ -226,35 +228,35 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func uploadImage(
-        toStorageWith restId: String,
-        uniqueString: String,
-        selectedImage: UIImage,
-        nameOrDescribe: String,
-        dataType: DataType) {
-        let storageRef = storageDB.reference().child(dataType.name()).child(restId).child("\(uniqueString).png")
-        let comprssedImage = selectedImage.jpegData(compressionQuality: 0.1)
-        if let uploadData = comprssedImage {
-            storageRef.putData(uploadData, metadata: nil) { _, error in
-                if let err = error {
-                    print("Error upload data: \(err)")
-                }
-                storageRef.downloadURL { (url, error) in
-                    if let err = error {
-                        print("Error getting image url: \(err)")
-                    }
-                    
-                    if let uploadImageUrl = url?.absoluteString {
-                        switch dataType {
-                        case .menu:
-                            self.addCuisine(imageString: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
-                        case .friends, .friendRequest, .challengeRequest, .owner, .challenger, .comments: break
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    func uploadImage(
+//        toStorageWith restId: String,
+//        uniqueString: String,
+//        selectedImage: UIImage,
+//        nameOrDescribe: String,
+//        dataType: DataType) {
+//        let storageRef = storageDB.reference().child(dataType.name()).child(restId).child("\(uniqueString).png")
+//        let comprssedImage = selectedImage.jpegData(compressionQuality: 0.1)
+//        if let uploadData = comprssedImage {
+//            storageRef.putData(uploadData, metadata: nil) { _, error in
+//                if let err = error {
+//                    print("Error upload data: \(err)")
+//                }
+//                storageRef.downloadURL { (url, error) in
+//                    if let err = error {
+//                        print("Error getting image url: \(err)")
+//                    }
+//
+//                    if let uploadImageUrl = url?.absoluteString {
+//                        switch dataType {
+//                        case .menu:
+//                            self.addCuisine(imageString: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
+//                        case .friends, .friendRequest, .challengeRequest, .owner, .challenger, .comments: break
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     func uploadMenuChallengeImage(
         restaurantChallengeId: String,
@@ -307,10 +309,6 @@ class FirebaseManager: NSObject {
             }
         }
     }
-    
-//    func addDocInSubCollection(mainCollection: MainCollection, mainDocId: String, subCollection: SubCollection, subDocId: String) {
-//        fireDB.collection(mainCollection.name()).document(mainDocId).collection(subCollection.name()).document(subDocId).setData(from: <#T##Encodable#>)
-//    }
         
     func addCuisine(imageString: String, restaurantId: String, cuisineName: String) {
         fireDB.collection("Restaurant").document(restaurantId).collection("menu").document(cuisineName).setData([
@@ -488,8 +486,10 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addComment(toFirestoreWith restaurantId: String, nickname: String, comment: String) {
+    func addComment(toFirestoreWith restaurantId: String, userId: String
+        , nickname: String, comment: String) {
         ref = fireDB.collection("Restaurant").document(restaurantId).collection("comments").addDocument(data: [
+            "userId": userId,
             "name": nickname,
             "comment": comment,
             "date": FieldValue.serverTimestamp()
@@ -622,6 +622,19 @@ class FirebaseManager: NSObject {
                 }
                 let newnew = document.documentChanges.map {$0.document.data()}
                 print("======something new: \(newnew)======")
+        }
+    }
+    
+    func report(mainCollection: MainCollection, mainDocId: String, subCollection: SubCollection, reportedId: String, reportedData: Comments) {
+        do {
+            try fireDB.collection(mainCollection.name())
+                .document(mainDocId)
+                .collection(subCollection.name())
+                .document(reportedId)
+                .setData(from: reportedData)
+            print("=====完成檢舉=====")
+        } catch let error {
+            fatalError("======Error: \(error)======")
         }
     }
 

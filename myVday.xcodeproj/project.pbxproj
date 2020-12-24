@@ -10,14 +10,12 @@
 		851C05272574D072002B893F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C05262574D072002B893F /* Restaurant.swift */; };
 		8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */; };
 		8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */; };
-		852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */; };
 		852D98F02570D445004F86B1 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98EF2570D445004F86B1 /* CheckBox.swift */; };
 		852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* EmojiTextField.swift */; };
 		8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */; };
 		85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853539FF2589E80C00652B8D /* AddNewFriendVC.swift */; };
 		85353A022589EB0600652B8D /* SearchForNewFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */; };
 		85353A05258B3F6200652B8D /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A04258B3F6200652B8D /* SignInVC.swift */; };
-		853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6C425737CBE007BA763 /* PlaceMarker.swift */; };
 		853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6CC2573D41B007BA763 /* FirebaseManager.swift */; };
 		8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AC256E38E6008C64FA /* AppDelegate.swift */; };
 		8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AE256E38E6008C64FA /* SceneDelegate.swift */; };
@@ -63,7 +61,6 @@
 		851C05262574D072002B893F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantVC.swift; sourceTree = "<group>"; };
 		8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
-		852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestaurantVC.swift; sourceTree = "<group>"; };
 		852D98EF2570D445004F86B1 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		852D98F12570E02F004F86B1 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCuisineVC.swift; sourceTree = "<group>"; };
@@ -71,7 +68,6 @@
 		85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForNewFriendTableViewCell.swift; sourceTree = "<group>"; };
 		85353A03258B3E7400652B8D /* myVday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVday.entitlements; sourceTree = "<group>"; };
 		85353A04258B3F6200652B8D /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
-		853DE6C425737CBE007BA763 /* PlaceMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		853DE6CC2573D41B007BA763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8551E0A9256E38E6008C64FA /* myVday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8551E0AC256E38E6008C64FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,7 +173,6 @@
 			children = (
 				853DE6CC2573D41B007BA763 /* FirebaseManager.swift */,
 				85DCBE1E257E1F21002A78F4 /* MapManager.swift */,
-				853DE6C425737CBE007BA763 /* PlaceMarker.swift */,
 				85D21B632581E8F10039A30B /* Challenge.swift */,
 				851C05262574D072002B893F /* Restaurant.swift */,
 				85D21B5D2580B2FE0039A30B /* User.swift */,
@@ -229,7 +224,6 @@
 				85E505782590779E007A94EE /* Restaurant */,
 				85E505772590766C007A94EE /* Friend */,
 				85E50576259075D8007A94EE /* Challenge */,
-				852D98ED2570C6D3004F86B1 /* SearchRestaurantVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -466,7 +460,6 @@
 				85D21B5E2580B2FE0039A30B /* User.swift in Sources */,
 				85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */,
 				857699132585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift in Sources */,
-				852D98EE2570C6D3004F86B1 /* SearchRestaurantVC.swift in Sources */,
 				85D21B6625833BF00039A30B /* SingleChallengeVC.swift in Sources */,
 				85E50571258EF52F007A94EE /* CustomTabBarController.swift in Sources */,
 				852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */,
@@ -476,7 +469,6 @@
 				85E50569258DDEE9007A94EE /* ChallengeListTableViewCell.swift in Sources */,
 				85D21B602580C8E80039A30B /* FriendListVC.swift in Sources */,
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
-				853DE6C525737CBE007BA763 /* PlaceMarker.swift in Sources */,
 				85353A05258B3F6200652B8D /* SignInVC.swift in Sources */,
 				8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */,
 				85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */,

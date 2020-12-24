@@ -38,8 +38,11 @@ class WriteCommentVC: UIViewController {
             print("======請輸入評論======")
         } else {
             //新增評論
-            if let restId = restaurantId, let userName = UserDefaults.standard.string(forKey: "userNickname"), let comment = commentTextView.text {
-                firebaseManager.addComment(toFirestoreWith: restId, nickname: userName, comment: comment)
+            if let restId = restaurantId,
+                let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential"),
+                let userName = UserDefaults.standard.string(forKey: "userNickname"),
+                let comment = commentTextView.text {
+                firebaseManager.addComment(toFirestoreWith: restId, userId: userId, nickname: userName, comment: comment)
             }
         }
         

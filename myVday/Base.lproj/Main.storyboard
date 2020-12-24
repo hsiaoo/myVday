@@ -98,7 +98,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="backgroundOrange"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.89411764705882346" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FnO-JQ-A3f" firstAttribute="trailing" secondItem="XJT-tE-U9F" secondAttribute="trailing" id="1lG-Fd-wnG"/>
                             <constraint firstItem="xEp-CT-1Hy" firstAttribute="top" secondItem="FnO-JQ-A3f" secondAttribute="bottom" constant="12" id="IeG-fA-dIF"/>
@@ -682,10 +682,40 @@
         <!--搜尋店家-->
         <scene sceneID="s4n-5o-egY">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="aKN-VL-3Wl" customClass="SearchRestaurantVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="aKN-VL-3Wl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HbQ-4G-sOb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUh-my-aGk">
+                                <rect key="frame" x="20" y="136" width="374" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.98431372549999996" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
+                                <state key="normal" title="好友">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33f-cm-HdR">
+                                <rect key="frame" x="20" y="312" width="374" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.98597383260000004" blue="0.94328925289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
+                                <state key="normal" title="挑戰">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                                </state>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Obt-6T-9Pb">
+                                <rect key="frame" x="66" y="326" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OGW-3w-Jfg">
+                                <rect key="frame" x="89" y="181" width="65" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="rfT-Z8-wR7"/>
                     </view>
@@ -695,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5p-O5-Ccl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4664" y="2317"/>
+            <point key="canvasLocation" x="339" y="1071"/>
         </scene>
         <!--Write CommentVC-->
         <scene sceneID="JQB-dv-76m">
@@ -970,28 +1000,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-I8-Br7" userLabel="hashtag Collection View">
-                                <rect key="frame" x="20" y="174.5" width="364" height="24"/>
+                                <rect key="frame" x="20" y="174.5" width="374" height="24"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="V7G-PQ-1M0"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="MeH-Ou-XsA">
-                                    <size key="itemSize" width="60" height="23"/>
+                                    <size key="itemSize" width="68" height="24"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hashtagCell" id="Qy1-c1-3m5" customClass="DetailRestaurantCollectionViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.5" width="60" height="23"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="68" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YEc-4j-ciY">
-                                            <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="68" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#全素" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="oWm-M6-0l5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="23"/>
-                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#全素" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="oWm-M6-0l5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="24"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1018,10 +1048,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="describeCell" id="wF6-bW-rQp" customClass="DescribeTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="24.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="32.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wF6-bW-rQp" id="30X-PT-Vb8">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="32.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="describe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Mx-Kr-s39">
@@ -1035,7 +1065,7 @@
                                                 <constraint firstItem="7Mx-Kr-s39" firstAttribute="top" secondItem="30X-PT-Vb8" secondAttribute="top" id="SGQ-JL-ehG"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7Mx-Kr-s39" secondAttribute="trailing" id="aii-lF-TVt"/>
                                                 <constraint firstItem="7Mx-Kr-s39" firstAttribute="leading" secondItem="30X-PT-Vb8" secondAttribute="leadingMargin" id="fsh-Bh-xGf"/>
-                                                <constraint firstAttribute="bottom" secondItem="7Mx-Kr-s39" secondAttribute="bottom" id="lV7-P4-Meu"/>
+                                                <constraint firstAttribute="bottom" secondItem="7Mx-Kr-s39" secondAttribute="bottom" constant="8" id="lV7-P4-Meu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1044,21 +1074,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hoursCell" id="u8g-hw-aFb" customClass="HoursTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52.5" width="414" height="28.5"/>
+                                        <rect key="frame" x="0.0" y="60.5" width="414" height="24.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u8g-hw-aFb" id="JaN-z9-nis">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="28.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNc-BI-qmk">
-                                                    <rect key="frame" x="20" y="4" width="374" height="24.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="24.5"/>
                                                     <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                                     <color key="textColor" red="0.12914538380000001" green="0.1179387197" blue="0.098035953940000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="BNc-BI-qmk" firstAttribute="top" secondItem="JaN-z9-nis" secondAttribute="top" constant="4" id="1Tv-q5-mCe"/>
+                                                <constraint firstItem="BNc-BI-qmk" firstAttribute="top" secondItem="JaN-z9-nis" secondAttribute="top" id="1Tv-q5-mCe"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="BNc-BI-qmk" secondAttribute="trailing" id="6Gx-QF-9sr"/>
                                                 <constraint firstAttribute="bottom" secondItem="BNc-BI-qmk" secondAttribute="bottom" id="LSq-De-eJ8"/>
                                                 <constraint firstItem="BNc-BI-qmk" firstAttribute="leading" secondItem="JaN-z9-nis" secondAttribute="leadingMargin" id="Zbi-5v-gPb"/>
@@ -1070,7 +1100,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" id="UL5-zH-sQp" customClass="CommentTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="81" width="414" height="75.5"/>
+                                        <rect key="frame" x="0.0" y="85" width="414" height="75.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UL5-zH-sQp" id="EZP-zF-ODg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="75.5"/>
@@ -1127,7 +1157,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xam-8a-7Qo" firstAttribute="leading" secondItem="Nt7-W9-fqA" secondAttribute="leading" id="0gn-Zs-lf6"/>
-                            <constraint firstItem="e8N-t0-KlN" firstAttribute="trailing" secondItem="Kjp-I8-Br7" secondAttribute="trailing" constant="30" id="792-Qq-rXo"/>
+                            <constraint firstItem="e8N-t0-KlN" firstAttribute="trailing" secondItem="Kjp-I8-Br7" secondAttribute="trailing" constant="20" id="792-Qq-rXo"/>
                             <constraint firstItem="bRg-At-Fzi" firstAttribute="leading" secondItem="e8N-t0-KlN" secondAttribute="leading" id="96X-p7-Wmp"/>
                             <constraint firstItem="bRg-At-Fzi" firstAttribute="top" secondItem="Kjp-I8-Br7" secondAttribute="bottom" constant="16" id="AEP-BZ-l6T"/>
                             <constraint firstItem="xam-8a-7Qo" firstAttribute="top" secondItem="Nt7-W9-fqA" secondAttribute="bottom" constant="4" id="GRF-LX-vGk"/>
@@ -1275,54 +1305,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yB-CH-Hds" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5301" y="1277"/>
-        </scene>
-        <!--新增店家-->
-        <scene sceneID="Fsv-iK-iVp">
-            <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="N1C-V2-JNZ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="f9o-4O-0UU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUh-my-aGk">
-                                <rect key="frame" x="20" y="184" width="374" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.98431372549999996" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
-                                <state key="normal" title="好友">
-                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33f-cm-HdR">
-                                <rect key="frame" x="20" y="360" width="374" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.98597383260000004" blue="0.94328925289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
-                                <state key="normal" title="挑戰">
-                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
-                                </state>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Obt-6T-9Pb">
-                                <rect key="frame" x="66" y="374" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OGW-3w-Jfg">
-                                <rect key="frame" x="89" y="228.5" width="65" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="jYZ-6f-GLz"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="新增店家" id="ozl-vb-ncM">
-                        <barButtonItem key="backBarButtonItem" title=" " id="9kT-lJ-Bfs"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CtK-71-CAM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3734.7826086956525" y="2316.9642857142858"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="LLQ-fC-43T">

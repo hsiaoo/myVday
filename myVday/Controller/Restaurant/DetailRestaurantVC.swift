@@ -20,18 +20,11 @@ class DetailRestaurantVC: UIViewController {
     let tagColor: [UIColor] = [#colorLiteral(red: 0.5244301558, green: 0.7633284926, blue: 1, alpha: 1), #colorLiteral(red: 0.5922563672, green: 1, blue: 0.5390954018, alpha: 1), #colorLiteral(red: 1, green: 0.6866127253, blue: 0.4180601537, alpha: 1), #colorLiteral(red: 1, green: 0.6486006975, blue: 0.792445004, alpha: 1), #colorLiteral(red: 1, green: 0.956641376, blue: 0.5953657031, alpha: 1)]
     var basicInfo: BasicInfo?
     var comments = [Comments]()
-//    var voteCommentUserInput = (restaurantId: "", favCuisine: "", describe: "")
-//    var allCuisineName = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         firebaseManager.delegate = self
         navigationController?.navigationBar.isHidden = false
-//        if let basicInfo = basicInfo {
-//            settingInfo(basicInfo: basicInfo)
-//            firebaseManager.fetchSubCollections(restaurantId: basicInfo.restaurantId, type: .comments)
-//            firebaseManager.listener(dataType: .comments)
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,31 +62,22 @@ class DetailRestaurantVC: UIViewController {
             writeCommentVC?.restaurantId = sender as? String
         }
     }
-    
-    @objc func writeComment() {
-//        isWritingComment = true
-//        guard let restaurantId = basicInfo?.restaurantId else { return }
-//        firebaseManager.fetchSubCollections(restaurantId: restaurantId, type: .menu)
-//        commentVoteView.layer.shadowColor = UIColor.yellow.cgColor
-//        commentVoteView.layer.shadowOffset = CGSize(width: 10, height: 20)
-//        commentVoteView.layer.shadowRadius = 8
-//        commentVoteView.layer.shadowOpacity = 1
-    }
+
 }
 
 extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 3 {
-            if let headerView = Bundle.main.loadNibNamed("CustomSectionHeader",
-                owner: self,
-                options: nil)?.first as? CustomSectionHeader {
-                headerView.sectionTitleLabel.text = "其他人覺得.."
-                headerView.commentBtn.addTarget(self, action: #selector(writeComment), for: .touchUpInside)
-                return headerView
-            }
-        }
-        return UIView()
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 3 {
+//            if let headerView = Bundle.main.loadNibNamed("CustomSectionHeader",
+//                owner: self,
+//                options: nil)?.first as? CustomSectionHeader {
+//                headerView.sectionTitleLabel.text = "其他人覺得.."
+//                headerView.commentBtn.addTarget(self, action: #selector(writeComment), for: .touchUpInside)
+//                return headerView
+//            }
+//        }
+//        return UIView()
+//    }
     
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 46
@@ -146,6 +130,53 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let contextItem = UIContextualAction(style: .destructive, title: "檢舉") { ( _, view, completion) in
+            
+            let reportAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+                let reportedData = self.comments[indexPath.row]
+                
+                let blockUser = UIAlertAction(title: "加入黑名單", style: .destructive) { _ in
+                    self.firebaseManager.report(
+                        mainCollection: .user,
+                        mainDocId: userId,
+                        subCollection: .flagUser,
+                        reportedId: reportedData.userId,
+                        reportedData: reportedData)
+                    print("======加入黑名單======")
+                }
+                
+                let blockComment = UIAlertAction(title: "檢舉評論", style: .destructive) { _ in
+                    self.firebaseManager.report(
+                        mainCollection: .user,
+                        mainDocId: userId,
+                        subCollection: .flagComment,
+                        reportedId: reportedData.commentId,
+                        reportedData: reportedData)
+                    print("======檢舉此評論======")
+                }
+                
+                let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                reportAlertController.addAction(blockUser)
+                reportAlertController.addAction(blockComment)
+                reportAlertController.addAction(cancel)
+                
+            }
+
+            // so that iPads won't crash
+            reportAlertController.popoverPresentationController?.sourceView = self.view
+            self.present(reportAlertController, animated: true, completion: nil)
+            
+            //使table view cell回到原先的位置
+            completion(true)
+        }
+        contextItem.image = UIImage(systemName: "exclamationmark.circle")
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+
+        return swipeActions
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -212,36 +243,12 @@ extension DetailRestaurantVC: FirebaseManagerDelegate {
                     commentId: comment["commentId"] as? String ?? "no comment id",
                     name: comment["name"] as? String ?? "no user name",
                     comment: comment["comment"] as? String ?? "no comment",
-                    date: okDate)
+                    date: okDate,
+                    userId: comment["userId"] as? String ?? "no user id")
                 comments.append(newComment)
             }
             restDetailTableView.reloadData()
-        case.menu: break
-//            for menu in data {
-//                let cuisineName = menu["cuisineName"] as? String ?? ""
-//                allCuisineName.append(cuisineName)
-//            }
-        case .friends, .friendRequest, .challengeRequest, .challenger, .owner: break
+        case .friends, .friendRequest, .challengeRequest, .challenger, .owner, .menu: break
         }
     }
-    
-//    func fireManager(_ manager: FirebaseManager, didDownloadCuisine: [String: Any]) {
-//        if let currentVote = didDownloadCuisine["vote"] as? Int {
-//            firebaseManager.updateVote(
-//                restaurantId: voteCommentUserInput.restaurantId,
-//                cuisineName: voteCommentUserInput.favCuisine,
-//                newValue: currentVote + 1)
-//        }
-//    }
-    
-//    func fireManager(_ manager: FirebaseManager, didFinishUpdate menuOrComment: DataType) {
-//        comments = [Comments]()
-//        if let restaurantId = basicInfo?.restaurantId {
-//            firebaseManager.fetchSubCollections(restaurantId: restaurantId, type: .comments)
-//        }
-//        commentTextView.resignFirstResponder()
-//        voteTF.resignFirstResponder()
-//        isWritingComment = false
-//        restDetailTableView.reloadData()
-//    }
 }

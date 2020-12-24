@@ -21,11 +21,12 @@ struct BasicInfo: Codable {
     let phone: String
 }
 
-struct Comments {
+struct Comments: Codable {
     let commentId: String
     let name: String
     let comment: String
     let date: String
+    let userId: String
 }
 
 struct Menu: Codable {
