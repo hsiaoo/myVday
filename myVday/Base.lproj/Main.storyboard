@@ -512,7 +512,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaF-33-39o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4550.7246376811599" y="-330.13392857142856"/>
+            <point key="canvasLocation" x="4551" y="-331"/>
         </scene>
         <!--Add New ChallengeVC-->
         <scene sceneID="GyS-wo-IRW">
@@ -1443,20 +1443,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尋找好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dga-cs-HFg">
-                                <rect key="frame" x="26" y="118" width="380" height="50"/>
+                                <rect key="frame" x="99" y="120.5" width="307" height="50"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MSo-xc-p8z">
-                                <rect key="frame" x="0.0" y="198" width="414" height="56"/>
+                            <searchBar contentMode="redraw" placeholder="好友暱稱.." translatesAutoresizingMaskIntoConstraints="NO" id="MSo-xc-p8z">
+                                <rect key="frame" x="0.0" y="203" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="kxD-6u-YkQ" id="od2-Q1-mXY"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bMY-Og-vEc">
-                                <rect key="frame" x="0.0" y="254" width="414" height="642"/>
+                                <rect key="frame" x="0.0" y="259" width="414" height="637"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newFriendCell" id="AAH-eR-mJd" customClass="SearchForNewFriendTableViewCell" customModule="myVday" customModuleProvider="target">
@@ -1514,18 +1518,27 @@
                                     <outlet property="delegate" destination="kxD-6u-YkQ" id="lrj-k5-J3P"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-k3-Lqi">
+                                <rect key="frame" x="20" y="114" width="65" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UdY-k3-Lqi" secondAttribute="height" multiplier="1:1" id="x7I-sP-fGg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="orange#fbd9bd"/>
                         <constraints>
+                            <constraint firstItem="UdY-k3-Lqi" firstAttribute="width" secondItem="ok4-i0-YXC" secondAttribute="width" multiplier="0.157005" id="0XF-cD-Eca"/>
+                            <constraint firstItem="UdY-k3-Lqi" firstAttribute="top" secondItem="OgG-gk-8w4" secondAttribute="top" constant="25" id="3TO-82-JgY"/>
+                            <constraint firstItem="dga-cs-HFg" firstAttribute="centerY" secondItem="UdY-k3-Lqi" secondAttribute="centerY" id="5FX-Cr-SbP"/>
                             <constraint firstItem="bMY-Og-vEc" firstAttribute="trailing" secondItem="OgG-gk-8w4" secondAttribute="trailing" id="EBF-g4-Lrh"/>
                             <constraint firstAttribute="bottom" secondItem="bMY-Og-vEc" secondAttribute="bottom" id="M9o-Yo-DSc"/>
                             <constraint firstItem="bMY-Og-vEc" firstAttribute="top" secondItem="MSo-xc-p8z" secondAttribute="bottom" id="Mbx-07-3D5"/>
+                            <constraint firstItem="MSo-xc-p8z" firstAttribute="top" secondItem="UdY-k3-Lqi" secondAttribute="bottom" constant="25" id="NM8-73-jFs"/>
                             <constraint firstItem="bMY-Og-vEc" firstAttribute="leading" secondItem="OgG-gk-8w4" secondAttribute="leading" id="Zkp-8i-Mrz"/>
                             <constraint firstItem="MSo-xc-p8z" firstAttribute="leading" secondItem="OgG-gk-8w4" secondAttribute="leading" id="c2o-mi-p0Z"/>
-                            <constraint firstItem="dga-cs-HFg" firstAttribute="leading" secondItem="OgG-gk-8w4" secondAttribute="leading" constant="26" id="fgs-oL-Qay"/>
-                            <constraint firstItem="dga-cs-HFg" firstAttribute="top" secondItem="OgG-gk-8w4" secondAttribute="top" constant="30" id="goP-7C-n0E"/>
-                            <constraint firstItem="MSo-xc-p8z" firstAttribute="top" secondItem="dga-cs-HFg" secondAttribute="bottom" constant="30" id="kZF-Yl-Glk"/>
+                            <constraint firstItem="UdY-k3-Lqi" firstAttribute="leading" secondItem="OgG-gk-8w4" secondAttribute="leading" constant="20" id="dqP-GE-yOR"/>
                             <constraint firstItem="OgG-gk-8w4" firstAttribute="trailing" secondItem="dga-cs-HFg" secondAttribute="trailing" constant="8" id="lpq-lz-OcW"/>
+                            <constraint firstItem="dga-cs-HFg" firstAttribute="leading" secondItem="UdY-k3-Lqi" secondAttribute="trailing" constant="14" id="ric-qL-nxS"/>
                             <constraint firstItem="MSo-xc-p8z" firstAttribute="trailing" secondItem="OgG-gk-8w4" secondAttribute="trailing" id="zcN-Dm-4ey"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OgG-gk-8w4"/>
@@ -1538,7 +1551,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pan-rO-SCW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5499" y="-330"/>
+            <point key="canvasLocation" x="5499" y="-331"/>
         </scene>
         <!--Challenge ListVC-->
         <scene sceneID="vOv-yO-RcN">
@@ -1693,6 +1706,7 @@
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="124"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>

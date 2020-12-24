@@ -432,9 +432,10 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addFriendRequest(newFriendId: String, personalData: User) {
+    func addFriendRequest(newFriendId: String, personalData: User, completion: @escaping () -> Void) {
         do {
             try fireDB.collection("User").document(newFriendId).collection("friendRequest").document(personalData.userId).setData(from: personalData)
+            completion()
             print("======successfully sent a friend request to \(newFriendId)======")
         } catch let error {
             print("Error sent friend request: \(error)")
@@ -486,8 +487,7 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addComment(toFirestoreWith restaurantId: String, userId: String
-        , nickname: String, comment: String) {
+    func addComment(toFirestoreWith restaurantId: String, userId: String, nickname: String, comment: String) {
         ref = fireDB.collection("Restaurant").document(restaurantId).collection("comments").addDocument(data: [
             "userId": userId,
             "name": nickname,
@@ -608,7 +608,8 @@ class FirebaseManager: NSObject {
                 print("Error searched new friend: \(err)")
             } else {
                 if let docArray = snapshot?.documents {
-                    self.delegate?.fireManager?(self, didDownloadProfileDetail: docArray, type: .friends)
+                    self.delegate?.fireManager?(self, fetchSubCollection: docArray, sub: .friends)
+//                    self.delegate?.fireManager?(self, didDownloadProfileDetail: docArray, type: .friends)
                 }
             }
         }

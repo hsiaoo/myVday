@@ -28,6 +28,13 @@ class AddNewFriendVC: UIViewController {
         }
     }
     
+    func alterController(title: String, message: String) {
+        let alterController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let promptAction = UIAlertAction(title: "確定", style: .default, handler: nil)
+        alterController.addAction(promptAction)
+        present(alterController, animated: true, completion: nil)
+    }
+    
 }
 
 extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
@@ -52,17 +59,18 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func sentFriendRequest(_ sender: UIButton) {
-        //should pop up a alert controller
         guard let personalData = personalData else { return }
         let tappedPoint = sender.convert(CGPoint.zero, to: newFriendTableView)
         if let indexPath = newFriendTableView.indexPathForRow(at: tappedPoint) {
             let targetFriend = filterData[indexPath.row]
-            fireManager.addFriendRequest(newFriendId: targetFriend.userId, personalData: personalData)
+            fireManager.addFriendRequest(newFriendId: targetFriend.userId, personalData: personalData) {
+                self.filterData.remove(at: indexPath.row)
+                self.newFriendTableView.beginUpdates()
+                self.newFriendTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.newFriendTableView.endUpdates()
+                self.alterController(title: "📬成功送出好友邀請！", message: "等待對方接受囉")
+            }
 
-            filterData.remove(at: indexPath.row)
-            newFriendTableView.beginUpdates()
-            newFriendTableView.deleteRows(at: [indexPath], with: .automatic)
-            newFriendTableView.endUpdates()
         }
     }
 }
@@ -73,7 +81,7 @@ extension AddNewFriendVC: UISearchBarDelegate {
         filterData.removeAll()
         guard let nickname = newFriendSearchBar.text else { return }
         if nickname.isEmpty {
-            print("寫好搜尋條件")
+            alterController(title: "😶", message: "請填好搜尋條件")
         } else {
             fireManager.searchForNewFriend(nickname: nickname)
         }
@@ -81,28 +89,32 @@ extension AddNewFriendVC: UISearchBarDelegate {
 }
 
 extension AddNewFriendVC: FirebaseManagerDelegate {
-    func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType) {
-        if type == .friends {
-            filterData.removeAll()
-            for document in data {
-                let aUser = User(
-                    userId: document["userId"] as? String ?? "no user id",
-                    nickname: document["nickname"] as? String ?? "no nickname",
-                    describe: document["describe"] as? String ?? "no describe",
-                    emoji: document["emoji"] as? String ?? "no emoji",
-                    image: document["image"] as? String ?? "no image")
-                //檢查此User是否已經是自己的朋友，如果不是，就加入filterData陣列內準備顯示在畫面上
-                let isFriend = alreadyFriend.contains { (user) -> Bool in
-                    user.nickname == aUser.nickname
+    func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection) {
+        if sub == .friends {
+            if docArray.isEmpty {
+                self.alterController(title: "🧐", message: "找不到這個人")
+            } else {
+                filterData.removeAll()
+                for document in docArray {
+                    let aUser = User(
+                        userId: document["userId"] as? String ?? "no user id",
+                        nickname: document["nickname"] as? String ?? "no nickname",
+                        describe: document["describe"] as? String ?? "no describe",
+                        emoji: document["emoji"] as? String ?? "no emoji",
+                        image: document["image"] as? String ?? "no image")
+                    //檢查此User是否已經是自己的朋友，如果不是，就加入filterData陣列內準備顯示在畫面上
+                    let isFriend = alreadyFriend.contains { (user) -> Bool in
+                        user.nickname == aUser.nickname
+                    }
+                    switch isFriend {
+                    case true:
+                        newFriendTableView.reloadData()
+                    case false:
+                        filterData.append(aUser)
+                    }
                 }
-                switch isFriend {
-                case true:
-                    newFriendTableView.reloadData()
-                case false:
-                    filterData.append(aUser)
-                }
+                newFriendTableView.reloadData()
             }
-            newFriendTableView.reloadData()
         }
     }
     
