@@ -18,8 +18,7 @@ class AddNewChallengeVC: UIViewController {
     
     let fireManager = FirebaseManager()
     var myFriends = [User]()
-//    var didAddedChallenge: (() -> Void)!
-    var friendTableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 450), style: .plain)
+    var friendTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +40,11 @@ class AddNewChallengeVC: UIViewController {
             let userNickname = UserDefaults.standard.string(forKey: "userNickname") else { return }
         
         if title.isEmpty || describe.isEmpty || daysString.isEmpty {
-            print("填好挑戰資料")
+            newChallengeAlert(title: "😶", message: "請填好挑戰資料")
         } else {
             let daysInt = Int(daysString) ?? 0
             if daysInt == 0 {
-                print("填好挑戰天數")
+                newChallengeAlert(title: "😶", message: "請填好挑戰天數")
             } else {
                 let newChallenge = Challenge(
                     challengeId: "",
@@ -57,15 +56,35 @@ class AddNewChallengeVC: UIViewController {
                     vsChallengeId: "",
                     updatedTime: "",
                     daysCompleted: 0)
-                fireManager.addChallenge(newChallenge: newChallenge, friend: friendName, ownerId: userId)
-                dismiss(animated: true, completion: nil)
-//                dismiss(animated: true) {
-//                    self.didAddedChallenge()
-//                }
+                fireManager.addChallenge(newChallenge: newChallenge, friend: friendName, ownerId: userId) {
+                    self.newChallengeAlert(title: "🔥go go go", message: "成功發起一項挑戰！")
+                }
             }
         }
     }
     
+    func newChallengeAlert(title: String, message: String) {
+        let newChallengeAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        newChallengeAlertController.addAction(promptAction)
+        present(newChallengeAlertController, animated: true, completion: nil)
+    }
+    
+}
+
+extension AddNewChallengeVC: UITextFieldDelegate {
+    //按下鍵盤next跳往下一個text field
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        if let nextRseponder = textField.superview?.viewWithTag(nextTag) {
+            nextRseponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
 
 extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
@@ -75,6 +94,7 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
         friendTableView.dataSource = self
         friendTableView.separatorStyle = .none
         friendTableView.register(ChallengeWithFriendTableViewCell.self, forCellReuseIdentifier: "friendCell")
+        friendTableView.frame = CGRect(x: 0, y: challengeFriendTF.frame.maxY, width: UIScreen.main.bounds.width, height: 200)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,7 +113,7 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
                 friendCell.friendNameLabel.text = "目前還沒有好友哦"
                 return friendCell
             } else {
-//                friendCell.friendImageView.image = UIImage
+                //friendCell.friendImageView.image = UIImage
                 friendCell.friendNameLabel.text = myFriends[indexPath.row].nickname
                 return friendCell
             }
@@ -113,7 +133,7 @@ extension AddNewChallengeVC: FirebaseManagerDelegate {
     func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection) {
         if sub == .friends {
             for document in docArray {
-               if  let emojiString = document["emoji"] as? String,
+                if  let emojiString = document["emoji"] as? String,
                     let emoji = ProfileVC().emojiDecode(emojiString: emojiString) {
                     let aUser = User(
                         userId: document["userId"] as? String ?? "no user id",

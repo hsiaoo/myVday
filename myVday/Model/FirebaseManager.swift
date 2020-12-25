@@ -385,7 +385,7 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addChallenge(newChallenge: Challenge, friend: String, ownerId: String) {
+    func addChallenge(newChallenge: Challenge, friend: String, ownerId: String, completion: @escaping () -> Void) {
         if newChallenge.challengeId.isEmpty {
             do {
                 ref = try fireDB.collection("Challenge").addDocument(from: newChallenge, encoder: Firestore.Encoder(), completion: { (error) in
@@ -398,6 +398,7 @@ class FirebaseManager: NSObject {
                         }
                     }
                 })
+                completion()
             } catch let err {
                 print("Error added challenge to Firestore: \(err)")
             }
@@ -418,6 +419,7 @@ class FirebaseManager: NSObject {
                     print("Error added challenge to Firestore: \(err)")
                 } else {
                     self.updateChallengeId(challengeId: newChallenge.vsChallengeId, friend: "", newChallenge: newChallenge)
+                    completion()
                 }
             }
         }

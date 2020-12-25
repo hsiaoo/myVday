@@ -153,7 +153,9 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 vsChallengeId: targetChallenge.vsChallengeId,
                 updatedTime: targetChallenge.updatedTime,
                 daysCompleted: targetChallenge.daysCompleted)
-            fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "", ownerId: acceptedChallenge.ownerId)
+            fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "", ownerId: acceptedChallenge.ownerId) {
+                print("======接受挑戰了======")
+            }
             fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
             
             //移除畫面上已被被接受挑戰的那一列
