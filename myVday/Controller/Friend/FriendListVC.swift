@@ -13,7 +13,7 @@ enum FriendLayoutType {
     case friendList, newFriendRequest
 }
 
-enum ActionType {
+enum FriendActionType {
     case acceptFriend, deleteFriendRequest
 }
 
@@ -77,7 +77,7 @@ class FriendListVC: UIViewController {
         performSegue(withIdentifier: "newFriendSegue", sender: nil)
     }
     
-    func friendRequestAlert(actionType: ActionType, title: String, message: String, targetUser: User, userId: String, indexPath: IndexPath) {
+    func friendRequestAlert(actionType: FriendActionType, title: String, message: String, targetUser: User, userId: String, indexPath: IndexPath) {
         let requestAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         switch actionType {
             

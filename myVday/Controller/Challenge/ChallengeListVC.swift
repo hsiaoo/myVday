@@ -13,6 +13,10 @@ enum ChallengeLayoutType {
     case challengeList, newChallengeRequest
 }
 
+enum ChallengeActionType {
+    case acceptChallenge, deleteChallengeRequest
+}
+
 class ChallengeListVC: UIViewController {
 
     @IBOutlet weak var challengeNotiBtn: UIBarButtonItem!
@@ -35,6 +39,19 @@ class ChallengeListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             fireManager.fetchMyChallenge(ownerId: userId)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newChallengeSegue" {
+            if segue.destination is AddNewChallengeVC {
+            }
+        } else {
+            if segue.identifier == "singleChallengeSegue" {
+                if let controller = segue.destination as? SingleChallengeVC {
+                    controller.singleChallengeFromList = sender as? Challenge
+                }
+            }
         }
     }
     
@@ -65,23 +82,52 @@ class ChallengeListVC: UIViewController {
         performSegue(withIdentifier: "newChallengeSegue", sender: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newChallengeSegue" {
-            if segue.destination is AddNewChallengeVC {
-//                controller.didAddedChallenge = {
-//                    if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-//                        self.fireManager.fetchMyChallenge(ownerId: userId)
-//                    }
-//                }
-            }
-        } else {
-            if segue.identifier == "singleChallengeSegue" {
-                if let controller = segue.destination as? SingleChallengeVC {
-                    controller.singleChallengeFromList = sender as? Challenge
+    func challengeRequestAlert(
+        actionType: ChallengeActionType,
+        title: String,
+        message: String,
+        acceptedChallenge: Challenge,
+        targetChallenge: Challenge,
+        userId: String,
+        indexPath: IndexPath) {
+        let requestAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        switch actionType {
+            
+        case .acceptChallenge:
+            //接受挑戰邀請
+            let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
+                //新增owner為登入者的挑戰，這裡的ownerId是登入者的userId
+                self.fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "", ownerId: acceptedChallenge.ownerId) {
+                    //移除畫面上已被被接受挑戰的那一列
+                    self.myChallenge.remove(at: indexPath.row)
+                    self.challengeListTableView.beginUpdates()
+                    self.challengeListTableView.deleteRows(at: [indexPath], with: .automatic)
+                    self.challengeListTableView.endUpdates()
                 }
+                //將已接受的挑戰從firestore邀請列表中移除
+                self.fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
             }
+            let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+            requestAlertController.addAction(confirmAction)
+            requestAlertController.addAction(cancelAction)
+            
+        case .deleteChallengeRequest:
+            let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
+                //拒絕挑戰邀請
+                self.myChallenge.remove(at: indexPath.row)
+                self.challengeListTableView.beginUpdates()
+                self.challengeListTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.challengeListTableView.endUpdates()
+                //將被拒絕的挑戰從firestore邀請列表中移除
+                self.fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
+            }
+            let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+            requestAlertController.addAction(confirmAction)
+            requestAlertController.addAction(cancelAction)
         }
+        present(requestAlertController, animated: true, completion: nil)
     }
+
 }
 
 extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
@@ -110,7 +156,7 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 //                    friendChallengeCell.backgroundColor = UIColor(named: "myyellow")
                 //                } else {
                 //                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
-                            //                }
+                //                }
                             
                             return challengeCell
             case .newChallengeRequest:
@@ -141,8 +187,9 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
         let userNickname = UserDefaults.standard.string(forKey: "userNickname") else { return }
         let tappedPoint = sender.convert(CGPoint.zero, to: challengeListTableView)
         if let indexPath = challengeListTableView.indexPathForRow(at: tappedPoint) {
-            //接受挑戰邀請
             let targetChallenge = myChallenge[indexPath.row]
+            
+            //為了將ownerId和ownerName改成登入者的資料，所以新建立一個常數acceptedChallenge
             let acceptedChallenge = Challenge(
                 challengeId: targetChallenge.challengeId,
                 ownerId: userId,
@@ -153,16 +200,15 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 vsChallengeId: targetChallenge.vsChallengeId,
                 updatedTime: targetChallenge.updatedTime,
                 daysCompleted: targetChallenge.daysCompleted)
-            fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "", ownerId: acceptedChallenge.ownerId) {
-                print("======接受挑戰了======")
-            }
-            fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
             
-            //移除畫面上已被被接受挑戰的那一列
-            myChallenge.remove(at: indexPath.row)
-            challengeListTableView.beginUpdates()
-            challengeListTableView.deleteRows(at: [indexPath], with: .automatic)
-            challengeListTableView.endUpdates()
+            challengeRequestAlert(
+                actionType: .acceptChallenge,
+                title: "👌🏼接受挑戰邀請",
+                message: "接受挑戰：\(acceptedChallenge.title)",
+                acceptedChallenge: acceptedChallenge,
+                targetChallenge: targetChallenge,
+                userId: userId,
+                indexPath: indexPath)
         }
     }
     
@@ -181,16 +227,19 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
             //如果是在挑戰列表畫面，則不啟用左滑刪除功能
             return nil
         } else {
-            let deleteContextItem = UIContextualAction(style: .destructive, title: "") { (_, view, completion) in
+            let deleteContextItem = UIContextualAction(style: .destructive, title: "") { (_, _, completion) in
                 guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
-                //拒絕挑戰邀請
                 let targetChallenge = self.myChallenge[indexPath.row]
-                self.myChallenge.remove(at: indexPath.row)
-                self.challengeListTableView.beginUpdates()
-                self.challengeListTableView.deleteRows(at: [indexPath], with: .automatic)
-                self.challengeListTableView.endUpdates()
-                self.fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
                 
+                //其實不需要acceptedChallenge...
+                self.challengeRequestAlert(
+                    actionType: .deleteChallengeRequest,
+                    title: "💢拒絕挑戰邀請",
+                    message: "拒絕挑戰：\(targetChallenge.title)",
+                    acceptedChallenge: targetChallenge,
+                    targetChallenge: targetChallenge,
+                    userId: userId,
+                    indexPath: indexPath)
                 completion(true)
             }
             deleteContextItem.image = UIImage(systemName: "trash")
