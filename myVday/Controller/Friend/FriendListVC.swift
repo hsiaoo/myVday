@@ -13,6 +13,10 @@ enum FriendLayoutType {
     case friendList, newFriendRequest
 }
 
+enum ActionType {
+    case acceptFriend, deleteFriendRequest
+}
+
 class FriendListVC: UIViewController {
     
     @IBOutlet weak var friendNotiBtn: UIBarButtonItem!
@@ -33,6 +37,14 @@ class FriendListVC: UIViewController {
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             //fetch all my friends' data
             fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newFriendSegue" {
+            if let controller = segue.destination as? AddNewFriendVC {
+                controller.alreadyFriend = myFriends
+            }
         }
     }
     
@@ -65,12 +77,49 @@ class FriendListVC: UIViewController {
         performSegue(withIdentifier: "newFriendSegue", sender: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newFriendSegue" {
-            if let controller = segue.destination as? AddNewFriendVC {
-                controller.alreadyFriend = myFriends
+    func friendRequestAlert(actionType: ActionType, title: String, message: String, targetUser: User, userId: String, indexPath: IndexPath) {
+        let requestAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        switch actionType {
+            
+        case .acceptFriend:
+            //接受好友
+            let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
+                self.fireManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
+                guard let personalUserData = self.userData else { return }
+                
+                //將自己加進別人的朋友列表
+                self.fireManager.addNewFriend(friendsOfUserId: targetUser.userId, newFriend: personalUserData)
+                //將別人加進自己的朋友列表
+                self.fireManager.addNewFriend(friendsOfUserId: userId, newFriend: targetUser)
+                //將已接受的好友從firestore邀請列表中移除
+                self.fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
+                
+                //將已接受的好友從畫面中移除
+                self.myFriends.remove(at: indexPath.row)
+                self.friendListTableView.beginUpdates()
+                self.friendListTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.friendListTableView.endUpdates()
             }
+            let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+            requestAlertController.addAction(confirmAction)
+            requestAlertController.addAction(cancelAction)
+            
+        case .deleteFriendRequest:
+            let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
+                //拒絕好友邀請
+                self.myFriends.remove(at: indexPath.row)
+                self.friendListTableView.beginUpdates()
+                self.friendListTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.friendListTableView.endUpdates()
+                //將被拒絕的人從firestore好友邀請列表中移除
+                self.fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
+            }
+            let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+            requestAlertController.addAction(confirmAction)
+            requestAlertController.addAction(cancelAction)
         }
+        
+        present(requestAlertController, animated: true, completion: nil)
     }
     
 }
@@ -110,17 +159,16 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
             //如果是在好友列表畫面，則不啟用左滑刪除功能
             return nil
         } else {
-            let deleteContextItem = UIContextualAction(style: .destructive, title: "") { (_, view, completion) in
+            let deleteContextItem = UIContextualAction(style: .destructive, title: "") { (_, _, completion) in
                 guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
                 let targetUser = self.myFriends[indexPath.row]
-                //將被拒絕的人從畫面上移除
-                self.myFriends.remove(at: indexPath.row)
-                self.friendListTableView.beginUpdates()
-                self.friendListTableView.deleteRows(at: [indexPath], with: .automatic)
-                self.friendListTableView.endUpdates()
-                //將被拒絕的人從firestore好友邀請列表中移除
-                self.fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
-                
+                self.friendRequestAlert(
+                    actionType: .deleteFriendRequest,
+                    title: "💢拒絕好友邀請",
+                    message: "拒絕\(targetUser.nickname)的好友邀請？",
+                    targetUser: targetUser,
+                    userId: userId,
+                    indexPath: indexPath)
                 completion(true)
             }
             deleteContextItem.image = UIImage(systemName: "trash")
@@ -143,19 +191,13 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
         let tappedPoint = sender.convert(CGPoint.zero, to: friendListTableView)
         if let indexPath = friendListTableView.indexPathForRow(at: tappedPoint) {
             let targetUser = myFriends[indexPath.row]
-            fireManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
-            guard let personalUserData = userData else { return }
-            //將自己加進別人的朋友列表
-            fireManager.addNewFriend(friendsOfUserId: targetUser.userId, newFriend: personalUserData)
-            //將別人加進自己的朋友列表
-            fireManager.addNewFriend(friendsOfUserId: userId, newFriend: targetUser)
-            //將已接受的好友從firestore邀請列表中移除
-            fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
-            //將已接受的好友從畫面中移除
-            myFriends.remove(at: indexPath.row)
-            friendListTableView.beginUpdates()
-            friendListTableView.deleteRows(at: [indexPath], with: .automatic)
-            friendListTableView.endUpdates()
+            friendRequestAlert(
+                actionType: .acceptFriend,
+                title: "👌🏼接受好友邀請",
+                message: "和\(targetUser.nickname)成為朋友？",
+                targetUser: targetUser,
+                userId: userId,
+                indexPath: indexPath)
         }
     }
     
