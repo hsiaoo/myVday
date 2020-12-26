@@ -310,7 +310,7 @@ class FirebaseManager: NSObject {
         }
     }
         
-    func addCuisine(imageString: String, restaurantId: String, cuisineName: String) {
+    func addCuisine(imageString: String, restaurantId: String, cuisineName: String, completion: @escaping () -> Void) {
         fireDB.collection("Restaurant").document(restaurantId).collection("menu").document(cuisineName).setData([
             "cuisineName": cuisineName,
             "describe": "",
@@ -320,8 +320,8 @@ class FirebaseManager: NSObject {
             if let err = error {
                 print("Error update menu: \(err)")
             } else {
+                completion()
                 print("======成功新增一道\(restaurantId)的餐點======")
-//                self.delegate?.fireManager?(self, didFinishUpdate: .menu)
             }
         }
     }
@@ -489,7 +489,7 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addComment(toFirestoreWith restaurantId: String, userId: String, nickname: String, comment: String) {
+    func addComment(toFirestoreWith restaurantId: String, userId: String, nickname: String, comment: String, completion: @escaping () -> Void) {
         ref = fireDB.collection("Restaurant").document(restaurantId).collection("comments").addDocument(data: [
             "userId": userId,
             "name": nickname,
@@ -501,6 +501,7 @@ class FirebaseManager: NSObject {
             } else {
                 if let commentId = self.ref?.documentID {
                     self.updateCommentId(restaurantId: restaurantId, commentId: commentId)
+                    completion()
                     print("successfully added a new comment with ID: \(commentId)")
                 }
             }

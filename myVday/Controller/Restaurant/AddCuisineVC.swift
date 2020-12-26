@@ -8,10 +8,13 @@
 
 import UIKit
 import FirebaseStorage
-//import FirebaseFirestore
+
+enum CuisineStatus {
+    case success, fail
+}
 
 class AddCuisineVC: UIViewController {
-
+    
     @IBOutlet weak var cuisineNameTF: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -52,29 +55,36 @@ class AddCuisineVC: UIViewController {
     }
     
     @IBAction func uploadNewCuisineBtn(_ sender: UIBarButtonItem) {
+        let okCuisineName = cuisineNameTF.text ?? ""
+        let okImageString = imageString ?? ""
+        let okRestaurantId = restId ?? ""
         
-//        if let cuisineName = cuisineNameTF.text, let okImageString = imageString, let okRestaurantId = restId {
-//            if cuisineName.isEmpty || selectedImage == nil {
-//                print("======缺少餐點名稱或餐點照片======")
-//            } else {
-//                let newCuisine = Menu(cuisineName: cuisineName, describe: "", image: okImageString, vote: 0)
-//                fireManager.addDocInSubCollection(mainCollection: .restaurant, mainDocId: okRestaurantId, subCollection: .menu, subDocId: newCuisine.cuisineName)
-//
-//            }
-                    if let okCuisineName = cuisineNameTF.text, let okImageString = imageString, let okRestaurantId = restId {
-                        if okCuisineName.isEmpty || selectedImage == nil {
-                            print("======缺少餐點名稱或餐點照片======")
-                        } else {
-                            fireManager.addCuisine(
-                                imageString: okImageString,
-                                restaurantId: okRestaurantId,
-                                cuisineName: okCuisineName)
-                        }
-                    }
-            //        navigationController?.popViewController(animated: true)
+        if okCuisineName.isEmpty || selectedImage == nil {
+            cuisineAlert(status: .fail, title: "😶", message: "請輸入餐點名稱及餐點照片")
+        } else {
+            fireManager.addCuisine(
+                imageString: okImageString,
+                restaurantId: okRestaurantId,
+                cuisineName: okCuisineName) {
+                    self.cuisineAlert(status: .success, title: "😋", message: "成功新增餐點！")
+            }
         }
     }
     
+    func cuisineAlert(status: CuisineStatus, title: String, message: String) {
+        let cuisinAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
+            switch status {
+            case .success: self.navigationController?.popViewController(animated: true)
+            case .fail: break
+            }
+        }
+        cuisinAlertController.addAction(promptAction)
+        present(cuisinAlertController, animated: true, completion: nil)
+    }
+    
+}
+
 extension AddCuisineVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cuisineNameTF.resignFirstResponder()
@@ -91,6 +101,7 @@ extension AddCuisineVC: UIImagePickerControllerDelegate & UINavigationController
             photoImageView.image = selectedImage
         }
         dismiss(animated: true) {
+            //上傳餐點照片
             if let restaurantId = self.restId, let okImage = self.selectedImage {
                 let uniqueString = NSUUID().uuidString
                 self.fireManager.uploadMenuChallengeImage(

@@ -9,6 +9,10 @@
 import UIKit
 import FirebaseFirestore
 
+enum ChallengeStatus {
+    case success, fail
+}
+
 class AddNewChallengeVC: UIViewController {
     
     @IBOutlet weak var challengeTitleTF: UITextField!
@@ -40,11 +44,11 @@ class AddNewChallengeVC: UIViewController {
             let userNickname = UserDefaults.standard.string(forKey: "userNickname") else { return }
         
         if title.isEmpty || describe.isEmpty || daysString.isEmpty {
-            newChallengeAlert(title: "😶", message: "請填好挑戰資料")
+            newChallengeAlert(status: .fail, title: "😶", message: "請填好挑戰資料")
         } else {
             let daysInt = Int(daysString) ?? 0
             if daysInt == 0 {
-                newChallengeAlert(title: "😶", message: "請填好挑戰天數")
+                newChallengeAlert(status: .fail, title: "😶", message: "請填好挑戰天數")
             } else {
                 let newChallenge = Challenge(
                     challengeId: "",
@@ -57,16 +61,19 @@ class AddNewChallengeVC: UIViewController {
                     updatedTime: "",
                     daysCompleted: 0)
                 fireManager.addChallenge(newChallenge: newChallenge, friend: friendName, ownerId: userId) {
-                    self.newChallengeAlert(title: "🔥go go go", message: "成功發起一項挑戰！")
+                    self.newChallengeAlert(status: .success, title: "🔥GO GO GO", message: "成功發起一項挑戰！")
                 }
             }
         }
     }
     
-    func newChallengeAlert(title: String, message: String) {
+    func newChallengeAlert(status: ChallengeStatus, title: String, message: String) {
         let newChallengeAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
-            self.navigationController?.popViewController(animated: true)
+            switch status {
+            case .success: self.navigationController?.popViewController(animated: true)
+            case .fail: break
+            }
         }
         newChallengeAlertController.addAction(promptAction)
         present(newChallengeAlertController, animated: true, completion: nil)

@@ -800,7 +800,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5p-O5-Ccl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2217" y="-1130"/>
+            <point key="canvasLocation" x="335" y="-726"/>
         </scene>
         <!--Write CommentVC-->
         <scene sceneID="JQB-dv-76m">
@@ -1353,10 +1353,18 @@
                                     <outlet property="delegate" destination="qJK-7M-bFT" id="Wjr-1w-ch4"/>
                                 </connections>
                             </collectionView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此餐廳目前還沒有餐點資料哦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP4-K3-z5X">
+                                <rect key="frame" x="90" y="438" width="234" height="25.5"/>
+                                <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="MDa-eI-Gq8" firstAttribute="leading" secondItem="Yo9-27-E3u" secondAttribute="leading" id="4jL-26-Xe3"/>
+                            <constraint firstItem="wP4-K3-z5X" firstAttribute="centerY" secondItem="Yo9-27-E3u" secondAttribute="centerY" id="IwE-uz-2JD"/>
+                            <constraint firstItem="wP4-K3-z5X" firstAttribute="centerX" secondItem="Yo9-27-E3u" secondAttribute="centerX" id="WKH-V7-DUE"/>
                             <constraint firstItem="MDa-eI-Gq8" firstAttribute="top" secondItem="Yo9-27-E3u" secondAttribute="top" id="fX3-bn-gkm"/>
                             <constraint firstItem="MDa-eI-Gq8" firstAttribute="bottom" secondItem="Yo9-27-E3u" secondAttribute="bottom" id="vVC-mn-NHt"/>
                             <constraint firstItem="MDa-eI-Gq8" firstAttribute="trailing" secondItem="Yo9-27-E3u" secondAttribute="trailing" id="w4d-jf-fbW"/>
@@ -1374,6 +1382,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuCollectionView" destination="MDa-eI-Gq8" id="XFm-wt-zxs"/>
+                        <outlet property="noCuisineLabel" destination="wP4-K3-z5X" id="gqd-rw-34p"/>
                         <segue destination="rCg-ep-m6V" kind="show" identifier="addCuisineSegue" id="6Kj-lL-cYE"/>
                     </connections>
                 </viewController>
@@ -1428,16 +1437,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐點名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLp-LH-DCS">
-                                <rect key="frame" x="83" y="202" width="311" height="26"/>
+                                <rect key="frame" x="105.5" y="231" width="288.5" height="30"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="rCg-ep-m6V" id="Shb-p8-yd2"/>
                                 </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lkv-I7-nT6">
-                                <rect key="frame" x="83" y="258" width="300" height="300"/>
+                                <rect key="frame" x="105.5" y="300" width="239" height="239"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Lkv-I7-nT6" secondAttribute="height" multiplier="1:1" id="oYM-8b-4XJ"/>
@@ -1449,42 +1458,63 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUz-N7-wDE" userLabel="orangeView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="109.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dish64" translatesAutoresizingMaskIntoConstraints="NO" id="UZW-gF-QJU">
+                                        <rect key="frame" x="26" y="25" width="59.5" height="59.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="UZW-gF-QJU" secondAttribute="height" multiplier="1:1" id="nYr-zd-Y5l"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="orange#fbd9bd"/>
+                                <constraints>
+                                    <constraint firstItem="UZW-gF-QJU" firstAttribute="top" secondItem="aUz-N7-wDE" secondAttribute="top" constant="25" id="2VB-jO-Xe4"/>
+                                    <constraint firstAttribute="bottom" secondItem="UZW-gF-QJU" secondAttribute="bottom" constant="25" id="Chi-6u-1bW"/>
+                                    <constraint firstItem="UZW-gF-QJU" firstAttribute="leading" secondItem="aUz-N7-wDE" secondAttribute="leading" constant="26" id="ens-6j-CKk"/>
+                                    <constraint firstItem="UZW-gF-QJU" firstAttribute="height" secondItem="aUz-N7-wDE" secondAttribute="height" multiplier="0.543103" id="ocr-bp-wxU"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增餐點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74e-Si-5jI">
-                                <rect key="frame" x="26" y="118" width="380" height="50"/>
+                                <rect key="frame" x="105.5" y="117.5" width="140" height="50"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dish64" translatesAutoresizingMaskIntoConstraints="NO" id="Oay-aJ-iVg">
-                                <rect key="frame" x="26" y="198" width="37" height="34"/>
+                                <rect key="frame" x="32" y="222.5" width="47.5" height="47.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="pi6-wS-16z"/>
-                                    <constraint firstAttribute="height" constant="34" id="yPF-KZ-Fdf"/>
+                                    <constraint firstAttribute="width" secondItem="Oay-aJ-iVg" secondAttribute="height" multiplier="1:1" id="pgq-VP-dFt"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PFV-K1-jS9">
-                                <rect key="frame" x="26" y="259" width="37" height="31.5"/>
+                                <rect key="frame" x="27.5" y="291" width="56.5" height="54"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="30W-f9-Z7q"/>
-                                    <constraint firstAttribute="height" constant="34" id="CNa-Ul-ZXL"/>
+                                    <constraint firstAttribute="width" secondItem="PFV-K1-jS9" secondAttribute="height" multiplier="1:1" id="7CI-tE-icY"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="74e-Si-5jI" firstAttribute="leading" secondItem="2MF-ci-CyS" secondAttribute="leading" constant="26" id="2JM-i7-iHK"/>
-                            <constraint firstItem="PFV-K1-jS9" firstAttribute="leading" secondItem="2MF-ci-CyS" secondAttribute="leading" constant="26" id="6II-U4-kPd"/>
+                            <constraint firstItem="Lkv-I7-nT6" firstAttribute="height" secondItem="2MF-ci-CyS" secondAttribute="height" multiplier="0.33" id="1ca-KK-GwI"/>
+                            <constraint firstItem="74e-Si-5jI" firstAttribute="centerY" secondItem="UZW-gF-QJU" secondAttribute="centerY" id="5rd-IX-V0j"/>
                             <constraint firstItem="2MF-ci-CyS" firstAttribute="trailing" secondItem="NLp-LH-DCS" secondAttribute="trailing" constant="20" id="Bub-iL-fwF"/>
+                            <constraint firstItem="PFV-K1-jS9" firstAttribute="height" secondItem="UZW-gF-QJU" secondAttribute="height" multiplier="0.95" id="CZn-jh-Fey"/>
                             <constraint firstItem="NLp-LH-DCS" firstAttribute="centerY" secondItem="Oay-aJ-iVg" secondAttribute="centerY" id="F28-j0-q8b"/>
-                            <constraint firstItem="Lkv-I7-nT6" firstAttribute="width" secondItem="Eo4-r1-xEh" secondAttribute="width" multiplier="0.724638" id="L3E-yL-VqQ"/>
-                            <constraint firstItem="2MF-ci-CyS" firstAttribute="trailing" secondItem="74e-Si-5jI" secondAttribute="trailing" constant="8" id="Qa6-3T-RbA"/>
-                            <constraint firstItem="Lkv-I7-nT6" firstAttribute="leading" secondItem="PFV-K1-jS9" secondAttribute="trailing" constant="20" id="Zwt-ox-bGl"/>
-                            <constraint firstItem="NLp-LH-DCS" firstAttribute="leading" secondItem="Oay-aJ-iVg" secondAttribute="trailing" constant="20" id="bh1-jt-lOp"/>
-                            <constraint firstItem="Lkv-I7-nT6" firstAttribute="top" secondItem="PFV-K1-jS9" secondAttribute="top" id="r2E-ed-dWk"/>
-                            <constraint firstItem="PFV-K1-jS9" firstAttribute="top" secondItem="Oay-aJ-iVg" secondAttribute="bottom" constant="26" id="rD4-qk-CN8"/>
-                            <constraint firstItem="Oay-aJ-iVg" firstAttribute="top" secondItem="74e-Si-5jI" secondAttribute="bottom" constant="30" id="vO9-eh-09f"/>
-                            <constraint firstItem="74e-Si-5jI" firstAttribute="top" secondItem="2MF-ci-CyS" secondAttribute="top" constant="30" id="zYe-tn-K69"/>
-                            <constraint firstItem="Oay-aJ-iVg" firstAttribute="leading" secondItem="2MF-ci-CyS" secondAttribute="leading" constant="26" id="zih-Ps-7El"/>
+                            <constraint firstItem="Oay-aJ-iVg" firstAttribute="centerX" secondItem="UZW-gF-QJU" secondAttribute="centerX" id="G0k-Bw-tmM"/>
+                            <constraint firstItem="NLp-LH-DCS" firstAttribute="leading" secondItem="74e-Si-5jI" secondAttribute="leading" id="LBx-YF-084"/>
+                            <constraint firstItem="aUz-N7-wDE" firstAttribute="top" secondItem="2MF-ci-CyS" secondAttribute="top" id="OW4-Me-Vyj"/>
+                            <constraint firstItem="74e-Si-5jI" firstAttribute="leading" secondItem="UZW-gF-QJU" secondAttribute="trailing" constant="20" id="T3A-JT-5aG"/>
+                            <constraint firstItem="aUz-N7-wDE" firstAttribute="leading" secondItem="2MF-ci-CyS" secondAttribute="leading" id="VDN-ny-kZg"/>
+                            <constraint firstItem="PFV-K1-jS9" firstAttribute="centerX" secondItem="Oay-aJ-iVg" secondAttribute="centerX" id="ZBW-Wt-1g0"/>
+                            <constraint firstItem="Lkv-I7-nT6" firstAttribute="leading" secondItem="74e-Si-5jI" secondAttribute="leading" id="hjV-n0-l6c"/>
+                            <constraint firstItem="Oay-aJ-iVg" firstAttribute="height" secondItem="UZW-gF-QJU" secondAttribute="height" multiplier="0.8" id="mW5-rD-e6v"/>
+                            <constraint firstItem="Lkv-I7-nT6" firstAttribute="top" secondItem="PFV-K1-jS9" secondAttribute="top" constant="10" id="r2E-ed-dWk"/>
+                            <constraint firstItem="PFV-K1-jS9" firstAttribute="top" secondItem="Oay-aJ-iVg" secondAttribute="bottom" constant="20" id="rD4-qk-CN8"/>
+                            <constraint firstItem="Oay-aJ-iVg" firstAttribute="top" secondItem="aUz-N7-wDE" secondAttribute="bottom" constant="25" id="vO9-eh-09f"/>
+                            <constraint firstItem="aUz-N7-wDE" firstAttribute="trailing" secondItem="2MF-ci-CyS" secondAttribute="trailing" id="vlx-4Z-DGH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2MF-ci-CyS"/>
                     </view>
@@ -1509,7 +1539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USu-gI-mKb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6209" y="1277"/>
+            <point key="canvasLocation" x="6208.6956521739139" y="1275.6696428571429"/>
         </scene>
         <!--Add New FriendVC-->
         <scene sceneID="fIL-Ok-Jdw">

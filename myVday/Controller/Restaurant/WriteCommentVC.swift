@@ -9,6 +9,10 @@
 import UIKit
 import FirebaseFirestore
 
+enum CommentStatus {
+    case success, fail
+}
+
 class WriteCommentVC: UIViewController {
 
     @IBOutlet weak var voteForCuisineTF: UITextField!
@@ -32,17 +36,18 @@ class WriteCommentVC: UIViewController {
     }
     
     @IBAction func doneCommentBtn(_ sender: UIBarButtonItem) {
-//        navigationController?.popViewController(animated: true)
         favCuisine = voteForCuisineTF.text ?? ""
         if commentTextView.text.isEmpty {
-            print("======請輸入評論======")
+            commentAlert(status: .fail, title: "😶", message: "請輸入評論")
         } else {
             //新增評論
             if let restId = restaurantId,
                 let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential"),
                 let userName = UserDefaults.standard.string(forKey: "userNickname"),
                 let comment = commentTextView.text {
-                firebaseManager.addComment(toFirestoreWith: restId, userId: userId, nickname: userName, comment: comment)
+                firebaseManager.addComment(toFirestoreWith: restId, userId: userId, nickname: userName, comment: comment) {
+                    self.commentAlert(status: .success, title: "👌🏼", message: "送出評論囉！")
+                }
             }
         }
         
@@ -53,6 +58,18 @@ class WriteCommentVC: UIViewController {
                 firebaseManager.fetchCertainCuisine(restaurantId: restId, cuisineName: favCuisine)
             }
         }
+    }
+    
+    func commentAlert(status: CommentStatus, title: String, message: String) {
+        let commentAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
+            switch status {
+            case .success: self.navigationController?.popViewController(animated: true)
+            case .fail: break
+            }
+        }
+        commentAlertController.addAction(promptAction)
+        present(commentAlertController, animated: true, completion: nil)
     }
     
 }
