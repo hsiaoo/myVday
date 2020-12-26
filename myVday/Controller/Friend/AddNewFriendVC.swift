@@ -51,7 +51,27 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
             } else {
                 newFriendCell.newFriendNameLabel.text = filterData[indexPath.row].nickname
                 newFriendCell.newFriendBtn.addTarget(self, action: #selector(sentFriendRequest(_:)), for: .touchUpInside)
-                return newFriendCell
+
+                if filterData[indexPath.row].image.isEmpty {
+                    newFriendCell.newFriendImageView.image = UIImage(named: "profile128")
+                    return newFriendCell
+                } else {
+                    if let imageUrl = URL(string: filterData[indexPath.row].image) {
+                        URLSession.shared.dataTask(with: imageUrl) { data, _, error in
+                            if let err = error {
+                                print("Error download user photo: \(err)")
+                            } else {
+                                if let okData = data {
+                                    DispatchQueue.main.async {
+                                        newFriendCell.newFriendImageView.image = UIImage(data: okData)
+                                    }
+                                }
+                            }
+                        }.resume()
+                    }
+                    return newFriendCell
+                }
+                
             }
         } else {
             return UITableViewCell()
@@ -86,6 +106,15 @@ extension AddNewFriendVC: UISearchBarDelegate {
             fireManager.searchForNewFriend(nickname: nickname)
         }
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //使用者清空搜尋列的文字後，要清除下方table view內容
+        if searchText.isEmpty {
+            filterData.removeAll()
+            newFriendTableView.reloadData()
+        }
+    }
+    
 }
 
 extension AddNewFriendVC: FirebaseManagerDelegate {

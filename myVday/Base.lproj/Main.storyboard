@@ -586,13 +586,13 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="86A-9Z-t1D">
-                                <rect key="frame" x="20.5" y="225.5" width="62.5" height="63"/>
+                                <rect key="frame" x="26.5" y="225.5" width="50.5" height="50.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="86A-9Z-t1D" secondAttribute="height" id="NPL-NG-h7S"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰主題" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-Yl-L8p">
-                                <rect key="frame" x="97" y="243" width="309" height="30"/>
+                                <rect key="frame" x="97.5" y="236.5" width="308.5" height="30"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -601,25 +601,25 @@
                                 </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipses.bubble.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uxW-SZ-YYm">
-                                <rect key="frame" x="20.5" y="315.5" width="62.5" height="62"/>
+                                <rect key="frame" x="26.5" y="303" width="50.5" height="49.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uxW-SZ-YYm" secondAttribute="height" multiplier="1:1" id="BKj-MR-PXW"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9BH-Y6-Suy">
-                                <rect key="frame" x="20.5" y="404.5" width="62.5" height="60"/>
+                                <rect key="frame" x="26.5" y="379.5" width="50.5" height="47.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9BH-Y6-Suy" secondAttribute="height" id="rve-Fc-ZKT"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1ex-Gj-n5T">
-                                <rect key="frame" x="20.5" y="493.5" width="62.5" height="59.5"/>
+                                <rect key="frame" x="26.5" y="456" width="50.5" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1ex-Gj-n5T" secondAttribute="height" id="Xih-13-MYL"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰簡介" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egX-Sz-EfC">
-                                <rect key="frame" x="97" y="331.5" width="309" height="30"/>
+                                <rect key="frame" x="97.5" y="312.5" width="308.5" height="30"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -628,7 +628,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰天數" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q8Q-Yd-5Jt">
-                                <rect key="frame" x="97" y="420" width="309" height="30"/>
+                                <rect key="frame" x="97.5" y="388.5" width="308.5" height="30"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
@@ -637,7 +637,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="挑戰朋友" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yRr-gQ-3eu">
-                                <rect key="frame" x="97" y="508.5" width="309" height="30"/>
+                                <rect key="frame" x="97.5" y="464.5" width="308.5" height="30"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -649,33 +649,33 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="86A-9Z-t1D" firstAttribute="top" secondItem="H2x-Qv-YdA" secondAttribute="bottom" constant="26" id="0GR-2d-wL1"/>
-                            <constraint firstItem="yRr-gQ-3eu" firstAttribute="leading" secondItem="1ex-Gj-n5T" secondAttribute="trailing" constant="14" id="0c3-Ee-KYF"/>
-                            <constraint firstItem="sdM-Yl-L8p" firstAttribute="leading" secondItem="86A-9Z-t1D" secondAttribute="trailing" constant="14" id="4hY-36-mKg"/>
                             <constraint firstItem="sdM-Yl-L8p" firstAttribute="trailing" secondItem="NFK-Hg-YED" secondAttribute="trailing" id="5RZ-Na-oZG"/>
                             <constraint firstItem="sdM-Yl-L8p" firstAttribute="centerY" secondItem="86A-9Z-t1D" secondAttribute="centerY" id="6Fv-Yd-acX"/>
                             <constraint firstItem="9BH-Y6-Suy" firstAttribute="centerX" secondItem="uxW-SZ-YYm" secondAttribute="centerX" id="6qN-f4-bDo"/>
                             <constraint firstItem="q8Q-Yd-5Jt" firstAttribute="trailing" secondItem="NFK-Hg-YED" secondAttribute="trailing" id="7zG-hR-kPH"/>
                             <constraint firstItem="H2x-Qv-YdA" firstAttribute="top" secondItem="zuF-Dz-zst" secondAttribute="top" id="AaA-iV-tda"/>
                             <constraint firstItem="zuF-Dz-zst" firstAttribute="trailing" secondItem="H2x-Qv-YdA" secondAttribute="trailing" id="DTj-Ng-TkH"/>
-                            <constraint firstItem="q8Q-Yd-5Jt" firstAttribute="leading" secondItem="9BH-Y6-Suy" secondAttribute="trailing" constant="14" id="EG0-qA-wIA"/>
                             <constraint firstItem="uxW-SZ-YYm" firstAttribute="top" secondItem="86A-9Z-t1D" secondAttribute="bottom" constant="26" id="EZp-hF-gm5"/>
                             <constraint firstItem="yRr-gQ-3eu" firstAttribute="trailing" secondItem="NFK-Hg-YED" secondAttribute="trailing" id="HdA-S5-Ndn"/>
                             <constraint firstItem="9BH-Y6-Suy" firstAttribute="top" secondItem="uxW-SZ-YYm" secondAttribute="bottom" constant="26" id="HqG-w9-DtG"/>
+                            <constraint firstItem="egX-Sz-EfC" firstAttribute="leading" secondItem="NFK-Hg-YED" secondAttribute="leading" id="IgQ-HB-p8r"/>
                             <constraint firstItem="H2x-Qv-YdA" firstAttribute="height" secondItem="zuF-Dz-zst" secondAttribute="height" multiplier="0.155172" id="J72-3j-b9h"/>
-                            <constraint firstItem="1ex-Gj-n5T" firstAttribute="height" secondItem="9BH-Y6-Suy" secondAttribute="height" id="UCL-AB-LbC"/>
                             <constraint firstItem="egX-Sz-EfC" firstAttribute="trailing" secondItem="NFK-Hg-YED" secondAttribute="trailing" id="ZRc-oe-aiY"/>
                             <constraint firstItem="1ex-Gj-n5T" firstAttribute="top" secondItem="9BH-Y6-Suy" secondAttribute="bottom" constant="26" id="a2o-x2-ndp"/>
                             <constraint firstItem="q8Q-Yd-5Jt" firstAttribute="centerY" secondItem="9BH-Y6-Suy" secondAttribute="centerY" id="cOI-MD-gG2"/>
                             <constraint firstItem="H2x-Qv-YdA" firstAttribute="leading" secondItem="zuF-Dz-zst" secondAttribute="leading" id="eM9-hR-ZZZ"/>
                             <constraint firstItem="egX-Sz-EfC" firstAttribute="centerY" secondItem="uxW-SZ-YYm" secondAttribute="centerY" id="fWy-DA-plq"/>
-                            <constraint firstItem="uxW-SZ-YYm" firstAttribute="height" secondItem="5NP-he-4Gs" secondAttribute="height" id="gvL-q7-n5v"/>
+                            <constraint firstItem="uxW-SZ-YYm" firstAttribute="height" secondItem="5NP-he-4Gs" secondAttribute="height" multiplier="0.8" id="gvL-q7-n5v"/>
                             <constraint firstItem="1ex-Gj-n5T" firstAttribute="centerX" secondItem="9BH-Y6-Suy" secondAttribute="centerX" id="h8I-0G-GOC"/>
-                            <constraint firstItem="egX-Sz-EfC" firstAttribute="leading" secondItem="uxW-SZ-YYm" secondAttribute="trailing" constant="14" id="iEN-nx-3b3"/>
+                            <constraint firstItem="q8Q-Yd-5Jt" firstAttribute="leading" secondItem="NFK-Hg-YED" secondAttribute="leading" id="m8H-Bx-jIZ"/>
                             <constraint firstItem="uxW-SZ-YYm" firstAttribute="centerX" secondItem="86A-9Z-t1D" secondAttribute="centerX" id="mC6-HT-boE"/>
                             <constraint firstItem="86A-9Z-t1D" firstAttribute="centerX" secondItem="5NP-he-4Gs" secondAttribute="centerX" id="ml0-k2-Hp4"/>
-                            <constraint firstItem="86A-9Z-t1D" firstAttribute="height" secondItem="5NP-he-4Gs" secondAttribute="height" id="rit-CI-61k"/>
+                            <constraint firstItem="sdM-Yl-L8p" firstAttribute="leading" secondItem="NFK-Hg-YED" secondAttribute="leading" id="nUF-aZ-xpW"/>
+                            <constraint firstItem="yRr-gQ-3eu" firstAttribute="leading" secondItem="NFK-Hg-YED" secondAttribute="leading" id="qh8-ca-67B"/>
+                            <constraint firstItem="1ex-Gj-n5T" firstAttribute="height" secondItem="5NP-he-4Gs" secondAttribute="height" multiplier="0.8" id="qyi-Bm-mVs"/>
+                            <constraint firstItem="86A-9Z-t1D" firstAttribute="height" secondItem="5NP-he-4Gs" secondAttribute="height" multiplier="0.8" id="rit-CI-61k"/>
                             <constraint firstItem="yRr-gQ-3eu" firstAttribute="centerY" secondItem="1ex-Gj-n5T" secondAttribute="centerY" id="tB5-ia-dja"/>
-                            <constraint firstItem="9BH-Y6-Suy" firstAttribute="height" secondItem="5NP-he-4Gs" secondAttribute="height" id="zbq-aw-Kt1"/>
+                            <constraint firstItem="9BH-Y6-Suy" firstAttribute="height" secondItem="5NP-he-4Gs" secondAttribute="height" multiplier="0.8" id="zbq-aw-Kt1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zuF-Dz-zst"/>
                     </view>
@@ -1354,7 +1354,7 @@
                                 </connections>
                             </collectionView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此餐廳目前還沒有餐點資料哦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP4-K3-z5X">
-                                <rect key="frame" x="90" y="438" width="234" height="25.5"/>
+                                <rect key="frame" x="90" y="440" width="234" height="21"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1557,7 +1557,7 @@
                             </label>
                             <searchBar contentMode="redraw" placeholder="好友暱稱.." translatesAutoresizingMaskIntoConstraints="NO" id="MSo-xc-p8z">
                                 <rect key="frame" x="0.0" y="203" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
                                     <string>Title</string>

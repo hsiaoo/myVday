@@ -101,7 +101,7 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
         friendTableView.dataSource = self
         friendTableView.separatorStyle = .none
         friendTableView.register(ChallengeWithFriendTableViewCell.self, forCellReuseIdentifier: "friendCell")
-        friendTableView.frame = CGRect(x: 0, y: challengeFriendTF.frame.maxY, width: UIScreen.main.bounds.width, height: 200)
+        friendTableView.frame = CGRect(x: 0, y: challengeFriendTF.frame.maxY, width: UIScreen.main.bounds.width, height: 250)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,9 +120,30 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
                 friendCell.friendNameLabel.text = "目前還沒有好友哦"
                 return friendCell
             } else {
-                //friendCell.friendImageView.image = UIImage
                 friendCell.friendNameLabel.text = myFriends[indexPath.row].nickname
-                return friendCell
+                
+                if myFriends[indexPath.row].image.isEmpty {
+                    friendCell.friendImageView.image = UIImage(named: "profile128")
+                    return friendCell
+                } else {
+                    
+                    if let imageUrl = URL(string: myFriends[indexPath.row].image) {
+                        URLSession.shared.dataTask(with: imageUrl) { data, _, error in
+                            if let err = error {
+                                print("Error download image: \(err)")
+                            } else {
+                                if let okData = data {
+                                    DispatchQueue.main.async {
+                                        friendCell.friendImageView.image = UIImage(data: okData)
+                                    }
+                                }
+                            }
+                        }.resume()
+                    }
+                    
+                    return friendCell
+                }
+                
             }
         } else {
             return UITableViewCell()

@@ -17,21 +17,23 @@ class ChallengeWithFriendTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         friendImageView.translatesAutoresizingMaskIntoConstraints = false
         friendNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        friendImageView.backgroundColor = .yellow
+        
+        friendNameLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 18)
         
         friendImageView.layer.cornerRadius = 20
         friendImageView.layer.masksToBounds = true
+        friendImageView.contentMode = .scaleAspectFill
         
         contentView.addSubview(friendImageView)
         contentView.addSubview(friendNameLabel)
         
         NSLayoutConstraint.activate([
-            friendImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            friendImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             friendImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             friendImageView.widthAnchor.constraint(equalToConstant: 40),
             friendImageView.heightAnchor.constraint(equalToConstant: 40),
             
-            friendNameLabel.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: 20),
+            friendNameLabel.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: 22),
             friendNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             friendNameLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
