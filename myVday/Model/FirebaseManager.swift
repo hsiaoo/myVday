@@ -208,7 +208,9 @@ class FirebaseManager: NSObject {
     }
     
     func fetchChallengeDetail(challengeId: String, dataType: DataType) {
-        fireDB.collection("Challenge").document(challengeId).collection("Days").getDocuments { (snapshot, error) in
+        fireDB.collection("Challenge").document(challengeId).collection("Days")
+            .order(by: "index", descending: false)
+            .getDocuments { (snapshot, error) in
             if let err = error {
                 print("Error fetching challenge detail: \(err)")
             } else {

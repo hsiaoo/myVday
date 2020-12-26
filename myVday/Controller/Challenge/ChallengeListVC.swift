@@ -44,8 +44,7 @@ class ChallengeListVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newChallengeSegue" {
-            if segue.destination is AddNewChallengeVC {
-            }
+            _ = segue.destination as? AddNewChallengeVC
         } else {
             if segue.identifier == "singleChallengeSegue" {
                 if let controller = segue.destination as? SingleChallengeVC {

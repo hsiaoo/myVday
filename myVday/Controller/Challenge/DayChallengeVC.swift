@@ -45,11 +45,16 @@ class DayChallengeVC: UIViewController {
         if isEditingDayChallenge == false {
             saveDailyChallenge()
         } else {
+//            editSaveBtn.isEnabled = false
             editDailyChallenge()
         }
     }
     
     @IBAction func tappedchaCameraBtn(_ sender: Any) {
+        editSaveBtn.isEnabled = false
+        dayChaTitleTF.resignFirstResponder()
+        dayChaDescribeTextView.resignFirstResponder()
+        
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
@@ -69,6 +74,7 @@ class DayChallengeVC: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+            self.editSaveBtn.isEnabled = true
             imagePickerController.dismiss(animated: true, completion: nil)
         }
         
@@ -114,26 +120,29 @@ class DayChallengeVC: UIViewController {
         dayChaDescribeTextView.isEditable = false
         
         //challengeId, dayIndex, title, newDescribe, oldDescribe, okDays
-        //from singlChallenge(theChallenge) -> challengeId, daysCompleted(okDays)
-        //from todayChallenge -> oldDescribe, dayIndex
-        //from user input -> title, newDescribe
+        //from singlChallenge(theChallenge): challengeId, daysCompleted(okDays)
+        //from todayChallenge: oldDescribe, dayIndex
+        //from user input: title, newDescribe
         guard let newTitle = dayChaTitleTF.text,
             let newDescribe = dayChaDescribeTextView.text else { return }
         
-        if let theCha = theChallenge, let todayCha = todayChallenge, let imageString = downloadedImageString {
+        if let theCha = theChallenge, let todayCha = todayChallenge {
             let challengeId = theCha.challengeId
             let completedDays = theCha.daysCompleted
             let oldDescribe = todayCha.describe
             let dayIndex = todayCha.index
+            let imageString = downloadedImageString ?? ""
             
             fireManager.updateDailyChallenge(
-                challengeId: challengeId,
-                dayIndex: dayIndex,
-                title: newTitle,
-                newDescribe: newDescribe,
-                oldDescribe: oldDescribe,
-                imageString: imageString,
-                completedDays: completedDays)
+            challengeId: challengeId,
+            dayIndex: dayIndex,
+            title: newTitle,
+            newDescribe: newDescribe,
+            oldDescribe: oldDescribe,
+            imageString: imageString,
+            completedDays: completedDays)
+        } else {
+            print("=====單筆挑戰theChallenge和單日挑戰todayChallenge有問題=====")
         }
     }
     
@@ -181,12 +190,25 @@ extension DayChallengeVC: UIImagePickerControllerDelegate, UINavigationControlle
                     selectedImage: okImage,
                     dataType: .challenge) { imageString in
                         self.downloadedImageString = imageString
+                        self.editSaveBtn.isEnabled = true
                         print("======成功上傳第\(okTodayChallenge.index)天的挑戰照片======")
                 }
             }
         }
     }
 }
+
+//extension DayChallengeVC: UITextViewDelegate {
+//    func textViewDidChange(_ textView: UITextView) {
+//        if textView.text.isEmpty {
+//            print("no describe")
+//        } else {
+//            if selectedImage == nil {
+//                editSaveBtn.isEnabled = true
+//            }
+//        }
+//    }
+//}
 
 extension DayChallengeVC: FirebaseManagerDelegate {
 }

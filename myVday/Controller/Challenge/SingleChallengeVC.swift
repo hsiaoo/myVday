@@ -40,9 +40,10 @@ class SingleChallengeVC: UIViewController {
             if singleChallengeFromList.vsChallengeId.isEmpty {
                 return
             } else {
-                //抓取對方每日挑戰的紀錄
                 let vsId = singleChallengeFromList.vsChallengeId
+                //in order to get the name of challenger
                 fireManager.fetchMainCollectionDoc(mainCollection: .challenge, docId: vsId)
+                //抓取對方每日挑戰的紀錄
                 fireManager.fetchChallengeDetail(challengeId: vsId, dataType: .challenger)
             }
         }
