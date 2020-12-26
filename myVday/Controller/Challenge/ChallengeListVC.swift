@@ -97,7 +97,7 @@ class ChallengeListVC: UIViewController {
             //接受挑戰邀請
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
                 //新增owner為登入者的挑戰，這裡的ownerId是登入者的userId
-                self.fireManager.addChallenge(newChallenge: acceptedChallenge, friend: "", ownerId: acceptedChallenge.ownerId) {
+                self.fireManager.addChallenge(newChallenge: acceptedChallenge, friendId: "", ownerId: acceptedChallenge.ownerId) {
                     //移除畫面上已被被接受挑戰的那一列
                     self.myChallenge.remove(at: indexPath.row)
                     self.challengeListTableView.beginUpdates()

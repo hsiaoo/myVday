@@ -385,7 +385,7 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addChallenge(newChallenge: Challenge, friend: String, ownerId: String, completion: @escaping () -> Void) {
+    func addChallenge(newChallenge: Challenge, friendId: String, ownerId: String, completion: @escaping () -> Void) {
         if newChallenge.challengeId.isEmpty {
             do {
                 ref = try fireDB.collection("Challenge").addDocument(from: newChallenge, encoder: Firestore.Encoder(), completion: { (error) in
@@ -394,7 +394,7 @@ class FirebaseManager: NSObject {
                     } else {
                         //產生挑戰ID流水編號，並回頭更新自己的挑戰challengeId
                         if let challengeId = self.ref?.documentID {
-                            self.updateChallengeId(challengeId: challengeId, friend: friend, newChallenge: newChallenge)
+                            self.updateChallengeId(challengeId: challengeId, friendId: friendId, newChallenge: newChallenge)
                         }
                     }
                 })
@@ -403,7 +403,7 @@ class FirebaseManager: NSObject {
                 print("Error added challenge to Firestore: \(err)")
             }
         } else {
-            //accepted challenge，自己的挑戰已有challengeId。要拿自己的challengeId更新對方的vsChallengeId
+            //accepted challenge，自己的挑戰已有challengeId
             fireDB.collection("Challenge").document(newChallenge.challengeId).setData([
                 "challengeId": newChallenge.challengeId,
                 "ownerId": ownerId,
@@ -418,7 +418,8 @@ class FirebaseManager: NSObject {
                 if let err = error {
                     print("Error added challenge to Firestore: \(err)")
                 } else {
-                    self.updateChallengeId(challengeId: newChallenge.vsChallengeId, friend: "", newChallenge: newChallenge)
+                    //拿自己的challengeId更新對方的vsChallengeId
+                    self.updateChallengeId(challengeId: newChallenge.vsChallengeId, friendId: "", newChallenge: newChallenge)
                     completion()
                 }
             }
@@ -444,8 +445,8 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addChallengeRequest(newChallenge: Challenge, friend: String, vsChallengeId: String, dataType: DataType) {
-        ref = fireDB.collection("User").document(friend).collection(dataType.name()).addDocument(data: [
+    func addChallengeRequest(newChallenge: Challenge, friendId: String, vsChallengeId: String, dataType: DataType) {
+        ref = fireDB.collection("User").document(friendId).collection(dataType.name()).addDocument(data: [
             "challengeId": "",
             "days": newChallenge.days,
             "daysCompleted": 0,
@@ -461,7 +462,7 @@ class FirebaseManager: NSObject {
                 } else {
                     if let challengeId = self.ref?.documentID {
                         //更新challengeId
-                        self.fireDB.collection("User").document(friend).collection(dataType.name()).document(challengeId).updateData([
+                        self.fireDB.collection("User").document(friendId).collection(dataType.name()).document(challengeId).updateData([
                             "challengeId": challengeId
                         ]) { (error) in
                             if let err = error {
@@ -508,7 +509,7 @@ class FirebaseManager: NSObject {
         }
     }
 
-    func updateChallengeId(challengeId: String, friend: String, newChallenge: Challenge) {
+    func updateChallengeId(challengeId: String, friendId: String, newChallenge: Challenge) {
         if newChallenge.challengeId.isEmpty {
             //更新自己的挑戰ID
             fireDB.collection("Challenge").document(challengeId).updateData([
@@ -519,11 +520,11 @@ class FirebaseManager: NSObject {
                     print("Error updated challenge id: \(err)")
                 } else {
                     self.addDaysChallenge(days: newChallenge.days, challengeId: challengeId)
-                    if friend.isEmpty {
+                    if friendId.isEmpty {
                         return
                     } else {
                         //發出challenge request
-                        self.addChallengeRequest(newChallenge: newChallenge, friend: friend, vsChallengeId: challengeId, dataType: .challengeRequest)
+                        self.addChallengeRequest(newChallenge: newChallenge, friendId: friendId, vsChallengeId: challengeId, dataType: .challengeRequest)
                     }
                 }
             }

@@ -21,8 +21,9 @@ class AddNewChallengeVC: UIViewController {
     @IBOutlet weak var challengeFriendTF: UITextField!
     
     let fireManager = FirebaseManager()
-    var myFriends = [User]()
     var friendTableView = UITableView()
+    var myFriends = [User]()
+    var vsFriendId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +37,12 @@ class AddNewChallengeVC: UIViewController {
     }
     
     @IBAction func tappedDoneBtn(_ sender: UIBarButtonItem) {
-        guard let title = challengeTitleTF.text,
-            let describe = challengeDescribeTF.text,
-            let daysString = challengeDaysTF.text,
-            let friendName = challengeFriendTF.text,
-            let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential"),
+        let title = challengeTitleTF.text ?? ""
+        let describe = challengeDescribeTF.text ?? ""
+        let daysString = challengeDaysTF.text ?? ""
+        let friendId = vsFriendId ?? ""
+        
+        guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential"),
             let userNickname = UserDefaults.standard.string(forKey: "userNickname") else { return }
         
         if title.isEmpty || describe.isEmpty || daysString.isEmpty {
@@ -60,7 +62,7 @@ class AddNewChallengeVC: UIViewController {
                     vsChallengeId: "",
                     updatedTime: "",
                     daysCompleted: 0)
-                fireManager.addChallenge(newChallenge: newChallenge, friend: friendName, ownerId: userId) {
+                fireManager.addChallenge(newChallenge: newChallenge, friendId: friendId, ownerId: userId) {
                     self.newChallengeAlert(status: .success, title: "🔥GO GO GO", message: "成功發起一項挑戰！")
                 }
             }
@@ -151,8 +153,8 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let friendName = myFriends[indexPath.row].nickname
-        challengeFriendTF.text = friendName
+        vsFriendId = myFriends[indexPath.row].userId
+        challengeFriendTF.text = myFriends[indexPath.row].nickname
     }
     
 }
