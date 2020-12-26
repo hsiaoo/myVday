@@ -27,8 +27,12 @@ class ProfileVC: UIViewController {
     
     @IBOutlet weak var editSaveBarBtn: UIBarButtonItem!
     @IBOutlet weak var profileCameraBtn: UIBarButtonItem!
-    @IBOutlet weak var friendBtn: UIButton!
-    @IBOutlet weak var challengeBtn: UIButton!
+    
+    @IBOutlet weak var friendBtnsView: UIView!
+    @IBOutlet weak var challengeBtnsView: UIView!
+    
+//    @IBOutlet weak var friendBtn: UIButton!
+//    @IBOutlet weak var challengeBtn: UIButton!
     
     let fireManager = FirebaseManager()
     var profileData: User?
@@ -40,19 +44,19 @@ class ProfileVC: UIViewController {
         
         fireManager.delegate = self
         
-        friendBtn.layer.cornerRadius = 10.0
-        friendBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        friendBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
-        friendBtn.layer.shadowOpacity = 1.0
-        friendBtn.layer.shadowRadius = 10.0
-        friendBtn.layer.masksToBounds = false
+        friendBtnsView.layer.cornerRadius = 10.0
+        friendBtnsView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        friendBtnsView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        friendBtnsView.layer.shadowOpacity = 1.0
+        friendBtnsView.layer.shadowRadius = 10.0
+        friendBtnsView.layer.masksToBounds = false
         
-        challengeBtn.layer.cornerRadius = 10.0
-        challengeBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        challengeBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
-        challengeBtn.layer.shadowOpacity = 1.0
-        challengeBtn.layer.shadowRadius = 10.0
-        challengeBtn.layer.masksToBounds = false
+        challengeBtnsView.layer.cornerRadius = 10.0
+        challengeBtnsView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        challengeBtnsView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        challengeBtnsView.layer.shadowOpacity = 1.0
+        challengeBtnsView.layer.shadowRadius = 10.0
+        challengeBtnsView.layer.masksToBounds = false
         
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             fireManager.fetchProfileData(userId: userId)
@@ -68,8 +72,8 @@ class ProfileVC: UIViewController {
             profileNickNameTF.isEnabled = true
             profileDescribeTF.isEnabled = true
             profileEmojiTF.isEnabled = true
-            friendBtn.isEnabled = false
-            challengeBtn.isEnabled = false
+//            friendBtn.isEnabled = false
+//            challengeBtn.isEnabled = false
         } else {
             editSaveBarBtn.image = UIImage(systemName: "pencil")
             profileCameraBtn.image = nil
@@ -77,8 +81,8 @@ class ProfileVC: UIViewController {
             profileNickNameTF.isEnabled = false
             profileDescribeTF.isEnabled = false
             profileEmojiTF.isEnabled = false
-            friendBtn.isEnabled = true
-            challengeBtn.isEnabled = true
+//            friendBtn.isEnabled = true
+//            challengeBtn.isEnabled = true
             
             profileNickNameTF.resignFirstResponder()
             profileDescribeTF.resignFirstResponder()

@@ -17,6 +17,7 @@
 		85353A022589EB0600652B8D /* SearchForNewFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */; };
 		85353A05258B3F6200652B8D /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A04258B3F6200652B8D /* SignInVC.swift */; };
 		853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6CC2573D41B007BA763 /* FirebaseManager.swift */; };
+		854256D32596DBDE00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 854256D22596DBDC00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf */; };
 		8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AC256E38E6008C64FA /* AppDelegate.swift */; };
 		8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AE256E38E6008C64FA /* SceneDelegate.swift */; };
 		8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8551E0B2256E38E6008C64FA /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		85353A03258B3E7400652B8D /* myVday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVday.entitlements; sourceTree = "<group>"; };
 		85353A04258B3F6200652B8D /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		853DE6CC2573D41B007BA763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		854256D22596DBDC00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GenJyuuGothic-Monospace-Bold-2.ttf"; sourceTree = "<group>"; };
 		8551E0A9256E38E6008C64FA /* myVday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8551E0AC256E38E6008C64FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8551E0AE256E38E6008C64FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				8551E0B2256E38E6008C64FA /* Main.storyboard */,
 				8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */,
 				8551E0B8256E38EC008C64FA /* Assets.xcassets */,
+				854256D22596DBDC00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf */,
 				85E50564258DBF30007A94EE /* GoogleService-Info.plist */,
 				8551E0BD256E38EC008C64FA /* Info.plist */,
 				8551E0B5256E38E6008C64FA /* myVday.xcdatamodeld */,
@@ -348,6 +351,7 @@
 				8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */,
 				85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */,
 				8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */,
+				854256D32596DBDE00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf in Resources */,
 				8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */,
 				8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */,
 				85E50565258DBF31007A94EE /* GoogleService-Info.plist in Resources */,
