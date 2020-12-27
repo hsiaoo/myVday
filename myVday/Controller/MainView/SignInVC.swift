@@ -11,21 +11,40 @@ import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
 import FirebaseFirestore
+import Lottie
 
 class SignInVC: UIViewController, FirebaseManagerDelegate {
     
     let fireManager = FirebaseManager()
+    let sloganLabel = UILabel()
+    let siwaButton = ASAuthorizationAppleIDButton(authorizationButtonType: .signUp, authorizationButtonStyle: .white)
     
     // Unhashed nonce.
     fileprivate var currentNonce: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         fireManager.delegate = self
         
-        let siwaButton = ASAuthorizationAppleIDButton()
+//        sloganLabel.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 130)
+        sloganLabel.numberOfLines = 0
+        sloganLabel.text = "my ✌🏼 day\nVibrate the fresh\nVibration eVeryday."
+        sloganLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 25)
         
+        //lottie animation
+        let animationView = AnimationView(name: "31454-food-prepared-food-app")
+        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
+        
+        view.addSubview(animationView)
+        view.addSubview(sloganLabel)
+        
+        animationView.loopMode = .loop
+        animationView.play()
+        
+        sloganLabel.translatesAutoresizingMaskIntoConstraints = false
         siwaButton.translatesAutoresizingMaskIntoConstraints = false
         
         // add the button to the view controller root view
@@ -33,8 +52,16 @@ class SignInVC: UIViewController, FirebaseManagerDelegate {
         
         // set constraint
         NSLayoutConstraint.activate([
-            siwaButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50.0),
-            siwaButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50.0),
+            sloganLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            sloganLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
+//            sloganLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50),
+//            sloganLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
+            sloganLabel.bottomAnchor.constraint(equalTo: animationView.topAnchor, constant: 70),
+//            sloganLabel.widthAnchor.constraint(equalToConstant: 280),
+//            sloganLabel.heightAnchor.constraint(equalToConstant: 130),
+            
+            siwaButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 85.0),
+            siwaButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -85.0),
             siwaButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -70.0),
             siwaButton.heightAnchor.constraint(equalToConstant: 50.0)
         ])
@@ -163,6 +190,9 @@ extension SignInVC: ASAuthorizationControllerPresentationContextProviding, ASAut
             if let _ = appleIDCredential.email,
                 let givenName = appleIDCredential.fullName?.givenName,
                 let _ = appleIDCredential.fullName?.familyName {
+                
+                
+                
                 // Initialize a Firebase credential.
                 let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                           idToken: identityTokenString,
@@ -203,54 +233,7 @@ extension SignInVC: ASAuthorizationControllerPresentationContextProviding, ASAut
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-                print("======之前登出，現在重新登入======")
             }
-            
-            // 'appleIDCredential.user' is a unique ID for each user, this uniqueID will always be returned
-            //            UserDefaults.standard.set(appleIDCredential.user, forKey: "appleUserIDCredential")
-            //            guard let email = appleIDCredential.email,
-            //                let givenName = appleIDCredential.fullName?.givenName,
-            //                let familyName = appleIDCredential.fullName?.familyName else { return }
-            //            print("======userId: \(appleIDCredential.user), email: \(email), givenName: \(givenName), familyName: \(familyName)======")
-            
-            //            // Initialize a Firebase credential.
-            //            let credential = OAuthProvider.credential(withProviderID: "apple.com",
-            //                                                      idToken: identityTokenString,
-            //                                                      rawNonce: nonce)
-            //
-            //            // Sign in with Firebase.
-            //            Auth.auth().signIn(with: credential) { (authResult, error) in
-            //                if let err = error {
-            //                    // Error. If error.code == .MissingOrInvalidNonce, make sure
-            //                    // you're sending the SHA256-hashed nonce as a hex string with
-            //                    // your request to Apple.
-            //                    print(err.localizedDescription)
-            //                    print(err)
-            //                    return
-            //                } else {
-            //                    if let isNewUser = authResult?.additionalUserInfo?.isNewUser,
-            //                        isNewUser == true {
-            //                        // User is signed in to Firebase with Apple.
-            //                        let emojiString = self.encode(emoji: "😃")
-            //                        let loginUser = User(
-            //                            userId: appleIDCredential.user,
-            //                            nickname: givenName,
-            //                            describe: "Hello!",
-            //                            emoji: emojiString,
-            //                            image: "")
-            //                        self.fireManager.addUser(loginUser: loginUser)
-            //                    } else {
-            //                        print("===========not a new user===========")
-            //                    }
-            //                }
-            //            }
-            
-            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-            
-            // This is to get the SceneDelegate object from your view controller
-            // then call the change root view controller function to change to main tab bar
-            //            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
         }
     }
 }

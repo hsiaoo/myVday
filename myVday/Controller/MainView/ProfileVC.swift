@@ -8,12 +8,18 @@
 
 import UIKit
 
+enum ProfileStatus {
+    case success, fail
+}
+
+enum ProfileImageStatus {
+    case old, new
+}
+
 class ProfileVC: UIViewController {
     
-    @IBAction func tempSignOutBtn(_ sender: UIBarButtonItem) {
+    @IBAction func signOutBtn(_ sender: UIBarButtonItem) {
         UserDefaults.standard.set(nil, forKey: "appleUserIDCredential")
-        //        UserDefaults.standard.set(nil, forKey: "userAuthorizationCode")
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
@@ -31,8 +37,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var friendBtnsView: UIView!
     @IBOutlet weak var challengeBtnsView: UIView!
     
-//    @IBOutlet weak var friendBtn: UIButton!
-//    @IBOutlet weak var challengeBtn: UIButton!
+    @IBOutlet var friendChallengeBtns: [UIButton]!
     
     let fireManager = FirebaseManager()
     var profileData: User?
@@ -67,41 +72,66 @@ class ProfileVC: UIViewController {
         isEditingProfile = !isEditingProfile
         
         if isEditingProfile == true {
-            editSaveBarBtn.image = UIImage(systemName: "checkmark.circle")
-            profileCameraBtn.image = UIImage(systemName: "camera")
             profileNickNameTF.isEnabled = true
             profileDescribeTF.isEnabled = true
             profileEmojiTF.isEnabled = true
-//            friendBtn.isEnabled = false
-//            challengeBtn.isEnabled = false
+            profileNickNameTF.becomeFirstResponder()
+            editSaveBarBtn.image = UIImage(systemName: "checkmark.circle")
+            profileCameraBtn.image = UIImage(systemName: "camera")
+            for button in friendChallengeBtns {
+                button.isEnabled = false
+            }
         } else {
-            editSaveBarBtn.image = UIImage(systemName: "pencil")
-            profileCameraBtn.image = nil
-            profileCameraBtn.image = nil
-            profileNickNameTF.isEnabled = false
-            profileDescribeTF.isEnabled = false
-            profileEmojiTF.isEnabled = false
-//            friendBtn.isEnabled = true
-//            challengeBtn.isEnabled = true
+//            profileNickNameTF.isEnabled = false
+//            profileDescribeTF.isEnabled = false
+//            profileEmojiTF.isEnabled = false
+//            editSaveBarBtn.image = UIImage(systemName: "pencil")
+//            profileCameraBtn.image = nil
+//            profileCameraBtn.image = nil
+//            for button in friendChallengeBtns {
+//                button.isEnabled = true
+//            }
+//            profileNickNameTF.resignFirstResponder()
+//            profileDescribeTF.resignFirstResponder()
+//            profileEmojiTF.resignFirstResponder()
             
-            profileNickNameTF.resignFirstResponder()
-            profileDescribeTF.resignFirstResponder()
-            profileEmojiTF.resignFirstResponder()
+            let newNickname = profileNickNameTF.text ?? ""
+            let newDescribe = profileDescribeTF.text ?? ""
+            let newEmoji = profileEmojiTF.text ?? "😃"
+            let newEmojiString = emojiEncode(emoji: newEmoji)
             
-            if var newProfileData = profileData {
-                if newProfileData.nickname.isEmpty {
-                    print("請輸入暱稱")
-                } else {
-                    if selectedImage == nil {
-                        //使用者沒有選擇頭貼，直接上傳其他資料
-                        newProfileData.image = ""
-                        fireManager.updateProfile(profileData: newProfileData)
-                    } else {
-                        //先上傳頭貼，再上傳完整的個人資料
-                        if let newProfileImage = selectedImage, let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+            if newNickname.isEmpty {
+                profileAlert(status: .fail, title: "😶", message: "請輸入暱稱")
+            } else {
+                if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
+                    if profileImageView.image != nil && selectedImage == nil {
+                        //原本就有照片，但使用者這次沒有更新照片
+                        let newProfileData = User(
+                            userId: userId,
+                            nickname: newNickname,
+                            describe: newDescribe,
+                            emoji: newEmojiString,
+                            image: "")
+                        self.fireManager.updateProfile(imageStauts: .old, profileData: newProfileData, completion: {
+                            self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
+                            UserDefaults.standard.set(newNickname, forKey: "userNickname")
+                            print("=====\(newNickname)=====")
+                        })
+                    } else if selectedImage != nil {
+                        //使用者這次修改有更新照片
+                        if let newProfileImage = selectedImage {
                             fireManager.uploadProfileImage(userId: userId, profileImage: newProfileImage) { (imageString) in
-                                newProfileData.image = imageString
-                                self.fireManager.updateProfile(profileData: newProfileData)
+                                let newProfileData = User(
+                                    userId: userId,
+                                    nickname: newNickname,
+                                    describe: newDescribe,
+                                    emoji: newEmojiString,
+                                    image: imageString)
+                                self.fireManager.updateProfile(imageStauts: .new, profileData: newProfileData, completion: {
+                                    self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
+                                    UserDefaults.standard.set(newNickname, forKey: "userNickname")
+                                    print("=====\(newNickname)=====")
+                                })
                             }
                         }
                     }
@@ -185,6 +215,30 @@ class ProfileVC: UIViewController {
         }
     }
     
+    func profileAlert(status: ProfileStatus, title: String, message: String) {
+        let profileAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
+            switch status {
+            case .success:
+                self.profileNickNameTF.resignFirstResponder()
+                self.profileDescribeTF.resignFirstResponder()
+                self.profileEmojiTF.resignFirstResponder()
+                self.profileNickNameTF.isEnabled = false
+                self.profileDescribeTF.isEnabled = false
+                self.profileEmojiTF.isEnabled = false
+                self.editSaveBarBtn.image = UIImage(systemName: "pencil")
+                self.profileCameraBtn.image = nil
+                self.profileCameraBtn.image = nil
+                for button in self.friendChallengeBtns {
+                    button.isEnabled = true
+                }
+            case .fail: break
+            }
+        }
+        profileAlertController.addAction(promptAction)
+        present(profileAlertController, animated: true, completion: nil)
+    }
+    
     func emojiDecode(emojiString: String) -> String? {
         if  let data = emojiString.data(using: .utf8), let emoji = String(data: data, encoding: .nonLossyASCII) {
             return emoji
@@ -235,17 +289,14 @@ extension ProfileVC: UIImagePickerControllerDelegate & UINavigationControllerDel
 
 extension ProfileVC: FirebaseManagerDelegate {
     func fireManager(_ manager: FirebaseManager, didDownloadProfile data: [String: Any]) {
-        profileData = User(
+        let loginUser = User(
             userId: data["userId"] as? String ?? "no user id",
             nickname: data["nickname"] as? String ?? "no nickname",
             describe: data["describe"] as? String ?? "no describe",
             emoji: data["emoji"] as? String ?? "no emoji",
             image: data["image"] as? String ?? "no image"
         )
-        if let okUserData = profileData {
-            self.profileSetting(userData: okUserData)
-            UserDefaults.standard.set(okUserData.nickname, forKey: "userNickname")
-        }
+        profileSetting(userData: loginUser)
     }
     
 }

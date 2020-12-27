@@ -26,7 +26,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xEp-CT-1Hy">
                                 <rect key="frame" x="0.0" y="218.5" width="414" height="677.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LnF-KJ-N17">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="40" height="50"/>
@@ -34,7 +34,7 @@
                                     <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="50"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" semanticContentAttribute="forceRightToLeft" reuseIdentifier="challengeCell" id="mbu-rG-bde" customClass="ChallengeCollectionViewCell" customModule="myVday" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="challengeCell" id="mbu-rG-bde" customClass="ChallengeCollectionViewCell" customModule="myVday" customModuleProvider="target">
                                         <rect key="frame" x="20" y="60" width="64" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IAq-26-uHA">
@@ -387,7 +387,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="Cgr-Jd-HcP"/>
                         <barButtonItem key="leftBarButtonItem" image="escape" catalog="system" id="otl-wI-qYQ">
                             <connections>
-                                <action selector="tempSignOutBtn:" destination="ccB-hS-tas" id="g87-8P-Ols"/>
+                                <action selector="signOutBtn:" destination="ccB-hS-tas" id="g87-8P-Ols"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -413,6 +413,10 @@
                         <outlet property="profileImageView" destination="6ww-5d-RqG" id="Td6-Ht-nkL"/>
                         <outlet property="profileNickNameTF" destination="GEv-2S-hwd" id="2fn-SJ-Xqs"/>
                         <outlet property="profleEditingView" destination="9xB-7d-E4E" id="cr4-Ep-Nik"/>
+                        <outletCollection property="friendChallengeBtns" destination="S8H-Kf-dSH" collectionClass="NSMutableArray" id="Go6-OA-8mG"/>
+                        <outletCollection property="friendChallengeBtns" destination="9zH-xe-Ngn" collectionClass="NSMutableArray" id="UMv-Si-r2o"/>
+                        <outletCollection property="friendChallengeBtns" destination="cYa-nz-lJH" collectionClass="NSMutableArray" id="F4b-uX-xWX"/>
+                        <outletCollection property="friendChallengeBtns" destination="kXs-AY-uUF" collectionClass="NSMutableArray" id="Ugx-lK-1eW"/>
                         <segue destination="efK-Eg-9RW" kind="show" identifier="friendSegue" id="rwq-sw-5BP"/>
                         <segue destination="GgD-b7-i2a" kind="show" identifier="challengeSegue" id="eiW-j8-XJN"/>
                     </connections>
@@ -760,11 +764,11 @@
             <objects>
                 <viewController id="0GO-rL-Aeh" customClass="NewRestaurantVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hkC-fh-90g">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wiB-sy-gZN">
-                                <rect key="frame" x="44.5" y="45" width="325" height="95"/>
+                                <rect key="frame" x="44.5" y="45" width="325" height="106.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeeeaaahhh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7W-wf-pN2">
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="35.5"/>
@@ -773,7 +777,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FW-SS-UQV">
-                                        <rect key="frame" x="0.0" y="36.5" width="325" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="325" height="70"/>
                                         <string key="text">找到了一間地圖上沒有的餐廳
 快點記錄下來</string>
                                         <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="25"/>
@@ -783,32 +787,32 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="r7o-Ka-FdA">
-                                <rect key="frame" x="44.5" y="166" width="34" height="34"/>
+                                <rect key="frame" x="44.5" y="177.5" width="34" height="34"/>
                                 <color key="tintColor" red="0.12914538380000001" green="0.1179387197" blue="0.098035953940000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="r7o-Ka-FdA" secondAttribute="height" multiplier="1:1" id="q68-qm-Atd"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address64" translatesAutoresizingMaskIntoConstraints="NO" id="w5R-r6-0aj">
-                                <rect key="frame" x="44.5" y="226" width="33.5" height="33.5"/>
+                                <rect key="frame" x="44.5" y="237.5" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="w5R-r6-0aj" secondAttribute="height" multiplier="1:1" id="MNG-bg-r2P"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-n9-R1j">
-                                <rect key="frame" x="98.5" y="170" width="271" height="26"/>
+                                <rect key="frame" x="98.5" y="181.5" width="271" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mya-ID-npx">
-                                <rect key="frame" x="98" y="230" width="271.5" height="26"/>
+                                <rect key="frame" x="98" y="241.5" width="271.5" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jI-VN-4fd">
-                                <rect key="frame" x="336.5" y="286" width="33" height="33"/>
+                                <rect key="frame" x="336.5" y="297.5" width="33" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3jI-VN-4fd" secondAttribute="height" multiplier="1:1" id="X0V-wS-4S9"/>
                                 </constraints>
@@ -1299,7 +1303,7 @@
                                 </connections>
                             </collectionView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此餐廳目前還沒有餐點資料哦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP4-K3-z5X">
-                                <rect key="frame" x="90" y="440" width="234" height="21"/>
+                                <rect key="frame" x="90" y="438" width="234" height="25.5"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1342,15 +1346,8 @@
                     <view key="view" contentMode="scaleToFill" id="egC-fq-Lfu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="vvv" translatesAutoresizingMaskIntoConstraints="NO" id="Bys-zt-eiw">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="orange#fbd9bd"/>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7fd-dN-PpT"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="orange#fbd9bd"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNV-37-fpm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1777,7 +1774,6 @@
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="profile128" width="128" height="128"/>
-        <image name="vvv" width="1024" height="1024"/>
         <namedColor name="backgroundOrange">
             <color red="0.97600001096725464" green="0.89399999380111694" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

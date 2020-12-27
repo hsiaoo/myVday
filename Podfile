@@ -14,4 +14,5 @@ target 'myVday' do
   pod 'Firebase/Storage'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
+  pod 'lottie-ios'
 end

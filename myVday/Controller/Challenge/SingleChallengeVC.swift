@@ -16,6 +16,7 @@ class SingleChallengeVC: UIViewController {
     @IBOutlet weak var challengeDescribeLabel: UILabel!
     
     let fireManager = FirebaseManager()
+    var userNickname: String?
     var singleChallengeFromList: Challenge?
     var certainDayChallenge: DaysChallenge?
     var myDaysChallenge = [DaysChallenge]()
@@ -29,6 +30,7 @@ class SingleChallengeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         downloadChallenges()
+        userNickname = UserDefaults.standard.string(forKey: "userNickname") ?? ""
     }
 
     func downloadChallenges() {
@@ -81,12 +83,12 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
             withReuseIdentifier: ChallengeCollectionReusableView.identifier,
             for: indexPath) as? ChallengeCollectionReusableView {
             
-            let userNickname = UserDefaults.standard.string(forKey: "userNickname") ?? ""
+            let userName = userNickname ?? ""
             let challengerNickname = challengerName ?? "challenger"
             
             if indexPath.section == 0 {
                 sectionHeader.leftTitleLabel.isHidden = false
-                sectionHeader.leftTitleLabel.text = userNickname
+                sectionHeader.leftTitleLabel.text = userName
                 sectionHeader.rightTitleLabel.isHidden = true
             } else {
                 sectionHeader.rightTitleLabel.isHidden = false
