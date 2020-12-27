@@ -24,6 +24,7 @@ class FriendListVC: UIViewController {
     @IBOutlet weak var listIconImageView: UIImageView!
     @IBOutlet weak var listNameLabel: UILabel!
     @IBOutlet weak var friendListTableView: UITableView!
+    @IBOutlet weak var noFriendLabel: UILabel!
     
     let fireManager = FirebaseManager()
     var userData: User?
@@ -55,7 +56,7 @@ class FriendListVC: UIViewController {
             listNameLabel.text = "好友邀請"
             newFriendBtn.isEnabled = false
             newFriendBtn.image = nil
-            friendNotiBtn.image = UIImage(systemName: "person.2.fill")
+            friendNotiBtn.image = UIImage(systemName: "person.2")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
                 //抓取好友邀請清單
                 fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friendRequest)
@@ -80,7 +81,7 @@ class FriendListVC: UIViewController {
     func friendRequestAlert(actionType: FriendActionType, title: String, message: String, targetUser: User, userId: String, indexPath: IndexPath) {
         let requestAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         switch actionType {
-            
+        
         case .acceptFriend:
             //接受好友
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
@@ -144,7 +145,7 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
                 friendChallengeCell.listTitleLabel.text = "\(myFriends[indexPath.row].nickname)"
                 friendChallengeCell.listDescribeLabel.text =
                     "向你發出好友邀請\n" +
-                "\(myFriends[indexPath.row].describe)"
+                    "\(myFriends[indexPath.row].describe)"
                 friendChallengeCell.confirmBtn.isHidden = false
                 friendChallengeCell.confirmBtn.addTarget(self, action: #selector(acceptRequest(_:)), for: .touchUpInside)
                 return friendChallengeCell
@@ -219,7 +220,7 @@ extension FriendListVC: FirebaseManagerDelegate {
         if sub == .friends {
             for document in docArray {
                 if let emojiString = document["emoji"] as? String,
-                    let emoji = ProfileVC().emojiDecode(emojiString: emojiString) {
+                   let emoji = ProfileVC().emojiDecode(emojiString: emojiString) {
                     let aUser = User(
                         userId: document["userId"] as? String ?? "no user id",
                         nickname: document["nickname"] as? String ?? "no nickname",
@@ -228,8 +229,14 @@ extension FriendListVC: FirebaseManagerDelegate {
                         image: document["image"] as? String ?? "no image")
                     myFriends.append(aUser)
                 }
-                friendListTableView.reloadData()
             }
+            
+            if myFriends.isEmpty {
+                noFriendLabel.isHidden = false
+            } else {
+                noFriendLabel.isHidden = true
+            }
+            friendListTableView.reloadData()
         } else if sub == .friendRequest {
             for document in docArray {
                 let aUser = User(
@@ -239,6 +246,12 @@ extension FriendListVC: FirebaseManagerDelegate {
                     emoji: document["emoji"] as? String ?? "no emoji",
                     image: document["image"] as? String ?? "no image")
                 myFriends.append(aUser)
+            }
+            
+            if myFriends.isEmpty {
+                noFriendLabel.isHidden = false
+            } else {
+                noFriendLabel.isHidden = true
             }
             friendListTableView.reloadData()
         } else {

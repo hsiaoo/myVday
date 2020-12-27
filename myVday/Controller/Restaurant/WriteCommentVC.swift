@@ -38,7 +38,7 @@ class WriteCommentVC: UIViewController {
     @IBAction func doneCommentBtn(_ sender: UIBarButtonItem) {
         favCuisine = voteForCuisineTF.text ?? ""
         if commentTextView.text.isEmpty {
-            commentAlert(status: .fail, title: "😶", message: "請輸入評論")
+            commentAlert(status: .fail, title: "😶", message: "請撰寫評論")
         } else {
             //新增評論
             if let restId = restaurantId,

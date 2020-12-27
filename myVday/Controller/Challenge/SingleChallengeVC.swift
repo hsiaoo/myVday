@@ -83,17 +83,17 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
             withReuseIdentifier: ChallengeCollectionReusableView.identifier,
             for: indexPath) as? ChallengeCollectionReusableView {
             
-            let userName = userNickname ?? ""
-            let challengerNickname = challengerName ?? "challenger"
+            let userName = userNickname ?? "使用者"
+            let challengerNickname = challengerName ?? "挑戰者"
             
             if indexPath.section == 0 {
                 sectionHeader.leftTitleLabel.isHidden = false
                 sectionHeader.leftTitleLabel.text = userName
                 sectionHeader.rightTitleLabel.isHidden = true
             } else {
-                sectionHeader.rightTitleLabel.isHidden = false
-                sectionHeader.rightTitleLabel.text = challengerNickname
-                sectionHeader.leftTitleLabel.isHidden = true
+                sectionHeader.leftTitleLabel.isHidden = false
+                sectionHeader.leftTitleLabel.text = challengerNickname
+                sectionHeader.rightTitleLabel.isHidden = true
             }
             return sectionHeader
         } else {
@@ -107,15 +107,15 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
             for: indexPath) as? ChallengeCollectionViewCell {
             if indexPath.section == 0 {
                 if myDaysChallenge[indexPath.row].describe.isEmpty {
-                    challengeCell.challengeImageView.image = UIImage(named: "blankTasks")
+                    challengeCell.challengeImageView.image = UIImage(named: "taskTodo72")
                 } else {
-                    challengeCell.challengeImageView.image = UIImage(named: "completedTasks")
+                    challengeCell.challengeImageView.image = UIImage(named: "taskCompleted72")
                 }
             } else {
                 if challengerDaysChallenge[indexPath.row].describe.isEmpty {
-                    challengeCell.challengeImageView.image = UIImage(named: "blankTasks")
+                    challengeCell.challengeImageView.image = UIImage(named: "taskTodo72")
                 } else {
-                    challengeCell.challengeImageView.image = UIImage(named: "completedTasks")
+                    challengeCell.challengeImageView.image = UIImage(named: "taskCompleted72")
                 }
             }
             return challengeCell

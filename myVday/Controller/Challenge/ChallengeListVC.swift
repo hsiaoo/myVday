@@ -23,6 +23,7 @@ class ChallengeListVC: UIViewController {
     @IBOutlet weak var newChallengeBtn: UIBarButtonItem!
     @IBOutlet weak var listNameLabel: UILabel!
     @IBOutlet weak var challengeListTableView: UITableView!
+    @IBOutlet weak var noChallengeLabel: UILabel!
     
     let fireManager = FirebaseManager()
     var myChallenge = [Challenge]()
@@ -273,7 +274,13 @@ extension ChallengeListVC: FirebaseManagerDelegate {
                  daysCompleted: document["daysCompleted"] as? Int ?? 0)
              myChallenge.append(aChallenge)
          }
-         challengeListTableView.reloadData()
+        
+        if myChallenge.isEmpty {
+            noChallengeLabel.isHidden = false
+        } else {
+            noChallengeLabel.isHidden = true
+        }
+        challengeListTableView.reloadData()
      }
     
     func fireManager(_ manager: FirebaseManager, didDownloadProfileDetail data: [QueryDocumentSnapshot], type: DataType) {
@@ -291,6 +298,12 @@ extension ChallengeListVC: FirebaseManagerDelegate {
                     updatedTime: document["updatedTime"] as? String ?? "no updatedTime",
                     daysCompleted: document["daysCompleted"] as? Int ?? 0)
                 myChallenge.append(aChallenge)
+            }
+            
+            if myChallenge.isEmpty {
+                noChallengeLabel.isHidden = false
+            } else {
+                noChallengeLabel.isHidden = true
             }
             challengeListTableView.reloadData()
         } else {

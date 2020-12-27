@@ -72,8 +72,6 @@ extension MenuVC: UICollectionViewDelegate, UICollectionViewDataSource {
                     }
                 }.resume()
             }
-            
-            
             return menuCell
         } else {
             return UICollectionViewCell()
@@ -101,11 +99,13 @@ extension MenuVC: FirebaseManagerDelegate {
                 vote: menu["vote"] as? Int ?? 0)
             restaurantMenu.append(newCuisine)
         }
+        
         if restaurantMenu.isEmpty {
             noCuisineLabel.isHidden = false
         } else {
-            menuCollectionView.reloadData()
+            noCuisineLabel.isHidden = true
         }
+        menuCollectionView.reloadData()
     }
     
 }
