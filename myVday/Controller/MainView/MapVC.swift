@@ -12,9 +12,12 @@ import CoreLocation
 import GoogleMaps
 import MapKit
 
+enum RestaurantStatus {
+    case success, fail
+}
+
 class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UITabBarControllerDelegate {
     
-    @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var newRestView: UIView!
     @IBOutlet weak var newRestNameTF: UITextField!
@@ -38,27 +41,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil)
-        
-//        if let tabbarcontroller = tabBarController {
-//            tabbarcontroller.delegate = self
-//        }
-
         mapView.delegate = self
         fireManager.delegate = self
         locationManager.delegate = self
         mapManager.delegate = self
         newRestBottomConstraint.constant = screenHeight
         self.infoWindow = loadNib()
+        keyboardHandling()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestLocation()
@@ -74,10 +63,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailSegue" {
+            let detailVC = segue.destination as? DetailRestaurantVC
+            detailVC?.basicInfo = sender as? BasicInfo
+        }
+    }
 
     @IBAction func closeNewRestView(_ sender: UIBarButtonItem) {
         newRestBottomConstraint.constant = screenHeight
         navigationController?.navigationBar.isHidden = true
+        
+        //動畫有點僵硬，優化專案時再做
 //        UIViewPropertyAnimator.runningPropertyAnimator(
 //            withDuration: 1,
 //            delay: 0,
@@ -92,7 +90,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
     @IBAction func saveNewRestBtn(_ sender: UIBarButtonItem) {
         guard let newRestAddress = newRestAddressTF.text, let newRestName = newRestNameTF.text else { return }
         if newRestName.isEmpty || newRestAddress.isEmpty {
-            print("請填入新餐廳的名稱及地址")
+            newRestaurantAlert(status: .fail, title: "😶", message: "請填入新餐廳的名稱及地址")
         } else {
             mapManager.addressToCoordinate(newRestName: newRestName, newRestAddress: newRestAddress)
             newRestNameTF.resignFirstResponder()
@@ -102,9 +100,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
         }
     }
     
+    @IBAction func changeSearchingRange() {
+        //優化項目
+        let newCoordinate = mapView.projection.coordinate(for: mapView.center)
+        print("map view center coordinate: \(newCoordinate)")
+        fireManager.fetchData(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
+    }
+    
     func moveAddingRestViewUp() {
+        infoWindow.removeFromSuperview()
         newRestBottomConstraint.constant = 0
-        navigationController?.navigationBar.isHidden = false
+//        navigationController?.navigationBar.isHidden = false
+        
+        //動畫有點僵硬，優化專案時再做
 //        UIViewPropertyAnimator.runningPropertyAnimator(
 //            withDuration: 1,
 //            delay: 0,
@@ -116,35 +124,30 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
 //            completion: nil)
     }
     
-    @IBAction func filterBtnClicked(_ sender: UIBarButtonItem) {
-        isFilter = !isFilter
-        if isFilter == true {
-            UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: 1,
-                delay: 0,
-                options: .curveEaseIn,
-                animations: {
-                    self.filterView.frame = CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: 180)
-            },
-                completion: nil)
-        } else {
-            UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: 1,
-                delay: 0,
-                options: .curveEaseOut,
-                animations: {
-                    self.filterView.frame = CGRect(x: 0, y: -93, width: UIScreen.main.bounds.width, height: 180)
-            },
-                completion: nil)
+    func newRestaurantAlert(status: RestaurantStatus, title: String, message: String) {
+        let newRestaurantAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
+            switch status {
+            case .success: break
+            case .fail: break
+            }
         }
+        newRestaurantAlertController.addAction(promptAction)
+        present(newRestaurantAlertController, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetailSegue" {
-            let detailVC = segue.destination as? DetailRestaurantVC
-            detailVC?.basicInfo = sender as? BasicInfo
-        }
-    }
+     func keyboardHandling() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
+     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
@@ -181,12 +184,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
         mapView.animate(toViewingAngle: 45)
         
         locationManager.stopUpdatingLocation()
-    }
-    
-    @IBAction func changeSearchingRange() {
-        let newCoordinate = mapView.projection.coordinate(for: mapView.center)
-        print("map view center coordinate: \(newCoordinate)")
-        fireManager.fetchData(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
     }
     
     func loadNib() -> MapInfoWindow {

@@ -908,10 +908,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqj-wW-9KK" userLabel="add a new restaurant view">
-                                <rect key="frame" x="0.0" y="85.5" width="414" height="727.5"/>
+                                <rect key="frame" x="0.0" y="-83" width="414" height="896"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fH0-FE-V0T">
-                                        <rect key="frame" x="44.5" y="30" width="325" height="106.5"/>
+                                        <rect key="frame" x="44.5" y="180" width="325" height="125"/>
                                         <string key="text">Yeeeaaahhh
 找到了一間地圖上沒有的餐廳
 快點記錄下來</string>
@@ -920,20 +920,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TLv-dM-wcb">
-                                        <rect key="frame" x="44.5" y="162" width="35.5" height="35"/>
+                                        <rect key="frame" x="44.5" y="330.5" width="35.5" height="35"/>
                                         <color key="tintColor" red="0.12914538380000001" green="0.1179387197" blue="0.098035953940000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TLv-dM-wcb" secondAttribute="height" multiplier="1:1" id="Q3f-or-7Pv"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address24" translatesAutoresizingMaskIntoConstraints="NO" id="XFz-zf-ctU">
-                                        <rect key="frame" x="44.5" y="224" width="35.5" height="33.5"/>
+                                        <rect key="frame" x="44.5" y="392.5" width="35.5" height="33.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XFz-zf-ctU" secondAttribute="height" multiplier="1:1" constant="2" id="oNC-8A-xu7"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HHJ-Nw-JRf">
-                                        <rect key="frame" x="100" y="227" width="294" height="27"/>
+                                        <rect key="frame" x="100" y="395.5" width="294" height="27"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -942,7 +942,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vUS-Br-8a5">
-                                        <rect key="frame" x="100" y="166.5" width="294" height="27"/>
+                                        <rect key="frame" x="100" y="335" width="294" height="27"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -950,6 +950,26 @@
                                             <outlet property="delegate" destination="GYU-0L-Wyz" id="WZ9-J7-MPh"/>
                                         </connections>
                                     </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5I5-HT-wfO">
+                                        <rect key="frame" x="283.5" y="442.5" width="86" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j62-fF-hgb">
+                                                <rect key="frame" x="0.0" y="0.0" width="43" height="32"/>
+                                                <state key="normal" image="checkmark.circle" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crg-Ax-elA">
+                                                <rect key="frame" x="59" y="0.0" width="27" height="32"/>
+                                                <state key="normal" image="xmark.circle" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="crg-Ax-elA" secondAttribute="height" multiplier="35:13" id="yQb-dW-54e"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
@@ -959,16 +979,19 @@
                                     <constraint firstItem="vUS-Br-8a5" firstAttribute="leading" secondItem="TLv-dM-wcb" secondAttribute="trailing" constant="20" id="42w-Xe-Rli"/>
                                     <constraint firstItem="TLv-dM-wcb" firstAttribute="leading" secondItem="fH0-FE-V0T" secondAttribute="leading" id="6j6-EA-jZT"/>
                                     <constraint firstAttribute="bottom" secondItem="XFz-zf-ctU" secondAttribute="bottom" constant="470" id="84p-fl-lkz"/>
+                                    <constraint firstItem="5I5-HT-wfO" firstAttribute="top" secondItem="HHJ-Nw-JRf" secondAttribute="bottom" constant="20" id="8mT-xE-CAD"/>
+                                    <constraint firstItem="5I5-HT-wfO" firstAttribute="trailing" secondItem="fH0-FE-V0T" secondAttribute="trailing" id="8my-nY-yc8"/>
                                     <constraint firstAttribute="trailing" secondItem="HHJ-Nw-JRf" secondAttribute="trailing" constant="20" id="L6H-dq-2af"/>
                                     <constraint firstItem="TLv-dM-wcb" firstAttribute="top" secondItem="fH0-FE-V0T" secondAttribute="bottom" constant="26" id="Lgm-B1-6If"/>
                                     <constraint firstItem="HHJ-Nw-JRf" firstAttribute="leading" secondItem="XFz-zf-ctU" secondAttribute="trailing" constant="20" id="O7C-xB-bLM"/>
+                                    <constraint firstItem="5I5-HT-wfO" firstAttribute="height" secondItem="qqj-wW-9KK" secondAttribute="height" multiplier="0.0357388" id="PBC-vH-Eao"/>
                                     <constraint firstItem="vUS-Br-8a5" firstAttribute="centerY" secondItem="TLv-dM-wcb" secondAttribute="centerY" id="QWA-sC-68F"/>
                                     <constraint firstItem="fH0-FE-V0T" firstAttribute="centerX" secondItem="qqj-wW-9KK" secondAttribute="centerX" id="Sl1-DI-ylO"/>
                                     <constraint firstAttribute="trailing" secondItem="vUS-Br-8a5" secondAttribute="trailing" constant="20" id="aa9-R3-Bzq"/>
                                     <constraint firstItem="XFz-zf-ctU" firstAttribute="width" secondItem="qqj-wW-9KK" secondAttribute="width" multiplier="0.086" id="cjh-LY-NEL"/>
                                     <constraint firstItem="XFz-zf-ctU" firstAttribute="top" secondItem="TLv-dM-wcb" secondAttribute="bottom" constant="26" id="lDf-y4-ukJ"/>
                                     <constraint firstItem="XFz-zf-ctU" firstAttribute="leading" secondItem="fH0-FE-V0T" secondAttribute="leading" id="ucy-ro-gLt"/>
-                                    <constraint firstItem="fH0-FE-V0T" firstAttribute="top" secondItem="qqj-wW-9KK" secondAttribute="top" constant="30" id="zcg-I1-bPO"/>
+                                    <constraint firstItem="fH0-FE-V0T" firstAttribute="top" secondItem="qqj-wW-9KK" secondAttribute="top" constant="180" id="zcg-I1-bPO"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -976,6 +999,7 @@
                         <constraints>
                             <constraint firstItem="2fd-up-eac" firstAttribute="top" secondItem="hwc-h3-iau" secondAttribute="top" id="4Kj-Cj-0lB"/>
                             <constraint firstItem="2fd-up-eac" firstAttribute="leading" secondItem="3gD-R4-Yft" secondAttribute="leading" id="4gF-eZ-ZYs"/>
+                            <constraint firstItem="qqj-wW-9KK" firstAttribute="height" secondItem="hwc-h3-iau" secondAttribute="height" id="6OH-Xc-K9V"/>
                             <constraint firstItem="qqj-wW-9KK" firstAttribute="bottom" secondItem="3gD-R4-Yft" secondAttribute="bottom" id="8JC-gs-BKK"/>
                             <constraint firstItem="2fd-up-eac" firstAttribute="trailing" secondItem="3gD-R4-Yft" secondAttribute="trailing" id="Pxb-xo-B0G"/>
                             <constraint firstItem="qqj-wW-9KK" firstAttribute="leading" secondItem="3gD-R4-Yft" secondAttribute="leading" id="e53-Du-Xtt"/>
