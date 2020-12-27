@@ -19,7 +19,8 @@ class CustomTabBarController: UITabBarController {
         if let navicontrollers = self.viewControllers,
             let secondnc = navicontrollers[1] as? UINavigationController,
             let mapvc = secondnc.viewControllers.first as? MapVC {
-            mapvc.moveAddingRestViewUp()
+//            mapvc.moveAddingRestViewUp()
+            mapvc.performSegue(withIdentifier: "newRestaurantSegue", sender: nil)
         }
         print("======long press======")
     }

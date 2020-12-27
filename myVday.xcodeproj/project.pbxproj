@@ -35,6 +35,10 @@
 		8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */; };
 		8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */; };
 		8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */; };
+		85CF11EE2598337D009E0907 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CF11ED2598337C009E0907 /* LaunchScreenVC.swift */; };
+		85CF11F125983459009E0907 /* 31454-food-prepared-food-app.json in Resources */ = {isa = PBXBuildFile; fileRef = 85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */; };
+		85CF11F42598391A009E0907 /* CustomLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85CF11F32598391A009E0907 /* CustomLaunch.storyboard */; };
+		85CF11FC25986219009E0907 /* NewRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CF11FB25986219009E0907 /* NewRestaurantVC.swift */; };
 		85D21B5E2580B2FE0039A30B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B5D2580B2FE0039A30B /* User.swift */; };
 		85D21B602580C8E80039A30B /* FriendListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B5F2580C8E80039A30B /* FriendListVC.swift */; };
 		85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */; };
@@ -90,6 +94,10 @@
 		8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapInfoWindowView.xib; sourceTree = "<group>"; };
 		8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
+		85CF11ED2598337C009E0907 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
+		85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "31454-food-prepared-food-app.json"; sourceTree = "<group>"; };
+		85CF11F32598391A009E0907 /* CustomLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomLaunch.storyboard; sourceTree = "<group>"; };
+		85CF11FB25986219009E0907 /* NewRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestaurantVC.swift; sourceTree = "<group>"; };
 		85D21B5D2580B2FE0039A30B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85D21B5F2580C8E80039A30B /* FriendListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListVC.swift; sourceTree = "<group>"; };
 		85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendChallengeListTableViewCell.swift; sourceTree = "<group>"; };
@@ -203,18 +211,19 @@
 		8551E0AB256E38E6008C64FA /* myVday */ = {
 			isa = PBXGroup;
 			children = (
-				85353A03258B3E7400652B8D /* myVday.entitlements */,
 				852AF05D2571F50000CAD9C0 /* Model */,
 				8585B10D256FF3BD00FB5EFC /* View */,
 				8585B10A256FF33900FB5EFC /* Controller */,
 				8551E0AC256E38E6008C64FA /* AppDelegate.swift */,
 				8551E0AE256E38E6008C64FA /* SceneDelegate.swift */,
+				85CF11F32598391A009E0907 /* CustomLaunch.storyboard */,
 				8551E0B2256E38E6008C64FA /* Main.storyboard */,
 				8551E0BA256E38EC008C64FA /* LaunchScreen.storyboard */,
+				85CF11F62598414A009E0907 /* Resource */,
 				8551E0B8256E38EC008C64FA /* Assets.xcassets */,
-				854256D22596DBDC00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf */,
-				85E50564258DBF30007A94EE /* GoogleService-Info.plist */,
+				85353A03258B3E7400652B8D /* myVday.entitlements */,
 				8551E0BD256E38EC008C64FA /* Info.plist */,
+				85E50564258DBF30007A94EE /* GoogleService-Info.plist */,
 				8551E0B5256E38E6008C64FA /* myVday.xcdatamodeld */,
 			);
 			path = myVday;
@@ -244,6 +253,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		85CF11F62598414A009E0907 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				854256D22596DBDC00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf */,
+				85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		85E50576259075D8007A94EE /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +285,7 @@
 		85E505782590779E007A94EE /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
+				85CF11FB25986219009E0907 /* NewRestaurantVC.swift */,
 				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
 				85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */,
 				8585A2F8257644F300182AC3 /* MenuVC.swift */,
@@ -278,6 +297,7 @@
 		85E50579259077F7007A94EE /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				85CF11ED2598337C009E0907 /* LaunchScreenVC.swift */,
 				85353A04258B3F6200652B8D /* SignInVC.swift */,
 				85E50570258EF52F007A94EE /* CustomTabBarController.swift */,
 				85DCBE202580953E002A78F4 /* ProfileVC.swift */,
@@ -348,12 +368,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85CF11F42598391A009E0907 /* CustomLaunch.storyboard in Resources */,
 				8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */,
 				85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */,
 				8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */,
 				854256D32596DBDE00D6A395 /* GenJyuuGothic-Monospace-Bold-2.ttf in Resources */,
 				8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */,
 				8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */,
+				85CF11F125983459009E0907 /* 31454-food-prepared-food-app.json in Resources */,
 				85E50565258DBF31007A94EE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +468,7 @@
 				8551E0B7256E38E6008C64FA /* myVday.xcdatamodeld in Sources */,
 				85E5056F258E3AC7007A94EE /* WriteCommentVC.swift in Sources */,
 				85353A022589EB0600652B8D /* SearchForNewFriendTableViewCell.swift in Sources */,
+				85CF11FC25986219009E0907 /* NewRestaurantVC.swift in Sources */,
 				853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */,
 				8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */,
 				85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */,
@@ -456,6 +479,7 @@
 				8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */,
 				8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */,
 				85E5056D258E0CF6007A94EE /* HoursTableViewCell.swift in Sources */,
+				85CF11EE2598337D009E0907 /* LaunchScreenVC.swift in Sources */,
 				85E50567258DDDEE007A94EE /* ChallengeListVC.swift in Sources */,
 				8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */,
 				852D98F02570D445004F86B1 /* CheckBox.swift in Sources */,

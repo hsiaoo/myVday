@@ -221,44 +221,15 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func addNewRestaurant(newRestData: BasicInfo) {
+    func addNewRestaurant(newRestData: BasicInfo, completion: @escaping () -> Void) {
         do {
             try fireDB.collection("Restaurant").document(newRestData.restaurantId).setData(from: newRestData)
+            completion()
             print("successfully added a new restaurant to firebase")
         } catch let err {
             print("Error writing restaurant to Firestore: \(err)")
         }
     }
-    
-//    func uploadImage(
-//        toStorageWith restId: String,
-//        uniqueString: String,
-//        selectedImage: UIImage,
-//        nameOrDescribe: String,
-//        dataType: DataType) {
-//        let storageRef = storageDB.reference().child(dataType.name()).child(restId).child("\(uniqueString).png")
-//        let comprssedImage = selectedImage.jpegData(compressionQuality: 0.1)
-//        if let uploadData = comprssedImage {
-//            storageRef.putData(uploadData, metadata: nil) { _, error in
-//                if let err = error {
-//                    print("Error upload data: \(err)")
-//                }
-//                storageRef.downloadURL { (url, error) in
-//                    if let err = error {
-//                        print("Error getting image url: \(err)")
-//                    }
-//
-//                    if let uploadImageUrl = url?.absoluteString {
-//                        switch dataType {
-//                        case .menu:
-//                            self.addCuisine(imageString: uploadImageUrl, restaurantId: restId, cuisineName: nameOrDescribe)
-//                        case .friends, .friendRequest, .challengeRequest, .owner, .challenger, .comments: break
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
     
     func uploadMenuChallengeImage(
         restaurantChallengeId: String,

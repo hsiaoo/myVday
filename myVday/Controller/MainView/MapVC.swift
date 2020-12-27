@@ -12,29 +12,13 @@ import CoreLocation
 import GoogleMaps
 import MapKit
 
-enum RestaurantStatus {
-    case success, fail
-}
-
-class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UITabBarControllerDelegate {
+class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var newRestView: UIView!
-    @IBOutlet weak var newRestNameTF: UITextField!
-    @IBOutlet weak var newRestAddressTF: UITextField!
-    @IBOutlet weak var newRestBottomConstraint: NSLayoutConstraint!
     
     let fireManager = FirebaseManager()
-    let mapManager = MapManager()
     var locationManager = CLLocationManager()
-    var isFilter = false
     var basicInfos = [BasicInfo]()
-    
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
-    let maxxX = UIScreen.main.bounds.maxX
-    let maxxY = UIScreen.main.bounds.maxY
-    
     private var infoWindow = MapInfoWindow()
     fileprivate var locationMarker: GMSMarker? = GMSMarker()
     
@@ -44,10 +28,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
         mapView.delegate = self
         fireManager.delegate = self
         locationManager.delegate = self
-        mapManager.delegate = self
-        newRestBottomConstraint.constant = screenHeight
         self.infoWindow = loadNib()
-        keyboardHandling()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestLocation()
@@ -68,35 +49,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
         if segue.identifier == "toDetailSegue" {
             let detailVC = segue.destination as? DetailRestaurantVC
             detailVC?.basicInfo = sender as? BasicInfo
-        }
-    }
-
-    @IBAction func closeNewRestView(_ sender: UIBarButtonItem) {
-        newRestBottomConstraint.constant = screenHeight
-        navigationController?.navigationBar.isHidden = true
-        
-        //動畫有點僵硬，優化專案時再做
-//        UIViewPropertyAnimator.runningPropertyAnimator(
-//            withDuration: 1,
-//            delay: 0,
-//            options: .autoreverse,
-//            animations: {
-//                self.newRestView.frame = CGRect(x: 0, y: self.maxxY, width: self.screenWidth, height: 0)
-//                self.navigationController?.navigationBar.frame = CGRect(x: 0, y: -100, width: 0, height: 0)
-//        },
-//            completion: nil)
-    }
-    
-    @IBAction func saveNewRestBtn(_ sender: UIBarButtonItem) {
-        guard let newRestAddress = newRestAddressTF.text, let newRestName = newRestNameTF.text else { return }
-        if newRestName.isEmpty || newRestAddress.isEmpty {
-            newRestaurantAlert(status: .fail, title: "😶", message: "請填入新餐廳的名稱及地址")
-        } else {
-            mapManager.addressToCoordinate(newRestName: newRestName, newRestAddress: newRestAddress)
-            newRestNameTF.resignFirstResponder()
-            newRestAddressTF.resignFirstResponder()
-            newRestBottomConstraint.constant = screenHeight
-            navigationController?.navigationBar.isHidden = true
+        } else if segue.identifier == "newRestaurantSegue" {
+            _ = segue.destination as? NewRestaurantVC
         }
     }
     
@@ -105,59 +59,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
         let newCoordinate = mapView.projection.coordinate(for: mapView.center)
         print("map view center coordinate: \(newCoordinate)")
         fireManager.fetchData(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
-    }
-    
-    func moveAddingRestViewUp() {
-        infoWindow.removeFromSuperview()
-        newRestBottomConstraint.constant = 0
-//        navigationController?.navigationBar.isHidden = false
-        
-        //動畫有點僵硬，優化專案時再做
-//        UIViewPropertyAnimator.runningPropertyAnimator(
-//            withDuration: 1,
-//            delay: 0,
-//            options: .autoreverse,
-//            animations: {
-//                self.newRestView.frame = CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenHeight)
-//                self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 100, width: 100, height: 100)
-//        },
-//            completion: nil)
-    }
-    
-    func newRestaurantAlert(status: RestaurantStatus, title: String, message: String) {
-        let newRestaurantAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
-            switch status {
-            case .success: break
-            case .fail: break
-            }
-        }
-        newRestaurantAlertController.addAction(promptAction)
-        present(newRestaurantAlertController, animated: true, completion: nil)
-    }
-    
-     func keyboardHandling() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil)
-     }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
-        }
-        self.view.frame.origin.y = 0 - keyboardSize.height
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        self.view.frame.origin.y = 0
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -249,7 +150,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
     func placeMarker(position: CLLocationCoordinate2D, title: String, data: BasicInfo) {
 //        mapView.clear()
         let marker = GMSMarker()
-        
         marker.position = position
         marker.icon = UIImage(named: "redmarker64.png")
         marker.map = mapView
@@ -260,38 +160,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UI
         print("location error: \(error)")
     }
     
-}//end of class MapResultesVC
+}
 
 extension MapVC: MapInfoWindowDelegate {
     func didTapInfoButton(data: BasicInfo) {
         performSegue(withIdentifier: "toDetailSegue", sender: data)
-    }
-}
-
-extension MapVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        newRestNameTF.resignFirstResponder()
-        newRestAddressTF.resignFirstResponder()
-        return false
-    }
-}
-
-extension MapVC: MapManagerDelegate {
-    func mapManager(_ manager: MapManager, didGetCoordinate: CLPlacemark, name: String, address: String) {
-        if let coordinate = didGetCoordinate.location?.coordinate {
-            let newRestaurant = BasicInfo(
-                address: address,
-                describe: "",
-                hashtags: ["", ""],
-                hots: ["", ""],
-                hours: ["", "", "", "", "", "", ""],
-                restaurantId: name,
-                latitude: coordinate.latitude,
-                longitude: coordinate.longitude,
-                name: name,
-                phone: "")
-            fireManager.addNewRestaurant(newRestData: newRestaurant)
-        }
     }
 }
 
