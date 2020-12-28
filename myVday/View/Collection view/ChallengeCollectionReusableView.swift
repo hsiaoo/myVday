@@ -10,7 +10,6 @@ import UIKit
 
 class ChallengeCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var leftTitleLabel: UILabel!
-    @IBOutlet weak var rightTitleLabel: UILabel!
     
     static let identifier = "challengeSectionHeader"
     

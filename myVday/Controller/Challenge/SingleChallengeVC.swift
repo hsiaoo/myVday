@@ -87,13 +87,9 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
             let challengerNickname = challengerName ?? "挑戰者"
             
             if indexPath.section == 0 {
-                sectionHeader.leftTitleLabel.isHidden = false
                 sectionHeader.leftTitleLabel.text = userName
-                sectionHeader.rightTitleLabel.isHidden = true
             } else {
-                sectionHeader.leftTitleLabel.isHidden = false
                 sectionHeader.leftTitleLabel.text = challengerNickname
-                sectionHeader.rightTitleLabel.isHidden = true
             }
             return sectionHeader
         } else {
