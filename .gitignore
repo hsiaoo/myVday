@@ -3,3 +3,4 @@ Podfile.lock
 .DS_Store
 myVday.xcworkspace/xcuserdata/hsiao.xcuserdatad/UserInterfaceState.xcuserstate
 myVday/.DS_Store
+myVday/GoogleService-Info.plist
