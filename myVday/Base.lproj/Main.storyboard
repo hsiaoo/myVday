@@ -329,9 +329,6 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zH-xe-Ngn">
                                                 <rect key="frame" x="8" y="20" width="172" height="172"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="9zH-xe-Ngn" secondAttribute="height" multiplier="1:1" id="nhz-dc-j4z"/>
-                                                </constraints>
                                                 <state key="normal" image="challenge167"/>
                                                 <connections>
                                                     <action selector="challengeBtnTapped:" destination="ccB-hS-tas" eventType="touchUpInside" id="E39-OR-EBs"/>
@@ -507,13 +504,13 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前還沒有好友哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xx-O7-ZsF">
-                                <rect key="frame" x="135" y="438" width="144" height="25.5"/>
+                                <rect key="frame" x="135" y="440" width="144" height="21"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYz-BA-Jy9">
-                                <rect key="frame" x="99" y="121" width="307" height="49"/>
+                                <rect key="frame" x="99" y="125" width="307" height="41"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -583,7 +580,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="發起挑戰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFK-Hg-YED">
-                                        <rect key="frame" x="97.5" y="32" width="308.5" height="49"/>
+                                        <rect key="frame" x="97.5" y="36" width="308.5" height="41"/>
                                         <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -766,7 +763,7 @@
             <objects>
                 <viewController id="0GO-rL-Aeh" customClass="NewRestaurantVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hkC-fh-90g">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wiB-sy-gZN">
@@ -884,7 +881,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撰寫評論" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="El0-v6-is3">
-                                <rect key="frame" x="111" y="118" width="295" height="49"/>
+                                <rect key="frame" x="111" y="118" width="295" height="41"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1374,7 +1371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNV-37-fpm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-375" y="66"/>
+            <point key="canvasLocation" x="135" y="66"/>
         </scene>
         <!--個人-->
         <scene sceneID="BTP-n4-aiE">
@@ -1448,7 +1445,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增餐點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74e-Si-5jI">
-                                <rect key="frame" x="105.5" y="118" width="140" height="49"/>
+                                <rect key="frame" x="105.5" y="122" width="140" height="41"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1521,7 +1518,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尋找好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dga-cs-HFg">
-                                <rect key="frame" x="99" y="121" width="307" height="49"/>
+                                <rect key="frame" x="99" y="125" width="307" height="41"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1641,7 +1638,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="挑戰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEc-7V-Ab0">
-                                <rect key="frame" x="99" y="121" width="307" height="49"/>
+                                <rect key="frame" x="99" y="125" width="307" height="41"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1722,7 +1719,7 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前還沒有挑戰項目哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv8-yX-ixV" userLabel="noChallengeLabel">
-                                <rect key="frame" x="117" y="438" width="180" height="25.5"/>
+                                <rect key="frame" x="117" y="440" width="180" height="21"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
