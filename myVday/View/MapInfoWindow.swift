@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MapInfoWindowDelegate: AnyObject {
-    func didTapInfoButton(data: BasicInfo)
+    func tappedInfoWindow(data: BasicInfo)
 }
 
 class MapInfoWindow: UIView {
@@ -26,7 +26,7 @@ class MapInfoWindow: UIView {
     
     @IBAction func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         if let spotData = spotData {
-            delegate?.didTapInfoButton(data: spotData)
+            delegate?.tappedInfoWindow(data: spotData)
         }
     }
     
@@ -37,24 +37,4 @@ class MapInfoWindow: UIView {
             return UIView()
         }
     }
-    
-//    class func loadViewFromNib() -> UIView {
-//        var infoView = UIView()
-//        if let okNib = UINib(nibName: "MapInfoWindowView", bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView {
-//            infoView = okNib
-//            infoView.isUserInteractionEnabled = true
-//            let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapInfoView(sender:)))
-//            infoView.addGestureRecognizer(recognizer)
-//            return infoView
-//        } else {
-//            return UIView()
-//        }
-//    }
-    
-//    @objc func didTapInfoView(sender: UITapGestureRecognizer) {
-//        if let spotData = spotData {
-//            delegate?.didTapInfoButton(data: spotData)
-//        }
-//    }
-    
 }

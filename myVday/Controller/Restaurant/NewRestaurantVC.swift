@@ -10,10 +10,6 @@ import UIKit
 import CoreLocation
 import FirebaseFirestore
 
-enum RestaurantStatus {
-    case success, fail
-}
-
 class NewRestaurantVC: UIViewController {
 
     @IBOutlet weak var newRestaurantNameTF: UITextField!
@@ -39,13 +35,11 @@ class NewRestaurantVC: UIViewController {
         } else {
             //將地址轉換成座標
             mapManager.addressToCoordinate(newRestName: newRestName, newRestAddress: newRestAddress)
-//            newRestaurantNameTF.resignFirstResponder()
-//            newRestaurantAddressTF.resignFirstResponder()
         }
         
     }
     
-    func newRestaurantAlert(status: RestaurantStatus, title: String, message: String) {
+    func newRestaurantAlert(status: SuccessOrFail, title: String, message: String) {
         let newRestaurantAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
             switch status {

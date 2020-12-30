@@ -9,10 +9,6 @@
 import UIKit
 import FirebaseFirestore
 
-enum ChallengeStatus {
-    case success, fail
-}
-
 class AddNewChallengeVC: UIViewController {
     
     @IBOutlet weak var challengeTitleTF: UITextField!
@@ -69,7 +65,7 @@ class AddNewChallengeVC: UIViewController {
         }
     }
     
-    func newChallengeAlert(status: ChallengeStatus, title: String, message: String) {
+    func newChallengeAlert(status: SuccessOrFail, title: String, message: String) {
         let newChallengeAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
             switch status {

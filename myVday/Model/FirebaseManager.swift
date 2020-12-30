@@ -25,6 +25,10 @@ import FirebaseFirestoreSwift
     @objc optional func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection)
 }
 
+enum SuccessOrFail {
+    case success, fail
+}
+
 @objc enum MainCollection: Int {
     case challenge, restaurant, user
     
@@ -618,7 +622,7 @@ class FirebaseManager: NSObject {
         }
     }
     
-    func report(mainCollection: MainCollection, mainDocId: String, subCollection: SubCollection, reportedId: String, reportedData: Comments) {
+    func report(mainCollection: MainCollection, mainDocId: String, subCollection: SubCollection, reportedId: String, reportedData: Comment) {
         do {
             try fireDB.collection(mainCollection.name())
                 .document(mainDocId)

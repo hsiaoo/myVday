@@ -8,22 +8,11 @@
 
 import UIKit
 
-enum ProfileStatus {
-    case success, fail
-}
-
 enum ProfileImageStatus {
     case old, new
 }
 
 class ProfileVC: UIViewController {
-    
-    @IBAction func signOutBtn(_ sender: UIBarButtonItem) {
-        UserDefaults.standard.set(nil, forKey: "appleUserIDCredential")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
-    }
     
     @IBOutlet weak var profleEditingView: UIView!
     @IBOutlet weak var profileNickNameTF: UITextField!
@@ -31,7 +20,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileEmojiTF: UITextField!
     
-    @IBOutlet weak var editSaveBarBtn: UIBarButtonItem!
+    @IBOutlet weak var profileEditSaveBarBtn: UIBarButtonItem!
     @IBOutlet weak var profileCameraBtn: UIBarButtonItem!
     
     @IBOutlet weak var friendBtnsView: UIView!
@@ -68,6 +57,13 @@ class ProfileVC: UIViewController {
         }
     }
     
+    @IBAction func tappedSignOutBtn(_ sender: UIBarButtonItem) {
+        UserDefaults.standard.set(nil, forKey: "appleUserIDCredential")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+    }
+
     @IBAction func editProfileBtn(_ sender: Any) {
         isEditingProfile = !isEditingProfile
         
@@ -76,25 +72,12 @@ class ProfileVC: UIViewController {
             profileDescribeTF.isEnabled = true
             profileEmojiTF.isEnabled = true
             profileNickNameTF.becomeFirstResponder()
-            editSaveBarBtn.image = UIImage(systemName: "checkmark.circle")
+            profileEditSaveBarBtn.image = UIImage(systemName: "checkmark.circle")
             profileCameraBtn.image = UIImage(systemName: "camera")
             for button in friendChallengeBtns {
                 button.isEnabled = false
             }
         } else {
-//            profileNickNameTF.isEnabled = false
-//            profileDescribeTF.isEnabled = false
-//            profileEmojiTF.isEnabled = false
-//            editSaveBarBtn.image = UIImage(systemName: "pencil")
-//            profileCameraBtn.image = nil
-//            profileCameraBtn.image = nil
-//            for button in friendChallengeBtns {
-//                button.isEnabled = true
-//            }
-//            profileNickNameTF.resignFirstResponder()
-//            profileDescribeTF.resignFirstResponder()
-//            profileEmojiTF.resignFirstResponder()
-            
             let newNickname = profileNickNameTF.text ?? ""
             let newDescribe = profileDescribeTF.text ?? ""
             let newEmoji = profileEmojiTF.text ?? "😃"
@@ -114,8 +97,8 @@ class ProfileVC: UIViewController {
                             image: "")
                         self.fireManager.updateProfile(imageStauts: .old, profileData: newProfileData, completion: {
                             self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
+                            //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
                             UserDefaults.standard.set(newNickname, forKey: "userNickname")
-                            print("=====\(newNickname)=====")
                         })
                     } else if selectedImage != nil {
                         //使用者這次修改有更新照片
@@ -129,8 +112,8 @@ class ProfileVC: UIViewController {
                                     image: imageString)
                                 self.fireManager.updateProfile(imageStauts: .new, profileData: newProfileData, completion: {
                                     self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
+                                    //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
                                     UserDefaults.standard.set(newNickname, forKey: "userNickname")
-                                    print("=====\(newNickname)=====")
                                 })
                             }
                         }
@@ -167,11 +150,11 @@ class ProfileVC: UIViewController {
         present(imagePickerAlertController, animated: true, completion: nil)
     }
     
-    @IBAction func friendBtnTapped(_ sender: Any) {
+    @IBAction func tappedFriendBtn(_ sender: Any) {
         performSegue(withIdentifier: "friendSegue", sender: profileData)
     }
     
-    @IBAction func challengeBtnTapped(_ sender: Any) {
+    @IBAction func tappedChallengeBtn(_ sender: Any) {
         performSegue(withIdentifier: "challengeSegue", sender: nil)
     }
     
@@ -215,7 +198,7 @@ class ProfileVC: UIViewController {
         }
     }
     
-    func profileAlert(status: ProfileStatus, title: String, message: String) {
+    func profileAlert(status: SuccessOrFail, title: String, message: String) {
         let profileAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
             switch status {
@@ -226,7 +209,7 @@ class ProfileVC: UIViewController {
                 self.profileNickNameTF.isEnabled = false
                 self.profileDescribeTF.isEnabled = false
                 self.profileEmojiTF.isEnabled = false
-                self.editSaveBarBtn.image = UIImage(systemName: "pencil")
+                self.profileEditSaveBarBtn.image = UIImage(systemName: "pencil")
                 self.profileCameraBtn.image = nil
                 self.profileCameraBtn.image = nil
                 for button in self.friendChallengeBtns {
@@ -251,26 +234,6 @@ class ProfileVC: UIViewController {
             return emojiString
         }
         return "can not encode the emoji"
-    }
-}
-
-extension ProfileVC: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.becomeFirstResponder()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField {
-        case profileNickNameTF:
-            profileData?.nickname = textField.text ?? ""
-        case profileDescribeTF:
-            profileData?.describe = textField.text ?? ""
-        case profileEmojiTF:
-            let newEmoji = textField.text ?? ""
-            profileData?.emoji = emojiEncode(emoji: newEmoji)
-        default:
-            break
-        }
     }
 }
 

@@ -30,16 +30,16 @@ class MenuVC: UIViewController {
         }
     }
     
-    @IBAction func addCuisineBarBtn(_ sender: Any) {
-        performSegue(withIdentifier: "addCuisineSegue", sender: nil)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCuisineSegue" {
             if let controller = segue.destination as? AddCuisineVC {
                 controller.restId = restaurantId
             }
         }
+    }
+    
+    @IBAction func addCuisineBarBtn(_ sender: Any) {
+        performSegue(withIdentifier: "addCuisineSegue", sender: nil)
     }
     
 }

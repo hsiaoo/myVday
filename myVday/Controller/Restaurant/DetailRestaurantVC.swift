@@ -11,30 +11,39 @@ import FirebaseFirestore
 
 class DetailRestaurantVC: UIViewController {
     
-    // MARK: Detail View
-    @IBOutlet weak var restaurantName: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var restDetailTableView: UITableView!
+    @IBOutlet weak var restNameLabel: UILabel!
+    @IBOutlet weak var restAddressLabel: UILabel!
+    @IBOutlet weak var restaurantTableView: UITableView!
     
     let firebaseManager = FirebaseManager()
     let tagColor: [UIColor] = [#colorLiteral(red: 0.5244301558, green: 0.7633284926, blue: 1, alpha: 1), #colorLiteral(red: 0.5922563672, green: 1, blue: 0.5390954018, alpha: 1), #colorLiteral(red: 1, green: 0.6866127253, blue: 0.4180601537, alpha: 1), #colorLiteral(red: 1, green: 0.6486006975, blue: 0.792445004, alpha: 1), #colorLiteral(red: 1, green: 0.956641376, blue: 0.5953657031, alpha: 1)]
     var basicInfo: BasicInfo?
-    var comments = [Comments]()
+    var comments = [Comment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         firebaseManager.delegate = self
-        navigationController?.navigationBar.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        
         if let basicInfo = basicInfo {
             settingInfo(basicInfo: basicInfo)
             firebaseManager.fetchSubCollections(restaurantId: basicInfo.restaurantId, type: .comments)
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMenuSegue" {
+            let menuVC = segue.destination as? MenuVC
+            menuVC?.restaurantId = sender as? String
+        } else {
+            let writeCommentVC = segue.destination as? WriteCommentVC
+            writeCommentVC?.restaurantId = sender as? String
+        }
+    }
     
-    // MARK: Actions in Detail VC
     @IBAction func goToMenuBtn(_ sender: UIBarButtonItem) {
         if let restId = basicInfo?.restaurantId {
             performSegue(withIdentifier: "toMenuSegue", sender: restId)
@@ -47,42 +56,14 @@ class DetailRestaurantVC: UIViewController {
         }
     }
     
-    // MARK: functions
     func settingInfo(basicInfo: BasicInfo) {
-        restaurantName.text = basicInfo.name
-        addressLabel.text = basicInfo.address
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toMenuSegue" {
-            let menuVC = segue.destination as? MenuVC
-            menuVC?.restaurantId = sender as? String
-        } else {
-            let writeCommentVC = segue.destination as? WriteCommentVC
-            writeCommentVC?.restaurantId = sender as? String
-        }
+        restNameLabel.text = basicInfo.name
+        restAddressLabel.text = basicInfo.address
     }
 
 }
 
 extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        if section == 3 {
-//            if let headerView = Bundle.main.loadNibNamed("CustomSectionHeader",
-//                owner: self,
-//                options: nil)?.first as? CustomSectionHeader {
-//                headerView.sectionTitleLabel.text = "其他人覺得.."
-//                headerView.commentBtn.addTarget(self, action: #selector(writeComment), for: .touchUpInside)
-//                return headerView
-//            }
-//        }
-//        return UIView()
-//    }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 46
-//    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         3
     }
@@ -134,11 +115,11 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let contextItem = UIContextualAction(style: .destructive, title: "檢舉") { ( _, view, completion) in
-            
             let reportAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
                 let reportedData = self.comments[indexPath.row]
                 
+                //加入黑名單
                 let blockUser = UIAlertAction(title: "加入黑名單", style: .destructive) { _ in
                     self.firebaseManager.report(
                         mainCollection: .user,
@@ -146,9 +127,9 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
                         subCollection: .flagUser,
                         reportedId: reportedData.userId,
                         reportedData: reportedData)
-                    print("======加入黑名單======")
                 }
                 
+                //檢舉評論
                 let blockComment = UIAlertAction(title: "檢舉評論", style: .destructive) { _ in
                     self.firebaseManager.report(
                         mainCollection: .user,
@@ -156,7 +137,6 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
                         subCollection: .flagComment,
                         reportedId: reportedData.commentId,
                         reportedData: reportedData)
-                    print("======檢舉此評論======")
                 }
                 
                 let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -165,17 +145,18 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
                 reportAlertController.addAction(cancel)
                 
             }
-
             // so that iPads won't crash
             reportAlertController.popoverPresentationController?.sourceView = self.view
+            
             self.present(reportAlertController, animated: true, completion: nil)
             
             //使table view cell回到原先的位置
             completion(true)
         }
+        //讓檢舉按鈕變成圓形驚嘆號
         contextItem.image = UIImage(systemName: "exclamationmark.circle")
+        
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
-
         return swipeActions
     }
     
@@ -239,7 +220,7 @@ extension DetailRestaurantVC: FirebaseManagerDelegate {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 let okDate = dateFormatter.string(from: dateData)
                 
-                let newComment = Comments(
+                let newComment = Comment(
                     commentId: comment["commentId"] as? String ?? "no comment id",
                     name: comment["name"] as? String ?? "no user name",
                     comment: comment["comment"] as? String ?? "no comment",
@@ -247,7 +228,7 @@ extension DetailRestaurantVC: FirebaseManagerDelegate {
                     userId: comment["userId"] as? String ?? "no user id")
                 comments.append(newComment)
             }
-            restDetailTableView.reloadData()
+            restaurantTableView.reloadData()
         case .friends, .friendRequest, .challengeRequest, .challenger, .owner, .menu: break
         }
     }

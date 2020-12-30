@@ -9,10 +9,6 @@
 import UIKit
 import FirebaseStorage
 
-enum CuisineStatus {
-    case success, fail
-}
-
 class AddCuisineVC: UIViewController {
     
     @IBOutlet weak var cuisineNameTF: UITextField!
@@ -27,7 +23,7 @@ class AddCuisineVC: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func addPhotoBtn(_ sender: UIBarButtonItem) {
+    @IBAction func addCuisinePhotoBtn(_ sender: UIBarButtonItem) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
@@ -71,7 +67,7 @@ class AddCuisineVC: UIViewController {
         }
     }
     
-    func cuisineAlert(status: CuisineStatus, title: String, message: String) {
+    func cuisineAlert(status: SuccessOrFail, title: String, message: String) {
         let cuisinAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
             switch status {

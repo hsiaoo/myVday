@@ -163,7 +163,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 }
 
 extension MapVC: MapInfoWindowDelegate {
-    func didTapInfoButton(data: BasicInfo) {
+    func tappedInfoWindow(data: BasicInfo) {
         performSegue(withIdentifier: "toDetailSegue", sender: data)
     }
 }

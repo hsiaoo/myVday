@@ -21,14 +21,16 @@ class AddNewFriendVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fireManager.delegate = self
+        
         //fetch personal data
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             fireManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
         }
     }
     
-    func alterController(title: String, message: String) {
+    func newFriendAlert(title: String, message: String) {
         let alterController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default, handler: nil)
         alterController.addAction(promptAction)
@@ -88,7 +90,7 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
                 self.newFriendTableView.beginUpdates()
                 self.newFriendTableView.deleteRows(at: [indexPath], with: .automatic)
                 self.newFriendTableView.endUpdates()
-                self.alterController(title: "📬成功送出好友邀請！", message: "等待對方接受囉")
+                self.newFriendAlert(title: "📬成功送出好友邀請！", message: "等待對方接受囉")
             }
 
         }
@@ -101,7 +103,7 @@ extension AddNewFriendVC: UISearchBarDelegate {
         filterData.removeAll()
         guard let nickname = newFriendSearchBar.text else { return }
         if nickname.isEmpty {
-            alterController(title: "😶", message: "請填好搜尋條件")
+            newFriendAlert(title: "😶", message: "請填好搜尋條件")
         } else {
             fireManager.searchForNewFriend(nickname: nickname)
         }
@@ -121,7 +123,7 @@ extension AddNewFriendVC: FirebaseManagerDelegate {
     func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection) {
         if sub == .friends {
             if docArray.isEmpty {
-                self.alterController(title: "🧐", message: "找不到這個人")
+                self.newFriendAlert(title: "🧐", message: "找不到這個人")
             } else {
                 filterData.removeAll()
                 for document in docArray {

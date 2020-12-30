@@ -21,7 +21,6 @@ class FriendListVC: UIViewController {
     
     @IBOutlet weak var friendNotiBtn: UIBarButtonItem!
     @IBOutlet weak var newFriendBtn: UIBarButtonItem!
-    @IBOutlet weak var listIconImageView: UIImageView!
     @IBOutlet weak var listNameLabel: UILabel!
     @IBOutlet weak var friendListTableView: UITableView!
     @IBOutlet weak var noFriendLabel: UILabel!

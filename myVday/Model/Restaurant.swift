@@ -21,7 +21,7 @@ struct BasicInfo: Codable {
     let phone: String
 }
 
-struct Comments: Codable {
+struct Comment: Codable {
     let commentId: String
     let name: String
     let comment: String

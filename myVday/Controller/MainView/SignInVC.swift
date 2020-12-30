@@ -27,7 +27,6 @@ class SignInVC: UIViewController, FirebaseManagerDelegate {
 
         fireManager.delegate = self
         
-//        sloganLabel.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 130)
         sloganLabel.numberOfLines = 0
         sloganLabel.text = "my ✌🏼 day\nVibrate the fresh\nVibration eVeryday."
         sloganLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 25)
@@ -191,7 +190,6 @@ extension SignInVC: ASAuthorizationControllerPresentationContextProviding, ASAut
                 let givenName = appleIDCredential.fullName?.givenName,
                 let _ = appleIDCredential.fullName?.familyName {
                 
-                                
                 // Initialize a Firebase credential.
                 let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                           idToken: identityTokenString,

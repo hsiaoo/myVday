@@ -9,10 +9,6 @@
 import UIKit
 import FirebaseFirestore
 
-enum CommentStatus {
-    case success, fail
-}
-
 class WriteCommentVC: UIViewController {
 
     @IBOutlet weak var voteForCuisineTF: UITextField!
@@ -30,6 +26,7 @@ class WriteCommentVC: UIViewController {
         votePicker.delegate = self
         voteForCuisineTF.inputView = votePicker
         
+        //取得所有餐點名稱，為了讓使用者投票最愛的餐點
         if let restId = restaurantId {
             firebaseManager.fetchSubCollections(restaurantId: restId, type: .menu)
         }
@@ -37,6 +34,7 @@ class WriteCommentVC: UIViewController {
     
     @IBAction func doneCommentBtn(_ sender: UIBarButtonItem) {
         favCuisine = voteForCuisineTF.text ?? ""
+        
         if commentTextView.text.isEmpty {
             commentAlert(status: .fail, title: "😶", message: "請撰寫評論")
         } else {
@@ -60,7 +58,7 @@ class WriteCommentVC: UIViewController {
         }
     }
     
-    func commentAlert(status: CommentStatus, title: String, message: String) {
+    func commentAlert(status: SuccessOrFail, title: String, message: String) {
         let commentAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
             switch status {

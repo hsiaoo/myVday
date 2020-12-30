@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class DayChallengeVC: UIViewController {
     
-    @IBOutlet weak var editSaveBtn: UIBarButtonItem!
+    @IBOutlet weak var dayChallengeEditSaveBtn: UIBarButtonItem!
     @IBOutlet weak var dayChallengeCameraBtn: UIBarButtonItem!
     @IBOutlet weak var dayChallengeImageView: UIImageView!
     @IBOutlet weak var dayChaTitleTF: UITextField!
@@ -34,7 +34,7 @@ class DayChallengeVC: UIViewController {
             if isMyData == true {
                 return
             } else {
-                editSaveBtn.isEnabled = false
+                dayChallengeEditSaveBtn.isEnabled = false
             }
         }
         
@@ -51,7 +51,7 @@ class DayChallengeVC: UIViewController {
     }
     
     @IBAction func tappedchaCameraBtn(_ sender: Any) {
-        editSaveBtn.isEnabled = false
+        dayChallengeEditSaveBtn.isEnabled = false
         dayChaTitleTF.resignFirstResponder()
         dayChaDescribeTextView.resignFirstResponder()
         
@@ -74,7 +74,7 @@ class DayChallengeVC: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
-            self.editSaveBtn.isEnabled = true
+            self.dayChallengeEditSaveBtn.isEnabled = true
             imagePickerController.dismiss(animated: true, completion: nil)
         }
         
@@ -107,14 +107,14 @@ class DayChallengeVC: UIViewController {
     }
     
     func editDailyChallenge() {
-        editSaveBtn.image = UIImage(systemName: "checkmark.circle")
+        dayChallengeEditSaveBtn.image = UIImage(systemName: "checkmark.circle")
         dayChallengeCameraBtn.image = UIImage(systemName: "camera")
         dayChaTitleTF.isEnabled = true
         dayChaDescribeTextView.isEditable = true
     }
     
     func saveDailyChallenge() {
-        editSaveBtn.image = UIImage(systemName: "pencil.circle")
+        dayChallengeEditSaveBtn.image = UIImage(systemName: "pencil.circle")
         dayChallengeCameraBtn.image = nil
         dayChaTitleTF.isEnabled = false
         dayChaDescribeTextView.isEditable = false
@@ -190,7 +190,7 @@ extension DayChallengeVC: UIImagePickerControllerDelegate, UINavigationControlle
                     selectedImage: okImage,
                     dataType: .challenge) { imageString in
                         self.downloadedImageString = imageString
-                        self.editSaveBtn.isEnabled = true
+                        self.dayChallengeEditSaveBtn.isEnabled = true
                         print("======成功上傳第\(okTodayChallenge.index)天的挑戰照片======")
                 }
             }

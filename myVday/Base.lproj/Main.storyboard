@@ -193,8 +193,8 @@
                         <outlet property="dayChaDescribeTextView" destination="3bY-2N-PKQ" id="BFF-TF-Ea4"/>
                         <outlet property="dayChaTitleTF" destination="0RF-JH-45Q" id="jh9-U1-rcp"/>
                         <outlet property="dayChallengeCameraBtn" destination="bwR-sD-Ld5" id="GFN-Me-eJO"/>
+                        <outlet property="dayChallengeEditSaveBtn" destination="lB4-Lu-2wq" id="w4L-cc-v3f"/>
                         <outlet property="dayChallengeImageView" destination="6pI-Gn-sFF" id="DAG-qm-9pO"/>
-                        <outlet property="editSaveBtn" destination="lB4-Lu-2wq" id="w4L-cc-v3f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYD-vH-wjX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -293,12 +293,9 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8H-Kf-dSH">
                                                 <rect key="frame" x="8" y="20" width="172" height="172"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="S8H-Kf-dSH" secondAttribute="height" multiplier="1:1" id="gTF-jg-Ut9"/>
-                                                </constraints>
                                                 <state key="normal" image="friend172"/>
                                                 <connections>
-                                                    <action selector="friendBtnTapped:" destination="ccB-hS-tas" eventType="touchUpInside" id="hgv-ee-nV7"/>
+                                                    <action selector="tappedFriendBtn:" destination="ccB-hS-tas" eventType="touchUpInside" id="hgv-ee-nV7"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYa-nz-lJH">
@@ -308,15 +305,15 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="friendBtnTapped:" destination="ccB-hS-tas" eventType="touchUpInside" id="YVv-8b-Bez"/>
+                                                    <action selector="tappedFriendBtn:" destination="ccB-hS-tas" eventType="touchUpInside" id="YVv-8b-Bez"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="orange#fbd9bd"/>
                                         <constraints>
                                             <constraint firstItem="S8H-Kf-dSH" firstAttribute="leading" secondItem="TDS-12-a4o" secondAttribute="leading" constant="8" id="9l2-v4-Qq3"/>
-                                            <constraint firstItem="S8H-Kf-dSH" firstAttribute="height" secondItem="TDS-12-a4o" secondAttribute="height" multiplier="0.633517" id="DaJ-Wq-cb5"/>
                                             <constraint firstAttribute="trailing" secondItem="S8H-Kf-dSH" secondAttribute="trailing" constant="8" id="EoG-ab-yuf"/>
+                                            <constraint firstItem="S8H-Kf-dSH" firstAttribute="height" secondItem="TDS-12-a4o" secondAttribute="height" multiplier="0.633517" id="VNc-mS-WYA"/>
                                             <constraint firstAttribute="trailing" secondItem="cYa-nz-lJH" secondAttribute="trailing" id="dbk-gz-7RH"/>
                                             <constraint firstAttribute="bottom" secondItem="cYa-nz-lJH" secondAttribute="bottom" id="jfo-DJ-CTe"/>
                                             <constraint firstItem="S8H-Kf-dSH" firstAttribute="top" secondItem="TDS-12-a4o" secondAttribute="top" constant="20" id="muO-X6-23R"/>
@@ -331,7 +328,7 @@
                                                 <rect key="frame" x="8" y="20" width="172" height="172"/>
                                                 <state key="normal" image="challenge167"/>
                                                 <connections>
-                                                    <action selector="challengeBtnTapped:" destination="ccB-hS-tas" eventType="touchUpInside" id="E39-OR-EBs"/>
+                                                    <action selector="tappedChallengeBtn:" destination="ccB-hS-tas" eventType="touchUpInside" id="E39-OR-EBs"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXs-AY-uUF">
@@ -341,7 +338,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="challengeBtnTapped:" destination="ccB-hS-tas" eventType="touchUpInside" id="wby-cq-ky8"/>
+                                                    <action selector="tappedChallengeBtn:" destination="ccB-hS-tas" eventType="touchUpInside" id="wby-cq-ky8"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -377,7 +374,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="Cgr-Jd-HcP"/>
                         <barButtonItem key="leftBarButtonItem" image="escape" catalog="system" id="otl-wI-qYQ">
                             <connections>
-                                <action selector="signOutBtn:" destination="ccB-hS-tas" id="g87-8P-Ols"/>
+                                <action selector="tappedSignOutBtn:" destination="ccB-hS-tas" id="g87-8P-Ols"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -395,10 +392,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="challengeBtnsView" destination="BfF-lc-bU1" id="UMI-e1-OWI"/>
-                        <outlet property="editSaveBarBtn" destination="Wj6-cU-jZD" id="EIp-0R-OAk"/>
                         <outlet property="friendBtnsView" destination="TDS-12-a4o" id="i68-gc-Zmi"/>
                         <outlet property="profileCameraBtn" destination="nDh-aD-QGi" id="vhX-HU-71D"/>
                         <outlet property="profileDescribeTF" destination="cH9-gp-ebO" id="bBT-2x-YfH"/>
+                        <outlet property="profileEditSaveBarBtn" destination="Wj6-cU-jZD" id="EIp-0R-OAk"/>
                         <outlet property="profileEmojiTF" destination="axn-0N-uzX" id="a8y-Og-8dG"/>
                         <outlet property="profileImageView" destination="6ww-5d-RqG" id="Td6-Ht-nkL"/>
                         <outlet property="profileNickNameTF" destination="GEv-2S-hwd" id="2fn-SJ-Xqs"/>
@@ -504,13 +501,13 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前還沒有好友哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xx-O7-ZsF">
-                                <rect key="frame" x="135" y="440" width="144" height="21"/>
+                                <rect key="frame" x="135" y="438" width="144" height="25.5"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYz-BA-Jy9">
-                                <rect key="frame" x="99" y="125" width="307" height="41"/>
+                                <rect key="frame" x="99" y="121" width="307" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -551,7 +548,6 @@
                     <connections>
                         <outlet property="friendListTableView" destination="09S-Uz-2Zg" id="xdG-08-9ie"/>
                         <outlet property="friendNotiBtn" destination="UQz-wk-thL" id="h6U-dc-OGz"/>
-                        <outlet property="listIconImageView" destination="XLv-dO-7dT" id="cWQ-NO-c6v"/>
                         <outlet property="listNameLabel" destination="CYz-BA-Jy9" id="sfN-Ci-Yn8"/>
                         <outlet property="newFriendBtn" destination="m5g-jh-uUN" id="gk4-yX-NgL"/>
                         <outlet property="noFriendLabel" destination="6xx-O7-ZsF" id="IIJ-rL-udZ"/>
@@ -580,7 +576,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="發起挑戰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFK-Hg-YED">
-                                        <rect key="frame" x="97.5" y="36" width="308.5" height="41"/>
+                                        <rect key="frame" x="97.5" y="32" width="308.5" height="49"/>
                                         <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -763,11 +759,11 @@
             <objects>
                 <viewController id="0GO-rL-Aeh" customClass="NewRestaurantVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hkC-fh-90g">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wiB-sy-gZN">
-                                <rect key="frame" x="44.5" y="45" width="325" height="95"/>
+                                <rect key="frame" x="44.5" y="45" width="325" height="106.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeeeaaahhh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7W-wf-pN2">
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="35.5"/>
@@ -776,7 +772,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FW-SS-UQV">
-                                        <rect key="frame" x="0.0" y="36.5" width="325" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="325" height="70"/>
                                         <string key="text">找到了一間地圖上沒有的餐廳
 快點記錄下來</string>
                                         <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="25"/>
@@ -786,32 +782,32 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="r7o-Ka-FdA">
-                                <rect key="frame" x="44.5" y="166" width="34" height="34"/>
+                                <rect key="frame" x="44.5" y="177.5" width="34" height="34"/>
                                 <color key="tintColor" red="0.12914538380000001" green="0.1179387197" blue="0.098035953940000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="r7o-Ka-FdA" secondAttribute="height" multiplier="1:1" id="q68-qm-Atd"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address64" translatesAutoresizingMaskIntoConstraints="NO" id="w5R-r6-0aj">
-                                <rect key="frame" x="44.5" y="226" width="33.5" height="33.5"/>
+                                <rect key="frame" x="44.5" y="237.5" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="w5R-r6-0aj" secondAttribute="height" multiplier="1:1" id="MNG-bg-r2P"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-n9-R1j">
-                                <rect key="frame" x="98.5" y="170" width="271" height="26"/>
+                                <rect key="frame" x="98.5" y="181.5" width="271" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mya-ID-npx">
-                                <rect key="frame" x="98" y="230" width="271.5" height="26"/>
+                                <rect key="frame" x="98" y="241.5" width="271.5" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jI-VN-4fd">
-                                <rect key="frame" x="336.5" y="286" width="33" height="33"/>
+                                <rect key="frame" x="336.5" y="297.5" width="33" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3jI-VN-4fd" secondAttribute="height" multiplier="1:1" id="X0V-wS-4S9"/>
                                 </constraints>
@@ -881,7 +877,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撰寫評論" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="El0-v6-is3">
-                                <rect key="frame" x="111" y="118" width="295" height="41"/>
+                                <rect key="frame" x="111" y="118" width="295" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1235,9 +1231,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="addressLabel" destination="xam-8a-7Qo" id="Kry-gG-CdB"/>
-                        <outlet property="restDetailTableView" destination="bRg-At-Fzi" id="5Zy-EM-XCM"/>
-                        <outlet property="restaurantName" destination="Nt7-W9-fqA" id="Bne-K2-mPc"/>
+                        <outlet property="restAddressLabel" destination="xam-8a-7Qo" id="Kry-gG-CdB"/>
+                        <outlet property="restNameLabel" destination="Nt7-W9-fqA" id="Bne-K2-mPc"/>
+                        <outlet property="restaurantTableView" destination="bRg-At-Fzi" id="5Zy-EM-XCM"/>
                         <segue destination="qJK-7M-bFT" kind="show" identifier="toMenuSegue" id="ybk-cy-lSd"/>
                         <segue destination="fId-nH-GuI" kind="show" identifier="writeCommentSegue" id="JmC-1e-Toe"/>
                     </connections>
@@ -1322,7 +1318,7 @@
                                 </connections>
                             </collectionView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此餐廳目前還沒有餐點資料哦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP4-K3-z5X">
-                                <rect key="frame" x="90" y="440" width="234" height="21"/>
+                                <rect key="frame" x="90" y="438" width="234" height="25.5"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1445,7 +1441,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增餐點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74e-Si-5jI">
-                                <rect key="frame" x="105.5" y="122" width="140" height="41"/>
+                                <rect key="frame" x="105.5" y="118" width="140" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1495,7 +1491,7 @@
                             </barButtonItem>
                             <barButtonItem image="camera" catalog="system" id="DgF-aZ-fiP">
                                 <connections>
-                                    <action selector="addPhotoBtn:" destination="rCg-ep-m6V" id="Gal-bH-435"/>
+                                    <action selector="addCuisinePhotoBtn:" destination="rCg-ep-m6V" id="Gal-bH-435"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -1518,7 +1514,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尋找好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dga-cs-HFg">
-                                <rect key="frame" x="99" y="125" width="307" height="41"/>
+                                <rect key="frame" x="99" y="121" width="307" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1638,7 +1634,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="挑戰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEc-7V-Ab0">
-                                <rect key="frame" x="99" y="125" width="307" height="41"/>
+                                <rect key="frame" x="99" y="121" width="307" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1719,7 +1715,7 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前還沒有挑戰項目哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv8-yX-ixV" userLabel="noChallengeLabel">
-                                <rect key="frame" x="117" y="440" width="180" height="21"/>
+                                <rect key="frame" x="117" y="438" width="180" height="25.5"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

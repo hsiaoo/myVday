@@ -10,7 +10,6 @@
 		851C05272574D072002B893F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C05262574D072002B893F /* Restaurant.swift */; };
 		8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */; };
 		8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */; };
-		852D98F02570D445004F86B1 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98EF2570D445004F86B1 /* CheckBox.swift */; };
 		852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* EmojiTextField.swift */; };
 		8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */; };
 		85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853539FF2589E80C00652B8D /* AddNewFriendVC.swift */; };
@@ -65,7 +64,6 @@
 		851C05262574D072002B893F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantVC.swift; sourceTree = "<group>"; };
 		8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
-		852D98EF2570D445004F86B1 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		852D98F12570E02F004F86B1 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCuisineVC.swift; sourceTree = "<group>"; };
 		853539FF2589E80C00652B8D /* AddNewFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendVC.swift; sourceTree = "<group>"; };
@@ -148,7 +146,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		851DE65025769A020081A8F1 /* Table view */ = {
+		851DE65025769A020081A8F1 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
 				8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */,
@@ -162,10 +160,10 @@
 				857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */,
 				85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */,
 			);
-			path = "Table view";
+			path = TableView;
 			sourceTree = "<group>";
 		};
-		851DE65125769A130081A8F1 /* Collection view */ = {
+		851DE65125769A130081A8F1 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				85750BDF2572546F00B7786F /* DetailRestaurantCollectionViewCell.swift */,
@@ -173,7 +171,7 @@
 				8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */,
 				85D21B67258343810039A30B /* ChallengeCollectionViewCell.swift */,
 			);
-			path = "Collection view";
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		852AF05D2571F50000CAD9C0 /* Model */ = {
@@ -240,11 +238,10 @@
 		8585B10D256FF3BD00FB5EFC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				851DE65025769A020081A8F1 /* Table view */,
-				851DE65125769A130081A8F1 /* Collection view */,
+				851DE65025769A020081A8F1 /* TableView */,
+				851DE65125769A130081A8F1 /* CollectionView */,
 				8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */,
 				8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */,
-				852D98EF2570D445004F86B1 /* CheckBox.swift */,
 				852D98F12570E02F004F86B1 /* EmojiTextField.swift */,
 			);
 			path = View;
@@ -499,7 +496,6 @@
 				85E5056D258E0CF6007A94EE /* HoursTableViewCell.swift in Sources */,
 				85E50567258DDDEE007A94EE /* ChallengeListVC.swift in Sources */,
 				8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */,
-				852D98F02570D445004F86B1 /* CheckBox.swift in Sources */,
 				85D21B642581E8F10039A30B /* Challenge.swift in Sources */,
 				85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */,
 				85D21B5E2580B2FE0039A30B /* User.swift in Sources */,
