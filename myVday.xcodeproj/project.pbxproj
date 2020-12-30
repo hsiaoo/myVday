@@ -317,6 +317,7 @@
 				859971EC2570A27000113B54 /* SwiftLint */,
 				EF3BDE2E5268B0AE04A5AEF6 /* [CP] Embed Pods Frameworks */,
 				D6B78C0132D830A4EEA777F9 /* [CP] Copy Pods Resources */,
+				857787C3259C0D9A00F186E8 /* FirebaseCrashlytics */,
 			);
 			buildRules = (
 			);
@@ -380,6 +381,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		857787C3259C0D9A00F186E8 /* FirebaseCrashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = FirebaseCrashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n";
+		};
 		859971EC2570A27000113B54 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -646,6 +667,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XQUK5U76MX;
 				INFOPLIST_FILE = myVday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

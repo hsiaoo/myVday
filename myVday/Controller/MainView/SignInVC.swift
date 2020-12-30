@@ -17,7 +17,7 @@ class SignInVC: UIViewController, FirebaseManagerDelegate {
     
     let fireManager = FirebaseManager()
     let sloganLabel = UILabel()
-    let siwaButton = ASAuthorizationAppleIDButton(authorizationButtonType: .signUp, authorizationButtonStyle: .white)
+    let siwaButton = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .white)
     
     // Unhashed nonce.
     fileprivate var currentNonce: String?
@@ -191,8 +191,7 @@ extension SignInVC: ASAuthorizationControllerPresentationContextProviding, ASAut
                 let givenName = appleIDCredential.fullName?.givenName,
                 let _ = appleIDCredential.fullName?.familyName {
                 
-                
-                
+                                
                 // Initialize a Firebase credential.
                 let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                           idToken: identityTokenString,

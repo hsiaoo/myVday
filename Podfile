@@ -15,4 +15,5 @@ target 'myVday' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
   pod 'lottie-ios'
+  pod 'Firebase/Crashlytics'
 end
