@@ -25,7 +25,7 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Can we access location please?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>show your location on the map</string>
+	<string>Your location is used to show nearby vegan/vegetarian restaurants.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>請授權取用相片</string>
 	<key>UIApplicationSceneManifest</key>
