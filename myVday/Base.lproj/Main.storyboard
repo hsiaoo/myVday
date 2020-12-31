@@ -794,13 +794,13 @@
                                     <constraint firstAttribute="width" secondItem="w5R-r6-0aj" secondAttribute="height" multiplier="1:1" id="MNG-bg-r2P"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-n9-R1j">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳名稱" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-n9-R1j">
                                 <rect key="frame" x="98.5" y="170" width="271" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mya-ID-npx">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳地址" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mya-ID-npx">
                                 <rect key="frame" x="98" y="230" width="271.5" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>

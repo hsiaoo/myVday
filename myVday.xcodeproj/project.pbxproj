@@ -27,6 +27,7 @@
 		8576990F2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */; };
 		857699112585EEB500D5B895 /* AddNewChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857699102585EEB500D5B895 /* AddNewChallengeVC.swift */; };
 		857699132585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */; };
+		857787D2259D985000F186E8 /* myVdayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857787D1259D985000F186E8 /* myVdayTests.swift */; };
 		8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2F8257644F300182AC3 /* MenuVC.swift */; };
 		8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */; };
 		8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10B256FF37100FB5EFC /* MapVC.swift */; };
@@ -58,6 +59,16 @@
 		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		857787D4259D985000F186E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8551E0A1256E38E6008C64FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8551E0A8256E38E6008C64FA;
+			remoteInfo = myVday;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.release.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.release.xcconfig"; sourceTree = "<group>"; };
 		5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +95,9 @@
 		8576990E2584A8DF00D5B895 /* ChallengeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionReusableView.swift; sourceTree = "<group>"; };
 		857699102585EEB500D5B895 /* AddNewChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewChallengeVC.swift; sourceTree = "<group>"; };
 		857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeWithFriendTableViewCell.swift; sourceTree = "<group>"; };
+		857787CF259D985000F186E8 /* myVdayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myVdayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		857787D1259D985000F186E8 /* myVdayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myVdayTests.swift; sourceTree = "<group>"; };
+		857787D3259D985000F186E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8585A2F8257644F300182AC3 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = myVday/Controller/Restaurant/MenuVC.swift; sourceTree = SOURCE_ROOT; };
 		8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		8585B10B256FF37100FB5EFC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -122,6 +136,13 @@
 			files = (
 				85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */,
 				AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		857787CC259D985000F186E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				8551E0AB256E38E6008C64FA /* myVday */,
+				857787D0259D985000F186E8 /* myVdayTests */,
 				8551E0AA256E38E6008C64FA /* Products */,
 				3EE73E5D90B7F104212E488E /* Pods */,
 				3B017E6F9F85BE8873B45F69 /* Frameworks */,
@@ -200,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				8551E0A9256E38E6008C64FA /* myVday.app */,
+				857787CF259D985000F186E8 /* myVdayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +245,15 @@
 				8551E0B5256E38E6008C64FA /* myVday.xcdatamodeld */,
 			);
 			path = myVday;
+			sourceTree = "<group>";
+		};
+		857787D0259D985000F186E8 /* myVdayTests */ = {
+			isa = PBXGroup;
+			children = (
+				857787D1259D985000F186E8 /* myVdayTests.swift */,
+				857787D3259D985000F186E8 /* Info.plist */,
+			);
+			path = myVdayTests;
 			sourceTree = "<group>";
 		};
 		8585B10A256FF33900FB5EFC /* Controller */ = {
@@ -325,18 +357,40 @@
 			productReference = 8551E0A9256E38E6008C64FA /* myVday.app */;
 			productType = "com.apple.product-type.application";
 		};
+		857787CE259D985000F186E8 /* myVdayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 857787D6259D985000F186E8 /* Build configuration list for PBXNativeTarget "myVdayTests" */;
+			buildPhases = (
+				857787CB259D985000F186E8 /* Sources */,
+				857787CC259D985000F186E8 /* Frameworks */,
+				857787CD259D985000F186E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				857787D5259D985000F186E8 /* PBXTargetDependency */,
+			);
+			name = myVdayTests;
+			productName = myVdayTests;
+			productReference = 857787CF259D985000F186E8 /* myVdayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8551E0A1256E38E6008C64FA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1170;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = "H.W. Hsiao";
 				TargetAttributes = {
 					8551E0A8256E38E6008C64FA = {
 						CreatedOnToolsVersion = 11.7;
+					};
+					857787CE259D985000F186E8 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 8551E0A8256E38E6008C64FA;
 					};
 				};
 			};
@@ -354,6 +408,7 @@
 			projectRoot = "";
 			targets = (
 				8551E0A8256E38E6008C64FA /* myVday */,
+				857787CE259D985000F186E8 /* myVdayTests */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +427,13 @@
 				85CF12062598C499009E0907 /* GenJyuuGothic-Monospace-Bold-2.ttf in Resources */,
 				85CF11F125983459009E0907 /* 31454-food-prepared-food-app.json in Resources */,
 				85E50565258DBF31007A94EE /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		857787CD259D985000F186E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +582,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		857787CB259D985000F186E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				857787D2259D985000F186E8 /* myVdayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		857787D5259D985000F186E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8551E0A8256E38E6008C64FA /* myVday */;
+			targetProxy = 857787D4259D985000F186E8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8551E0B2256E38E6008C64FA /* Main.storyboard */ = {
@@ -663,6 +741,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XQUK5U76MX;
 				INFOPLIST_FILE = myVday/Info.plist;
@@ -670,6 +749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.hsiao.myVday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -684,16 +764,64 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XQUK5U76MX;
 				INFOPLIST_FILE = myVday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.hsiao.myVday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		857787D7259D985000F186E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XQUK5U76MX;
+				HEADER_SEARCH_PATHS = "\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"";
+				INFOPLIST_FILE = myVdayTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.Hsiao.myVdayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myVday.app/myVday";
+			};
+			name = Debug;
+		};
+		857787D8259D985000F186E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XQUK5U76MX;
+				HEADER_SEARCH_PATHS = "\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"";
+				INFOPLIST_FILE = myVdayTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.Hsiao.myVdayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myVday.app/myVday";
 			};
 			name = Release;
 		};
@@ -714,6 +842,15 @@
 			buildConfigurations = (
 				8551E0C1256E38EC008C64FA /* Debug */,
 				8551E0C2256E38EC008C64FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		857787D6259D985000F186E8 /* Build configuration list for PBXNativeTarget "myVdayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				857787D7259D985000F186E8 /* Debug */,
+				857787D8259D985000F186E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
