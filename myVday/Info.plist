@@ -21,13 +21,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>請授權使用相機</string>
+	<string>請授權myVday取用您的相機，您的相機將使用於上傳個人頭像、餐點照片、每日挑戰紀錄</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Can we access location please?</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is used to show nearby vegan/vegetarian restaurants.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>請授權myVday取得您的位置，myVday將在地圖上顯示您附近的素食餐廳</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>請授權取用相片</string>
+	<string>請授權myVday取用您的相片，您的相片將使用於上傳個人頭像、餐點照片、每日挑戰紀錄</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

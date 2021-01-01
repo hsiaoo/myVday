@@ -127,7 +127,7 @@ class ProfileVC: UIViewController {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
-        let imagePickerAlertController = UIAlertController(title: "上傳照片", message: "請選擇照片來源", preferredStyle: .actionSheet)
+        let imagePickerAlertController = UIAlertController(title: "上傳個人頭像照片", message: "請選擇照片來源", preferredStyle: .actionSheet)
         let imageFromLibAction = UIAlertAction(title: "照片圖庫", style: .default) { _ in
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 imagePickerController.sourceType = .photoLibrary
