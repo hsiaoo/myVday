@@ -29,6 +29,7 @@ class ProfileVC: UIViewController {
     @IBOutlet var friendChallengeBtns: [UIButton]!
     
     let fireManager = FirebaseManager()
+    let imageManager = ImageManager()
     var profileData: User?
     var isEditingProfile = false
     var selectedImage: UIImage?
@@ -37,6 +38,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         
         fireManager.delegate = self
+        imageManager.imageDelegate = self
         
         friendBtnsView.layer.cornerRadius = 10.0
         friendBtnsView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -68,15 +70,7 @@ class ProfileVC: UIViewController {
         isEditingProfile = !isEditingProfile
         
         if isEditingProfile == true {
-            profileNickNameTF.isEnabled = true
-            profileDescribeTF.isEnabled = true
-            profileEmojiTF.isEnabled = true
-            profileNickNameTF.becomeFirstResponder()
-            profileEditSaveBarBtn.image = UIImage(systemName: "checkmark.circle")
-            profileCameraBtn.image = UIImage(systemName: "camera")
-            for button in friendChallengeBtns {
-                button.isEnabled = false
-            }
+            beginEditing()
         } else {
             let newNickname = profileNickNameTF.text ?? ""
             let newDescribe = profileDescribeTF.text ?? ""
@@ -169,32 +163,42 @@ class ProfileVC: UIViewController {
     }
     
     func profileSetting(userData: User) {
-        if isEditingProfile == false {
-            profileNickNameTF.text = userData.nickname
-            profileDescribeTF.text = userData.describe
-            profileEmojiTF.text = emojiDecode(emojiString: userData.emoji)
-            
-            //下載並使用者的照片
-            if userData.image.isEmpty {
-                return
-            } else {
-                //display user photo
-                if let imageUrl = URL(string: userData.image) {
-                    URLSession.shared.dataTask(with: imageUrl) { data, _, error in
-                        if let err = error {
-                            print("Error download user photo: \(err)")
-                        }
-                        if let okData = data {
-                            DispatchQueue.main.async {
-                                self.profileImageView.image = UIImage(data: okData)
-                            }
-                        }
-                    }.resume()
-                }
-            }
-        } else {
-            //使用者正在編輯資料，不須處理任何事
+        profileNickNameTF.text = userData.nickname
+        profileDescribeTF.text = userData.describe
+        profileEmojiTF.text = emojiDecode(emojiString: userData.emoji)
+        
+        if userData.image.isEmpty {
             return
+        } else {
+            //download user photo
+            imageManager.downloadImage(imageSting: userData.image)
+        }
+    }
+    
+    func endEditing() {
+        profileNickNameTF.resignFirstResponder()
+        profileDescribeTF.resignFirstResponder()
+        profileEmojiTF.resignFirstResponder()
+        profileNickNameTF.isEnabled = false
+        profileDescribeTF.isEnabled = false
+        profileEmojiTF.isEnabled = false
+        profileEditSaveBarBtn.image = UIImage(systemName: "pencil")
+        profileCameraBtn.image = nil
+        profileCameraBtn.image = nil
+        for button in friendChallengeBtns {
+            button.isEnabled = true
+        }
+    }
+    
+    func beginEditing() {
+        profileNickNameTF.isEnabled = true
+        profileDescribeTF.isEnabled = true
+        profileEmojiTF.isEnabled = true
+        profileNickNameTF.becomeFirstResponder()
+        profileEditSaveBarBtn.image = UIImage(systemName: "checkmark.circle")
+        profileCameraBtn.image = UIImage(systemName: "camera")
+        for button in friendChallengeBtns {
+            button.isEnabled = false
         }
     }
     
@@ -202,19 +206,7 @@ class ProfileVC: UIViewController {
         let profileAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
             switch status {
-            case .success:
-                self.profileNickNameTF.resignFirstResponder()
-                self.profileDescribeTF.resignFirstResponder()
-                self.profileEmojiTF.resignFirstResponder()
-                self.profileNickNameTF.isEnabled = false
-                self.profileDescribeTF.isEnabled = false
-                self.profileEmojiTF.isEnabled = false
-                self.profileEditSaveBarBtn.image = UIImage(systemName: "pencil")
-                self.profileCameraBtn.image = nil
-                self.profileCameraBtn.image = nil
-                for button in self.friendChallengeBtns {
-                    button.isEnabled = true
-                }
+            case .success: self.endEditing()
             case .fail: break
             }
         }
@@ -247,6 +239,14 @@ extension ProfileVC: UIImagePickerControllerDelegate & UINavigationControllerDel
             profileImageView.image = selectedImage
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ProfileVC: ImageManagerDelegate {
+    func imageManager(_ manager: ImageManager, getData image: Data) {
+        DispatchQueue.main.async {
+            self.profileImageView.image = UIImage(data: image)
+        }
     }
 }
 

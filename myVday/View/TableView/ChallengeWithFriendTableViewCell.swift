@@ -12,6 +12,7 @@ class ChallengeWithFriendTableViewCell: UITableViewCell {
     
     let friendImageView = UIImageView()
     let friendNameLabel = UILabel()
+    let imageManager = ImageManager()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,5 +54,22 @@ class ChallengeWithFriendTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setUpChallengeFriendCell(with myFriend: User) {
+        friendNameLabel.text = myFriend.nickname
+        if myFriend.image.isEmpty {
+            friendImageView.image = UIImage(named: "profile128")
+        } else {
+            imageManager.imageDelegate = self
+            imageManager.downloadImage(imageSting: myFriend.image)
+        }
+    }
+}
 
+extension ChallengeWithFriendTableViewCell: ImageManagerDelegate {
+    func imageManager(_ manager: ImageManager, getData image: Data) {
+        DispatchQueue.main.async {
+            self.friendImageView.image = UIImage(data: image)
+        }
+    }
 }

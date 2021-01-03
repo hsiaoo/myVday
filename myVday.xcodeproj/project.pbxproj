@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		851C05272574D072002B893F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C05262574D072002B893F /* Restaurant.swift */; };
+		8525D97525A0C28A002D9911 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525D97425A0C28A002D9911 /* ImageManager.swift */; };
 		8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */; };
 		8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */; };
 		852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* EmojiTextField.swift */; };
@@ -73,6 +74,7 @@
 		45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.release.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.release.xcconfig"; sourceTree = "<group>"; };
 		5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
 		851C05262574D072002B893F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		8525D97425A0C28A002D9911 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantVC.swift; sourceTree = "<group>"; };
 		8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		852D98F12570E02F004F86B1 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				853DE6CC2573D41B007BA763 /* FirebaseManager.swift */,
 				85DCBE1E257E1F21002A78F4 /* MapManager.swift */,
+				8525D97425A0C28A002D9911 /* ImageManager.swift */,
 				85D21B632581E8F10039A30B /* Challenge.swift */,
 				851C05262574D072002B893F /* Restaurant.swift */,
 				85D21B5D2580B2FE0039A30B /* User.swift */,
@@ -574,6 +577,7 @@
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				85353A05258B3F6200652B8D /* SignInVC.swift in Sources */,
 				8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */,
+				8525D97525A0C28A002D9911 /* ImageManager.swift in Sources */,
 				85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */,
 				85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */,
 				85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */,

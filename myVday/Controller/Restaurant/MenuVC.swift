@@ -54,24 +54,8 @@ extension MenuVC: UICollectionViewDelegate, UICollectionViewDataSource {
             withReuseIdentifier: MenuCollectionViewCell.identifier,
             for: indexPath
             ) as? MenuCollectionViewCell {
-            menuCell.activityIndicator.isHidden = false
-            menuCell.activityIndicator.startAnimating()
-            menuCell.cuisineName.text = restaurantMenu[indexPath.row].cuisineName
-            
-            if let imageUrl = URL(string: "\(restaurantMenu[indexPath.row].image)") {
-                URLSession.shared.dataTask(with: imageUrl) { data, _, error in
-                    if let err = error {
-                        print("Error getting image:\(err)")
-                    }
-                    if let okData = data {
-                        DispatchQueue.main.async {
-                            menuCell.imageView.image = UIImage(data: okData)
-                            menuCell.activityIndicator.stopAnimating()
-                            menuCell.activityIndicator.isHidden = true
-                        }
-                    }
-                }.resume()
-            }
+            let aCuisine = restaurantMenu[indexPath.row]
+            menuCell.setUpMenuCell(with: aCuisine)
             return menuCell
         } else {
             return UICollectionViewCell()

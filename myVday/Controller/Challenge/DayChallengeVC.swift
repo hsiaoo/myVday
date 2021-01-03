@@ -18,6 +18,7 @@ class DayChallengeVC: UIViewController {
     @IBOutlet weak var dayChaDescribeTextView: UITextView!
     
     let fireManager = FirebaseManager()
+    let imageManager = ImageManager()
     var isEditingDayChallenge = false
     var isMyChallengeData: Bool?
     var theChallenge: Challenge?
@@ -28,7 +29,9 @@ class DayChallengeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
+        imageManager.imageDelegate = self
         keyboardHandling()
+        
         if let okTodayChallenge = todayChallenge, let isMyData = isMyChallengeData {
             todayChallengeSetting(todayChallenge: okTodayChallenge)
             if isMyData == true {
@@ -45,7 +48,6 @@ class DayChallengeVC: UIViewController {
         if isEditingDayChallenge == false {
             saveDailyChallenge()
         } else {
-//            editSaveBtn.isEnabled = false
             editDailyChallenge()
         }
     }
@@ -88,21 +90,11 @@ class DayChallengeVC: UIViewController {
     func todayChallengeSetting(todayChallenge: DaysChallenge) {
         dayChaTitleTF.text = todayChallenge.title
         dayChaDescribeTextView.text = todayChallenge.describe
+        
         if todayChallenge.image.isEmpty {
             return
         } else {
-            if let imageUrl = URL(string: todayChallenge.image) {
-                URLSession.shared.dataTask(with: imageUrl) { data, _, error in
-                    if let err = error {
-                        print("Error download image: \(err)")
-                    }
-                    if let okData = data {
-                        DispatchQueue.main.async {
-                            self.dayChallengeImageView.image = UIImage(data: okData)
-                        }
-                    }
-                }.resume()
-            }
+            imageManager.downloadImage(imageSting: todayChallenge.image)
         }
     }
     
@@ -198,17 +190,13 @@ extension DayChallengeVC: UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
-//extension DayChallengeVC: UITextViewDelegate {
-//    func textViewDidChange(_ textView: UITextView) {
-//        if textView.text.isEmpty {
-//            print("no describe")
-//        } else {
-//            if selectedImage == nil {
-//                editSaveBtn.isEnabled = true
-//            }
-//        }
-//    }
-//}
+extension DayChallengeVC: ImageManagerDelegate {
+    func imageManager(_ manager: ImageManager, getData image: Data) {
+        DispatchQueue.main.async {
+            self.dayChallengeImageView.image = UIImage(data: image)
+        }
+    }
+}
 
 extension DayChallengeVC: FirebaseManagerDelegate {
 }

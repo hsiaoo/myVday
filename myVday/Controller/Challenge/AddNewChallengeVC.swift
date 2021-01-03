@@ -118,30 +118,9 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
                 friendCell.friendNameLabel.text = "目前還沒有好友哦"
                 return friendCell
             } else {
-                friendCell.friendNameLabel.text = myFriends[indexPath.row].nickname
-                
-                if myFriends[indexPath.row].image.isEmpty {
-                    friendCell.friendImageView.image = UIImage(named: "profile128")
-                    return friendCell
-                } else {
-                    
-                    if let imageUrl = URL(string: myFriends[indexPath.row].image) {
-                        URLSession.shared.dataTask(with: imageUrl) { data, _, error in
-                            if let err = error {
-                                print("Error download image: \(err)")
-                            } else {
-                                if let okData = data {
-                                    DispatchQueue.main.async {
-                                        friendCell.friendImageView.image = UIImage(data: okData)
-                                    }
-                                }
-                            }
-                        }.resume()
-                    }
-                    
-                    return friendCell
-                }
-                
+                let aFriend = myFriends[indexPath.row]
+                friendCell.setUpChallengeFriendCell(with: aFriend)
+                return friendCell
             }
         } else {
             return UITableViewCell()
@@ -152,7 +131,6 @@ extension AddNewChallengeVC: UITableViewDelegate, UITableViewDataSource {
         vsFriendId = myFriends[indexPath.row].userId
         challengeFriendTF.text = myFriends[indexPath.row].nickname
     }
-    
 }
 
 extension AddNewChallengeVC: FirebaseManagerDelegate {

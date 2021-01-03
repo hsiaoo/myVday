@@ -51,29 +51,10 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
             if filterData.isEmpty {
                 return newFriendCell
             } else {
-                newFriendCell.newFriendNameLabel.text = filterData[indexPath.row].nickname
+                let newFriend = filterData[indexPath.row]
+                newFriendCell.setUpNewFriendCell(with: newFriend)
                 newFriendCell.newFriendBtn.addTarget(self, action: #selector(sentFriendRequest(_:)), for: .touchUpInside)
-
-                if filterData[indexPath.row].image.isEmpty {
-                    newFriendCell.newFriendImageView.image = UIImage(named: "profile128")
-                    return newFriendCell
-                } else {
-                    if let imageUrl = URL(string: filterData[indexPath.row].image) {
-                        URLSession.shared.dataTask(with: imageUrl) { data, _, error in
-                            if let err = error {
-                                print("Error download user photo: \(err)")
-                            } else {
-                                if let okData = data {
-                                    DispatchQueue.main.async {
-                                        newFriendCell.newFriendImageView.image = UIImage(data: okData)
-                                    }
-                                }
-                            }
-                        }.resume()
-                    }
-                    return newFriendCell
-                }
-                
+                return newFriendCell
             }
         } else {
             return UITableViewCell()
