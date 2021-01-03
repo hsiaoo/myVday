@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		851C05272574D072002B893F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C05262574D072002B893F /* Restaurant.swift */; };
 		8525D97525A0C28A002D9911 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525D97425A0C28A002D9911 /* ImageManager.swift */; };
+		8525D99925A1BBBE002D9911 /* PhoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525D99825A1BBBE002D9911 /* PhoneButton.swift */; };
 		8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */; };
 		8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */; };
 		852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D98F12570E02F004F86B1 /* EmojiTextField.swift */; };
@@ -75,6 +76,7 @@
 		5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
 		851C05262574D072002B893F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8525D97425A0C28A002D9911 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		8525D99825A1BBBE002D9911 /* PhoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneButton.swift; sourceTree = "<group>"; };
 		8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantVC.swift; sourceTree = "<group>"; };
 		8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		852D98F12570E02F004F86B1 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */,
 				8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */,
 				852D98F12570E02F004F86B1 /* EmojiTextField.swift */,
+				8525D99825A1BBBE002D9911 /* PhoneButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				85E50567258DDDEE007A94EE /* ChallengeListVC.swift in Sources */,
 				8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */,
 				85D21B642581E8F10039A30B /* Challenge.swift in Sources */,
+				8525D99925A1BBBE002D9911 /* PhoneButton.swift in Sources */,
 				85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */,
 				85D21B5E2580B2FE0039A30B /* User.swift in Sources */,
 				85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */,

@@ -12,6 +12,7 @@ import FirebaseFirestore
 class DetailRestaurantVC: UIViewController {
     
     @IBOutlet weak var restNameLabel: UILabel!
+    @IBOutlet weak var phoneBtn: PhoneButton!
     @IBOutlet weak var restAddressLabel: UILabel!
     @IBOutlet weak var restaurantTableView: UITableView!
     
@@ -59,6 +60,23 @@ class DetailRestaurantVC: UIViewController {
     func settingInfo(basicInfo: BasicInfo) {
         restNameLabel.text = basicInfo.name
         restAddressLabel.text = basicInfo.address
+        if basicInfo.phone.isEmpty {
+            phoneBtn.isHidden = true
+        } else {
+            phoneBtn.isHidden = false
+            phoneBtn.phoneNumber = basicInfo.phone
+            phoneBtn.addTarget(self, action: #selector(makePhoneCall(_:)), for: .touchUpInside)
+        }
+    }
+    
+    @objc func makePhoneCall(_ sender: PhoneButton) {
+        //取得定義在PhoneButton內的number，用以產生URL
+        let number = sender.phoneNumber
+        if let phoneUrl = URL(string: "tel://\(number)") {
+            if UIApplication.shared.canOpenURL(phoneUrl) {
+                UIApplication.shared.open(phoneUrl)
+            }
+        }
     }
 
 }
