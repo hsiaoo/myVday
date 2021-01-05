@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cH9-J1-Neq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z7f-p5-wmP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -607,7 +607,7 @@
                                     <outlet property="delegate" destination="LnR-a1-6Qf" id="AFi-nU-o06"/>
                                 </connections>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipses.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uxW-SZ-YYm">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipsis.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uxW-SZ-YYm">
                                 <rect key="frame" x="26.5" y="303" width="50.5" height="49.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uxW-SZ-YYm" secondAttribute="height" multiplier="1:1" id="BKj-MR-PXW"/>
@@ -1379,7 +1379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNV-37-fpm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-230" y="66"/>
+            <point key="canvasLocation" x="262" y="66"/>
         </scene>
         <!--個人-->
         <scene sceneID="BTP-n4-aiE">
@@ -1793,7 +1793,7 @@
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="dish32" width="32" height="32"/>
         <image name="dish64" width="64" height="64"/>
-        <image name="ellipses.bubble" catalog="system" width="128" height="110"/>
+        <image name="ellipsis.bubble" catalog="system" width="128" height="110"/>
         <image name="escape" catalog="system" width="128" height="121"/>
         <image name="flame.fill" catalog="system" width="108" height="128"/>
         <image name="friend172" width="172" height="172"/>

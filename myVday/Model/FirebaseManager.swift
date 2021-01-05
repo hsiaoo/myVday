@@ -108,7 +108,7 @@ class FirebaseManager: NSObject {
     }
     
     //fetch basic information of restaurant from firebase
-    func fetchData(current location: CLLocation) {
+    func fetchNearbyRestaurant(current location: CLLocation) {
         var filteredArray = [QueryDocumentSnapshot]()
         let leftLat = location.coordinate.latitude - 0.009
         let rightLat = location.coordinate.latitude + 0.009

@@ -25,5 +25,11 @@ class CommentTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setUpCommentCell(with comment: Comment) {
+        commentNameLabel.text = comment.name
+        commentDateLabel.text = comment.date
+        commentLabel.text = comment.comment
+    }
 
 }

@@ -97,35 +97,31 @@ extension DetailRestaurantVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if let describeCell = tableView.dequeueReusableCell(
-                withIdentifier: DescribeTableViewCell.identifier,
-                for: indexPath) as? DescribeTableViewCell {
-                
-                if let restaurantInfo = basicInfo {
-                    //new line command(\n)
-                    let rawDescribe = restaurantInfo.describe
-                    describeCell.restDescribeLabel.text = rawDescribe.replacingOccurrences(of: "/n", with: "\n")
-                } else {
-                    print("======there is no basic information of the restaurant======")
+        if let restaurantInfo = basicInfo {
+            if indexPath.section == 0 {
+                if let describeCell = tableView.dequeueReusableCell(
+                    withIdentifier: DescribeTableViewCell.identifier,
+                    for: indexPath) as? DescribeTableViewCell {
+                    describeCell.setUpDescribeCell(with: restaurantInfo)
+                    return describeCell
                 }
-                
-                return describeCell
-            }
-        } else if indexPath.section == 1 {
-            if let hoursCell = tableView.dequeueReusableCell(withIdentifier: HoursTableViewCell.identifier, for: indexPath) as? HoursTableViewCell {
-                hoursCell.restHoursLabel.text = basicInfo?.hours[indexPath.row]
-                return hoursCell
-            }
-        } else {
-            if let commentsCell = tableView.dequeueReusableCell(
-                withIdentifier: CommentTableViewCell.identifier,
-                for: indexPath
-                ) as? CommentTableViewCell {
-                commentsCell.commentNameLabel.text = self.comments[indexPath.row].name
-                commentsCell.commentDateLabel.text = self.comments[indexPath.row].date
-                commentsCell.commentLabel.text = self.comments[indexPath.row].comment
-                return commentsCell
+            } else if indexPath.section == 1 {
+                if let hoursCell = tableView.dequeueReusableCell(
+                    withIdentifier: HoursTableViewCell.identifier,
+                    for: indexPath) as? HoursTableViewCell {
+                    let hour = restaurantInfo.hours[indexPath.row]
+                    hoursCell.setUpHoursCell(with: hour)
+                    return hoursCell
+                }
+            } else {
+                if let commentsCell = tableView.dequeueReusableCell(
+                    withIdentifier: CommentTableViewCell.identifier,
+                    for: indexPath
+                    ) as? CommentTableViewCell {
+                    let aComment = self.comments[indexPath.row]
+                    commentsCell.setUpCommentCell(with: aComment)
+                    return commentsCell
+                }
             }
         }
         return UITableViewCell()

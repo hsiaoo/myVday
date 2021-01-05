@@ -33,7 +33,6 @@
 		8585A2F9257644F400182AC3 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2F8257644F300182AC3 /* MenuVC.swift */; };
 		8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */; };
 		8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10B256FF37100FB5EFC /* MapVC.swift */; };
-		8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */; };
 		8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */; };
 		8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */; };
 		85CF11F125983459009E0907 /* 31454-food-prepared-food-app.json in Resources */ = {isa = PBXBuildFile; fileRef = 85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */; };
@@ -46,8 +45,6 @@
 		85D21B642581E8F10039A30B /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B632581E8F10039A30B /* Challenge.swift */; };
 		85D21B6625833BF00039A30B /* SingleChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */; };
 		85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D21B67258343810039A30B /* ChallengeCollectionViewCell.swift */; };
-		85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */; };
-		85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */; };
 		85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE1E257E1F21002A78F4 /* MapManager.swift */; };
 		85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCBE202580953E002A78F4 /* ProfileVC.swift */; };
 		85E50565258DBF31007A94EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85E50564258DBF30007A94EE /* GoogleService-Info.plist */; };
@@ -105,7 +102,6 @@
 		8585A2F8257644F300182AC3 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = myVday/Controller/Restaurant/MenuVC.swift; sourceTree = SOURCE_ROOT; };
 		8585A2FA2576457A00182AC3 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		8585B10B256FF37100FB5EFC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
-		8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapInfoWindowView.xib; sourceTree = "<group>"; };
 		8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
 		85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "31454-food-prepared-food-app.json"; sourceTree = "<group>"; };
@@ -118,8 +114,6 @@
 		85D21B632581E8F10039A30B /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		85D21B6525833BEF0039A30B /* SingleChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleChallengeVC.swift; sourceTree = "<group>"; };
 		85D21B67258343810039A30B /* ChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
-		85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSectionHeader.xib; sourceTree = "<group>"; };
-		85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSectionHeader.swift; sourceTree = "<group>"; };
 		85DCBE1E257E1F21002A78F4 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		85DCBE202580953E002A78F4 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		85E50564258DBF30007A94EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -174,16 +168,13 @@
 		851DE65025769A020081A8F1 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				8585B10E256FF3F300FB5EFC /* MapTableViewCell.swift */,
 				8527C4E525713E8F004EB422 /* CommentTableViewCell.swift */,
 				85E50568258DDEE9007A94EE /* ChallengeListTableViewCell.swift */,
-				85DCBE1A257B7D34002A78F4 /* CustomSectionHeader.xib */,
 				85D21B612580CFE30039A30B /* FriendChallengeListTableViewCell.swift */,
 				85E5056C258E0CF6007A94EE /* HoursTableViewCell.swift */,
 				85E5056A258E0CC8007A94EE /* DescribeTableViewCell.swift */,
 				85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */,
 				857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */,
-				85DCBE1C257B7F1A002A78F4 /* CustomSectionHeader.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -425,7 +416,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8551E0BC256E38EC008C64FA /* LaunchScreen.storyboard in Resources */,
-				85DCBE1B257B7D34002A78F4 /* CustomSectionHeader.xib in Resources */,
 				8551E0B9256E38EC008C64FA /* Assets.xcassets in Resources */,
 				8551E0B4256E38E6008C64FA /* Main.storyboard in Resources */,
 				8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */,
@@ -556,7 +546,6 @@
 				8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */,
 				85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */,
 				85E5056B258E0CC8007A94EE /* DescribeTableViewCell.swift in Sources */,
-				8585B10F256FF3F300FB5EFC /* MapTableViewCell.swift in Sources */,
 				85E50573258F5E6B007A94EE /* DayChallengeVC.swift in Sources */,
 				851C05272574D072002B893F /* Restaurant.swift in Sources */,
 				8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */,
@@ -584,7 +573,6 @@
 				8525D97525A0C28A002D9911 /* ImageManager.swift in Sources */,
 				85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */,
 				85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */,
-				85DCBE1D257B7F1A002A78F4 /* CustomSectionHeader.swift in Sources */,
 				85750BE02572546F00B7786F /* DetailRestaurantCollectionViewCell.swift in Sources */,
 				8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */,
 			);
@@ -749,7 +737,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XQUK5U76MX;
 				INFOPLIST_FILE = myVday/Info.plist;
@@ -757,7 +745,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.hsiao.myVday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -772,14 +760,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = XQUK5U76MX;
 				INFOPLIST_FILE = myVday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huiwen.hsiao.myVday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

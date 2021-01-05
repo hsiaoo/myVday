@@ -23,5 +23,9 @@ class HoursTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setUpHoursCell(with hour: String) {
+        restHoursLabel.text = hour
+    }
 
 }
