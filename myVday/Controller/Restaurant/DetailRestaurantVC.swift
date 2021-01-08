@@ -70,7 +70,7 @@ class DetailRestaurantVC: UIViewController {
     }
     
     @objc func makePhoneCall(_ sender: PhoneButton) {
-        //取得定義在PhoneButton內的number，用以產生URL
+        //取得定義在PhoneButton內的number，用以產生URL，再撥打電話
         let number = sender.phoneNumber
         if let phoneUrl = URL(string: "tel://\(number)") {
             if UIApplication.shared.canOpenURL(phoneUrl) {
