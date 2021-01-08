@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MapKit
+import CoreLocation
 
 protocol MapManagerDelegate: AnyObject {
     func mapManager(_ manager: MapManager, didGetCoordinate: CLPlacemark, name: String, address: String)

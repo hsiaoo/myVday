@@ -23,5 +23,10 @@ class DescribeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setUpDescribeCell(with restaurantInfo: BasicInfo) {
+        //處理餐廳簡介的文字斷行
+        restDescribeLabel.text = restaurantInfo.describe.replacingOccurrences(of: "/n", with: "\n")
+    }
 
 }

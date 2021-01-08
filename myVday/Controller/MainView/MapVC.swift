@@ -10,7 +10,7 @@ import UIKit
 import FirebaseFirestore
 import CoreLocation
 import GoogleMaps
-import MapKit
+//import MapKit
 
 class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -58,7 +58,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         //優化項目
         let newCoordinate = mapView.projection.coordinate(for: mapView.center)
         print("map view center coordinate: \(newCoordinate)")
-        fireManager.fetchData(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
+        fireManager.fetchNearbyRestaurant(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -71,14 +71,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         //使用者實際目前所在位置
         guard let location = locations.first else { return }
         print("current location: \(location)")
-        fireManager.fetchData(current: location)
-        
-        //        mapView.camera = GMSCameraPosition(
-        //            //使用者目前位置的座標
-        //            target: location.coordinate,
-        //            zoom: 15,
-        //            bearing: 20,
-        //            viewingAngle: 45)
+        fireManager.fetchNearbyRestaurant(current: location)
         mapView.animate(toLocation: location.coordinate)
         mapView.animate(toZoom: 15)
         mapView.animate(toBearing: 20)
