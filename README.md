@@ -34,7 +34,7 @@ Vibrate the fresh vibration everyday.
 <img src="https://raw.githubusercontent.com/hsiaoo/myVday/develop/imagesWithMockup/挑戰列表.png" width=400/> <img src="https://raw.githubusercontent.com/hsiaoo/myVday/develop/imagesWithMockup/挑戰紀錄.png" width=400/>
 
 
-## 套件
+## 程式庫
 - Google Maps
 - Firebase - Firestore, Storage, Authentication
 - Crashlytics
