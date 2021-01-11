@@ -151,14 +151,14 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 challengeCell.challengeDescribeLabel.text = myChallenge[indexPath.row].describe
                 challengeCell.challengeCheckmarkBtn.isHidden = true
                 
-                //                let vsId = myChallenge[indexPath.row].vsChallengeId
-                //                if vsId.isEmpty {
-                //                    friendChallengeCell.backgroundColor = UIColor(named: "myyellow")
-                //                } else {
-                //                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
-                //                }
-                            
-                            return challengeCell
+                //以背景色區分單人挑戰、雙人挑戰
+//                let vsId = myChallenge[indexPath.row].vsChallengeId
+//                if vsId.isEmpty {
+//                    friendChallengeCell.backgroundColor = UIColor(named: "myyellow")
+//                } else {
+//                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
+//                }
+                return challengeCell
             case .newChallengeRequest:
                 if myChallenge.isEmpty {
                     challengeCell.challengeImageView.image = nil

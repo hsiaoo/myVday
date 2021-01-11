@@ -19,27 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(appleIDStateRevoked),
-//            name: ASAuthorizationAppleIDProvider.credentialRevokedNotification,
-//            object: nil)
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        // if user is logged in before
-//        if UserDefaults.standard.string(forKey: "appleUserIDCredential") != nil {
-//            // instantiate the main tab bar controller and set it as root view controller
-//            // using the storyboard identifier we set earlier
-//            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-//            window?.rootViewController = mainTabBarController
-//        } else {
-//            // if user isn't logged in
-//            // instantiate the navigation controller and set it as root view controller
-//            // using the storyboard identifier we set earlier
-//            let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
-//            window?.rootViewController = loginNavController
-//        }
    
         if let userID = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             // get the login status of Apple sign in for the app
@@ -69,13 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
     }
-    
-//    @objc func appleIDStateRevoked() {
-//        // log out user, change UI etc
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
-//        window?.rootViewController = loginNavController
-//    }
     
     func changeRootViewController(_ viewcontroller: UIViewController, animated: Bool = true) {
         guard let window = self.window else {

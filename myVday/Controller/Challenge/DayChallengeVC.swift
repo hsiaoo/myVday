@@ -111,7 +111,6 @@ class DayChallengeVC: UIViewController {
         dayChaTitleTF.isEnabled = false
         dayChaDescribeTextView.isEditable = false
         
-        //challengeId, dayIndex, title, newDescribe, oldDescribe, okDays
         //from singlChallenge(theChallenge): challengeId, daysCompleted(okDays)
         //from todayChallenge: oldDescribe, dayIndex
         //from user input: title, newDescribe
@@ -134,7 +133,7 @@ class DayChallengeVC: UIViewController {
             imageString: imageString,
             completedDays: completedDays)
         } else {
-            print("=====單筆挑戰theChallenge和單日挑戰todayChallenge有問題=====")
+            print("=====something wrong with updating daily challenge=====")
         }
     }
     

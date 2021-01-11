@@ -122,12 +122,10 @@ extension SingleChallengeVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-//            let myChallenge = myDaysChallenge[indexPath.row]
             let isMydata = true
             certainDayChallenge = myDaysChallenge[indexPath.row]
             performSegue(withIdentifier: "todayChallengeSegue", sender: isMydata)
         } else {
-//            let challengerChallenge = challengerDaysChallenge[indexPath.row]
             let isMydata = false
             certainDayChallenge = challengerDaysChallenge[indexPath.row]
             performSegue(withIdentifier: "todayChallengeSegue", sender: isMydata)

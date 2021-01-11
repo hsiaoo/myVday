@@ -10,7 +10,6 @@ import UIKit
 import FirebaseFirestore
 import CoreLocation
 import GoogleMaps
-//import MapKit
 
 class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     

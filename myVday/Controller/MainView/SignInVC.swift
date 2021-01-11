@@ -53,11 +53,7 @@ class SignInVC: UIViewController, FirebaseManagerDelegate {
         NSLayoutConstraint.activate([
             sloganLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sloganLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
-//            sloganLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50),
-//            sloganLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             sloganLabel.bottomAnchor.constraint(equalTo: animationView.topAnchor, constant: 70),
-//            sloganLabel.widthAnchor.constraint(equalToConstant: 280),
-//            sloganLabel.heightAnchor.constraint(equalToConstant: 130),
             
             siwaButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 85.0),
             siwaButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -85.0),
@@ -198,9 +194,6 @@ extension SignInVC: ASAuthorizationControllerPresentationContextProviding, ASAut
                 // Sign in with Firebase.
                 Auth.auth().signIn(with: credential) { (authResult, error) in
                     if let err = error {
-                        // Error. If error.code == .MissingOrInvalidNonce, make sure
-                        // you're sending the SHA256-hashed nonce as a hex string with
-                        // your request to Apple.
                         print(err.localizedDescription)
                         print(err)
                         return
