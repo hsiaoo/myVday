@@ -15,6 +15,7 @@ class MenuVC: UIViewController {
     @IBOutlet weak var noCuisineLabel: UILabel!
     
     let fireManager = FirebaseManager()
+    let refresher = UIRefreshControl()
     var restaurantId: String? = ""
     var restaurantMenu = [Menu]()
     var selectedImage: UIImage?
@@ -22,18 +23,29 @@ class MenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fireManager.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
+        //download dishes from firestore
         if let restId = restaurantId {
             fireManager.fetchSubCollections(restaurantId: restId, type: .menu)
         }
+        
+        //pull to refresh
+        refresher.attributedTitle = NSAttributedString(string: "更新餐點...🤩")
+        refresher.addTarget(self, action: #selector(updateMenu), for: .valueChanged)
+        menuCollectionView.addSubview(refresher)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCuisineSegue" {
             if let controller = segue.destination as? AddCuisineVC {
                 controller.restId = restaurantId
+                
+                //將AddCuisineVC傳過來的新餐點加進restaruantMenu，並重載collection view
+                controller.insertCuisineItem = { cuisineName, cuisineImageString in
+                    let newCusine = Menu(cuisineName: cuisineName, describe: "", image: cuisineImageString, vote: 0)
+                    self.restaurantMenu.append(newCusine)
+                    self.menuCollectionView.reloadData()
+                }
             }
         }
     }
@@ -42,6 +54,12 @@ class MenuVC: UIViewController {
         performSegue(withIdentifier: "addCuisineSegue", sender: nil)
     }
     
+    @objc func updateMenu() {
+        if let restId = restaurantId {
+            fireManager.fetchSubCollections(restaurantId: restId, type: .menu)
+        }
+        refresher.endRefreshing()
+    }
 }
 
 extension MenuVC: UICollectionViewDelegate, UICollectionViewDataSource {

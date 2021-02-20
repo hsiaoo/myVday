@@ -66,12 +66,15 @@ class AddCuisineVC: UIViewController {
             }
         }
     }
-    
+    var insertCuisineItem: ((String, String) -> Void)!
     func cuisineAlert(status: SuccessOrFail, title: String, message: String) {
         let cuisinAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
+        let promptAction = UIAlertAction(title: "確定", style: .default) { [self] _ in
             switch status {
-            case .success: self.navigationController?.popViewController(animated: true)
+            case .success:
+                navigationController?.popViewController(animated: true)
+                guard let cusineName = cuisineNameTF.text, let cuisineImageString = imageString else { return }
+                insertCuisineItem(cusineName, cuisineImageString)
             case .fail: break
             }
         }
