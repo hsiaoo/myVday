@@ -137,7 +137,9 @@ class FirebaseManager: NSObject {
     }
     
     func fetchSubCollections(restaurantId: String, type: DataType) {
-        fireDB.collection("Restaurant").document(restaurantId).collection(type.name()).getDocuments { (snapshot, error) in
+        fireDB.collection("Restaurant").document(restaurantId).collection(type.name())
+            .order(by: "date", descending: true)
+            .getDocuments { (snapshot, error) in
             if let err = error {
                 print("Error getting docs: \(err)")
             } else {
