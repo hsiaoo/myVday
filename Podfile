@@ -16,6 +16,7 @@ target 'myVday' do
   pod 'Firebase/Auth'
   pod 'lottie-ios'
   pod 'Firebase/Crashlytics'
+  pod 'Floaty', '~> 4.2.0'
 end
 
 post_install do |installer|

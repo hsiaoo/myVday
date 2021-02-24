@@ -18,6 +18,7 @@ class AddCuisineVC: UIViewController {
     var restId: String?
     var selectedImage: UIImage?
     var imageString: String?
+    var insertCuisineItem: ((String, String) -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +67,7 @@ class AddCuisineVC: UIViewController {
             }
         }
     }
-    var insertCuisineItem: ((String, String) -> Void)!
+    
     func cuisineAlert(status: SuccessOrFail, title: String, message: String) {
         let cuisinAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let promptAction = UIAlertAction(title: "確定", style: .default) { [self] _ in

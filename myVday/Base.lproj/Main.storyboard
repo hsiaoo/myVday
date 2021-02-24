@@ -1224,20 +1224,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="餐廳資訊" id="lqA-ez-Mi8">
                         <barButtonItem key="backBarButtonItem" title=" " id="mvR-tv-280"/>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" image="dish32" id="Xnf-ff-KsT">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="goToMenuBtn:" destination="VOZ-lq-Qvh" id="c6D-mB-V2h"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="captions.bubble" catalog="system" id="HSw-6M-oJ8">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="writeCommentBtn:" destination="VOZ-lq-Qvh" id="qIa-ux-SWh"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="phoneBtn" destination="4ch-P5-09x" id="u8d-3Q-V9J"/>
@@ -1791,7 +1777,6 @@
         <image name="captions.bubble" catalog="system" width="128" height="110"/>
         <image name="challenge167" width="167" height="167"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
-        <image name="dish32" width="32" height="32"/>
         <image name="dish64" width="64" height="64"/>
         <image name="ellipsis.bubble" catalog="system" width="128" height="110"/>
         <image name="escape" catalog="system" width="128" height="121"/>

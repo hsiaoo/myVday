@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
-
+import Floaty
 class DetailRestaurantVC: UIViewController {
     
     @IBOutlet weak var restNameLabel: UILabel!
@@ -24,6 +24,7 @@ class DetailRestaurantVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         firebaseManager.delegate = self
+        setupLowerRightButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,18 +46,6 @@ class DetailRestaurantVC: UIViewController {
         }
     }
     
-    @IBAction func goToMenuBtn(_ sender: UIBarButtonItem) {
-        if let restId = basicInfo?.restaurantId {
-            performSegue(withIdentifier: "toMenuSegue", sender: restId)
-        }
-    }
-    
-    @IBAction func writeCommentBtn(_ sender: UIBarButtonItem) {
-        if let restId = basicInfo?.restaurantId {
-            performSegue(withIdentifier: "writeCommentSegue", sender: restId)
-        }
-    }
-    
     func settingInfo(basicInfo: BasicInfo) {
         restNameLabel.text = basicInfo.name
         restAddressLabel.text = basicInfo.address
@@ -67,6 +56,47 @@ class DetailRestaurantVC: UIViewController {
             phoneBtn.phoneNumber = basicInfo.phone
             phoneBtn.addTarget(self, action: #selector(makePhoneCall(_:)), for: .touchUpInside)
         }
+    }
+    
+    func setupLowerRightButton() {
+        let numberOfButtons = 3
+        let titleOfButtons = ["編輯餐廳資料", "撰寫評論", "瀏覽餐點"]
+        let imageOfButtons = ["edit32", "comment32", "dish32"]
+        let floatyButton = Floaty()
+        
+        for index in 0 ..< numberOfButtons {
+            floatyButton.addItem("\(titleOfButtons[index])", icon: UIImage(named: "\(imageOfButtons[index])")) { [self] _ in
+                switch index {
+                case 0:
+                    print("編輯")
+                case 1:
+                    if let restId = basicInfo?.restaurantId {
+                        performSegue(withIdentifier: "writeCommentSegue", sender: restId)
+                    }
+                case 2:
+                    if let restId = basicInfo?.restaurantId {
+                        performSegue(withIdentifier: "toMenuSegue", sender: restId)
+                    }
+                default: break
+                }
+            }
+        }
+        
+        for littleButton in floatyButton.items {
+            littleButton.buttonColor = UIColor(named: "orangeFFC99F") ?? .orange
+            littleButton.titleColor = UIColor.black
+            littleButton.titleShadowColor = UIColor.clear
+            littleButton.titleLabel.font = UIFont(name: "GenJyuuGothic-Monospace-Regular-2.ttf", size: 14)
+            littleButton.titleLabel.textAlignment = .right
+        }
+
+        floatyButton.buttonImage = UIImage(named: "expandButton24")
+        floatyButton.buttonColor = UIColor(named: "orangeFFC99F") ?? .orange
+        floatyButton.plusColor = UIColor.orange
+        floatyButton.rotationDegrees = 180
+        floatyButton.sticky = true
+        floatyButton.openAnimationType = .pop
+        view.addSubview(floatyButton)
     }
     
     @objc func makePhoneCall(_ sender: PhoneButton) {

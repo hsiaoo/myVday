@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		036C2BE24A0DFFF4C31C43F4 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E3EAB897040BBA4ACF3F77 /* Pods_myVday.framework */; };
 		851C05272574D072002B893F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C05262574D072002B893F /* Restaurant.swift */; };
 		8525D97525A0C28A002D9911 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525D97425A0C28A002D9911 /* ImageManager.swift */; };
 		8525D99925A1BBBE002D9911 /* PhoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525D99825A1BBBE002D9911 /* PhoneButton.swift */; };
@@ -55,7 +56,6 @@
 		85E5056F258E3AC7007A94EE /* WriteCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */; };
 		85E50571258EF52F007A94EE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50570258EF52F007A94EE /* CustomTabBarController.swift */; };
 		85E50573258F5E6B007A94EE /* DayChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50572258F5E6A007A94EE /* DayChallengeVC.swift */; };
-		AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.release.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.release.xcconfig"; sourceTree = "<group>"; };
-		5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
+		49E3EAB897040BBA4ACF3F77 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		851C05262574D072002B893F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8525D97425A0C28A002D9911 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		8525D99825A1BBBE002D9911 /* PhoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneButton.swift; sourceTree = "<group>"; };
@@ -124,7 +123,8 @@
 		85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentVC.swift; sourceTree = "<group>"; };
 		85E50570258EF52F007A94EE /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		85E50572258F5E6A007A94EE /* DayChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChallengeVC.swift; sourceTree = "<group>"; };
-		8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA276AA74303BC5C14C66391 /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
+		FFA9C798583B45A98DCEA50B /* Pods-myVday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.release.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85750BE6257349AB00B7786F /* MapKit.framework in Frameworks */,
-				AAF906B7D0E9C0A0C0451792 /* Pods_myVday.framework in Frameworks */,
+				036C2BE24A0DFFF4C31C43F4 /* Pods_myVday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				85750BE5257349AB00B7786F /* MapKit.framework */,
-				8BEC21CFB3E29AA01548D9C1 /* Pods_myVday.framework */,
+				49E3EAB897040BBA4ACF3F77 /* Pods_myVday.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,8 +159,8 @@
 		3EE73E5D90B7F104212E488E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */,
-				45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */,
+				FA276AA74303BC5C14C66391 /* Pods-myVday.debug.xcconfig */,
+				FFA9C798583B45A98DCEA50B /* Pods-myVday.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -336,14 +336,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8551E0C0256E38EC008C64FA /* Build configuration list for PBXNativeTarget "myVday" */;
 			buildPhases = (
-				90981EFF020F249F31BEB6B7 /* [CP] Check Pods Manifest.lock */,
+				28A213FA2AB6992CBB659502 /* [CP] Check Pods Manifest.lock */,
 				8551E0A5256E38E6008C64FA /* Sources */,
 				8551E0A6256E38E6008C64FA /* Frameworks */,
 				8551E0A7256E38E6008C64FA /* Resources */,
 				859971EC2570A27000113B54 /* SwiftLint */,
-				EF3BDE2E5268B0AE04A5AEF6 /* [CP] Embed Pods Frameworks */,
-				D6B78C0132D830A4EEA777F9 /* [CP] Copy Pods Resources */,
 				857787C3259C0D9A00F186E8 /* FirebaseCrashlytics */,
+				8A75DD548EFB4EB9806BE88C /* [CP] Embed Pods Frameworks */,
+				5FD68A67C6D807BC19C0D70A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -436,6 +436,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		28A213FA2AB6992CBB659502 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myVday-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FD68A67C6D807BC19C0D70A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		857787C3259C0D9A00F186E8 /* FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,46 +513,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
 		};
-		90981EFF020F249F31BEB6B7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myVday-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D6B78C0132D830A4EEA777F9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myVday/Pods-myVday-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EF3BDE2E5268B0AE04A5AEF6 /* [CP] Embed Pods Frameworks */ = {
+		8A75DD548EFB4EB9806BE88C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -732,7 +732,7 @@
 		};
 		8551E0C1256E38EC008C64FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E1BF7465E2A745B41B33F6A /* Pods-myVday.debug.xcconfig */;
+			baseConfigurationReference = FA276AA74303BC5C14C66391 /* Pods-myVday.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
@@ -755,7 +755,7 @@
 		};
 		8551E0C2256E38EC008C64FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45C460D693D08C706A51ACD8 /* Pods-myVday.release.xcconfig */;
+			baseConfigurationReference = FFA9C798583B45A98DCEA50B /* Pods-myVday.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = myVday/myVday.entitlements;
