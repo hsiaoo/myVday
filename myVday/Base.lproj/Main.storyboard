@@ -956,7 +956,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rNm-sZ-c7u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5178" y="526"/>
+            <point key="canvasLocation" x="5364" y="1219"/>
         </scene>
         <!--MapVC-->
         <scene sceneID="a1N-K3-gLa">
@@ -1230,8 +1230,9 @@
                         <outlet property="restAddressLabel" destination="xam-8a-7Qo" id="Kry-gG-CdB"/>
                         <outlet property="restNameLabel" destination="Nt7-W9-fqA" id="Bne-K2-mPc"/>
                         <outlet property="restaurantTableView" destination="bRg-At-Fzi" id="5Zy-EM-XCM"/>
-                        <segue destination="qJK-7M-bFT" kind="show" identifier="toMenuSegue" id="ybk-cy-lSd"/>
+                        <segue destination="qJK-7M-bFT" kind="show" identifier="goToMenuSegue" id="ybk-cy-lSd"/>
                         <segue destination="fId-nH-GuI" kind="show" identifier="writeCommentSegue" id="JmC-1e-Toe"/>
+                        <segue destination="3gf-H6-EIt" kind="show" identifier="editRestInfoSegue" id="9Wk-5j-xQE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNu-hc-POe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1350,7 +1351,166 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yB-CH-Hds" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5301" y="1277"/>
+            <point key="canvasLocation" x="5364" y="505"/>
+        </scene>
+        <!--編輯餐廳資料-->
+        <scene sceneID="P5J-80-DPe">
+            <objects>
+                <viewController id="3gf-H6-EIt" customClass="EditRestaurantInfoVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oFb-px-GyD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kbF-EN-2bB">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nameAddressCell" id="Yed-AU-WoA" customClass="NameAddressTableViewCell" customModule="myVday" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="111.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yed-AU-WoA" id="9ob-Ss-JGr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="111.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="餐廳名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wd3-vu-hjx">
+                                                    <rect key="frame" x="20" y="20" width="108" height="38.5"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="27"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E03-JQ-7WG">
+                                                    <rect key="frame" x="20" y="68.5" width="64" height="23"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="E03-JQ-7WG" secondAttribute="bottom" constant="20" id="VN2-S1-b9j"/>
+                                                <constraint firstItem="wd3-vu-hjx" firstAttribute="top" secondItem="9ob-Ss-JGr" secondAttribute="top" constant="20" id="YV9-dd-BSh"/>
+                                                <constraint firstItem="E03-JQ-7WG" firstAttribute="leading" secondItem="wd3-vu-hjx" secondAttribute="leading" id="eZB-o7-4IT"/>
+                                                <constraint firstItem="E03-JQ-7WG" firstAttribute="top" secondItem="wd3-vu-hjx" secondAttribute="bottom" constant="10" id="p82-R4-9Hj"/>
+                                                <constraint firstItem="wd3-vu-hjx" firstAttribute="leading" secondItem="9ob-Ss-JGr" secondAttribute="leading" constant="20" id="wai-CN-5xM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addressLabel" destination="E03-JQ-7WG" id="Kwu-5d-pdj"/>
+                                            <outlet property="nameLabel" destination="wd3-vu-hjx" id="sjy-cF-Qjd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="phoneCell" id="1jk-5L-lVh" customClass="PhoneTableViewCell" customModule="myVday" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="139.5" width="414" height="39"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1jk-5L-lVh" id="CiR-94-tDW">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rE0-27-Tya">
+                                                    <rect key="frame" x="76" y="2.5" width="318" height="34"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電話：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84b-UA-fJj">
+                                                    <rect key="frame" x="20" y="8" width="48" height="23"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rE0-27-Tya" firstAttribute="leading" secondItem="84b-UA-fJj" secondAttribute="trailing" constant="8" id="2VG-9m-4TG"/>
+                                                <constraint firstAttribute="bottom" secondItem="84b-UA-fJj" secondAttribute="bottom" constant="8" id="Sxp-cp-mme"/>
+                                                <constraint firstAttribute="trailing" secondItem="rE0-27-Tya" secondAttribute="trailing" constant="20" id="Ue0-g3-PwB"/>
+                                                <constraint firstItem="84b-UA-fJj" firstAttribute="top" secondItem="CiR-94-tDW" secondAttribute="top" constant="8" id="nVH-ue-74J"/>
+                                                <constraint firstItem="84b-UA-fJj" firstAttribute="leading" secondItem="CiR-94-tDW" secondAttribute="leading" constant="20" id="tSP-CR-g0c"/>
+                                                <constraint firstItem="rE0-27-Tya" firstAttribute="centerY" secondItem="84b-UA-fJj" secondAttribute="centerY" id="wxe-fm-cQi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="numberTextField" destination="rE0-27-Tya" id="ohU-tK-8Vw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hashtagsCell" id="IgR-Yu-5J7" customClass="HashtagsTableViewCell" customModule="myVday" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="178.5" width="414" height="39"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IgR-Yu-5J7" id="WrA-Hg-86h">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="標籤：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkJ-WC-siy">
+                                                    <rect key="frame" x="20" y="8" width="48" height="23"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kkJ-WC-siy" firstAttribute="top" secondItem="WrA-Hg-86h" secondAttribute="top" constant="8" id="Acc-9P-PRS"/>
+                                                <constraint firstItem="kkJ-WC-siy" firstAttribute="leading" secondItem="WrA-Hg-86h" secondAttribute="leading" constant="20" id="iBS-Z4-njq"/>
+                                                <constraint firstAttribute="bottom" secondItem="kkJ-WC-siy" secondAttribute="bottom" constant="8" id="xVx-SW-Yo6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="workingHourCell" id="bPZ-fk-OYP" customClass="WorkingHourTableViewCell" customModule="myVday" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="217.5" width="414" height="39"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPZ-fk-OYP" id="ll8-97-eg1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="週日：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMq-Pf-LcN">
+                                                    <rect key="frame" x="20" y="8" width="48" height="23"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Gvd-Su-Q7A">
+                                                    <rect key="frame" x="76" y="0.0" width="83" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                </datePicker>
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-uA-GAG">
+                                                    <rect key="frame" x="194" y="0.0" width="83" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                </datePicker>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJU-9p-wlf">
+                                                    <rect key="frame" x="374" y="9" width="20" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="plus.circle" catalog="system"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="bMq-Pf-LcN" secondAttribute="bottom" constant="8" id="0R1-Ff-WX8"/>
+                                                <constraint firstItem="bMq-Pf-LcN" firstAttribute="leading" secondItem="ll8-97-eg1" secondAttribute="leading" constant="20" id="ckq-1R-s6a"/>
+                                                <constraint firstItem="bMq-Pf-LcN" firstAttribute="top" secondItem="ll8-97-eg1" secondAttribute="top" constant="8" id="yc1-xE-YqS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dayLabel" destination="bMq-Pf-LcN" id="fNY-t1-cSu"/>
+                                            <outlet property="fromHourPicker" destination="Gvd-Su-Q7A" id="9AB-iP-Qa4"/>
+                                            <outlet property="toHourPicker" destination="1Je-uA-GAG" id="Bfk-bF-LlO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3gf-H6-EIt" id="17u-98-kma"/>
+                                    <outlet property="delegate" destination="3gf-H6-EIt" id="9dA-iJ-L7A"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="65P-v1-Ca8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kbF-EN-2bB" firstAttribute="top" secondItem="65P-v1-Ca8" secondAttribute="top" id="NKW-lq-61E"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="kbF-EN-2bB" secondAttribute="bottom" id="YPu-z8-64C"/>
+                            <constraint firstItem="kbF-EN-2bB" firstAttribute="trailing" secondItem="65P-v1-Ca8" secondAttribute="trailing" id="bGp-Yp-Twg"/>
+                            <constraint firstItem="kbF-EN-2bB" firstAttribute="leading" secondItem="65P-v1-Ca8" secondAttribute="leading" id="jD0-MK-7L4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="編輯餐廳資料" id="sB9-mW-2ih"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4gM-Cd-uoi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5362.3188405797109" y="1932.5892857142856"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="LLQ-fC-43T">
@@ -1501,7 +1661,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USu-gI-mKb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5954" y="526"/>
+            <point key="canvasLocation" x="6243" y="505"/>
         </scene>
         <!--Add New FriendVC-->
         <scene sceneID="fIL-Ok-Jdw">

@@ -37,13 +37,29 @@ class DetailRestaurantVC: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toMenuSegue" {
+        
+        switch segue.identifier {
+        case "goToMenuSegue":
             let menuVC = segue.destination as? MenuVC
             menuVC?.restaurantId = sender as? String
-        } else {
+        case "writeCommentSegue" :
             let writeCommentVC = segue.destination as? WriteCommentVC
             writeCommentVC?.restaurantId = sender as? String
+        case "editRestInfoSegue":
+            let editInfoVC = segue.destination as? EditRestaurantInfoVC
+            editInfoVC?.restaurantInfo = sender as? BasicInfo
+        default: break
         }
+        
+//        if segue.identifier == "goToMenuSegue" {
+//            let menuVC = segue.destination as? MenuVC
+//            menuVC?.restaurantId = sender as? String
+//        } else if segue.identifier == "writeCommentSegue" {
+//            let writeCommentVC = segue.destination as? WriteCommentVC
+//            writeCommentVC?.restaurantId = sender as? String
+//        } else {
+//            _ = segue.destination as? EditRestaurantInfoVC
+//        }
     }
     
     func settingInfo(basicInfo: BasicInfo) {
@@ -68,14 +84,14 @@ class DetailRestaurantVC: UIViewController {
             floatyButton.addItem("\(titleOfButtons[index])", icon: UIImage(named: "\(imageOfButtons[index])")) { [self] _ in
                 switch index {
                 case 0:
-                    print("編輯")
+                    performSegue(withIdentifier: "editRestInfoSegue", sender: basicInfo)
                 case 1:
                     if let restId = basicInfo?.restaurantId {
                         performSegue(withIdentifier: "writeCommentSegue", sender: restId)
                     }
                 case 2:
                     if let restId = basicInfo?.restaurantId {
-                        performSegue(withIdentifier: "toMenuSegue", sender: restId)
+                        performSegue(withIdentifier: "goToMenuSegue", sender: restId)
                     }
                 default: break
                 }

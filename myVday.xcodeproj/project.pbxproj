@@ -36,6 +36,11 @@
 		8585B10C256FF37100FB5EFC /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B10B256FF37100FB5EFC /* MapVC.swift */; };
 		8592C3F72577EFC100380EF1 /* MapInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */; };
 		8592C3F92577F9D100380EF1 /* MapInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */; };
+		85A237A925E68EB5005AEFC9 /* EditRestaurantInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237A825E68EB5005AEFC9 /* EditRestaurantInfoVC.swift */; };
+		85A237AE25E79607005AEFC9 /* NameAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237AD25E79607005AEFC9 /* NameAddressTableViewCell.swift */; };
+		85A237B225E79623005AEFC9 /* PhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237B125E79622005AEFC9 /* PhoneTableViewCell.swift */; };
+		85A237B625E79635005AEFC9 /* HashtagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237B525E79635005AEFC9 /* HashtagsTableViewCell.swift */; };
+		85A237BA25E79641005AEFC9 /* WorkingHourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237B925E79641005AEFC9 /* WorkingHourTableViewCell.swift */; };
 		85CF11F125983459009E0907 /* 31454-food-prepared-food-app.json in Resources */ = {isa = PBXBuildFile; fileRef = 85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */; };
 		85CF11FC25986219009E0907 /* NewRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CF11FB25986219009E0907 /* NewRestaurantVC.swift */; };
 		85CF12022598A4A1009E0907 /* GenJyuuGothic-Monospace-Regular-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85CF12012598A4A1009E0907 /* GenJyuuGothic-Monospace-Regular-2.ttf */; };
@@ -103,6 +108,11 @@
 		8585B10B256FF37100FB5EFC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		8592C3F62577EFC100380EF1 /* MapInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapInfoWindowView.xib; sourceTree = "<group>"; };
 		8592C3F82577F9D100380EF1 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
+		85A237A825E68EB5005AEFC9 /* EditRestaurantInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRestaurantInfoVC.swift; sourceTree = "<group>"; };
+		85A237AD25E79607005AEFC9 /* NameAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameAddressTableViewCell.swift; sourceTree = "<group>"; };
+		85A237B125E79622005AEFC9 /* PhoneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTableViewCell.swift; sourceTree = "<group>"; };
+		85A237B525E79635005AEFC9 /* HashtagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagsTableViewCell.swift; sourceTree = "<group>"; };
+		85A237B925E79641005AEFC9 /* WorkingHourTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingHourTableViewCell.swift; sourceTree = "<group>"; };
 		85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "31454-food-prepared-food-app.json"; sourceTree = "<group>"; };
 		85CF11FB25986219009E0907 /* NewRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestaurantVC.swift; sourceTree = "<group>"; };
 		85CF12012598A4A1009E0907 /* GenJyuuGothic-Monospace-Regular-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GenJyuuGothic-Monospace-Regular-2.ttf"; sourceTree = "<group>"; };
@@ -175,6 +185,7 @@
 				85E5056A258E0CC8007A94EE /* DescribeTableViewCell.swift */,
 				85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */,
 				857699122585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift */,
+				85A237AC25E795C5005AEFC9 /* EditRestaurantInfo */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -276,6 +287,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		85A237AC25E795C5005AEFC9 /* EditRestaurantInfo */ = {
+			isa = PBXGroup;
+			children = (
+				85A237AD25E79607005AEFC9 /* NameAddressTableViewCell.swift */,
+				85A237B125E79622005AEFC9 /* PhoneTableViewCell.swift */,
+				85A237B525E79635005AEFC9 /* HashtagsTableViewCell.swift */,
+				85A237B925E79641005AEFC9 /* WorkingHourTableViewCell.swift */,
+			);
+			path = EditRestaurantInfo;
+			sourceTree = "<group>";
+		};
 		85CF11F62598414A009E0907 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +335,7 @@
 				8527C4E325713D9E004EB422 /* DetailRestaurantVC.swift */,
 				85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */,
 				8585A2F8257644F300182AC3 /* MenuVC.swift */,
+				85A237A825E68EB5005AEFC9 /* EditRestaurantInfoVC.swift */,
 				8530E2A2257A1CC9003E5DAC /* AddCuisineVC.swift */,
 			);
 			path = Restaurant;
@@ -542,6 +565,7 @@
 				85E5056F258E3AC7007A94EE /* WriteCommentVC.swift in Sources */,
 				85353A022589EB0600652B8D /* SearchForNewFriendTableViewCell.swift in Sources */,
 				85CF11FC25986219009E0907 /* NewRestaurantVC.swift in Sources */,
+				85A237B225E79623005AEFC9 /* PhoneTableViewCell.swift in Sources */,
 				853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */,
 				8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */,
 				85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */,
@@ -556,11 +580,14 @@
 				85D21B642581E8F10039A30B /* Challenge.swift in Sources */,
 				8525D99925A1BBBE002D9911 /* PhoneButton.swift in Sources */,
 				85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */,
+				85A237AE25E79607005AEFC9 /* NameAddressTableViewCell.swift in Sources */,
 				85D21B5E2580B2FE0039A30B /* User.swift in Sources */,
 				85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */,
+				85A237BA25E79641005AEFC9 /* WorkingHourTableViewCell.swift in Sources */,
 				857699132585F3A900D5B895 /* ChallengeWithFriendTableViewCell.swift in Sources */,
 				85D21B6625833BF00039A30B /* SingleChallengeVC.swift in Sources */,
 				85E50571258EF52F007A94EE /* CustomTabBarController.swift in Sources */,
+				85A237B625E79635005AEFC9 /* HashtagsTableViewCell.swift in Sources */,
 				852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */,
 				8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */,
 				8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */,
@@ -570,6 +597,7 @@
 				8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */,
 				85353A05258B3F6200652B8D /* SignInVC.swift in Sources */,
 				8527C4E625713E8F004EB422 /* CommentTableViewCell.swift in Sources */,
+				85A237A925E68EB5005AEFC9 /* EditRestaurantInfoVC.swift in Sources */,
 				8525D97525A0C28A002D9911 /* ImageManager.swift in Sources */,
 				85DCBE1F257E1F22002A78F4 /* MapManager.swift in Sources */,
 				85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */,
