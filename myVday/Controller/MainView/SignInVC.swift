@@ -15,7 +15,7 @@ import Lottie
 
 class SignInVC: UIViewController, FirebaseManagerDelegate {
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     let sloganLabel = UILabel()
     let siwaButton = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .white)
     
@@ -25,7 +25,7 @@ class SignInVC: UIViewController, FirebaseManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         
         sloganLabel.numberOfLines = 0
         sloganLabel.text = "my ✌🏼 day\nVibrate the fresh\nVibration eVeryday."
@@ -208,7 +208,7 @@ extension SignInVC: ASAuthorizationControllerPresentationContextProviding, ASAut
                                 describe: "Hello!",
                                 emoji: emojiString,
                                 image: "")
-                            self.fireManager.addUser(loginUser: loginUser)
+                            self.firebaseManager.addUser(loginUser: loginUser)
                         } else {
                             print("===========not a new user===========")
                         }

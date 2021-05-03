@@ -14,7 +14,7 @@ class AddNewFriendVC: UIViewController {
     @IBOutlet weak var newFriendSearchBar: UISearchBar!
     @IBOutlet weak var newFriendTableView: UITableView!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     var filterData = [User]()
     var alreadyFriend = [User]()
     var personalData: User?
@@ -22,11 +22,11 @@ class AddNewFriendVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         
         //fetch personal data
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            fireManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
+            firebaseManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
         }
     }
     
@@ -66,7 +66,7 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
         let tappedPoint = sender.convert(CGPoint.zero, to: newFriendTableView)
         if let indexPath = newFriendTableView.indexPathForRow(at: tappedPoint) {
             let targetFriend = filterData[indexPath.row]
-            fireManager.addFriendRequest(newFriendId: targetFriend.userId, personalData: personalData) {
+            firebaseManager.addFriendRequest(newFriendId: targetFriend.userId, personalData: personalData) {
                 self.filterData.remove(at: indexPath.row)
                 self.newFriendTableView.beginUpdates()
                 self.newFriendTableView.deleteRows(at: [indexPath], with: .automatic)
@@ -86,7 +86,7 @@ extension AddNewFriendVC: UISearchBarDelegate {
         if nickname.isEmpty {
             newFriendAlert(title: "😶", message: "請填好搜尋條件")
         } else {
-            fireManager.searchForNewFriend(nickname: nickname)
+            firebaseManager.searchForNewFriend(nickname: nickname)
         }
     }
     

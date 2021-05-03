@@ -25,21 +25,21 @@ class ChallengeListVC: UIViewController {
     @IBOutlet weak var challengeListTableView: UITableView!
     @IBOutlet weak var noChallengeLabel: UILabel!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     var myChallenge = [Challenge]()
     var currentLayout: ChallengeLayoutType = .challengeList
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            fireManager.fetchMyChallenge(ownerId: userId)
+            firebaseManager.fetchMyChallenge(ownerId: userId)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            fireManager.fetchMyChallenge(ownerId: userId)
+            firebaseManager.fetchMyChallenge(ownerId: userId)
         }
     }
     
@@ -64,7 +64,7 @@ class ChallengeListVC: UIViewController {
             newChallengeBtn.image = nil
             challengeNotiBtn.image = UIImage(systemName: "flame.fill")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-                fireManager.fetchProfileSubCollection(userId: userId, dataType: .challengeRequest)
+                firebaseManager.fetchProfileSubCollection(userId: userId, dataType: .challengeRequest)
             }
         case .newChallengeRequest:
             currentLayout = .challengeList
@@ -73,7 +73,7 @@ class ChallengeListVC: UIViewController {
             newChallengeBtn.image = UIImage(systemName: "plus.circle")
             challengeNotiBtn.image = UIImage(systemName: "bell")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-                fireManager.fetchMyChallenge(ownerId: userId)
+                firebaseManager.fetchMyChallenge(ownerId: userId)
             }
         }
     }
@@ -97,7 +97,7 @@ class ChallengeListVC: UIViewController {
             //接受挑戰邀請
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
                 //新增owner為登入者的挑戰，這裡的ownerId是登入者的userId
-                self.fireManager.addChallenge(newChallenge: acceptedChallenge, friendId: "", ownerId: acceptedChallenge.ownerId) {
+                self.firebaseManager.addChallenge(newChallenge: acceptedChallenge, friendId: "", ownerId: acceptedChallenge.ownerId) {
                     //移除畫面上已被被接受挑戰的那一列
                     self.myChallenge.remove(at: indexPath.row)
                     self.challengeListTableView.beginUpdates()
@@ -105,7 +105,7 @@ class ChallengeListVC: UIViewController {
                     self.challengeListTableView.endUpdates()
                 }
                 //將已接受的挑戰從firestore邀請列表中移除
-                self.fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
+                self.firebaseManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
             }
             let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
             requestAlertController.addAction(confirmAction)
@@ -119,7 +119,7 @@ class ChallengeListVC: UIViewController {
                 self.challengeListTableView.deleteRows(at: [indexPath], with: .automatic)
                 self.challengeListTableView.endUpdates()
                 //將被拒絕的挑戰從firestore邀請列表中移除
-                self.fireManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
+                self.firebaseManager.deleteRequest(user: userId, dataType: .challengeRequest, requestId: targetChallenge.challengeId)
             }
             let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
             requestAlertController.addAction(confirmAction)

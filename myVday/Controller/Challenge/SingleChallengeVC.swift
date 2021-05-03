@@ -15,7 +15,7 @@ class SingleChallengeVC: UIViewController {
     @IBOutlet weak var challengeTitleLabel: UILabel!
     @IBOutlet weak var challengeDescribeLabel: UILabel!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     var userNickname: String?
     var singleChallengeFromList: Challenge?
     var certainDayChallenge: DaysChallenge?
@@ -25,7 +25,7 @@ class SingleChallengeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireManager.delegate = self
+        firebaseManager.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,16 +37,16 @@ class SingleChallengeVC: UIViewController {
         if let singleChallengeFromList = singleChallengeFromList {
             challengeTitleLabel.text = singleChallengeFromList.title
             challengeDescribeLabel.text = singleChallengeFromList.describe
-            fireManager.fetchChallengeDetail(challengeId: singleChallengeFromList.challengeId, dataType: .owner)
+            firebaseManager.fetchChallengeDetail(challengeId: singleChallengeFromList.challengeId, dataType: .owner)
             
             if singleChallengeFromList.vsChallengeId.isEmpty {
                 return
             } else {
                 let vsId = singleChallengeFromList.vsChallengeId
                 //in order to get the name of challenger
-                fireManager.fetchMainCollectionDoc(mainCollection: .challenge, docId: vsId)
+                firebaseManager.fetchMainCollectionDoc(mainCollection: .challenge, docId: vsId)
                 //抓取對方每日挑戰的紀錄
-                fireManager.fetchChallengeDetail(challengeId: vsId, dataType: .challenger)
+                firebaseManager.fetchChallengeDetail(challengeId: vsId, dataType: .challenger)
             }
         }
     }

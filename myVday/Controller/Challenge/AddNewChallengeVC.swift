@@ -16,19 +16,19 @@ class AddNewChallengeVC: UIViewController {
     @IBOutlet weak var challengeDaysTF: UITextField!
     @IBOutlet weak var challengeFriendTF: UITextField!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     var friendTableView = UITableView()
     var myFriends = [User]()
     var vsFriendId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         friendTableViewSetting()
         challengeFriendTF.inputView = friendTableView
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             //fetch user's friends for friendTableView
-            fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
+            firebaseManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
         }
     }
     
@@ -58,7 +58,7 @@ class AddNewChallengeVC: UIViewController {
                     vsChallengeId: "",
                     updatedTime: "",
                     daysCompleted: 0)
-                fireManager.addChallenge(newChallenge: newChallenge, friendId: friendId, ownerId: userId) {
+                firebaseManager.addChallenge(newChallenge: newChallenge, friendId: friendId, ownerId: userId) {
                     self.newChallengeAlert(status: .success, title: "🔥GO GO GO", message: "成功發起一項挑戰！")
                 }
             }

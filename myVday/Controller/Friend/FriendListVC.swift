@@ -25,7 +25,7 @@ class FriendListVC: UIViewController {
     @IBOutlet weak var friendListTableView: UITableView!
     @IBOutlet weak var noFriendLabel: UILabel!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     var userData: User?
     var myFriends = [User]()
     var currentLayoutType: FriendLayoutType = .friendList
@@ -33,10 +33,10 @@ class FriendListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             //fetch all my friends' data
-            fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
+            firebaseManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
         }
     }
     
@@ -58,7 +58,7 @@ class FriendListVC: UIViewController {
             friendNotiBtn.image = UIImage(systemName: "person.2")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
                 //抓取好友邀請清單
-                fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friendRequest)
+                firebaseManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friendRequest)
             }
         case .newFriendRequest:
             currentLayoutType = .friendList
@@ -68,7 +68,7 @@ class FriendListVC: UIViewController {
             friendNotiBtn.image = UIImage(systemName: "bell")
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
                 //抓取好友清單
-                fireManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
+                firebaseManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friends)
             }
         }
     }
@@ -84,15 +84,15 @@ class FriendListVC: UIViewController {
         case .acceptFriend:
             //接受好友
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
-                self.fireManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
+                self.firebaseManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
                 guard let personalUserData = self.userData else { return }
                 
                 //將自己加進別人的朋友列表
-                self.fireManager.addNewFriend(friendsOfUserId: targetUser.userId, newFriend: personalUserData)
+                self.firebaseManager.addNewFriend(friendsOfUserId: targetUser.userId, newFriend: personalUserData)
                 //將別人加進自己的朋友列表
-                self.fireManager.addNewFriend(friendsOfUserId: userId, newFriend: targetUser)
+                self.firebaseManager.addNewFriend(friendsOfUserId: userId, newFriend: targetUser)
                 //將已接受的好友從firestore邀請列表中移除
-                self.fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
+                self.firebaseManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
                 
                 //將已接受的好友從畫面中移除
                 self.myFriends.remove(at: indexPath.row)
@@ -112,7 +112,7 @@ class FriendListVC: UIViewController {
                 self.friendListTableView.deleteRows(at: [indexPath], with: .automatic)
                 self.friendListTableView.endUpdates()
                 //將被拒絕的人從firestore好友邀請列表中移除
-                self.fireManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
+                self.firebaseManager.deleteSubCollectionDoc(mainCollection: .user, mainDocId: userId, sub: .friendRequest, subDocId: targetUser.userId)
             }
             let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
             requestAlertController.addAction(confirmAction)

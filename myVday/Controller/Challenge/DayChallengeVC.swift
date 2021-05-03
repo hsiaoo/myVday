@@ -17,7 +17,7 @@ class DayChallengeVC: UIViewController {
     @IBOutlet weak var dayChaTitleTF: UITextField!
     @IBOutlet weak var dayChaDescribeTextView: UITextView!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     let imageManager = ImageManager()
     var isEditingDayChallenge = false
     var isMyChallengeData: Bool?
@@ -28,7 +28,7 @@ class DayChallengeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         imageManager.imageDelegate = self
         keyboardHandling()
         
@@ -124,7 +124,7 @@ class DayChallengeVC: UIViewController {
             let dayIndex = todayCha.index
             let imageString = downloadedImageString ?? ""
             
-            fireManager.updateDailyChallenge(
+            firebaseManager.updateDailyChallenge(
             challengeId: challengeId,
             dayIndex: dayIndex,
             title: newTitle,
@@ -175,7 +175,7 @@ extension DayChallengeVC: UIImagePickerControllerDelegate, UINavigationControlle
             if let okChallenge = self.theChallenge,
                 let okTodayChallenge = self.todayChallenge,
                 let okImage = self.selectedImage {
-                self.fireManager.uploadMenuChallengeImage(
+                self.firebaseManager.uploadMenuChallengeImage(
                     restaurantChallengeId: okChallenge.challengeId,
                     imageNameString: okTodayChallenge.index.description,
                     selectedImage: okImage,

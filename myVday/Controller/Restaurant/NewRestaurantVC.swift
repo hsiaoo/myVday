@@ -16,13 +16,13 @@ class NewRestaurantVC: UIViewController {
     @IBOutlet weak var newRestaurantAddressTF: UITextField!
     
     let mapManager = MapManager()
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapManager.delegate = self
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         
     }
     
@@ -68,7 +68,7 @@ extension NewRestaurantVC: MapManagerDelegate {
                 name: name,
                 phone: "")
             //取得座標後，將資料傳至firestore新增餐廳
-            fireManager.addNewRestaurant(newRestData: newRestaurant) {
+            firebaseManager.addNewRestaurant(newRestData: newRestaurant) {
                 self.newRestaurantAlert(status: .success, title: "🤩", message: "成功新增一間餐廳！")
             }
         }

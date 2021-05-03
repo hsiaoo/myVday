@@ -14,7 +14,7 @@ class AddCuisineVC: UIViewController {
     @IBOutlet weak var cuisineNameTF: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     var restId: String?
     var selectedImage: UIImage?
     var imageString: String?
@@ -59,7 +59,7 @@ class AddCuisineVC: UIViewController {
         if okCuisineName.isEmpty || selectedImage == nil {
             cuisineAlert(status: .fail, title: "😶", message: "請輸入餐點名稱及餐點照片")
         } else {
-            fireManager.addCuisine(
+            firebaseManager.addCuisine(
                 imageString: okImageString,
                 restaurantId: okRestaurantId,
                 cuisineName: okCuisineName) {
@@ -104,7 +104,7 @@ extension AddCuisineVC: UIImagePickerControllerDelegate & UINavigationController
             //上傳餐點照片
             if let restaurantId = self.restId, let okImage = self.selectedImage {
                 let uniqueString = NSUUID().uuidString
-                self.fireManager.uploadMenuChallengeImage(
+                self.firebaseManager.uploadMenuChallengeImage(
                     restaurantChallengeId: restaurantId,
                     imageNameString: uniqueString,
                     selectedImage: okImage,

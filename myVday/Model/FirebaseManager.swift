@@ -92,6 +92,10 @@ enum SuccessOrFail {
 }
 
 class FirebaseManager: NSObject {
+    
+    static let instance = FirebaseManager()
+    private override init() {}
+    
     let fireDB = Firestore.firestore()
     let storageDB =  Storage.storage()
     var ref: DocumentReference?

@@ -15,7 +15,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     var locationManager = CLLocationManager()
     var basicInfos = [BasicInfo]()
     private var infoWindow = MapInfoWindow()
@@ -25,7 +25,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         super.viewDidLoad()
         
         mapView.delegate = self
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         locationManager.delegate = self
         self.infoWindow = loadNib()
         
@@ -57,7 +57,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         //優化項目
         let newCoordinate = mapView.projection.coordinate(for: mapView.center)
         print("map view center coordinate: \(newCoordinate)")
-        fireManager.fetchNearbyRestaurant(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
+        firebaseManager.fetchNearbyRestaurant(current: CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -70,7 +70,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
         //使用者實際目前所在位置
         guard let location = locations.first else { return }
         print("current location: \(location)")
-        fireManager.fetchNearbyRestaurant(current: location)
+        firebaseManager.fetchNearbyRestaurant(current: location)
         mapView.animate(toLocation: location.coordinate)
         mapView.animate(toZoom: 15)
         mapView.animate(toBearing: 20)

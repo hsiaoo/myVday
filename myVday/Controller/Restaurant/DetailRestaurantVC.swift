@@ -16,7 +16,7 @@ class DetailRestaurantVC: UIViewController {
     @IBOutlet weak var restAddressLabel: UILabel!
     @IBOutlet weak var restaurantTableView: UITableView!
     
-    let firebaseManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     let tagColor: [UIColor] = [#colorLiteral(red: 0.5244301558, green: 0.7633284926, blue: 1, alpha: 1), #colorLiteral(red: 0.5922563672, green: 1, blue: 0.5390954018, alpha: 1), #colorLiteral(red: 1, green: 0.6866127253, blue: 0.4180601537, alpha: 1), #colorLiteral(red: 1, green: 0.6486006975, blue: 0.792445004, alpha: 1), #colorLiteral(red: 1, green: 0.956641376, blue: 0.5953657031, alpha: 1)]
     var basicInfo: BasicInfo?
     var comments = [Comment]()

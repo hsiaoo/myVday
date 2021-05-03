@@ -13,8 +13,8 @@ class MenuVC: UIViewController {
 
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var noCuisineLabel: UILabel!
-    
-    let fireManager = FirebaseManager()
+
+    let firebaseManager = FirebaseManager.instance
     let refresher = UIRefreshControl()
     var restaurantId: String? = ""
     var restaurantMenu = [Menu]()
@@ -22,11 +22,11 @@ class MenuVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         
         //download dishes from firestore
         if let restId = restaurantId {
-            fireManager.fetchSubCollections(restaurantId: restId, type: .menu)
+            firebaseManager.fetchSubCollections(restaurantId: restId, type: .menu)
         }
         
         //pull to refresh
@@ -56,7 +56,7 @@ class MenuVC: UIViewController {
     
     @objc func updateMenu() {
         if let restId = restaurantId {
-            fireManager.fetchSubCollections(restaurantId: restId, type: .menu)
+            firebaseManager.fetchSubCollections(restaurantId: restId, type: .menu)
         }
         refresher.endRefreshing()
     }

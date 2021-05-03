@@ -28,7 +28,7 @@ class ProfileVC: UIViewController {
     
     @IBOutlet var friendChallengeBtns: [UIButton]!
     
-    let fireManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     let imageManager = ImageManager()
     var profileData: User?
     var isEditingProfile = false
@@ -37,7 +37,7 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fireManager.delegate = self
+        firebaseManager.delegate = self
         imageManager.imageDelegate = self
         
         friendBtnsView.layer.cornerRadius = 10.0
@@ -55,7 +55,7 @@ class ProfileVC: UIViewController {
         challengeBtnsView.layer.masksToBounds = false
         
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            fireManager.fetchProfileData(userId: userId)
+            firebaseManager.fetchProfileData(userId: userId)
         }
     }
     
@@ -89,7 +89,7 @@ class ProfileVC: UIViewController {
                             describe: newDescribe,
                             emoji: newEmojiString,
                             image: "")
-                        self.fireManager.updateProfile(imageStauts: .old, profileData: newProfileData, completion: {
+                        self.firebaseManager.updateProfile(imageStauts: .old, profileData: newProfileData, completion: {
                             self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
                             //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
                             UserDefaults.standard.set(newNickname, forKey: "userNickname")
@@ -97,14 +97,14 @@ class ProfileVC: UIViewController {
                     } else if selectedImage != nil {
                         //使用者這次修改有更新照片
                         if let newProfileImage = selectedImage {
-                            fireManager.uploadProfileImage(userId: userId, profileImage: newProfileImage) { (imageString) in
+                            firebaseManager.uploadProfileImage(userId: userId, profileImage: newProfileImage) { (imageString) in
                                 let newProfileData = User(
                                     userId: userId,
                                     nickname: newNickname,
                                     describe: newDescribe,
                                     emoji: newEmojiString,
                                     image: imageString)
-                                self.fireManager.updateProfile(imageStauts: .new, profileData: newProfileData, completion: {
+                                self.firebaseManager.updateProfile(imageStauts: .new, profileData: newProfileData, completion: {
                                     self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
                                     //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
                                     UserDefaults.standard.set(newNickname, forKey: "userNickname")

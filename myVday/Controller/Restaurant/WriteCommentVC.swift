@@ -14,7 +14,7 @@ class WriteCommentVC: UIViewController {
     @IBOutlet weak var voteForCuisineTF: UITextField!
     @IBOutlet weak var commentTextView: UITextView!
     
-    let firebaseManager = FirebaseManager()
+    let firebaseManager = FirebaseManager.instance
     let votePicker = UIPickerView()
     var restaurantId: String?
     var allCuisineName = [String]()
