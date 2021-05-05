@@ -37,7 +37,6 @@ class DetailRestaurantVC: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         switch segue.identifier {
         case "goToMenuSegue":
             let menuVC = segue.destination as? MenuVC
@@ -50,16 +49,6 @@ class DetailRestaurantVC: UIViewController {
             editInfoVC?.restaurantInfo = sender as? BasicInfo
         default: break
         }
-        
-//        if segue.identifier == "goToMenuSegue" {
-//            let menuVC = segue.destination as? MenuVC
-//            menuVC?.restaurantId = sender as? String
-//        } else if segue.identifier == "writeCommentSegue" {
-//            let writeCommentVC = segue.destination as? WriteCommentVC
-//            writeCommentVC?.restaurantId = sender as? String
-//        } else {
-//            _ = segue.destination as? EditRestaurantInfoVC
-//        }
     }
     
     func settingInfo(basicInfo: BasicInfo) {

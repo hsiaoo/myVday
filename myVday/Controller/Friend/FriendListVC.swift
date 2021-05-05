@@ -9,14 +9,6 @@
 import UIKit
 import FirebaseFirestore
 
-enum FriendLayoutType {
-    case friendList, newFriendRequest
-}
-
-enum FriendActionType {
-    case acceptFriend, deleteFriendRequest
-}
-
 class FriendListVC: UIViewController {
     
     @IBOutlet weak var friendNotiBtn: UIBarButtonItem!
@@ -28,7 +20,7 @@ class FriendListVC: UIViewController {
     let firebaseManager = FirebaseManager.instance
     var userData: User?
     var myFriends = [User]()
-    var currentLayoutType: FriendLayoutType = .friendList
+    var currentLayoutType: LayoutType = .list
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +42,8 @@ class FriendListVC: UIViewController {
     
     @IBAction func checkNewFriendBtn(_ sender: UIBarButtonItem) {
         switch currentLayoutType {
-        case .friendList:
-            currentLayoutType = .newFriendRequest
+        case .list:
+            currentLayoutType = .newRequest
             listNameLabel.text = "好友邀請"
             newFriendBtn.isEnabled = false
             newFriendBtn.image = nil
@@ -60,8 +52,8 @@ class FriendListVC: UIViewController {
                 //抓取好友邀請清單
                 firebaseManager.fetchSubCollection(mainCollection: .user, mainDocId: userId, sub: .friendRequest)
             }
-        case .newFriendRequest:
-            currentLayoutType = .friendList
+        case .newRequest:
+            currentLayoutType = .list
             listNameLabel.text = "好友"
             newFriendBtn.isEnabled = true
             newFriendBtn.image = UIImage(systemName: "plus.circle")
@@ -77,11 +69,11 @@ class FriendListVC: UIViewController {
         performSegue(withIdentifier: "newFriendSegue", sender: nil)
     }
     
-    func friendRequestAlert(actionType: FriendActionType, title: String, message: String, targetUser: User, userId: String, indexPath: IndexPath) {
+    func friendRequestAlert(actionType: ActionType, title: String, message: String, targetUser: User, userId: String, indexPath: IndexPath) {
         let requestAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         switch actionType {
         
-        case .acceptFriend:
+        case .accept:
             //接受好友
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
                 self.firebaseManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
@@ -104,7 +96,7 @@ class FriendListVC: UIViewController {
             requestAlertController.addAction(confirmAction)
             requestAlertController.addAction(cancelAction)
             
-        case .deleteFriendRequest:
+        case .delete:
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
                 //拒絕好友邀請
                 self.myFriends.remove(at: indexPath.row)
@@ -135,12 +127,12 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
             for: indexPath) as? FriendChallengeListTableViewCell {
             
             switch currentLayoutType {
-            case .friendList:
+            case .list:
                 friendChallengeCell.listTitleLabel.text = "\(myFriends[indexPath.row].nickname)" + " " + "\(myFriends[indexPath.row].emoji)"
                 friendChallengeCell.listDescribeLabel.text = myFriends[indexPath.row].describe
                 friendChallengeCell.confirmBtn.isHidden = true
                 return friendChallengeCell
-            case .newFriendRequest:
+            case .newRequest:
                 friendChallengeCell.listTitleLabel.text = "\(myFriends[indexPath.row].nickname)"
                 friendChallengeCell.listDescribeLabel.text =
                     "向你發出好友邀請\n" +
@@ -155,7 +147,7 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if currentLayoutType == .friendList {
+        if currentLayoutType == .list {
             //如果是在好友列表畫面，則不啟用左滑刪除功能
             return nil
         } else {
@@ -163,7 +155,7 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
                 guard let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") else { return }
                 let targetUser = self.myFriends[indexPath.row]
                 self.friendRequestAlert(
-                    actionType: .deleteFriendRequest,
+                    actionType: .delete,
                     title: "💢拒絕好友邀請",
                     message: "拒絕\(targetUser.nickname)的好友邀請？",
                     targetUser: targetUser,
@@ -192,7 +184,7 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
         if let indexPath = friendListTableView.indexPathForRow(at: tappedPoint) {
             let targetUser = myFriends[indexPath.row]
             friendRequestAlert(
-                actionType: .acceptFriend,
+                actionType: .accept,
                 title: "👌🏼接受好友邀請",
                 message: "和\(targetUser.nickname)成為朋友？",
                 targetUser: targetUser,

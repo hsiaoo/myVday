@@ -60,6 +60,7 @@
 		85E5056F258E3AC7007A94EE /* WriteCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */; };
 		85E50571258EF52F007A94EE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50570258EF52F007A94EE /* CustomTabBarController.swift */; };
 		85E50573258F5E6B007A94EE /* DayChallengeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E50572258F5E6A007A94EE /* DayChallengeVC.swift */; };
+		85EA57532640522400AF68CD /* DefineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA57522640522400AF68CD /* DefineType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -4953,6 +4954,7 @@
 		85E5056E258E3AC6007A94EE /* WriteCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentVC.swift; sourceTree = "<group>"; };
 		85E50570258EF52F007A94EE /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		85E50572258F5E6A007A94EE /* DayChallengeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChallengeVC.swift; sourceTree = "<group>"; };
+		85EA57522640522400AF68CD /* DefineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineType.swift; sourceTree = "<group>"; };
 		C6970A94A1494B6CBDC57D65 /* Pods-myVday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVday.debug.xcconfig"; path = "Target Support Files/Pods-myVday/Pods-myVday.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5028,6 +5030,7 @@
 				85D21B632581E8F10039A30B /* Challenge.swift */,
 				851C05262574D072002B893F /* Restaurant.swift */,
 				85D21B5D2580B2FE0039A30B /* User.swift */,
+				85EA57522640522400AF68CD /* DefineType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -16167,6 +16170,7 @@
 				85D21B6625833BF00039A30B /* SingleChallengeVC.swift in Sources */,
 				85E50571258EF52F007A94EE /* CustomTabBarController.swift in Sources */,
 				85A237B625E79635005AEFC9 /* HashtagsTableViewCell.swift in Sources */,
+				85EA57532640522400AF68CD /* DefineType.swift in Sources */,
 				852D98F22570E02F004F86B1 /* EmojiTextField.swift in Sources */,
 				8585A2FB2576457A00182AC3 /* MenuCollectionViewCell.swift in Sources */,
 				8527C4E425713D9E004EB422 /* DetailRestaurantVC.swift in Sources */,

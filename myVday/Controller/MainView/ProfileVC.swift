@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum ProfileImageStatus {
-    case old, new
-}
-
 class ProfileVC: UIViewController {
     
     @IBOutlet weak var profleEditingView: UIView!

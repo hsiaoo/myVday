@@ -9,14 +9,6 @@
 import UIKit
 import FirebaseFirestore
 
-enum ChallengeLayoutType {
-    case challengeList, newChallengeRequest
-}
-
-enum ChallengeActionType {
-    case acceptChallenge, deleteChallengeRequest
-}
-
 class ChallengeListVC: UIViewController {
 
     @IBOutlet weak var challengeNotiBtn: UIBarButtonItem!
@@ -27,7 +19,7 @@ class ChallengeListVC: UIViewController {
     
     let firebaseManager = FirebaseManager.instance
     var myChallenge = [Challenge]()
-    var currentLayout: ChallengeLayoutType = .challengeList
+    var currentLayout: LayoutType = .list
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +49,8 @@ class ChallengeListVC: UIViewController {
     
     @IBAction func checkNewChallengeBtn(_ sender: UIBarButtonItem) {
         switch currentLayout {
-        case .challengeList:
-            currentLayout = .newChallengeRequest
+        case .list:
+            currentLayout = .newRequest
             listNameLabel.text = "挑戰邀請"
             newChallengeBtn.isEnabled = false
             newChallengeBtn.image = nil
@@ -66,8 +58,8 @@ class ChallengeListVC: UIViewController {
             if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
                 firebaseManager.fetchProfileSubCollection(userId: userId, dataType: .challengeRequest)
             }
-        case .newChallengeRequest:
-            currentLayout = .challengeList
+        case .newRequest:
+            currentLayout = .list
             listNameLabel.text = "挑戰"
             newChallengeBtn.isEnabled = true
             newChallengeBtn.image = UIImage(systemName: "plus.circle")
@@ -83,7 +75,7 @@ class ChallengeListVC: UIViewController {
     }
     
     func challengeRequestAlert(
-        actionType: ChallengeActionType,
+        actionType: ActionType,
         title: String,
         message: String,
         acceptedChallenge: Challenge,
@@ -93,7 +85,7 @@ class ChallengeListVC: UIViewController {
         let requestAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         switch actionType {
             
-        case .acceptChallenge:
+        case .accept:
             //接受挑戰邀請
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
                 //新增owner為登入者的挑戰，這裡的ownerId是登入者的userId
@@ -111,7 +103,7 @@ class ChallengeListVC: UIViewController {
             requestAlertController.addAction(confirmAction)
             requestAlertController.addAction(cancelAction)
             
-        case .deleteChallengeRequest:
+        case .delete:
             let confirmAction = UIAlertAction(title: "確定", style: .default) { _ in
                 //拒絕挑戰邀請
                 self.myChallenge.remove(at: indexPath.row)
@@ -141,7 +133,7 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
             for: indexPath) as? ChallengeListTableViewCell {
             
             switch currentLayout {
-            case .challengeList:
+            case .list:
                 if myChallenge[indexPath.row].daysCompleted == myChallenge[indexPath.row].days {
                     challengeCell.challengeImageView.image = UIImage(named: "success")
                 } else {
@@ -159,7 +151,7 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
 //                    friendChallengeCell.backgroundColor = UIColor(named: "mypink")
 //                }
                 return challengeCell
-            case .newChallengeRequest:
+            case .newRequest:
                 if myChallenge.isEmpty {
                     challengeCell.challengeImageView.image = nil
                     challengeCell.challengeTitleLabel.text = "目前沒有挑戰邀請哦"
@@ -202,7 +194,7 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 daysCompleted: targetChallenge.daysCompleted)
             
             challengeRequestAlert(
-                actionType: .acceptChallenge,
+                actionType: .accept,
                 title: "👌🏼接受挑戰邀請",
                 message: "接受挑戰：\(acceptedChallenge.title)",
                 acceptedChallenge: acceptedChallenge,
@@ -214,16 +206,16 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch currentLayout {
-        case .challengeList:
+        case .list:
             let singleChallenge = myChallenge[indexPath.row]
             performSegue(withIdentifier: "singleChallengeSegue", sender: singleChallenge)
-        case .newChallengeRequest:
+        case .newRequest:
             return
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if currentLayout == .challengeList {
+        if currentLayout == .list {
             //如果是在挑戰列表畫面，則不啟用左滑刪除功能
             return nil
         } else {
@@ -233,7 +225,7 @@ extension ChallengeListVC: UITableViewDelegate, UITableViewDataSource {
                 
                 //其實不需要acceptedChallenge...
                 self.challengeRequestAlert(
-                    actionType: .deleteChallengeRequest,
+                    actionType: .delete,
                     title: "💢拒絕挑戰邀請",
                     message: "拒絕挑戰：\(targetChallenge.title)",
                     acceptedChallenge: targetChallenge,
