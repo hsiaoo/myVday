@@ -24,16 +24,17 @@ class DetailRestaurantVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         firebaseManager.delegate = self
+        
         setupLowerRightButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
         
         if let basicInfo = basicInfo {
             settingInfo(basicInfo: basicInfo)
             firebaseManager.fetchSubCollections(restaurantId: basicInfo.restaurantId, type: .comments)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

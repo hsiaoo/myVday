@@ -26,10 +26,10 @@ class SingleChallengeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         firebaseManager.delegate = self
+        downloadChallenges()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        downloadChallenges()
         userNickname = UserDefaults.standard.string(forKey: "userNickname") ?? ""
     }
 

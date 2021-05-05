@@ -29,12 +29,6 @@ class ChallengeListVC: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
-            firebaseManager.fetchMyChallenge(ownerId: userId)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newChallengeSegue" {
             _ = segue.destination as? AddNewChallengeVC
