@@ -29,14 +29,6 @@ class AddNewFriendVC: UIViewController {
             firebaseManager.fetchMainCollectionDoc(mainCollection: .user, docId: userId)
         }
     }
-    
-    func newFriendAlert(title: String, message: String) {
-        let alterController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default, handler: nil)
-        alterController.addAction(promptAction)
-        present(alterController, animated: true, completion: nil)
-    }
-    
 }
 
 extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
@@ -66,14 +58,13 @@ extension AddNewFriendVC: UITableViewDelegate, UITableViewDataSource {
         let tappedPoint = sender.convert(CGPoint.zero, to: newFriendTableView)
         if let indexPath = newFriendTableView.indexPathForRow(at: tappedPoint) {
             let targetFriend = filterData[indexPath.row]
-            firebaseManager.addFriendRequest(newFriendId: targetFriend.userId, personalData: personalData) {
-                self.filterData.remove(at: indexPath.row)
-                self.newFriendTableView.beginUpdates()
-                self.newFriendTableView.deleteRows(at: [indexPath], with: .automatic)
-                self.newFriendTableView.endUpdates()
-                self.newFriendAlert(title: "📬成功送出好友邀請！", message: "等待對方接受囉")
+            firebaseManager.addFriendRequest(newFriendId: targetFriend.userId, personalData: personalData) { [self] in
+                filterData.remove(at: indexPath.row)
+                newFriendTableView.beginUpdates()
+                newFriendTableView.deleteRows(at: [indexPath], with: .automatic)
+                newFriendTableView.endUpdates()
+                present(.confirmationAlert(title: "📬成功送出好友邀請！", message: "等待對方接受囉", handler: { return }), animated: true, completion: nil)
             }
-
         }
     }
 }
@@ -84,7 +75,7 @@ extension AddNewFriendVC: UISearchBarDelegate {
         filterData.removeAll()
         guard let nickname = newFriendSearchBar.text else { return }
         if nickname.isEmpty {
-            newFriendAlert(title: "😶", message: "請填好搜尋條件")
+            present(.confirmationAlert(title: "😶", message: "請填好搜尋條件", handler: { return }), animated: true, completion: nil)
         } else {
             firebaseManager.searchForNewFriend(nickname: nickname)
         }
@@ -104,7 +95,7 @@ extension AddNewFriendVC: FirebaseManagerDelegate {
     func fireManager(_ manager: FirebaseManager, fetchSubCollection docArray: [QueryDocumentSnapshot], sub: SubCollection) {
         if sub == .friends {
             if docArray.isEmpty {
-                self.newFriendAlert(title: "🧐", message: "找不到這個人")
+                self.present(.confirmationAlert(title: "🧐", message: "找不到這個人", handler: { return }), animated: true, completion: nil)
             } else {
                 filterData.removeAll()
                 for document in docArray {

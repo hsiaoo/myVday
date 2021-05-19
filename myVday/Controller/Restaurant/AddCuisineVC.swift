@@ -57,32 +57,24 @@ class AddCuisineVC: UIViewController {
         let okRestaurantId = restId ?? ""
         
         if okCuisineName.isEmpty || selectedImage == nil {
-            cuisineAlert(status: .fail, title: "😶", message: "請輸入餐點名稱及餐點照片")
+            let alert = UIAlertController.confirmationAlert(title: "😶", message: "請輸入餐點名稱及餐點照片") {
+                return
+            }
+            present(alert, animated: true, completion: nil)
         } else {
             firebaseManager.addCuisine(
                 imageString: okImageString,
                 restaurantId: okRestaurantId,
                 cuisineName: okCuisineName) {
-                    self.cuisineAlert(status: .success, title: "😋", message: "成功新增餐點！")
+                let alert = UIAlertController.confirmationAlert(title: "😋", message: "成功新增餐點！") { [self] in
+                    navigationController?.popViewController(animated: true)
+                    guard let cusineName = cuisineNameTF.text, let cuisineImageString = imageString else { return }
+                    insertCuisineItem(cusineName, cuisineImageString)
+                }
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
-    
-    func cuisineAlert(status: SuccessOrFail, title: String, message: String) {
-        let cuisinAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default) { [self] _ in
-            switch status {
-            case .success:
-                navigationController?.popViewController(animated: true)
-                guard let cusineName = cuisineNameTF.text, let cuisineImageString = imageString else { return }
-                insertCuisineItem(cusineName, cuisineImageString)
-            case .fail: break
-            }
-        }
-        cuisinAlertController.addAction(promptAction)
-        present(cuisinAlertController, animated: true, completion: nil)
-    }
-    
 }
 
 extension AddCuisineVC: UITextFieldDelegate {

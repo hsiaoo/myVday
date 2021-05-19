@@ -36,19 +36,8 @@ class ProfileVC: UIViewController {
         firebaseManager.delegate = self
         imageManager.imageDelegate = self
         
-        friendBtnsView.layer.cornerRadius = 10.0
-        friendBtnsView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        friendBtnsView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        friendBtnsView.layer.shadowOpacity = 1.0
-        friendBtnsView.layer.shadowRadius = 10.0
-        friendBtnsView.layer.masksToBounds = false
-        
-        challengeBtnsView.layer.cornerRadius = 10.0
-        challengeBtnsView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        challengeBtnsView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        challengeBtnsView.layer.shadowOpacity = 1.0
-        challengeBtnsView.layer.shadowRadius = 10.0
-        challengeBtnsView.layer.masksToBounds = false
+        friendBtnsView.buttonAlikeView()
+        challengeBtnsView.buttonAlikeView()
         
         if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
             firebaseManager.fetchProfileData(userId: userId)
@@ -74,7 +63,10 @@ class ProfileVC: UIViewController {
             let newEmojiString = emojiEncode(emoji: newEmoji)
             
             if newNickname.isEmpty {
-                profileAlert(status: .fail, title: "😶", message: "請輸入暱稱")
+                //Fail to update profile
+                present(.confirmationAlert(title: "😶", message: "請輸入暱稱") {
+                    return
+                }, animated: true)
             } else {
                 if let userId = UserDefaults.standard.string(forKey: "appleUserIDCredential") {
                     if profileImageView.image != nil && selectedImage == nil {
@@ -85,11 +77,16 @@ class ProfileVC: UIViewController {
                             describe: newDescribe,
                             emoji: newEmojiString,
                             image: "")
-                        self.firebaseManager.updateProfile(imageStauts: .old, profileData: newProfileData, completion: {
-                            self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
-                            //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
-                            UserDefaults.standard.set(newNickname, forKey: "userNickname")
-                        })
+                        self.firebaseManager.updateProfile(imageStauts: .old, profileData: newProfileData) {
+                            //Success to update profile
+                            let alert = UIAlertController.confirmationAlert(title: "😎", message: "成功更新個人資料！") {
+                                self.endEditing()
+                                
+                                //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
+                                UserDefaults.standard.set(newNickname, forKey: "userNickname")
+                            }
+                            self.present(alert, animated: true)
+                        }
                     } else if selectedImage != nil {
                         //使用者這次修改有更新照片
                         if let newProfileImage = selectedImage {
@@ -100,11 +97,13 @@ class ProfileVC: UIViewController {
                                     describe: newDescribe,
                                     emoji: newEmojiString,
                                     image: imageString)
-                                self.firebaseManager.updateProfile(imageStauts: .new, profileData: newProfileData, completion: {
-                                    self.profileAlert(status: .success, title: "😎", message: "成功更新個人資料！")
-                                    //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
-                                    UserDefaults.standard.set(newNickname, forKey: "userNickname")
-                                })
+                                self.firebaseManager.updateProfile(imageStauts: .new, profileData: newProfileData) {
+                                    let alert = UIAlertController.confirmationAlert(title: "😎", message: "成功更新個人資料！") {
+                                        //儲存使用者最後更新的暱稱，用來顯示在其他地方(single challenge)
+                                        UserDefaults.standard.set(newNickname, forKey: "userNickname")
+                                    }
+                                    self.present(alert, animated: true)
+                                }
                             }
                         }
                     }
@@ -196,18 +195,6 @@ class ProfileVC: UIViewController {
         for button in friendChallengeBtns {
             button.isEnabled = false
         }
-    }
-    
-    func profileAlert(status: SuccessOrFail, title: String, message: String) {
-        let profileAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
-            switch status {
-            case .success: self.endEditing()
-            case .fail: break
-            }
-        }
-        profileAlertController.addAction(promptAction)
-        present(profileAlertController, animated: true, completion: nil)
     }
     
     func emojiDecode(emojiString: String) -> String? {

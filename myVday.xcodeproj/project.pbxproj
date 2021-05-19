@@ -17,6 +17,7 @@
 		85353A002589E80C00652B8D /* AddNewFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853539FF2589E80C00652B8D /* AddNewFriendVC.swift */; };
 		85353A022589EB0600652B8D /* SearchForNewFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */; };
 		85353A05258B3F6200652B8D /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85353A04258B3F6200652B8D /* SignInVC.swift */; };
+		853D1B922654A958007C04C3 /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853D1B912654A958007C04C3 /* ExtensionUIViewController.swift */; };
 		853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DE6CC2573D41B007BA763 /* FirebaseManager.swift */; };
 		8551E0AD256E38E6008C64FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AC256E38E6008C64FA /* AppDelegate.swift */; };
 		8551E0AF256E38E6008C64FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551E0AE256E38E6008C64FA /* SceneDelegate.swift */; };
@@ -40,6 +41,7 @@
 		85A237B225E79623005AEFC9 /* PhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237B125E79622005AEFC9 /* PhoneTableViewCell.swift */; };
 		85A237B625E79635005AEFC9 /* HashtagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237B525E79635005AEFC9 /* HashtagsTableViewCell.swift */; };
 		85A237BA25E79641005AEFC9 /* WorkingHourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A237B925E79641005AEFC9 /* WorkingHourTableViewCell.swift */; };
+		85C5FF1726555F8900A9E5D2 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C5FF1626555F8900A9E5D2 /* ExtensionUIView.swift */; };
 		85CF11F125983459009E0907 /* 31454-food-prepared-food-app.json in Resources */ = {isa = PBXBuildFile; fileRef = 85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */; };
 		85CF11FC25986219009E0907 /* NewRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CF11FB25986219009E0907 /* NewRestaurantVC.swift */; };
 		85CF12022598A4A1009E0907 /* GenJyuuGothic-Monospace-Regular-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85CF12012598A4A1009E0907 /* GenJyuuGothic-Monospace-Regular-2.ttf */; };
@@ -254,6 +256,7 @@
 		85353A012589EB0600652B8D /* SearchForNewFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForNewFriendTableViewCell.swift; sourceTree = "<group>"; };
 		85353A03258B3E7400652B8D /* myVday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVday.entitlements; sourceTree = "<group>"; };
 		85353A04258B3F6200652B8D /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		853D1B912654A958007C04C3 /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		853DE6CC2573D41B007BA763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8551E0A9256E38E6008C64FA /* myVday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8551E0AC256E38E6008C64FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -4934,6 +4937,7 @@
 		85B5D389263CF4FB00A17361 /* dynamic_annotations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dynamic_annotations.h; sourceTree = "<group>"; };
 		85B5D38B263CF4FB00A17361 /* utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
 		85B5D38C263CF4FB00A17361 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		85C5FF1626555F8900A9E5D2 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		85CF11F025983459009E0907 /* 31454-food-prepared-food-app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "31454-food-prepared-food-app.json"; sourceTree = "<group>"; };
 		85CF11FB25986219009E0907 /* NewRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestaurantVC.swift; sourceTree = "<group>"; };
 		85CF12012598A4A1009E0907 /* GenJyuuGothic-Monospace-Regular-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GenJyuuGothic-Monospace-Regular-2.ttf"; sourceTree = "<group>"; };
@@ -5061,6 +5065,8 @@
 				852AF05D2571F50000CAD9C0 /* Model */,
 				8585B10D256FF3BD00FB5EFC /* View */,
 				8585B10A256FF33900FB5EFC /* Controller */,
+				853D1B912654A958007C04C3 /* ExtensionUIViewController.swift */,
+				85C5FF1626555F8900A9E5D2 /* ExtensionUIView.swift */,
 				8551E0AC256E38E6008C64FA /* AppDelegate.swift */,
 				8551E0AE256E38E6008C64FA /* SceneDelegate.swift */,
 				8551E0B2256E38E6008C64FA /* Main.storyboard */,
@@ -16150,6 +16156,7 @@
 				85A237B225E79623005AEFC9 /* PhoneTableViewCell.swift in Sources */,
 				853DE6CD2573D41B007BA763 /* FirebaseManager.swift in Sources */,
 				8530E2A3257A1CC9003E5DAC /* AddCuisineVC.swift in Sources */,
+				85C5FF1726555F8900A9E5D2 /* ExtensionUIView.swift in Sources */,
 				85D21B68258343810039A30B /* ChallengeCollectionViewCell.swift in Sources */,
 				85E5056B258E0CC8007A94EE /* DescribeTableViewCell.swift in Sources */,
 				85E50573258F5E6B007A94EE /* DayChallengeVC.swift in Sources */,
@@ -16163,6 +16170,7 @@
 				8525D99925A1BBBE002D9911 /* PhoneButton.swift in Sources */,
 				85DCBE212580953F002A78F4 /* ProfileVC.swift in Sources */,
 				85A237AE25E79607005AEFC9 /* NameAddressTableViewCell.swift in Sources */,
+				853D1B922654A958007C04C3 /* ExtensionUIViewController.swift in Sources */,
 				85D21B5E2580B2FE0039A30B /* User.swift in Sources */,
 				85D21B622580CFE30039A30B /* FriendChallengeListTableViewCell.swift in Sources */,
 				85A237BA25E79641005AEFC9 /* WorkingHourTableViewCell.swift in Sources */,

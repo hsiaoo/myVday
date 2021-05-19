@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cH9-J1-Neq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cH9-J1-Neq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -424,7 +424,7 @@
                                 <rect key="frame" x="0.0" y="203" width="414" height="693"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendChallengeCell" id="40c-QQ-yVC" customClass="FriendChallengeListTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="105.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="105.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="40c-QQ-yVC" id="hPS-30-6od">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="105.5"/>
@@ -501,13 +501,13 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前還沒有好友哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xx-O7-ZsF">
-                                <rect key="frame" x="135" y="440" width="144" height="21"/>
+                                <rect key="frame" x="135" y="438" width="144" height="25.5"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYz-BA-Jy9">
-                                <rect key="frame" x="99" y="125" width="307" height="41"/>
+                                <rect key="frame" x="99" y="121" width="307" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -576,7 +576,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="發起挑戰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFK-Hg-YED">
-                                        <rect key="frame" x="97.5" y="36" width="308.5" height="41"/>
+                                        <rect key="frame" x="97.5" y="32" width="308.5" height="49"/>
                                         <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -759,11 +759,11 @@
             <objects>
                 <viewController id="0GO-rL-Aeh" customClass="NewRestaurantVC" customModule="myVday" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hkC-fh-90g">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wiB-sy-gZN">
-                                <rect key="frame" x="44.5" y="45" width="325" height="95"/>
+                                <rect key="frame" x="44.5" y="45" width="325" height="106.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeeeaaahhh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7W-wf-pN2">
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="35.5"/>
@@ -772,7 +772,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FW-SS-UQV">
-                                        <rect key="frame" x="0.0" y="36.5" width="325" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="325" height="70"/>
                                         <string key="text">找到了一間地圖上沒有的餐廳
 快點記錄下來</string>
                                         <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="25"/>
@@ -782,32 +782,32 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="r7o-Ka-FdA">
-                                <rect key="frame" x="44.5" y="166" width="34" height="34"/>
+                                <rect key="frame" x="44.5" y="177.5" width="34" height="34"/>
                                 <color key="tintColor" red="0.12914538380000001" green="0.1179387197" blue="0.098035953940000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="r7o-Ka-FdA" secondAttribute="height" multiplier="1:1" id="q68-qm-Atd"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address64" translatesAutoresizingMaskIntoConstraints="NO" id="w5R-r6-0aj">
-                                <rect key="frame" x="44.5" y="226" width="33.5" height="33.5"/>
+                                <rect key="frame" x="44.5" y="237.5" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="w5R-r6-0aj" secondAttribute="height" multiplier="1:1" id="MNG-bg-r2P"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳名稱" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-n9-R1j">
-                                <rect key="frame" x="98.5" y="170" width="271" height="26"/>
+                                <rect key="frame" x="98.5" y="181.5" width="271" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="餐廳地址" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mya-ID-npx">
-                                <rect key="frame" x="98" y="230" width="271.5" height="26"/>
+                                <rect key="frame" x="98" y="241.5" width="271.5" height="26"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jI-VN-4fd">
-                                <rect key="frame" x="336.5" y="286" width="33" height="33"/>
+                                <rect key="frame" x="336.5" y="297.5" width="33" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3jI-VN-4fd" secondAttribute="height" multiplier="1:1" id="X0V-wS-4S9"/>
                                 </constraints>
@@ -877,7 +877,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撰寫評論" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="El0-v6-is3">
-                                <rect key="frame" x="111" y="118" width="295" height="41"/>
+                                <rect key="frame" x="111" y="118" width="295" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1088,7 +1088,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="describeCell" id="wF6-bW-rQp" customClass="DescribeTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="33"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="33"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wF6-bW-rQp" id="30X-PT-Vb8">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="33"/>
@@ -1114,7 +1114,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hoursCell" id="u8g-hw-aFb" customClass="HoursTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="61" width="414" height="23"/>
+                                        <rect key="frame" x="0.0" y="57.5" width="414" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u8g-hw-aFb" id="JaN-z9-nis">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="23"/>
@@ -1140,7 +1140,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" id="UL5-zH-sQp" customClass="CommentTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="84" width="414" height="74"/>
+                                        <rect key="frame" x="0.0" y="80.5" width="414" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UL5-zH-sQp" id="EZP-zF-ODg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
@@ -1315,7 +1315,7 @@
                                 </connections>
                             </collectionView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP4-K3-z5X">
-                                <rect key="frame" x="90" y="429.5" width="234" height="42"/>
+                                <rect key="frame" x="90" y="425.5" width="234" height="50.5"/>
                                 <string key="text">此餐廳目前還沒有餐點資料哦
 點選＋按鈕當第一個分享的人</string>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
@@ -1366,7 +1366,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nameAddressCell" id="Yed-AU-WoA" customClass="NameAddressTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="111.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="111.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yed-AU-WoA" id="9ob-Ss-JGr">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="111.5"/>
@@ -1399,7 +1399,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="phoneCell" id="1jk-5L-lVh" customClass="PhoneTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="139.5" width="414" height="39"/>
+                                        <rect key="frame" x="0.0" y="136" width="414" height="39"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1jk-5L-lVh" id="CiR-94-tDW">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
@@ -1431,7 +1431,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hashtagsCell" id="IgR-Yu-5J7" customClass="HashtagsTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="178.5" width="414" height="39"/>
+                                        <rect key="frame" x="0.0" y="175" width="414" height="39"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IgR-Yu-5J7" id="WrA-Hg-86h">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
@@ -1452,7 +1452,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="workingHourCell" id="bPZ-fk-OYP" customClass="WorkingHourTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="217.5" width="414" height="39"/>
+                                        <rect key="frame" x="0.0" y="214" width="414" height="39"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPZ-fk-OYP" id="ll8-97-eg1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
@@ -1599,7 +1599,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增餐點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74e-Si-5jI">
-                                <rect key="frame" x="105.5" y="122" width="140" height="41"/>
+                                <rect key="frame" x="105.5" y="118" width="140" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1672,13 +1672,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尋找好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dga-cs-HFg">
-                                <rect key="frame" x="99" y="125" width="307" height="41"/>
+                                <rect key="frame" x="99" y="121" width="307" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <searchBar contentMode="redraw" placeholder="好友暱稱.." translatesAutoresizingMaskIntoConstraints="NO" id="MSo-xc-p8z">
-                                <rect key="frame" x="0.0" y="203" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="203" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
@@ -1689,11 +1689,11 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bMY-Og-vEc">
-                                <rect key="frame" x="0.0" y="259" width="414" height="637"/>
+                                <rect key="frame" x="0.0" y="254" width="414" height="642"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newFriendCell" id="AAH-eR-mJd" customClass="SearchForNewFriendTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="105"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AAH-eR-mJd" id="fNG-I2-Oig">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
@@ -1792,7 +1792,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="挑戰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEc-7V-Ab0">
-                                <rect key="frame" x="99" y="125" width="307" height="41"/>
+                                <rect key="frame" x="99" y="121" width="307" height="49"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="35"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1802,7 +1802,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeListCell" id="slN-yU-ZaN" customClass="ChallengeListTableViewCell" customModule="myVday" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="105.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="105.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="slN-yU-ZaN" id="5QW-Z0-xbf">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="105.5"/>
@@ -1873,7 +1873,7 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前還沒有挑戰項目哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv8-yX-ixV" userLabel="noChallengeLabel">
-                                <rect key="frame" x="117" y="440" width="180" height="21"/>
+                                <rect key="frame" x="117" y="438" width="180" height="25.5"/>
                                 <fontDescription key="fontDescription" name="GenJyuuGothic-Monospace-Bold" family="Gen Jyuu Gothic Monospace" pointSize="18"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

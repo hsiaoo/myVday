@@ -36,7 +36,10 @@ class WriteCommentVC: UIViewController {
         favCuisine = voteForCuisineTF.text ?? ""
         
         if commentTextView.text.isEmpty {
-            commentAlert(status: .fail, title: "😶", message: "請撰寫評論")
+            let alert = UIAlertController.confirmationAlert(title: "😶", message: "請撰寫評論") {
+                return
+            }
+            present(alert, animated: true, completion: nil)
         } else {
             //新增評論
             if let restId = restaurantId,
@@ -44,7 +47,10 @@ class WriteCommentVC: UIViewController {
                 let userName = UserDefaults.standard.string(forKey: "userNickname"),
                 let comment = commentTextView.text {
                 firebaseManager.addComment(toFirestoreWith: restId, userId: userId, nickname: userName, comment: comment) {
-                    self.commentAlert(status: .success, title: "👌🏼", message: "送出評論囉！")
+                    let alert = UIAlertController.confirmationAlert(title: "👌🏼", message: "送出評論囉！") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
@@ -57,19 +63,6 @@ class WriteCommentVC: UIViewController {
             }
         }
     }
-    
-    func commentAlert(status: SuccessOrFail, title: String, message: String) {
-        let commentAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
-            switch status {
-            case .success: self.navigationController?.popViewController(animated: true)
-            case .fail: break
-            }
-        }
-        commentAlertController.addAction(promptAction)
-        present(commentAlertController, animated: true, completion: nil)
-    }
-    
 }
 
 extension WriteCommentVC: UIPickerViewDelegate, UIPickerViewDataSource {

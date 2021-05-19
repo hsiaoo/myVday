@@ -42,11 +42,11 @@ class AddNewChallengeVC: UIViewController {
             let userNickname = UserDefaults.standard.string(forKey: "userNickname") else { return }
         
         if title.isEmpty || describe.isEmpty || daysString.isEmpty {
-            newChallengeAlert(status: .fail, title: "😶", message: "請填好挑戰資料")
+            present(.confirmationAlert(title: "😶", message: "請填寫挑戰資料", handler: { return }), animated: true, completion: nil)
         } else {
             let daysInt = Int(daysString) ?? 0
             if daysInt == 0 {
-                newChallengeAlert(status: .fail, title: "😶", message: "請填好挑戰天數")
+                present(.confirmationAlert(title: "😶", message: "請填寫挑戰天數", handler: { return }), animated: true, completion: nil)
             } else {
                 let newChallenge = Challenge(
                     challengeId: "",
@@ -59,24 +59,14 @@ class AddNewChallengeVC: UIViewController {
                     updatedTime: "",
                     daysCompleted: 0)
                 firebaseManager.addChallenge(newChallenge: newChallenge, friendId: friendId, ownerId: userId) {
-                    self.newChallengeAlert(status: .success, title: "🔥GO GO GO", message: "成功發起一項挑戰！")
+                    let alert = UIAlertController.confirmationAlert(title: "🔥GO GO GO", message: "成功發起一項挑戰！") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
     }
-    
-    func newChallengeAlert(status: SuccessOrFail, title: String, message: String) {
-        let newChallengeAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
-            switch status {
-            case .success: self.navigationController?.popViewController(animated: true)
-            case .fail: break
-            }
-        }
-        newChallengeAlertController.addAction(promptAction)
-        present(newChallengeAlertController, animated: true, completion: nil)
-    }
-    
 }
 
 extension AddNewChallengeVC: UITextFieldDelegate {

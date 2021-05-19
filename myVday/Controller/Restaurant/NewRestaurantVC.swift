@@ -31,24 +31,15 @@ class NewRestaurantVC: UIViewController {
               let newRestName = newRestaurantNameTF.text else { return }
         
         if newRestName.isEmpty || newRestAddress.isEmpty {
-            newRestaurantAlert(status: .fail, title: "😶", message: "請填入新餐廳的名稱及地址")
+            let alert = UIAlertController.confirmationAlert(title: "😶", message: "請填入新餐廳的名稱及地址") {
+                return
+            }
+            present(alert, animated: true, completion: nil)
         } else {
             //將地址轉換成座標
             mapManager.addressToCoordinate(newRestName: newRestName, newRestAddress: newRestAddress)
         }
         
-    }
-    
-    func newRestaurantAlert(status: SuccessOrFail, title: String, message: String) {
-        let newRestaurantAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let promptAction = UIAlertAction(title: "確定", style: .default) { _ in
-            switch status {
-            case .success: self.dismiss(animated: true, completion: nil)
-            case .fail: break
-            }
-        }
-        newRestaurantAlertController.addAction(promptAction)
-        present(newRestaurantAlertController, animated: true, completion: nil)
     }
     
 }
@@ -69,7 +60,10 @@ extension NewRestaurantVC: MapManagerDelegate {
                 phone: "")
             //取得座標後，將資料傳至firestore新增餐廳
             firebaseManager.addNewRestaurant(newRestData: newRestaurant) {
-                self.newRestaurantAlert(status: .success, title: "🤩", message: "成功新增一間餐廳！")
+                let alert = UIAlertController.confirmationAlert(title: "🤩", message: "成功新增一間餐廳！") {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
